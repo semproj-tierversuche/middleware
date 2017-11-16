@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- Auskommentierte Sachen sind nein "nett zu haben, aber brauchen wir eigentlich nicht //-->
+<config>
+	<services>
+		<textmining></textmining>
+		<database></database>
+	</services>
+	<limitations>
+		<forks></forks>
+		<cache></cache>
+	</limitations>
+	<resourceCollection>
+		<resource>
+			<baseAdresse></baseAdresse>
+			<subFolder></subFolder>
+			<subFolder></subFolder>
+<!--			<includeFileEndWith></includeFileEndWith>
+			<includeFileByPattern></includeFileByPattern> //-->
+			<excludeFileEndWith></excludeFileEndWith>
+<!--			<excludeFileByPattern></excludeFileByPattern> //-->
+			<convertXLSTSchema></convertXLSTSchema>
+		</resource>
+	</resourceCollection>
+</config>
