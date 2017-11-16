@@ -23,7 +23,7 @@ class ftpBasicDownloader:
         self.PW = ''
         self.__Con = ''
 
-    def initCon(self, WithTLS):
+    def initializeConnection(self, WithTLS):
         #try:
         if True == bool(WithTLS):
             self.__Con = FTP_TLS(self._Base)
