@@ -41,23 +41,30 @@ class ftpBasicDownloader:
         #except ftplib.all_errors as e:
 
     def getFileList(self, Dir):
-        DepCounter = 0
         Return = []
-        Scroller = ''
 
-        DepCounter = Dir.count("/")
 #       try:
         self.__Con.cwd(Dir)
         #except ftplib.all_errors as e
             #dosmt
         self.__Con.retrlines('LIST', Return.append)
 
-        for i in range(0,DepCounter):
-            Scroller += '../'
 #       try:
-        self.__Con.cwd(Scroller)
+        self.__Con.cwd('/')
         #except ftplib.all_errors as e
         return Return
+
+    def changeDir(self,Dir):
+        #try:
+        self.__Con.cwd(Dir)
+        #except ftplib.all_errors as e
+        #dosmt
+
+    def goBackToBaseDir(self):
+        #try:
+            self.__Con.cwd('/')
+        #except ftplib.all_errors as e
+        #dosmt
 
     def downloadFile(self, FileName, OutputFile):
        with open(OutputFile, 'wb') as WriteInto:
@@ -74,4 +81,3 @@ class ftpBasicDownloader:
                 self.__Con.quit()
             except:
                 self.__Con.close()
-
