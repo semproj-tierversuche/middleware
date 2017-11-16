@@ -4,6 +4,9 @@ from ftplib import FTP
 from ftplib import FTP_TLS
 
 
+#ToDo: ->Disclamer
+#      ->Exception handlig -> gleich mit dem Logger dann verheiraten oder
+#      erstmal den Fehler weiter schmeißen?
 class ftpBasicDownloader:
 #    _ReturnAsDOM = False
 #    _Base = ''
@@ -63,8 +66,6 @@ class ftpBasicDownloader:
             #try:
             self.__Con.retrbinary("RETR " + FileName, push)
             #except ftplib.all_errors as e
-
-
 
 #Schliessen der Verbindung nicht vergessen
     def __del__(self):
