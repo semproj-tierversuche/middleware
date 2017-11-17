@@ -6,19 +6,22 @@
 		<database></database>
 	</services>
 	<limitations>
-		<forks></forks>
-		<cache></cache>
+		<forks>Interger</forks>
+		<cache>Integer</cache>
 	</limitations>
 	<resourceCollection>
-		<resource>
-			<baseAdresse></baseAdresse>
-			<subFolder></subFolder>
-			<subFolder></subFolder>
-<!--			<includeFileEndWith></includeFileEndWith>
-			<includeFileByPattern></includeFileByPattern> //-->
-			<excludeFileEndWith></excludeFileEndWith>
-<!--			<excludeFileByPattern></excludeFileByPattern> //-->
-			<convertXLSTSchema></convertXLSTSchema>
+		<resource hasPlugin>
+			<baseAdresse>Address</baseAdresse>
+			<subFolder>Path</subFolder>
+			<subFolder>Path</subFolder>
+			<!--			<includeFileEndWith>String</includeFileEndWith>
+			<includeFileContains>String</includeFileContains>
+			<includeFileByPattern>RegEx</includeFileByPattern> //-->
+			<excludeFileEndWith>String</excludeFileEndWith>
+<!--			<excludeFileByPattern>String</excludeFileByPattern> 
+			<excludeFileContains>RegEx</excludeFileContains>
+//-->
+			 <useXSLTTransformation>PathToFile</useXSLTTransformation>
 		</resource>
 	</resourceCollection>
 </config>

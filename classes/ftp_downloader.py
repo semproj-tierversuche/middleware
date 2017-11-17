@@ -3,11 +3,10 @@
 from ftplib import FTP
 from ftplib import FTP_TLS
 
-
 #ToDo: ->Disclamer
 #      ->Exception handlig -> gleich mit dem Logger dann verheiraten oder
 #      erstmal den Fehler weiter schmeißen?
-class ftpBasicDownloader:
+class FTPBasicDownloader:
 #    _ReturnAsDOM = False
 #    _Base = ''
 #    _Dirs = ''
@@ -18,7 +17,7 @@ class ftpBasicDownloader:
 
     def __init__(self, BaseAddr, ReturnAsDOM):
         self._Base = BaseAddr
-        self._ResturnAsDOM = bool(ReturnAsDOM)
+        self._ReturnAsDOM = bool(ReturnAsDOM)
         self.User = ''
         self.PW = ''
         self.__Connection = ''
