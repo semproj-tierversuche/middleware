@@ -18,6 +18,12 @@ class AbstactResourceDownloader(object):
     def __init__(self):
         pass
 
+    def setBaseAddress(self, Address)
+        raise Exception("NotImplementedException")
+
+    def addSubFolder(self, Folder)
+        raise Exception("NotImplementedException")
+
     def filterFiles(self, FilterCondition, Flag)
         raise Exception("NotImplementedException")
 
