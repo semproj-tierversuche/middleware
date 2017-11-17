@@ -14,6 +14,7 @@ class FTPBasicDownloader:
 #    User = ''
 #    PW = ''
     __IsActiv = False
+    UseTLS = false
 
     def __init__(self, BaseAddr, ReturnAsDOM):
         self._Base = BaseAddr
@@ -22,9 +23,9 @@ class FTPBasicDownloader:
         self.PW = ''
         self.__Connection = ''
 
-    def initializeConnection(self, WithTLS):
+    def initializeConnection(self):
         #try:
-        if True == bool(WithTLS):
+        if True == bool(UseTLS):
             self.__Connection = FTP_TLS(self._Base)
         else:
             self.__Connection = FTP(self._Base)
@@ -37,6 +38,14 @@ class FTPBasicDownloader:
             self.__Connection.login()
         else:
             self.__Connection.login(user = self.User, passwd = self.PW)
+        #except ftplib.all_errors as e:
+
+    def reconnect(self):
+        #try:
+        if True == bool(UseTLS):
+            self.__Connection = FTP_TLS(self._Base)
+        else:
+            self.__Connection = FTP(self._Base)
         #except ftplib.all_errors as e:
 
     def getFileList(self, Dir):
@@ -65,9 +74,9 @@ class FTPBasicDownloader:
         #except ftplib.all_errors as e
         #dosmt
 
-    def downloadFile(self, FileName, OutputFile):
+    def downloadFile(self, FileName, OutputFile)
        with open(OutputFile, 'wb') as WriteInto:
-            def push(Block):
+           def push(Block):
                 WriteInto.write(Block)
             #try:
             self.__Connection.retrbinary("RETR " + FileName, push)
