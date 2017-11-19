@@ -2,26 +2,31 @@
 <!-- Auskommentierte Sachen sind nein "nett zu haben, aber brauchen wir eigentlich nicht //-->
 <config>
 	<services>
-		<textmining></textmining>
-		<database></database>
+		<textmining>
+			<cmd>String</cmd>
+		</textmining>
+		<database>
+			<host protokoll="String" port="Integer">String</host>
+			<store>Stringt</store>
+			<query>String</query>
+		</database>
 	</services>
 	<limitations>
-		<forks>Interger</forks>
+		<threads>Interger</threads>
 		<cache>Integer</cache>
 	</limitations>
 	<resourceCollection>
-		<resource hasPlugin>
-			<baseAdresse>Address</baseAdresse>
+		<resource baseAddress="Address" plugin="stream" xlstTransformation="XLSTFile">
+			<subFolder onInitializion>Path</subFolder>
 			<subFolder>Path</subFolder>
-			<subFolder>Path</subFolder>
-			<!--			<includeFileEndWith>String</includeFileEndWith>
-			<includeFileContains>String</includeFileContains>
-			<includeFileByPattern>RegEx</includeFileByPattern> //-->
-			<excludeFileEndWith>String</excludeFileEndWith>
-<!--			<excludeFileByPattern>String</excludeFileByPattern> 
-			<excludeFileContains>RegEx</excludeFileContains>
-//-->
-			 <useXSLTTransformation>PathToFile</useXSLTTransformation>
+				<includeFile flag="endswith"></includeFile>
+				<!-- <includeFiles flag="contains"></includeFiles>
+				<includeFiles flag="pattern"></includeFiles>
+				<includeFiles flag="date"></includeFiles> //-->
+			<excludeFiles flag="endswith"></includeFiles>
+			<!-- <excludeFiles flag="contains"></includeFiles>
+				<excludeFiles flag="pattern"></includeFiles> 
+				<excludeFiles flag="date">Integer</includeFiles>//-->
 		</resource>
 	</resourceCollection>
 </config>
