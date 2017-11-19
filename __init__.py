@@ -17,7 +17,7 @@ for resource in Config._Resources:
 #TODO
 #step 4 -> adding the sources
     for subfolder in resource["folders"]:
-        if bool(subfoldet['onInitializion']) or 0 == LastUpdate:
+        if not bool(subfoldet['onInitializion']) or 0 == LastUpdate:
             download.addSubFolder(subfolder)
 
 #step 5(optional) -> check md5 and remove invalide files
