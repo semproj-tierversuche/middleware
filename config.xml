@@ -16,14 +16,14 @@
 		<cache>Integer</cache>
 	</limitations>
 	<resourceCollection>
-		<resource baseAddress="Address" plugin="stream" xlstTransformation="XLSTFile">
-			<subFolder onInitializion>Path</subFolder>
-			<subFolder>Path</subFolder>
-				<includeFile flag="endswith"></includeFile>
+		<resource domain="Address" plugin="stream" xlstTransformation="XLSTFile" md5Check="md5Check">
+			<subFolder onInitializion="onInitializion">./pubmed/baseline/</subFolder>
+			<subFolder>./pubmed/updatefiles/</subFolder>
+				<includeFiles flag="endswith">String</includeFiles>
 				<!-- <includeFiles flag="contains"></includeFiles>
 				<includeFiles flag="pattern"></includeFiles>
 				<includeFiles flag="date"></includeFiles> //-->
-			<excludeFiles flag="endswith"></includeFiles>
+			<excludeFiles flag="endswith">String</excludeFiles>
 			<!-- <excludeFiles flag="contains"></includeFiles>
 				<excludeFiles flag="pattern"></includeFiles> 
 				<excludeFiles flag="date">Integer</includeFiles>//-->
