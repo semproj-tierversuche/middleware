@@ -79,7 +79,7 @@ class FTPBasicDownloader:
            def push(Block):
                 WriteInto.write(Block)
                 #try:
-                self.__Connection.retrbinary("RETR " + FileName, push)
+                self.__Connection.retrbinary("RETR %s" % FileName, push)
                 #except ftplib.all_errors as e
 
 #Schliessen der Verbindung nicht vergessen
