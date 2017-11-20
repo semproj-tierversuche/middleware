@@ -11,21 +11,21 @@ class FTPBasicDownloader:
 #    _Base = ''
 #    _Dirs = ''
     __Connectionnection= ''
-#    User = ''
-#    PW = ''
+    Username = ''
+    Password = ''
     __IsActiv = False
-    UseTLS = false
+    UseTLS = False
 
-    def __init__(self, BaseAddr, ReturnAsDOM):
+    #def __init__(self, BaseAddr, Username, Password, ReturnAsDOM):
+    def __init__(self, BaseAddress)
         self._Base = BaseAddr
-        self._ReturnAsDOM = bool(ReturnAsDOM)
-        self.User = ''
-        self.PW = ''
         self.__Connection = ''
+        self.Username = 'anonymus'
+        self.Password = ''
 
     def initializeConnection(self):
         #try:
-        if True == bool(UseTLS):
+        if True == bool(self.UseTLS):
             self.__Connection = FTP_TLS(self._Base)
         else:
             self.__Connection = FTP(self._Base)
@@ -34,18 +34,20 @@ class FTPBasicDownloader:
 
         #folgendes solltes später geloggt werden
         #try:
-        if not self.User:
+        if not self.Username:
             self.__Connection.login()
         else:
-            self.__Connection.login(user = self.User, passwd = self.PW)
+            self.__Connection.login(self.Username, self.Password)
         #except ftplib.all_errors as e:
 
+    #fuer einen Reconnect reicht das erneute Login, die Sockets sind ja noch gebunden
     def reconnect(self):
+#       self.initializeConnection()
         #try:
-        if True == bool(UseTLS):
-            self.__Connection = FTP_TLS(self._Base)
+        if not self.Username:
+            self.__Connection.login()
         else:
-            self.__Connection = FTP(self._Base)
+            self.__Connection.login(self.Username, self.Password)
         #except ftplib.all_errors as e:
 
     def getFileList(self, Dir):
@@ -74,13 +76,13 @@ class FTPBasicDownloader:
         #except ftplib.all_errors as e
         #dosmt
 
-    def downloadFile(self, FileName, OutputFile)
+    def downloadFile(self, FileName, OutputFile):
        with open(OutputFile, 'wb') as WriteInto:
            def push(Block):
                 WriteInto.write(Block)
-            #try:
-            self.__Connection.retrbinary("RETR " + FileName, push)
-            #except ftplib.all_errors as e
+                #try:
+                self.__Connection.retrbinary("RETR " + FileName, push)
+                #except ftplib.all_errors as e
 
 #Schliessen der Verbindung nicht vergessen
     def __del__(self):
