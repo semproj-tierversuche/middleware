@@ -13,11 +13,18 @@ class AbstactResourceDownloader(object):
     FILTER_FILE_END_DATE = 0x7
 
     #beides bitte nach dem jeweiligen Dir
-   _DownloadableFiles = {}
-   _DownloadedFiles = {}
+    _DownloadableFiles = {}
+    _DownloadedFiles = {}
+
+    __Username = 'anonymous'
+    __Password = 'anonymous@hu-berlin.de'
 
     def __init__(self):
         pass
+
+    def setUsernameAndPassword(self, Username, Password):
+        self.__Username = Username
+        self.__Password = Password
 
     def setBaseAddress(self, Address)
         raise Exception("NotImplementedException")
