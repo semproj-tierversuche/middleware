@@ -104,6 +104,7 @@ class ConfigReader(object):
 
         Return = {}
         Return['contains'] = []
+        Return['date'] = []
         Return['ending'] = []
         Return['end_date'] = []
         Return['pattern'] = []
@@ -123,6 +124,8 @@ class ConfigReader(object):
                 Return['ending'].append(Node.text.strip())
             elif 'pattern' == Flag:
                 Return['pattern'].append(Node.text.strip())
+            elif 'date' == Flag:
+                Return['date'].append(Node.text.strip())
             else:
             #wir könnten ne Warunung ausgeben
                 pass

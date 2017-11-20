@@ -24,11 +24,13 @@
 				<!-- <includeFiles flag="contains"></includeFiles>
 				<includeFiles flag="pattern"></includeFiles>
 				<includeFiles flag="start_date"></includeFiles>
-				<includeFiles flag="end_date"></includeFiles> //-->
+				<includeFiles flag="end_date"></includeFiles>
+				<includeFiles flag="date"></includeFiles>//-->
 			<excludeFiles flag="endswith">String</excludeFiles>
 			<!-- <excludeFiles flag="contains"></excludeFiles>
 				<excludeFiles flag="pattern"></excludeFiles>
 				<excludeFiles flag="start_date"></excludeFiles>
+				<excludeFiles flag="end_date"></excludeFiles>
 				<excludeFiles flag="end_date"></excludeFiles>
 		</resource>
 	</resourceCollection>
