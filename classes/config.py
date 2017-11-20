@@ -193,11 +193,11 @@ class ConfigReader(object):
                 #Exception
                 pass
             else:
-                Return['address'] = allzweckWegwerfVariable
+                Return['domain'] = allzweckWegwerfVariable
 
 
         if 'plugin' in Node.attrib:
-            if os.path.isfile('./plugin/' + Return['address'] + '/plugin.py'):
+            if os.path.isfile('./plugin/' + Return['domain'] + '/plugin.py'):
                 if 'pulk' == Node.attrib['plugin'].text.strip():
                     Return['plugin'] = PLUGIN_PULK
                 else:

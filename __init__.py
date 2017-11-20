@@ -40,7 +40,7 @@ for Resource in Config._Resources:
             for Contains in Exclusion['contains']:
                 Download.filterFiles(Contains, Download.FILTER_FILE_EXCLUDE_CONTAINS)
 
-       if Exclusion['pattern']:
+        if Exclusion['pattern']:
             for Pattern in Exclusion['pattern']:
                 Download.filterFiles(Pattern, Download.FILTER_FILE_EXCLUDE_PATTERN)
 
@@ -80,5 +80,12 @@ for Resource in Config._Resources:
         if Inclusion['end_date']:
             for EndDate in Inclusion['end_date']:
                 Download.filterFiles(EndDate, Download.FILTER_FILE_INCLUDE_END_DATE)
-
+#step 8 -> download files: download/Thread
+#step 9 -> call domain plugin: we exspect a DOM as return
+#step 10(optional) -> call xslt transformation to BioC
+#step 12(opional -> join for a pulk indexing
+#step 11 -> call textmining
+#step 12a -> collect all data in a datastruct
+#step 13 -> transform the datastruct to JSON
+#step 14 -> push into database
     download.flush()
