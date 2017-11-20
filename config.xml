@@ -4,6 +4,7 @@
 	<services>
 		<textmining>
 			<cmd>String</cmd>
+			<param>String</param>
 		</textmining>
 		<database>
 			<host protokoll="String" port="Integer">String</host>
@@ -22,11 +23,13 @@
 				<includeFiles flag="endswith">String</includeFiles>
 				<!-- <includeFiles flag="contains"></includeFiles>
 				<includeFiles flag="pattern"></includeFiles>
-				<includeFiles flag="date"></includeFiles> //-->
+				<includeFiles flag="start_date"></includeFiles>
+				<includeFiles flag="end_date"></includeFiles> //-->
 			<excludeFiles flag="endswith">String</excludeFiles>
-			<!-- <excludeFiles flag="contains"></includeFiles>
-				<excludeFiles flag="pattern"></includeFiles> 
-				<excludeFiles flag="date">Integer</includeFiles>//-->
+			<!-- <excludeFiles flag="contains"></excludeFiles>
+				<excludeFiles flag="pattern"></excludeFiles>
+				<excludeFiles flag="start_date"></excludeFiles>
+				<excludeFiles flag="end_date"></excludeFiles>
 		</resource>
 	</resourceCollection>
 </config>

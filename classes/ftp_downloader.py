@@ -17,8 +17,8 @@ class FTPBasicDownloader:
     UseTLS = False
 
     #def __init__(self, BaseAddr, Username, Password, ReturnAsDOM):
-    def __init__(self, BaseAddress)
-        self._Base = BaseAddr
+    def __init__(self, BaseAddress):
+        self._Base = BaseAddress
         self.__Connection = ''
 
     def initializeConnection(self):
