@@ -20,8 +20,6 @@ class FTPBasicDownloader:
     def __init__(self, BaseAddress)
         self._Base = BaseAddr
         self.__Connection = ''
-        self.Username = 'anonymus'
-        self.Password = ''
 
     def initializeConnection(self):
         #try:

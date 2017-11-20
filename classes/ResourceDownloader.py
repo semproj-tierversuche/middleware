@@ -24,18 +24,24 @@ class ResourceDownloader(AbstractResourceDownloader):
         super().__init__()
         self._DownloadableFiles = []
         self._DownloadedFiles = []
+        self.__Username = ''
+        self.__Password = ''
+        self.UseTLS = False
 
     def setBaseAddress(self, Address):
-        USERNAME = 'anonymous'
-        PASSWORD = 'anonymous@hu-berlin.de'
-        self._Downloader = FTPBasicDownloader(Address, USERNAME, PASSWORD, False)
+        #USERNAME = 'anonymous'
+        #PASSWORD = 'anonymous@hu-berlin.de'
+        self._Downloader = FTPBasicDownloader(Address)
+        self._Downloader.UseTLS = self.UseTLS
+        self._Downloader.Username = self.__Username
+        self._Downloader.Password = self.__Password
         self._Downloader.initializeConnection()
         self._DownloadableFiles = []
         self._DownloadedFiles = []
 
     def addSubFolder(self, Folder):
         self._Downloader.reconnect()
-        self._Downloader.goBackToBaseDir()
+        #self._Downloader.goBackToBaseDir()
         FileList = self._Downloader.getFileList(Folder)
         for File in FileList:
             FileAttributes = self._parseFileAttributes(File)

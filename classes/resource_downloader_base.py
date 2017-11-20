@@ -15,25 +15,19 @@ class AbstractResourceDownloader(object):
     #beides bitte nach dem jeweiligen Dir
     _DownloadableFiles = {}
     _DownloadedFiles = {}
-<<<<<<< HEAD
 
-    __Username = 'anonymous'
-    __Password = 'anonymous@hu-berlin.de'
-=======
->>>>>>> 7da28fea5037343017a1e4c8cde229c7c5361080
+    __Username = ''
+    __Password = ''
+    UseTLS = False
 
     def __init__(self):
         pass
 
-<<<<<<< HEAD
     def setUsernameAndPassword(self, Username, Password):
         self.__Username = Username
         self.__Password = Password
 
-    def setBaseAddress(self, Address)
-=======
     def setBaseAddress(self, Address):
->>>>>>> 7da28fea5037343017a1e4c8cde229c7c5361080
         raise Exception("NotImplementedException")
 
     def addSubFolder(self, Folder):
