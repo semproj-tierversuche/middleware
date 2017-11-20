@@ -14,6 +14,8 @@ class FileAttributes:
 
 class ResourceDownloader(AbstactResourceDownloader):
     # TODO: Exception handling for whole class
+    # TODO: filter files with no read access
+    # TODO: reconnect only if needed
 
     _Downloader = None
     _Filters = []
