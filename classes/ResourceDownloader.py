@@ -1,5 +1,5 @@
 from classes.ftp_downloader import FTPBasicDownloader
-from classes.resource_downloader_base import AbstactResourceDownloader
+from classes.resource_downloader_base import AbstractResourceDownloader
 
 
 class FileAttributes:
@@ -12,7 +12,7 @@ class FileAttributes:
     Filename = None
 
 
-class ResourceDownloader(AbstactResourceDownloader):
+class ResourceDownloader(AbstractResourceDownloader):
     # TODO: Exception handling for whole class
     # TODO: filter files with no read access
     # TODO: reconnect only if needed

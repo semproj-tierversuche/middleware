@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # requires at least python 3.4
 
-class AbstactResourceDownloader(object):
+class AbstractResourceDownloader(object):
     #Preferenz Include >= Date_any > Exclude
     FILTER_FILE_EXCLUDE_ENDS_WITH = 0x0
     FILTER_FILE_EXCLUDE_CONTAINS = 0x1
