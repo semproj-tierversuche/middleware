@@ -13,37 +13,38 @@ class AbstactResourceDownloader(object):
     FILTER_FILE_END_DATE = 0x7
 
     #beides bitte nach dem jeweiligen Dir
-   _DownloadableFiles = {}
-   _DownloadedFiles = {}
+    _DownloadableFiles = {}
+    _DownloadedFiles = {}
 
     def __init__(self):
         pass
 
-    def setBaseAddress(self, Address)
+    def setBaseAddress(self, Address):
         raise Exception("NotImplementedException")
 
-    def addSubFolder(self, Folder)
+    def addSubFolder(self, Folder):
         raise Exception("NotImplementedException")
 
     #flush all
-    def flush(self, Folder)
+    def flush(self, Folder):
         raise Exception("NotImplementedException")
 
-    def filterFiles(self, FilterCondition, Flag)
+    def filterFiles(self, FilterCondition, Flag):
         raise Exception("NotImplementedException")
 
-    def flushFilter(self)
+    def flushFilter(self):
         raise Exception("NotImplementedException")
 
     #check die md5 hashes der files -> sollten die nicht stimmen werden die aus Downloadable komplett genommen
     def checkMD5(self):
         raise Exception("NotImplementedException")
+
     #Die Funktion läd das erste File der Downloadqueue her runter, entfernt den Eintrag aus dieser und fügt es der Gedownloades Liste hinzu
-    def downloadFile(self, PathToDownloadFolder)
+    def downloadFile(self, PathToDownloadFolder):
         raise Exception("NotImplementedException")
 
     #Die Funktion soll immer alles downloaden, was die Filer erlauben
-    def downloadAll(self, PathToDownloadFolder)
+    def downloadAll(self, PathToDownloadFolder):
         raise Exception("NotImplementedException")
 
     #De Funktion setzt die Downloadqueue zurueck
