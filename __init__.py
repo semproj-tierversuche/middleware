@@ -10,10 +10,12 @@ LastUpdate = 0
 Config = ConfigReader()
 Config.parseConfigFile('../config.xml')
 print(Config._Resources)
+print(Config._Textmining)
+print(Config._Database)
 #step 2 -> prepare download
 Download = ResourceDownloader()
 for Resource in Config._Resources:
-    Download.setBaseAddress(Resource['address'])
+    Download.setBaseAddress(Resource['domain'])
 #step 3 -> when we did the last update for this source
 #TODO
 #step 4 -> adding the sources

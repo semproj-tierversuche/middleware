@@ -8,8 +8,20 @@
 		</textmining>
 		<database>
 			<host protokoll="String" port="Integer">String</host>
-			<store>Stringt</store>
-			<query>String</query>
+			<store methode="string" username="String" password="String">
+				<param>String</param>
+				<param>String</param>
+				<cookie type="stroage">String</param>
+				<cookie type="string">String</param>
+				<path>String</path>
+			</store>
+			<query methode="string" username="String" password="String">
+				<param>String</param>
+				<param>String</param>
+				<cookie type="stroage">String</param>
+				<cookie type="string">String</param>
+				<path>String</path>
+			</query>
 		</database>
 	</services>
 	<limitations>

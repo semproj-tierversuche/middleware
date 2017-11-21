@@ -7,28 +7,33 @@ from classes.ResourceDownloader import ResourceDownloader
 
 class TextMining(object):
 
+    _ResourceStack = []
+    __CurrentResource = []
     __LastUpdate = 0
-    __Configurartion = ''
-    __Downloaderer = ''
+    __Configuration= ''
+    __Downloader = ''
 
     #step 1 -> reading config
     def __init__(self, ConfigurationFile):
         self.__Configuration = ConfigReader()
         self.__Configuration.parseConfigFile('../config.xml')
-        print(Config._Resources)
-        self.__Downloader = ResourceDownloader().
+        self.__Downloader = ResourceDownloader()
+        self.__ResourceStack = self.__Configuration._Resources
 
+    def flush(self):
+        self.__Downloader.flush()
+        self._ResourceStack = self.__Configuration._Resources
 
     def prepareDownload(self):
-        for Resource in Config._Resources:
-            self.__Downloader.setBaseAddress(Resource['domain'])
-            for Subfolder in Resource['folders']:
-                self.__addSubFolder(Subfolder)
+        Resource = self._ResourceStack.pop()
+        self.__Downloader.setBaseAddress(Resource['domain'])
+        for Subfolder in Resource['folders']:
+            self.__addSubFolder(Subfolder)
 
-            if bool(Resource['md5']):
-                self.__Downloader.checkMD5()
+        if bool(Resource['md5']):
+            self.__Downloader.checkMD5()
 
-            self.__setFilter(Resource)
+        self.__setFilter(Resource)
 
     def getLastUpdate(self, Domain):
         #TODO

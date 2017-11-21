@@ -26,13 +26,22 @@ class ConfigReader(object):
 
     def readService(self, Root):
         Node =''
+        Nodes = []
         Return = {}
+        Return['cmd'] = {}
+        Return['cmd']['param'] = []
         Return['host'] = {}
+
         Node = Root.find('cmd')
         #we going on to check if we need to use something else then commandline
         if None is not Node:
-            Return['cmd'] = Node.text.strip()
+            Return['cmd']['name'] = Node.text.strip()
             del Return['host']
+            Nodes = Node.findall('param')
+            if Nodes:
+                for Node in Nodes:
+                    if Node.text.strip():
+                        Return['cmd']['param'].append(Node.text.strip())
         else:
         #alternativ: We can say host[@protokoll@port], but we cannot exact error report
             Node = Root.find('host')
@@ -40,6 +49,7 @@ class ConfigReader(object):
                 #raise a exception
                 pass
             else:
+                del Return['cmd']
                 if 'protokoll' not in Node.attrib:
                     #raise a exception
                     pass
@@ -48,18 +58,53 @@ class ConfigReader(object):
                     pass
                 else:
                     Return['host']['name'] = Node.text.strip()
-                    Return['host']['protokoll'] = Node.attrib['protokoll'].strip()
+                    Return['host']['protokoll'] = Node.attrib['protokoll'].strip().lower()
                     Return['host']['port'] = Node.attrib['port'].strip()
 
         return Return
 
     def readSubNode(self, Node, TagName):
-        Node = Node.find(TagName)
+        NodeStrich = ''
+        Nodes = []
+        Return = {}
+        Return['parameters'] = []
+        Return['cookies'] = []
+        Return['path'] = {}
+
+        NodeStrich = Node.find(TagName)
+        Node = NodeStrich
         if None is Node:
         #throw exception if not in tagsoup
             pass
+        elif 'method' not in Node.attrib or not Node.attrib['method'].strip():
+            #throw exception
+            pass
         else:
-            return Node.text.strip()
+            Return['method'] = Node.attrib['method'].strip().upper()
+            Node = NodeStrich.find('path')
+            if None is Node or not Node.text.strip():
+                #throw exception if not in tagsoup
+                pass
+            else:
+                Return['path']['url'] = Node.text.strip()
+                if 'username' in Node.attrib and 'password' in Node.attrib and Node.attrib['username'].strip() and Node.attrib['password']:
+                    Retrun['path']['username'] = Node.attrib['username'].strip()
+                    Return['path']['password'] = Node.attrib['password']
+                Nodes = NodeStrich.findall('param')
+                if Nodes:
+                    for Node in Nodes:
+                        if Node.text.strip():
+                            Return['parameters'].append(Node.text.strip())
+
+                Nodes = NodeStrich.findall('cookie')
+                if Nodes:
+                    for Node in Nodes:
+                        if Node.text.strip() and 'type' in Node.attrib:
+                            if 'storage' == Node.attrib['type']:
+                                Return['cookies'].append({'type': 0, 'value:':Node.text.strip()})
+                            elif 'string' == Node.attrib['type']:
+                                Return['cookies'].append({'type': 1, 'value:':Node.text.strip()})
+        return Return
 
 
     def readTextmining(self):
