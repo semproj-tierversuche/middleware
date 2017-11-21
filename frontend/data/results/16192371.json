@@ -1,0 +1,480 @@
+{ 
+  "Origin" : { 
+      "Abstract" : [ "Recent studies showed that the low-frequency component of local field potentials (LFPs) in monkey motor cortex carries information about parameters of voluntary arm movements. Here, we studied how different signal components of the LFP in the time and frequency domains are modulated during center-out arm movements. Analysis of LFPs in the time domain showed that the amplitude of a slow complex waveform beginning shortly before the onset of arm movement is modulated with the direction of the movement. Examining LFPs in the frequency domain, we found that direction-dependent modulations occur in three frequency ranges, which typically increased their amplitudes before and during movement execution: < or =4, 6-13, and 63-200 Hz. Cosine-like tuning was prominent in all signal components analyzed. In contrast, activity in a frequency band approximately 30 Hz was not modulated with the direction of movement and typically decreased its amplitude during the task. This suggests that high-frequency oscillations have to be divided into at least two functionally different regimes: one approximately 30 Hz and one >60 Hz. Furthermore, using multiple LFPs, we could show that LFP amplitude spectra can be used to decode movement direction, with the best performance achieved by the combination of different frequency ranges. These results suggest that using the different frequency components in the LFP is useful in improving inference of movement parameters from local field potentials." ],
+      "Annotations" : [  ],
+      "Authors" : [ 
+          "Rickert, Jörn",
+          "Oliveira, Simone Cardoso de",
+          "Vaadia, Eilon",
+          "Aertsen, Ad",
+          "Rotter, Stefan",
+          "Mehring, Carsten"
+        ],
+      "Date" : "2005",
+      "Identifier" : [  ],
+      "Journal" : [ "The Journal of neuroscience : the official journal of the Society for Neuroscience" ],
+      "Keywords" : [  ],
+      "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/16192371",
+      "MeshHeadings" : [ 
+          "Action Potentials",
+          "Animals",
+          "Arm",
+          "Female",
+          "Macaca mulatta",
+          "Models, Neurological",
+          "Motor Cortex",
+          "Movement",
+          "Reaction Time"
+        ],
+      "PMID" : 16192371,
+      "PublicationType" : "Journal Article",
+      "Substances" : [  ],
+      "Suggest" : "",
+      "TextminingVersion" : "0",
+      "Title" : "Encoding of movement direction in different frequency ranges of motor cortical local field potentials."
+    },
+  "Results" : [ 
+      { 
+        "Matching" : { 
+            "AnimalTest" : "both",
+            "Relevance" : 0.99,
+            "Similar" : false
+          },
+        "Record" : { 
+            "Abstract" : [ "Cortical field potentials have been used for decades in neurophysiological studies to probe spatio-temporal activity patterns of local populations of neurons. Recently, however, interest in these signals was spurred as they were proposed as potential control signals for neuronal motor prostheses, i.e., for devices fit to record and decode brain activity to restore motor functions in paralyzed patients. Little is known, however, about the functional significance of these cortical field potentials. Here we compared information about arm movement direction in two types of movement related cortical field potentials, obtained during a four direction center-out arm reaching paradigm: local field potentials (LFPs) recorded with intracortical micro-electrodes from monkey motor cortex, and epicortical field potentials (EFPs) recorded with macro-electrode arrays subdurally implanted on the surface of the human cerebral cortex. While monkey LFPs showed a typical sequence of positive and negative potential peaks, an initial negative peak was the most salient feature of human EFPs. Individual contralateral LFPs from the monkey motor cortex carried approximately twice as much decoded information (DI) about arm movement direction (median 0.27 bit) as did individual EFPs from the contralateral hand/arm area of primary motor cortex in humans (median 0.12 bit). This relation was similar to the relation between median peak signal-to-noise ratios for directional modulation of movement related potentials (MRPs) of both types of signals. We discuss possible reasons for the observed differences, amongst them epi- vs. intracortical recording and the different electrode dimensions used to measure EFPs and LFPs." ],
+            "Annotations" : [  ],
+            "Authors" : [ 
+                "Mehring, Carsten",
+                "Nawrot, Martin Paul",
+                "de Oliveira, Simone Cardoso",
+                "Vaadia, Eilon",
+                "Schulze-Bonhage, Andreas",
+                "Aertsen, Ad",
+                "Ball, Tonio"
+              ],
+            "Date" : "",
+            "Identifier" : [  ],
+            "Journal" : [ "Journal of physiology, Paris" ],
+            "Keywords" : [  ],
+            "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/16310349",
+            "MeshHeadings" : [ 
+                "Action Potentials",
+                "Algorithms",
+                "Animals",
+                "Arm",
+                "Electrodes, Implanted",
+                "Evoked Potentials, Motor",
+                "Extremities",
+                "Humans",
+                "Macaca mulatta",
+                "Motor Cortex",
+                "Motor Neurons",
+                "Movement",
+                "Signal Transduction"
+              ],
+            "PMID" : 16310349,
+            "PublicationType" : "Comparative Study",
+            "Substances" : [  ],
+            "Suggest" : "",
+            "TextminingVersion" : "0",
+            "Title" : "Comparing information about arm movement direction in single channels of local and epicortical field potentials from monkey and human motor cortex."
+          }
+      },
+      { 
+        "Matching" : { 
+            "AnimalTest" : "no",
+            "Relevance" : 0.98,
+            "Similar" : true
+          },
+        "Record" : { 
+            "Abstract" : [ "Direct cortical recordings were taken from 12 patients with implanted subdural electrode arrays during performance of a 2-dimensional, multi-joint, visually guided arm movement task. Task-related changes in the amplitude of the motor cortex 8-12 Hz surface local field oscillations were evaluated for the encoding of direction and amplitude of movement in the 6 patients in whom no epileptogenic or ECoG background abnormalities were detected over the motor-sensory cortical areas under the recording electrode array. The topography, time of onset and duration of these responses were evaluated in the context of motor cortex somatotopy, as defined by cortical stimulation delivered through the electrode array. Multi-joint arm movements were accompanied by a decrease in the power of the 8-12 Hz frequency components of the ECoG signal. These power changes were spatially distributed over the upper extremity, motor-sensory representation. Movement amplitude influenced the magnitude, duration, and extent of the spatial distribution of ECoG power changes in the 8-12 Hz band. These effects occurred predominantly over cortical areas corresponding to the upper extremity motor-sensory representations. Direction of movement had a weaker influence on the 8-12 Hz frequency components of the ECoG over the upper extremity motor-sensory representations, but influenced the patterns of 8-12 Hz ECoG response on adjacent cortical regions. These results show that the amplitude of surface electrical oscillations generated over the rolandic cortex are correlated with the kinematics of multi-joint arm movements. These changes in the ECoG signal appear to reflect shifts in the functional state of neuronal ensembles involved in the initiation and execution of motor tasks." ],
+            "Annotations" : [  ],
+            "Authors" : [ 
+                "Toro, C",
+                "Cox, C",
+                "Friehs, G",
+                "Ojakangas, C",
+                "Maxwell, R",
+                "Gates, J R",
+                "Gumnit, R J",
+                "Ebner, T J"
+              ],
+            "Date" : "1994",
+            "Identifier" : [  ],
+            "Journal" : [ "Electroencephalography and clinical neurophysiology" ],
+            "Keywords" : [  ],
+            "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/7525247",
+            "MeshHeadings" : [ 
+                "Adult",
+                "Analysis of Variance",
+                "Arm",
+                "Brain Mapping",
+                "Electroencephalography",
+                "Female",
+                "Humans",
+                "Male",
+                "Middle Aged",
+                "Motor Cortex",
+                "Movement"
+              ],
+            "PMID" : 7525247,
+            "PublicationType" : "Journal Article",
+            "Substances" : [  ],
+            "Suggest" : "",
+            "TextminingVersion" : "0",
+            "Title" : "8-12 Hz rhythmic oscillations in human motor cortex during two-dimensional arm movements: evidence for representation of kinematic parameters."
+          }
+      },
+      { 
+        "Matching" : { 
+            "AnimalTest" : "no",
+            "Relevance" : 0.97,
+            "Similar" : true
+          },
+        "Record" : { 
+            "Abstract" : [ 
+                "Action potentials and local field potentials (LFPs) recorded in primary motor cortex contain information about the direction of movement. LFPs are assumed to be more robust to signal instabilities than action potentials, which makes LFPs, along with action potentials, a promising signal source for brain-computer interface applications. Still, relatively little research has directly compared the utility of LFPs to action potentials in decoding movement direction in human motor cortex.",
+                "We conducted intracortical multi-electrode recordings in motor cortex of two persons (T2 and [S3]) as they performed a motor imagery task. We then compared the offline decoding performance of LFPs and spiking extracted from the same data recorded across a one-year period in each participant.",
+                "We obtained offline prediction accuracy of movement direction and endpoint velocity in multiple LFP bands, with the best performance in the highest (200-400 Hz) LFP frequency band, presumably also containing low-pass filtered action potentials. Cross-frequency correlations of preferred directions and directional modulation index showed high similarity of directional information between action potential firing rates (spiking) and high frequency LFPs (70-400 Hz), and increasing disparity with lower frequency bands (0-7, 10-40 and 50-65 Hz). Spikes predicted the direction of intended movement more accurately than any individual LFP band, however combined decoding of all LFPs was statistically indistinguishable from spike-based performance. As the quality of spiking signals (i.e. signal amplitude) and the number of significantly modulated spiking units decreased, the offline decoding performance decreased 3.6[5.65]%/month (for T2 and [S3] respectively). The decrease in the number of significantly modulated LFP signals and their decoding accuracy followed a similar trend (2.4[2.85]%/month, ANCOVA, p = 0.27[0.03]).",
+                "Field potentials provided comparable offline decoding performance to unsorted spikes. Thus, LFPs may provide useful external device control using current human intracortical recording technology. (",
+                "NCT00912041.)."
+              ],
+            "Annotations" : [  ],
+            "Authors" : [ 
+                "Perge, János A",
+                "Zhang, Shaomin",
+                "Malik, Wasim Q",
+                "Homer, Mark L",
+                "Cash, Sydney",
+                "Friehs, Gerhard",
+                "Eskandar, Emad N",
+                "Donoghue, John P",
+                "Hochberg, Leigh R"
+              ],
+            "Date" : "2014",
+            "Identifier" : [  ],
+            "Journal" : [ "Journal of neural engineering" ],
+            "Keywords" : [  ],
+            "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/24921388",
+            "MeshHeadings" : [ 
+                "Action Potentials",
+                "Brain-Computer Interfaces",
+                "Calibration",
+                "Electroencephalography",
+                "Humans",
+                "Imagination",
+                "Motor Cortex",
+                "Movement",
+                "Psychomotor Performance",
+                "Reproducibility of Results",
+                "Signal Processing, Computer-Assisted"
+              ],
+            "PMID" : 24921388,
+            "PublicationType" : "Journal Article",
+            "Substances" : [  ],
+            "Suggest" : "",
+            "TextminingVersion" : "0",
+            "Title" : "Reliability of directional information in unsorted spikes and local field potentials recorded in human motor cortex."
+          }
+      },
+      { 
+        "Matching" : { 
+            "AnimalTest" : "no",
+            "Relevance" : 0.96,
+            "Similar" : false
+          },
+        "Record" : { 
+            "Abstract" : [ "In order to study cerebral activity related to preparation and execution of movement, evoked and induced brain electrical activities were compared to each other and to fMRI results in voluntary self-paced movements. Also, the event-related desynchronization and synchronization (ERD/ERS) were studied in complex movements with various degrees of cognitive load. The Bereitschaftspotential (BP) and alpha (8-12 Hz) and beta (16-24 Hz) ERD/ERS rhythms in self-paced simple movements were analyzed in 14 epilepsy surgery candidates. In previous studies, the cortical sources of BP were consistently displayed contralateral to the movement in the primary motor cortex and somatosensory cortex, and bilateral in the supplementary motor area (SMA) and in the cingulate cortex. There were also small and inconstant BP generators in the ipsilateral sensorimotor, premotor, and dorsolateral prefrontal cortex. Alpha and beta ERD/ERS were also observed in these cortical regions. The distribution of contacts showing ERD or ERS was larger than of those showing BP. In contrast to BP, ERD, and ERS frequently occurred in the orbitofrontal, lateral and mesial temporal cortices, and inferior parietal lobule. The spatial location of brain activation for self-paced repetitive movements, i.e., writing simple dots, was studied using event-related functional MRI (fMRI) in 10 healthy right-handed subjects. We observed significant activation in regions known to participate in motor control: contralateral to the movement in the primary sensorimotor and supramarginal cortices, the SMA and the underlying cingulate, and, to a lesser extent, the ipsilateral sensorimotor region. When the fMRI was compared with the map of the brain areas electrically active with self-paced movements (intracerebral recordings; Rektor et al., 1994, 1998, 2001b, c; Rektor, 2003), there was an evident overlap of most results. Nevertheless, the electrophysiological studies were more sensitive in uncovering small active areas, i.e., in the premotor and prefrontal cortices. The BP and the event-related hemodynamic changes were displayed in regions known to participate in motor control. The cortical occurrence of oscillatory activities in the alpha-beta range was clearly more widespread. Four epilepsy surgery candidates with implanted depth brain electrodes performed two visuomotor-cognitive tasks with cued complex movements: a simple task--copying randomly presented letters from the monitor; and a more complex task--writing a letter other than that which appears on the monitor. The second task demanded an increased cognitive load, i.e., of executive functions. Alpha and beta ERD/ERS rhythms were evaluated. Similar results for both tasks were found in the majority of the frontal contacts, i.e., in the SMA, anterior cingulate, premotor, and dorsolateral prefrontal cortices. The most frequent observed activity was ERD in the beta rhythm; alpha ERS and ERD were also present. Significant differences between the two tasks appeared in several frontal areas--in the dorsolateral and ventrolateral prefrontal and orbitofrontal cortices (BA 9, 45, 11), and in the temporal neocortex (BA 21). In several contacts localized in these areas, namely in the lateral temporal cortex, there were significant changes only with the complex task--mostly beta ERD. Although the fMRI results fit well with the map of the evoked activity (BP), several discrepant localizations were displayed when the BP was compared with the distribution of the oscillatory activity (ERD-ERS). The BP and hemodynamic changes are closely related to the motor control areas; ERD/ERS represent the broader physiological aspects of motor execution and control. The BP probably reflects regional activation, while the more widespread ERD/ERS may reflect the spread of task-relevant information across relevant areas. In the writing tasks, the spatial distribution of the alpha-beta ERD/ERS in the frontal and lateral temporal cortices was partially task dependent. The ERD/ERS occurred there predominantly in the more complex of the writing tasks. Some sites were only active in the task with the increased demand on executive functions. In the temporal neocortex only, the oscillatory, but not the evoked, activity was recorded in the self-paced movement. The temporal appearance of changes of oscillatory activities in the self-paced movement task as well as in the cued movement task with an increased load of executive functions raises the interesting question of the role of this region in cognitive-movement information processing." ],
+            "Annotations" : [  ],
+            "Authors" : [ 
+                "Rektor, I",
+                "Sochůrková, D",
+                "Bocková, M"
+              ],
+            "Date" : "2006",
+            "Identifier" : [  ],
+            "Journal" : [ "Progress in brain research" ],
+            "Keywords" : [  ],
+            "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/17071240",
+            "MeshHeadings" : [ 
+                "Adolescent",
+                "Adult",
+                "Cognition",
+                "Cortical Synchronization",
+                "Female",
+                "Humans",
+                "Magnetic Resonance Imaging",
+                "Male",
+                "Motor Cortex",
+                "Movement",
+                "Psychomotor Performance",
+                "Visual Cortex"
+              ],
+            "PMID" : 17071240,
+            "PublicationType" : "Journal Article",
+            "Substances" : [  ],
+            "Suggest" : "",
+            "TextminingVersion" : "0",
+            "Title" : "Intracerebral ERD/ERS in voluntary movement and in cognitive visuomotor task."
+          }
+      },
+      { 
+        "Matching" : { 
+            "AnimalTest" : "no",
+            "Relevance" : 0.95,
+            "Similar" : false
+          },
+        "Record" : { 
+            "Abstract" : [ "We present a biologically plausible spiking neuronal network model of free monkey scribbling that reproduces experimental findings on cortical activity and the properties of the scribbling trajectory. The model is based on the idea that synfire chains can encode movement primitives. Here, we map the propagation of activity in a chain to a linearly evolving preferred velocity, which results in parabolic segments that fulfill the two-thirds power law. Connections between chains that match the final velocity of one encoded primitive to the initial velocity of the next allow the composition of random sequences of primitives with smooth transitions. The model provides an explanation for the segmentation of the trajectory and the experimentally observed deviations of the trajectory from the parabolic shape at primitive transition sites. Furthermore, the model predicts low frequency oscillations (<10 Hz) of the motor cortex local field potential during ongoing movements and increasing firing rates of non-specific motor cortex neurons before movement onset." ],
+            "Annotations" : [  ],
+            "Authors" : [ 
+                "Hanuschkin, Alexander",
+                "Herrmann, J Michael",
+                "Morrison, Abigail",
+                "Diesmann, Markus"
+              ],
+            "Date" : "2011",
+            "Identifier" : [  ],
+            "Journal" : [ "Journal of computational neuroscience" ],
+            "Keywords" : [  ],
+            "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/20953686",
+            "MeshHeadings" : [ 
+                "Action Potentials",
+                "Animals",
+                "Arm",
+                "Cortical Synchronization",
+                "Haplorhini",
+                "Models, Neurological",
+                "Motor Cortex",
+                "Movement",
+                "Nerve Net",
+                "Neural Pathways"
+              ],
+            "PMID" : 20953686,
+            "PublicationType" : "Journal Article",
+            "Substances" : [  ],
+            "Suggest" : "",
+            "TextminingVersion" : "0",
+            "Title" : "Compositionality of arm movements can be realized by propagating synchrony."
+          }
+      },
+      { 
+        "Matching" : { 
+            "AnimalTest" : "no",
+            "Relevance" : 0.94,
+            "Similar" : false
+          },
+        "Record" : { 
+            "Abstract" : [ "It has been recently discovered that neuronal activity in the primate motor cortex varies in an orderly fashion with the direction of movement of behaving monkeys in three-dimensional (3-D) space. Furthermore, cell activity is highest in a certain direction, the cell's preferred direction, and decreases progressively in other directions. For a particular movement direction, each cell makes a contribution in the direction of its preferred direction to yield a neuronal population vector that points in the direction of movement well before the movement begins. Simulation of motor cortical activity is useful with a randomly selected Poisson distribution. Poisson spike trains are used as input to an artificial neural network (ANN) that produces motor actions in the form of a Cartesian coordinate to a PUMA robotic arm system. The ANN consists of a three-layered feed-forward system that uses a specific cosine algorithm as synaptic weights between the interconnected units described in the angle between the preferred direction vector of the neuron and the movement vector. The robot responds to commands, generating actual trajectories in close agreement with desired trajectories. It is shown that the time-varying motor output is controlled by the impulse activity with a good estimate of the direction of movement with 100-150 cells." ],
+            "Annotations" : [  ],
+            "Authors" : [ "Dauffenbach, L M" ],
+            "Date" : "1999",
+            "Identifier" : [  ],
+            "Journal" : [ "Biomedical sciences instrumentation" ],
+            "Keywords" : [  ],
+            "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/11143378",
+            "MeshHeadings" : [ 
+                "Animals",
+                "Arm",
+                "Haplorhini",
+                "Motor Cortex",
+                "Movement",
+                "Neural Networks (Computer)",
+                "Poisson Distribution",
+                "Robotics"
+              ],
+            "PMID" : 11143378,
+            "PublicationType" : "Journal Article",
+            "Substances" : [  ],
+            "Suggest" : "",
+            "TextminingVersion" : "0",
+            "Title" : "Simulation of the primate motor cortex and free arm movements in three-dimensional space: a robot arm system controlled by an artificial neural network."
+          }
+      },
+      { 
+        "Matching" : { 
+            "AnimalTest" : "no",
+            "Relevance" : 0.93,
+            "Similar" : false
+          },
+        "Record" : { 
+            "Abstract" : [ 
+                "Preparation of the direction of a forthcoming movement has a particularly strong influence on both reaction times and neuronal activity in the primate motor cortex. Here, we aimed to find direct neurophysiologic evidence for the preparation of movement direction in humans. We used single-pulse transcranial magnetic stimulation (TMS) to evoke isolated thumb-movements, of which the direction can be modulated experimentally, for example by training or by motor tasks. Sixteen healthy subjects performed brisk concentric voluntary thumb movements during a reaction time task in which the required movement direction was precued. We assessed whether preparation for the thumb movement lead to changes in the direction of TMS-evoked movements and to changes in amplitudes of motor-evoked potentials (MEPs) from the hand muscles.",
+                "When the required movement direction was precued early in the preparatory interval, reaction times were 50 ms faster than when precued at the end of the preparatory interval. Over time, the direction of the TMS-evoked thumb movements became increasingly variable, but it did not turn towards the precued direction. MEPs from the thumb muscle (agonist) were differentially modulated by the direction of the precue, but only in the late phase of the preparatory interval and thereafter. MEPs from the index finger muscle did not depend on the precued direction and progressively decreased during the preparatory interval.",
+                "Our data show that the human corticospinal movement representation undergoes progressive changes during motor preparation. These changes are accompanied by inhibitory changes in corticospinal excitability, which are muscle specific and depend on the prepared movement direction. This inhibition might indicate a corticospinal braking mechanism that counteracts any preparatory motor activation."
+              ],
+            "Annotations" : [  ],
+            "Authors" : [ 
+                "van Elswijk, Gijs",
+                "Schot, Willemijn D",
+                "Stegeman, Dick F",
+                "Overeem, Sebastiaan"
+              ],
+            "Date" : "2008",
+            "Identifier" : [  ],
+            "Journal" : [ "BMC neuroscience" ],
+            "Keywords" : [  ],
+            "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/18559096",
+            "MeshHeadings" : [ 
+                "Adult",
+                "Electric Stimulation",
+                "Electromyography",
+                "Evoked Potentials, Motor",
+                "Female",
+                "Fingers",
+                "Hand",
+                "Humans",
+                "Imitative Behavior",
+                "Male",
+                "Motor Cortex",
+                "Movement",
+                "Muscle Contraction",
+                "Muscle, Skeletal",
+                "Pyramidal Tracts",
+                "Reaction Time",
+                "Thumb",
+                "Transcranial Magnetic Stimulation"
+              ],
+            "PMID" : 18559096,
+            "PublicationType" : "Journal Article",
+            "Substances" : [  ],
+            "Suggest" : "",
+            "TextminingVersion" : "0",
+            "Title" : "Changes in corticospinal excitability and the direction of evoked movements during motor preparation: a TMS study."
+          }
+      },
+      { 
+        "Matching" : { 
+            "AnimalTest" : "no",
+            "Relevance" : 0.92,
+            "Similar" : false
+          },
+        "Record" : { 
+            "Abstract" : [ "Information about arm movement direction in neuronal activity of the cerebral cortex can be used for movement control mediated by a brain-machine interface (BMI). Here we provide a topographic analysis of the information related to arm movement direction that can be extracted from single trials of electrocorticographic (ECoG) signals recorded from the human frontal and parietal cortex based on a precise assignment of ECoG recording channels to the subjects' individual cortical anatomy and function. To this aim, each electrode contact was identified on structural MRI scans acquired while the electrodes were implanted and was thus related to the brain anatomy of each patient. Cortical function was assessed by direct cortical electrical stimulation. We show that activity from the primary motor cortex, in particular from the region showing hand and arm motor responses upon electrical stimulation, carries most directional information. The premotor, posterior parietal and lateral prefrontal cortex contributed gradually less, but still significant information. This gradient was observed for decoding from movement-related potentials, and from spectral amplitude modulations in low frequencies and in the high gamma band. Our findings thus demonstrate a close topographic correlation between cortical functional anatomy and direction-related information in humans that might be used for brain-machine interfacing." ],
+            "Annotations" : [  ],
+            "Authors" : [ 
+                "Ball, Tonio",
+                "Schulze-Bonhage, Andreas",
+                "Aertsen, Ad",
+                "Mehring, Carsten"
+              ],
+            "Date" : "2009",
+            "Identifier" : [  ],
+            "Journal" : [ "Journal of neural engineering" ],
+            "Keywords" : [  ],
+            "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/19155551",
+            "MeshHeadings" : [ 
+                "Action Potentials",
+                "Adult",
+                "Arm",
+                "Electric Stimulation",
+                "Electrodes, Implanted",
+                "Female",
+                "Frontal Lobe",
+                "Humans",
+                "Magnetic Resonance Imaging",
+                "Male",
+                "Movement",
+                "Neurons",
+                "Parietal Lobe",
+                "Psychomotor Performance",
+                "Young Adult"
+              ],
+            "PMID" : 19155551,
+            "PublicationType" : "Journal Article",
+            "Substances" : [  ],
+            "Suggest" : "",
+            "TextminingVersion" : "0",
+            "Title" : "Differential representation of arm movement direction in relation to cortical anatomy and function."
+          }
+      },
+      { 
+        "Matching" : { 
+            "AnimalTest" : "yes",
+            "Relevance" : 0.91,
+            "Similar" : false
+          },
+        "Record" : { 
+            "Abstract" : [ "Subdural electrode arrays provide stable, less invasive electrocorticogram (ECoG) recordings of neural signals than multichannel needle electrodes. Accurate reconstruction of intracortical local field potentials (LFPs) from ECoG signals would provide a critical step for the development of a less invasive, high-performance brain-machine interface; however, neural signals from individual ECoG channels are generally coarse and have limitations in estimating deep layer LFPs. Here, we developed a high-density, 32-channel, micro-ECoG array and applied a sparse linear regression algorithm to reconstruct the LFPs at various depths of primary motor cortex (M1) in a monkey performing a reach-and-grasp task. At 0.2 mm beneath the cortical surface, the real and estimated LFPs were significantly correlated (correlation coefficient (r); 0.66 ± 0.11), and the r at 3.2 mm was still as high as 0.55 ± 0.04. A time-frequency analysis of the reconstructed LFP showed clear transition between resting and movements by the monkey. These methods would be a powerful tool with wide-ranging applicability in neuroscience studies." ],
+            "Annotations" : [  ],
+            "Authors" : [ 
+                "Watanabe, Hidenori",
+                "Sato, Masa-Aki",
+                "Suzuki, Takafumi",
+                "Nambu, Atsushi",
+                "Nishimura, Yukio",
+                "Kawato, Mitsuo",
+                "Isa, Tadashi"
+              ],
+            "Date" : "2012",
+            "Identifier" : [  ],
+            "Journal" : [ "Journal of neural engineering" ],
+            "Keywords" : [  ],
+            "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/22570195",
+            "MeshHeadings" : [ 
+                "Algorithms",
+                "Animals",
+                "Data Interpretation, Statistical",
+                "Electrodes, Implanted",
+                "Electroencephalography",
+                "Hand",
+                "Hand Strength",
+                "Linear Models",
+                "Macaca",
+                "Male",
+                "Motor Cortex",
+                "Movement",
+                "Psychomotor Performance",
+                "User-Computer Interface"
+              ],
+            "PMID" : 22570195,
+            "PublicationType" : "Journal Article",
+            "Substances" : [  ],
+            "Suggest" : "",
+            "TextminingVersion" : "0",
+            "Title" : "Reconstruction of movement-related intracortical activity from micro-electrocorticogram array signals in monkey primary motor cortex."
+          }
+      },
+      { 
+        "Matching" : { 
+            "AnimalTest" : "no",
+            "Relevance" : 0.9,
+            "Similar" : false
+          },
+        "Record" : { 
+            "Abstract" : [ "Brain activity can be used as a control signal for brain-machine interfaces (BMIs). A powerful and widely acknowledged BMI approach, so far only applied in invasive recording techniques, uses neuronal signals related to limb movements for equivalent, multidimensional control of an external effector. Here, we investigated whether this approach is also applicable for noninvasive recording techniques. To this end, we recorded whole-head MEG during center-out movements with the hand and found significant power modulation of MEG activity between rest and movement in three frequency bands: an increase for < or = 7 Hz (low-frequency band) and 62-87 Hz (high-gamma band) and a decrease for 10-30 Hz (beta band) during movement. Movement directions could be inferred on a single-trial basis from the low-pass filtered MEG activity as well as from power modulations in the low-frequency band, but not from the beta and high-gamma bands. Using sensors above the motor area, we obtained a surprisingly high decoding accuracy of 67% on average across subjects. Decoding accuracy started to rise significantly above chance level before movement onset. Based on simultaneous MEG and EEG recordings, we show that the inference of movement direction works equally well for both recording techniques. In summary, our results show that neuronal activity associated with different movements of the same effector can be distinguished by means of noninvasive recordings and might, thus, be used to drive a noninvasive BMI." ],
+            "Annotations" : [  ],
+            "Authors" : [ 
+                "Waldert, Stephan",
+                "Preissl, Hubert",
+                "Demandt, Evariste",
+                "Braun, Christoph",
+                "Birbaumer, Niels",
+                "Aertsen, Ad",
+                "Mehring, Carsten"
+              ],
+            "Date" : "2008",
+            "Identifier" : [  ],
+            "Journal" : [ "The Journal of neuroscience : the official journal of the Society for Neuroscience" ],
+            "Keywords" : [  ],
+            "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/18216207",
+            "MeshHeadings" : [ 
+                "Electroencephalography",
+                "Evoked Potentials, Motor",
+                "Hand",
+                "Humans",
+                "Magnetoencephalography",
+                "Movement",
+                "Photic Stimulation",
+                "Psychomotor Performance"
+              ],
+            "PMID" : 18216207,
+            "PublicationType" : "Comparative Study",
+            "Substances" : [  ],
+            "Suggest" : "",
+            "TextminingVersion" : "0",
+            "Title" : "Hand movement direction decoded from MEG and EEG."
+          }
+      }
+    ]
+}
