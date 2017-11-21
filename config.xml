@@ -67,7 +67,7 @@
 				<excludeFiles flag="pattern"></excludeFiles>
 				<excludeFiles flag="start_date"></excludeFiles>
 				<excludeFiles flag="end_date"></excludeFiles>
-				<excludeFiles flag="end_date"></excludeFiles>
+				<excludeFiles flag="end_date"></excludeFiles> //-->
 		</resource>
 	</resourceCollection>
 </config>
