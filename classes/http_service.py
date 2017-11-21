@@ -1,51 +1,87 @@
 #!/usr/bin/env python3
 # requires at least python 3.4
 
-import http.client, urllib.parse
+#import http.client, urllib.parse
 from base64 import b64encode
+import requests
+from http import cookies
 
 class FTPBasicDownloaderException(Exception):
     Reasons = ['The connection is not established']
+    ReasonCodes = [0x0]
     Reason = 0x0
     NO_CONECTION = 0x0
     def __init__(self, ErrorCode):
         self.Reason = ErrorCode
 
     def __str__(self):
-        if self.Reason not in self.Reasons:
+        if self.Reason not in self.ReasonCodes:
             return repr('Unkown error.')
         else:
             return repr(self.Reasons[self.Reason])
 
 #TODO: wenn noetig SSL Certs implementieren
 class HttpService(object):
-    __Use_HTTPS = False
-    __Connection = ''
-    __IsActive = False
-    __Domain = ''
-    __Port = 80
-    __basicAuth = ''
+    __URLBase = ''
     __Headers = {}
+    __Session = ''
+    __Request = ''
+    __Parameter = {}
+    __Data = ''
+    __Cookies = []
 
     def __init__(self, Configuration):
-        self.__Domain = Configuration['host']['name']
+        Domain = ''
+        Port = 80
+        Protokoll = 'http'
+
+        Domain = Configuration['host']['name']
         if 'https' == Configuration['host']['protokoll']:
-            self.__Port = 443
-            self.Use_HTTPS = True
+            Port = 443
+            protokoll = 'https'
+
         if Configuration['host']['port']:
-            self.__Port = Configuration['host']['port']
+            Port = Configuration['host']['port']
+
+        self.__URLBase = Protokoll + '://' + domain + ':' + Port
+        self.__Session = requests.Session()
 
     def setUsernameAndPassword(self, Username, Password):
-        self.__Headers['Authorization'] = 'Basic %s' % base64.encodestring('%s:%s' % (Username, Password)).replace('\n', '')
+        self.__Session.auth(Username, Password)
 
-    def connect(self):
-        if self
+    def addCookieFile(self, Filename):
+        Cookie = ''
+        File = open(Filename, r)
+        for Line in File:
+            Cookie += Line
+        File.close()
+        self.addCookieFile(Cookie)
 
-    def closeConnection(self):
-        if self.__IsActive:
-            self.__Connection.close()
-            self.__IsActive = False
+    def addCookieStr(self, CookieString):
+        Cookie = cookies.SimpleCookie()
+        Cookie.load(CookieString)
+        self.__Cookies.append(Cookie)
 
-    def __del__(self):
-        self.closeConnection()
+    def startACall(self, method):
+        pass
 
+    def setData(self, Data):
+        self.__Data = Data
+
+    def addParameter(self, Name, Value):
+        self.__Parameter[Name] = Value
+
+    def addHeader(self, Name, Value):
+        self.__Headers[Name] = Value
+
+    def call(self):
+        pass
+
+    def flush(self):
+        self.__Parameter = {}
+        self.__Data = ''
+        self.__Cookies = {}
+        self.__CookieFiles = []
+        self.__Headers = {}
+
+        self.__Session = requests.Session()
