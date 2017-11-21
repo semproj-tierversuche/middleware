@@ -2,7 +2,7 @@
 # requires at least python 3.4
 
 #import http.client, urllib.parse
-from base64 import b64encode
+#from base64 import b64encode
 import requests
 from http import cookies
 
@@ -39,7 +39,7 @@ class HttpService(object):
         Domain = Configuration['host']['name']
         if 'https' == Configuration['host']['protokoll']:
             Port = 443
-            protokoll = 'https'
+            Potokoll = 'https'
 
         if Configuration['host']['port']:
             Port = Configuration['host']['port']
@@ -105,10 +105,10 @@ class HttpService(object):
                 for Key in self.__Headers:
                     self.__Request.headers[Key] = self.__Headers[Key]
             try:
-                response = self.__Session.send(self.__Request)
+                Response = self.__Session.send(self.__Request)
             except requests.exceptions.ConnectionError:
                 raise HttpServiceException(HttpServiceException.NO_CONECTION)
-            return response
+            return Response
 
     def flush(self):
         self.__Parameter = {}

@@ -4,6 +4,19 @@
 import xml.etree.ElementTree as DOM
 import os
 
+class ConfigException(Exception):
+    Reasons = ['The given Element was not found.']
+    ReasonCodes = [0x0]
+    Reason = 0x0
+    NOT_FOUND = 0x0
+    def __init__(self, ErrorCode):
+        self.Reason = ErrorCode
+        def __str__(self):
+            if self.Reason not in self.ReasonCodes:
+                return repr('Unkown error.')
+            else:
+                return repr(self.Reasons[self.Reason])
+
 #Konstanten
 PLUGIN_STREAM = 0x0
 PLUGIN_PULK = 0x1
@@ -94,8 +107,8 @@ class ConfigReader(object):
                 Nodes = NodeStrich.findall('param')
                 if Nodes:
                     for Node in Nodes:
-                        if Node.text.strip():
-                            Return['parameters'].append(Node.text.strip())
+                        if 'key' in Node.attrib and Node.attrib['key'].strip():
+                            Return['parameters'].append({'key': Node.attrib['key'].strip(), 'value' : Node.text})
 
                 Nodes = NodeStrich.findall('cookie')
                 if Nodes:
@@ -134,7 +147,10 @@ class ConfigReader(object):
         else:
             self._Database = self.readService(Node)
             self._Database['query'] = self.readSubNode(Node, 'query')
+            self._Database['version'] = self.readSubNode(Node, 'version')
             self._Database['store'] = self.readSubNode(Node, 'store')
+            self._Database['update'] = self.readSubNode(Node, 'update')
+            self._Database['delete'] = self.readSubNode(Node, 'delete')
 
     def readMaxThreads(self):
         Node = ''

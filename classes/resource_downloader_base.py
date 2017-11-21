@@ -62,3 +62,6 @@ class AbstractResourceDownloader(object):
     #De Funktion setzt die Downloadqueue zurueck
     def flushDownloadQueue(self):
         raise Exception("NotImplementedException")
+    #putzt das tmp verzeichnis
+    def turniquateDownloadedFiles(self):
+        raise Exception("NotImplementedException")

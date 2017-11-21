@@ -4,26 +4,48 @@
 	<services>
 		<textmining>
 			<cmd>String</cmd>
-			<param>String</param>
+			<param key="String">String</param>
+			<version key="String">String</version>
 		</textmining>
 		<database>
 			<host protokoll="String" port="Integer">String</host>
 			<store methode="string" username="String" password="String">
-				<param>String</param>
-				<param>String</param>
-				<cookie type="stroage">String</param>
-				<cookie type="string">String</param>
-				<header name="String">String<header>
+				<param key="String">String</param>
+				<param key="String">String</param>
+				<cookie type="stroage">String</cookie>
+				<cookie type="string">String</cookie>
+				<header name="String">String</header>
 				<path>String</path>
 			</store>
+			<version methode="string" username="String" password="String">
+				<param key="String">String</param>
+				<path>String</path>
+			</version>
 			<query methode="string" username="String" password="String">
-				<param>String</param>
-				<param>String</param>
+				<param key="String">String</param>
+				<param key="String">String</param>
+				
 				<cookie type="stroage">String</param>
 				<cookie type="string">String</param>
-				<header name="String">String<header>
+				<header name="String">String</header>
 				<path>String</path>
 			</query>
+			<update methode="string" username="String" password="String">
+				<param key="String">String</param>
+				<param key="String">String</param>
+				<cookie type="stroage">String</cookie>
+				<cookie type="string">String</cookie>
+				<header name="String">String</header>
+				<path>String</path>
+			</update>
+			<delete methode="string" username="String" password="String">
+				<param key="String">String</param>
+				<param key="String">String</param>
+				<cookie type="stroage">String</cookie>
+				<cookie type="string">String</cookie>
+				<header name="String">String</header>
+				<path>String</path>
+			</delete>
 		</database>
 	</services>
 	<limitations>
