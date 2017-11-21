@@ -10,4 +10,16 @@ executing
 # Usage
 To start the app in debug mode (listening to `127.0.0.1:5000`), run
 
-    python apip.py
+    python api.py
+
+The API currently responds to HTTP requests of this form:
+
+    GET /results/<pmid>
+
+For example, try
+
+    GET /results/11489449
+
+or, point your web browser to
+
+    http://127.0.0.1:5000/results/11489449
