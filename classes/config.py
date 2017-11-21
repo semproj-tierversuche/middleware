@@ -69,6 +69,7 @@ class ConfigReader(object):
         Return = {}
         Return['parameters'] = []
         Return['cookies'] = []
+        Return['headers'] = []
         Return['path'] = {}
 
         NodeStrich = Node.find(TagName)
@@ -104,6 +105,12 @@ class ConfigReader(object):
                                 Return['cookies'].append({'type': 0, 'value:':Node.text.strip()})
                             elif 'string' == Node.attrib['type']:
                                 Return['cookies'].append({'type': 1, 'value:':Node.text.strip()})
+
+                Nodes = NodeStrich.findall('header')
+                if Nodes:
+                    for Node in Nodes:
+                        if 'name' in Node.attrib and Node.attrib['name']:
+                            Return['headers'].append({'name': Node.attrib['name'].strip(), 'value:':Node.text.strip()})
         return Return
 
 

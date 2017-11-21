@@ -13,6 +13,7 @@
 				<param>String</param>
 				<cookie type="stroage">String</param>
 				<cookie type="string">String</param>
+				<header name="String">String<header>
 				<path>String</path>
 			</store>
 			<query methode="string" username="String" password="String">
@@ -20,6 +21,7 @@
 				<param>String</param>
 				<cookie type="stroage">String</param>
 				<cookie type="string">String</param>
+				<header name="String">String<header>
 				<path>String</path>
 			</query>
 		</database>

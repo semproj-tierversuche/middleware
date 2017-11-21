@@ -6,7 +6,7 @@ from base64 import b64encode
 import requests
 from http import cookies
 
-class FTPBasicDownloaderException(Exception):
+class HttpServiceException(Exception):
     Reasons = ['The connection is not established']
     ReasonCodes = [0x0]
     Reason = 0x0
@@ -29,6 +29,7 @@ class HttpService(object):
     __Parameter = {}
     __Data = ''
     __Cookies = []
+    __PrepartionIsActive = False
 
     def __init__(self, Configuration):
         Domain = ''
@@ -60,28 +61,59 @@ class HttpService(object):
     def addCookieStr(self, CookieString):
         Cookie = cookies.SimpleCookie()
         Cookie.load(CookieString)
-        self.__Cookies.append(Cookie)
+        CookieDirc = {}
+        for Key in Cookie:
+            CookieDirc[Key] = Cookie[Key]
+        self.__Cookies.append(CookieDirc)
 
-    def startACall(self, method):
-        pass
+    def startACall(self, Method):
+        if self.__Cookies:
+            Request = Request(method=Method, url=self.__URLBase, params=self.__Parameter, cookies=self.__Cookies)
+        else:
+            Request = Request(method=Method, url=self.__URLBase, params=self.__Parameter)
+        self.__Request = self.__Session.prepare_request(Request)
 
     def setData(self, Data):
-        self.__Data = Data
+        if True == self.__PrepartionIsActive:
+            if self.__Data:
+                self.__Data = ''
+            self.__Request.body = Data
+        else:
+            self.__Data = Data
 
     def addParameter(self, Name, Value):
-        self.__Parameter[Name] = Value
+            self.__Parameter[Name] = Value
 
     def addHeader(self, Name, Value):
-        self.__Headers[Name] = Value
+        if True == self.__PrepartionIsActive:
+            if self.__Headers:
+                for Key in self.__Headers:
+                    self.__Request.headers[Key] = self.__Headers[Key]
+                self.__Headers = []
+            self.__Request.headers[Name] = Value
+        else:
+            self.__Headers[Name] = Value
 
     def call(self):
-        pass
+        Response = ''
+        if False == self.__PrepartionIsActive:
+            return None
+        else:
+            if self.__Data:
+                self.__Request.body = Data
+            if self.__Headers:
+                for Key in self.__Headers:
+                    self.__Request.headers[Key] = self.__Headers[Key]
+            try:
+                response = self.__Session.send(self.__Request)
+            except requests.exceptions.ConnectionError:
+                raise HttpServiceException(HttpServiceException.NO_CONECTION)
+            return response
 
     def flush(self):
         self.__Parameter = {}
         self.__Data = ''
         self.__Cookies = {}
-        self.__CookieFiles = []
         self.__Headers = {}
 
         self.__Session = requests.Session()
