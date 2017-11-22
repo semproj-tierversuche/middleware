@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 # requires at least python 3.4
 
+import time as Time
 import io as IO
 import os as OS
 import sys as System
 from threading import Lock
 import subprocess as SubProcess
+import pty as Pty
 
 class CmdServiceException(Exception):
         Reasons = ['The connection is not established']
@@ -24,23 +26,29 @@ class CmdServiceException(Exception):
 class CmdService(object):
     #lock parameter lisk
     __ParameterLock = False
-    __CMD = ''
+    __Timeout = 0
     __Parameter = []
-    FORK_NORMAL_PROCESS = 0x0
-    FORK_TTY_PROCESS = 0x1
+    FORK_NO_PROCESS = 0x0#not completly the truth
+    FORK_NORMAL_PROCESS = 0x1
+    FORK_PTY_PROCESS = 0x2
     __PipenameCounter = 0
     __Lock = ''
     __Lock2 = ''
 
     def __init__(self, Configuration):
-        self.__CMD = Configuration['cmd']['name']
+        if 'timeout' in Configuration['cmd']:
+            self.__Timeout = Configuration['cmd']['timeout']
         self.__Lock = Lock()
         self.__Lock2 = Lock()
+        self.addParameter(Configuration['cmd']['name'], '')
 
     def addParameter(self, Key, Value):
+        self.__Lock.acquire()
         if True ==  self.__ParameterLock:
-            return
+             self.__Lock.release()
+             return
 
+        self.__Lock.release()
         if Key.strip():
             self.__Lock.acquire()
             if Key.endswith('='):
@@ -49,33 +57,47 @@ class CmdService(object):
                 self.__Parameter.append((Key + " " + Value).strip())
             self.__Lock.release()
 
-    def __NormalChildProcess(self, Pipe):
-        #capture stdout
-        #capture stderr
-#        Stdout = System.stdout
-#        Stderr = System.stderr
+    def __normalChildProcess(self, InputData):
+        Process = ''
+        Stdout = ''
+        Stderr = ''
 
-        StdoutBuffer = IO.StringIO()
-        StderrBuffer = IO.StringIO()
+        Parameter = self.__Parameter
+        Parameter.append(InputData)
+        Process = SubProcess.Popen(Parameter, stdout=SubProcess.PIPE,stderr=SubProcess.PIPE)
+        Stdout, Stderr = Process.communicate()
+        if 0<self.__Timeout:
+            Process.wait(self.__Timeout)
+        else:
+            Process.wait()
 
- #       System.stdout = StdoutBuffer
- #       System.stderr = StderrBuffer
+        return [Stdout, Stderr]
 
+    def __forkedChildProcess(self, Pipe, InputData):
         MyId = str(OS.getpid())
         MyId += "\n"
-        print(self.__Parameter)
+        Output = []
         self.writeToPipe(Pipe, MyId)
-        OS.execv(self.__CMD, self.__Parameter)
- #       self.writeToPipe(Pipe, "[stdout]:\n\n\r\r\n\n" + StdoutBuffer.getvalue())
- #       self.writeToPipe(Pipe, "[sterr]:\n\n\r\r\n\n" + StderrBuffer.getvalue())
+        Output = self.__noChildProcess(InputData)
+        self.writeToPipe(Pipe, "[stdout]:\n\n\r\r\n" + Output[0].decode('utf-8'))
+        self.writeToPipe(Pipe, "[sterr]:\n\n\r\r\n" + Output[1].decode('utf-8'))
         OS.close(Pipe)#we do not need this pipe anymore-> so close it
         OS._exit(0)
 
-    def __PTYChildProcess(self):
-        pass
+    def __ptyChildProcess(self, Pipe):
+        Output = []
+        InputData = ''
 
-    def cleanFIFOs(self):
-        pass
+        MyId = str(OS.getpid())
+        MyId += "\n"
+        print(MyId)
+        OS._exit(0)
+        InputData = System.stdin.readline().strip()
+        Output = self.__normalChildProcess(InputData)
+        print("[stdout]:\n\n\r\r\n" + Output[0].decode('utf-8'))
+        print("[sterr]:\n\n\r\r\n" + Output[1].decode('utf-8'))
+        OS._exit(0)
+
 
     def writeToPipe(self, Pipe, InputString):
         self.__Lock2.acquire()
@@ -87,28 +109,48 @@ class CmdService(object):
         Char = ''
 
         self.__Lock2.acquire()
-        Char = OS.read(Pipe, 1).decode('utf-8')
+        Char = OS.read(Pipe, 1)
         self.__Lock2.release()
         while Char:
             if True == OnlyToNewLine and "\n" == Char:
                  return Output
-            Output += Char
+            Output += Char.decode('utf-8')
             self.__Lock2.acquire()
-            Char = OS.read(Pipe, 1).decode('utf-8')
+            Char = OS.read(Pipe, 1)
             self.__Lock2.release()
 
         return Output
 
     def __doPTYFork(self, InputData):
-        MasterDescriptor = ''
+        FD = ''
         PId = ''
-        #Pid, MasterDescriptor = OS.forkpty()
-        if -1 == PId:
-            pass#smt gone wrong...very wrong
-        elif 0 == PId:#we are the child
-            pass
+        ChildId = ''
+        Char = ''
+        (Pid, FD) = Pty.fork()
+        if 0 == PId:#we are the child
+            print("TEEEEEEEEEEEESSSSSSSSSSSSSSSSSSSSTTTTTTTTTTTTTT")
+            System.stdout.flush()
+           # self.__ptyChildProcess()
         else:#We are the parent
-            pass
+            ChildId = ''
+            Time.sleep(1)
+            print('In Parent Process: PID# %s' % OS.getpid())
+            print(FD)
+            print(OS.read(FD, 100))
+    #        Time.sleep(1)
+    #        Char = OS.read(3,1000000000)
+    #        Time.sleep(1)
+           # while Char:
+           #         ChildId += Char.decode('utf-8')
+           #         Char = OS.read(MasterDescriptor,1 )
+
+            #self.writeToPipe(MasterDescriptor, InputData)
+   #         print(Char)
+   #         Char = OS.read(FD,1000000000)
+   #         print(Char)
+            #OS.waitpid(int(ChildId), 0)
+            #return self.readFromPipe(MasterDescriptor)
+
 
     def __doNormalFork(self, InputData):
 
@@ -124,7 +166,7 @@ class CmdService(object):
         if -1 == PId:
             pass#smt gone wrong...very wrong
         elif 0 == PId:#we are the child
-            self.__NormalChildProcess(PipeIn)
+            self.__forkedChildProcess(PipeIn, InputData)
         else:#We are the parent
             OS.close(PipeIn)
 
@@ -138,8 +180,14 @@ class CmdService(object):
         self.__Lock.acquire()
         self.__ParameterLock = True
         self.__Lock.release()
-        if self.FORK_TTY_PROCESS == Flag:
+        if self.FORK_PTY_PROCESS == Flag:
             self.__doPTYFork(InputData)
+        elif self.FORK_NO_PROCESS == Flag:
+            Output = self.__normalChildProcess(InputData)
+            Output[0] = "[stdout]:\n\n\r\r\n" + Output[0].decode('utf-8')
+            Output[1] = "[stderr]:\n\n\r\r\n" + Output[1].decode('utf-8')
+            Output = Output[0] + Output[1]
+            return Output
         else:
             self.__doNormalFork(InputData)
 

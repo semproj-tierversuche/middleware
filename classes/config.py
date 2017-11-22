@@ -40,24 +40,29 @@ class ConfigReader(object):
     def readService(self, Root):
         Node =''
         Nodes = []
+        Timeout = 0
         Return = {}
         Return['cmd'] = {}
         Return['cmd']['param'] = []
-        Return['hOSt'] = {}
+        Return['host'] = {}
 
         Node = Root.find('cmd')
         #we going on to check if we need to use something else then commandline
         if None is not Node:
             Return['cmd']['name'] = Node.text.strip()
-            del Return['hOSt']
+            del Return['host']
+            if 'timeout' in Node.attrib and Node.attrib['timeout'].strip():
+                Timeout = int(Node.attrib['timeout'].strip())
+                if 0<Timeout:
+                    Return['cmd']['timeout'] = Timeout
             Nodes = Node.findall('param')
             if Nodes:
                 for Node in Nodes:
                     if Node.text.strip():
                         Return['cmd']['param'].append(Node.text.strip())
         else:
-        #alternativ: We can say hOSt[@protokoll@port], but we cannot exact error report
-            Node = Root.find('hOSt')
+        #alternativ: We can say host[@protokoll@port], but we cannot exact error report
+            Node = Root.find('host')
             if None is Node:
                 #raise a exception
                 pass
@@ -70,9 +75,9 @@ class ConfigReader(object):
                     #raise a exception
                     pass
                 else:
-                    Return['hOSt']['name'] = Node.text.strip()
-                    Return['hOSt']['protokoll'] = Node.attrib['protokoll'].strip().lower()
-                    Return['hOSt']['port'] = Node.attrib['port'].strip()
+                    Return['host']['name'] = Node.text.strip()
+                    Return['host']['protokoll'] = Node.attrib['protokoll'].strip().lower()
+                    Return['host']['port'] = Node.attrib['port'].strip()
 
         return Return
 
