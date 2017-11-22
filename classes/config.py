@@ -2,7 +2,7 @@
 # requires at least python 3.4
 
 import xml.etree.ElementTree as DOM
-import os
+import os as OS
 
 class ConfigException(Exception):
     Reasons = ['The given Element was not found.']
@@ -43,21 +43,21 @@ class ConfigReader(object):
         Return = {}
         Return['cmd'] = {}
         Return['cmd']['param'] = []
-        Return['host'] = {}
+        Return['hOSt'] = {}
 
         Node = Root.find('cmd')
         #we going on to check if we need to use something else then commandline
         if None is not Node:
             Return['cmd']['name'] = Node.text.strip()
-            del Return['host']
+            del Return['hOSt']
             Nodes = Node.findall('param')
             if Nodes:
                 for Node in Nodes:
                     if Node.text.strip():
                         Return['cmd']['param'].append(Node.text.strip())
         else:
-        #alternativ: We can say host[@protokoll@port], but we cannot exact error report
-            Node = Root.find('host')
+        #alternativ: We can say hOSt[@protokoll@port], but we cannot exact error report
+            Node = Root.find('hOSt')
             if None is Node:
                 #raise a exception
                 pass
@@ -70,9 +70,9 @@ class ConfigReader(object):
                     #raise a exception
                     pass
                 else:
-                    Return['host']['name'] = Node.text.strip()
-                    Return['host']['protokoll'] = Node.attrib['protokoll'].strip().lower()
-                    Return['host']['port'] = Node.attrib['port'].strip()
+                    Return['hOSt']['name'] = Node.text.strip()
+                    Return['hOSt']['protokoll'] = Node.attrib['protokoll'].strip().lower()
+                    Return['hOSt']['port'] = Node.attrib['port'].strip()
 
         return Return
 
@@ -265,7 +265,7 @@ class ConfigReader(object):
 
 
         if 'plugin' in Node.attrib:
-            if os.path.isfile('./plugin/' + Return['domain'] + '/plugin.py'):
+            if OS.path.isfile('./plugin/' + Return['domain'] + '/plugin.py'):
                 if 'pulk' == Node.attrib['plugin'].text.strip():
                     Return['plugin'] = PLUGIN_PULK
                 else:
@@ -278,7 +278,7 @@ class ConfigReader(object):
 
         if 'xlstTransformation' in Node.attrib:
             allzweckWegwerfVariable = Node.attrib['xlstTransformation'].strip()
-            if os.path.isfile(allzweckWegwerfVariable):
+            if OS.path.isfile(allzweckWegwerfVariable):
                 Return['xslt'] = allzweckWegwerfVariable
             else:
             #raise a exception

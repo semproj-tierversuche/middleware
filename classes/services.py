@@ -1,10 +1,24 @@
 #!/usr/bin/env python3
 # requires at least python 3.4
 
+class CmdAsDatabase(object):
+    def __init__(self, Configuration):
+        pass
+
+class CmdAsTextmining(object):
+    def __init__(self, Configuration):
+        pass
+
+class HostAsDatabase(object):
+    def __init__(self, Configuration):
+        pass
+
+class HostAsTextmining(self):
+    def __init__(self, Configuration):
+        pass
+
+
 class Service(object):
-    USE_NOTHING = 0x0
-    USE_FORK = 0x2
-    USE_VFORK = 0x2
 
     __Database = ''
     __TextMining = ''
@@ -12,11 +26,11 @@ class Service(object):
     def __init__(self, Configuration):
         pass
 
-    def callTextMining(self, JSON, Flag=self.USE_NOTHING):
+    def callTextMining(self, JSON):
         pass
 
-    def queryDatabase(self, JSON, Flag=self.USE_NOTHING):
+    def queryDatabase(self, JSON):
         pass
 
-    def insertIntoDatabase(self, JSON, Flag=self.USE_NOTHING):
+    def insertIntoDatabase(self, JSON):
         pass
