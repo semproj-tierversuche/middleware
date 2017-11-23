@@ -17,34 +17,33 @@ class AbstractResourceDownloader(object):
     FILTER_FILE_INCLUDE_DATE = 0xb
 
     #beides bitte nach dem jeweiligen Dir
-    _DownloadableFiles = {}
-    _DownloadedFiles = {}
+    _DownloadableFiles = []
+    _DownloadedFiles = []
 
-    __Username = ''
-    __Password = ''
-    UseTLS = False
+    _Username = ''
+    _Password = ''
+    _UseTLS = False
 
     def __init__(self):
         pass
 
-    def setUsernameAndPassword(self, Username, Password):
-        self.__Username = Username
-        self.__Password = Password
+    def setCredentials(self, Username, Password):
+        raise Exception("NotImplementedException")
 
-    def setBaseAddress(self, Address):
+    def setBaseAddress(self, Address, UseTLS = False):
         raise Exception("NotImplementedException")
 
     def addSubFolder(self, Folder):
         raise Exception("NotImplementedException")
 
-    #flush all
-    def flush(self, Folder):
+    #reset all
+    def reset(self, Folder):
         raise Exception("NotImplementedException")
 
-    def filterFiles(self, FilterCondition, Flag):
+    def filterFiles(self, Folder, FilterCondition, Flag):
         raise Exception("NotImplementedException")
 
-    def flushFilter(self):
+    def resetFilter(self):
         raise Exception("NotImplementedException")
 
     #check die md5 hashes der files -> sollten die nicht stimmen werden die aus Downloadable komplett genommen
@@ -52,16 +51,16 @@ class AbstractResourceDownloader(object):
         raise Exception("NotImplementedException")
 
     #Die Funktion läd das erste File der Downloadqueue her runter, entfernt den Eintrag aus dieser und fügt es der Gedownloades Liste hinzu
-    def downloadFile(self, PathToDownloadFolder):
+    def downloadFile(self):
         raise Exception("NotImplementedException")
 
     #Die Funktion soll immer alles downloaden, was die Filer erlauben
-    def downloadAll(self, PathToDownloadFolder):
+    def downloadAll(self):
         raise Exception("NotImplementedException")
 
     #De Funktion setzt die Downloadqueue zurueck
-    def flushDownloadQueue(self):
+    def resetDownloadQueue(self):
         raise Exception("NotImplementedException")
     #putzt das tmp verzeichnis
-    def turniquateDownloadedFiles(self):
+    def clearDownloadedFiles(self):
         raise Exception("NotImplementedException")
