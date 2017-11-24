@@ -3,6 +3,7 @@
 
 from threading import Lock
 from classes.http_service import HttpService
+from classes.cmd_service import CmdService
 
 class Database(object):
 
@@ -39,6 +40,8 @@ class HostAsDatabase(Database):
 
     def __init__(self, Configuration):
         #prepare Query
+        Version = self.__startTransaction(Configuration['version'], HttpService(Configuration))
+        print(Version.call().content)
         self.__Query = self.__startTransaction(Configuration['query'], HttpService(Configuration))
      #   if 'update' in Configuration:
      #       self.__Update = self.__startTransaction(Configuration['update'], HttpService(Configuration))
