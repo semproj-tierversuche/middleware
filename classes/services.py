@@ -50,7 +50,7 @@ class HostAsDatabase(Database):
         self.__Query = self.__startTransaction(Configuration['query'], HttpService(Configuration))
      #   if 'update' in Configuration:
      #       self.__Update = self.__startTransaction(Configuration['update'], HttpService(Configuration))
-     #   self.__Delete = self.__startTransaction(Configuration['insert'], HttpService(Configuration))
+        self.__Delete = self.__startTransaction(Configuration['insert'], HttpService(Configuration))
      #   if 'delete' in Configuration:
      #       self.__Insert = self.__startTransaction(Configuration['delete'], HttpService(Configuration))
 
@@ -73,7 +73,7 @@ class HostAsDatabase(Database):
 
     def __bodyless(self, Input, HttpObject):
         for Key in Input:
-            HttpObject.addParameter(Key, Input[Key])
+            HttpObject.addParameter(Key, Input[Key], True)
         Response = HttpObject.call()
         for Key in Input:
             HttpObject.removeParameter(Key)
