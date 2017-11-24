@@ -52,7 +52,7 @@
 		<cache>Integer</cache>
 	</limitations>
 	<resourceCollection>
-		<resource domain="Address" plugin="stream" xlstTransformation="XLSTFile" md5Check="md5Check">
+		<resource domain="Address" plugin="stream" pluginAlias="String" xlstTransformation="XLSTFile" md5Check="md5Check">
 			<subFolder onInitializion="onInitializion">./pubmed/baseline/</subFolder>
 			<subFolder>./pubmed/updatefiles/</subFolder>
 				<includeFiles flag="endswith">String</includeFiles>

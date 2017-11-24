@@ -275,12 +275,18 @@ class ConfigReader(object):
         if 'plugin' in Node.attrib:
             if OS.path.isfile('./plugin/' + Return['domain'] + '/plugin.py'):
                 if 'pulk' == Node.attrib['plugin'].text.strip():
-                    Return['plugin'] = PLUGIN_PULK
+                    Return['plugin'] = {'type' : PLUGIN_PULK, 'name' : Return['domain']}
                 else:
-                    Return['plugin'] = PLUGIN_STREAM
+                    Return['plugin'] = {'type' : PLUGIN_STREAM, 'name' : Return['domain']}
             else:
+                if 'pluginAlias' in Node.attrib and Node.attrib['pluginAlias'].strip():
+                    if OS.path.isfile('./plugin/' + Node.attrib['pluginAlias'].strip() + '/plugin.py'):
+                        Return['plugin'] = {'type' : PLUGIN_PULK, 'name' : Node.attrib['pluginAlias'].strip()}
+                    else:
+                        Return['plugin'] = {'type' : PLUGIN_STREAM, 'name' : Node.attrib['pluginAlias'].strip()}
+                else:
             #raise a excption as warning
-                pass
+                    pass
         else:
             Return['plugin'] = 0
 
