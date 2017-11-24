@@ -7,5 +7,5 @@ class PlugInInterface(object):
 
     def hookForSingleFile(self, FileName):
         raise Exception("NotImplementedException")
-    def hookForMultibleFiles(self, PathToFolder):
+    def hookForMultipleFiles(self, PathToFolder):
         raise Exception("NotImplementedException")

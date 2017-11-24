@@ -9,41 +9,41 @@
 		</textmining>
 		<database>
 			<host protokoll="String" port="Integer">String</host>
-			<store methode="string" username="String" password="String">
+			<insert methode="string" username="String" password="String">
 				<param key="String">String</param>
 				<param key="String">String</param>
 				<cookie type="stroage">String</cookie>
 				<cookie type="string">String</cookie>
 				<header name="String">String</header>
 				<path>String</path>
-			</store>
-			<version methode="string" username="String" password="String">
+			</insert>
+			<version methode="string" >
 				<param key="String">String</param>
 				<path>String</path>
-			</version>
-			<query methode="string" username="String" password="String">
+			</version username="String" password="String">
+			<query methode="string" >
 				<param key="String">String</param>
 				<param key="String">String</param>				
 				<cookie type="stroage">String</param>
 				<cookie type="string">String</param>
 				<header name="String">String</header>
-				<path>String</path>
+				<path username="String" password="String">String</path>
 			</query>
-			<update methode="string" username="String" password="String">
+			<update methode="string">
 				<param key="String">String</param>
 				<param key="String">String</param>
-				<cookie type="stroage">String</cookie>
+				<cookie type="storage">String</cookie>
 				<cookie type="string">String</cookie>
 				<header name="String">String</header>
-				<path>String</path>
+				<path username="String" password="String">String</path>
 			</update>
-			<delete methode="string" username="String" password="String">
+			<delete methode="string" >
 				<param key="String">String</param>
 				<param key="String">String</param>
-				<cookie type="stroage">String</cookie>
+				<cookie type="storage">String</cookie>
 				<cookie type="string">String</cookie>
 				<header name="String">String</header>
-				<path>String</path>
+				<path username="String" password="String">String</path>
 			</delete>
 		</database>
 	</services>
