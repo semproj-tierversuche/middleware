@@ -34,15 +34,15 @@ class CmdAsTextmining(object):
         pass
 
 class HostAsDatabase(Database):
-    __Query = ''
+    __Query = None
     __QueryLock = Lock()
-    __Update = ''
+    __Update = None
     __UpdateLock = Lock()
-    __Delete = ''
+    __Delete = None
     __DeleteLock = Lock()
-    __Insert = ''
+    __Insert = None
     __InsertLock = Lock()
-    __Version = ''
+    __Version = None
 
     def __init__(self, Configuration):
         #Version = self.__startTransaction(Configuration['version'], HttpService(Configuration))
@@ -85,7 +85,7 @@ class HostAsDatabase(Database):
 
 
     def query(self, Query):
-        Response = ''
+        Response = None
         if not Query:
             return
         self.__QueryLock.acquire()
@@ -94,7 +94,7 @@ class HostAsDatabase(Database):
         return Response
 
     def insert(self, Insert):
-        Response = ''
+        Response = None
         if not Insert:
             return
         self.__InsertLock.acquire()
@@ -103,7 +103,7 @@ class HostAsDatabase(Database):
         return Response
 
     def update(self, Update):
-        Response = ''
+        Response = None
         if not Update:
             return
         self.__UpdateLock.acquire()
@@ -112,7 +112,7 @@ class HostAsDatabase(Database):
         return Response
 
     def delete(self, Delete):
-       Response = ''
+       Response = None
        if not Delete:
            return
        self.__DeleteLock.acquire()
@@ -130,8 +130,8 @@ class HostAsTextmining(object):
 #TODO -> Fehlerbehandlung responsecodes
 class Service(object):
 
-    __Database = ''
-    __TextMining = ''
+    __Database = None
+    __TextMining = None
 
     def __init__(self, Configuration):
 

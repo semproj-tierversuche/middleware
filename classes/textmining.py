@@ -10,8 +10,8 @@ class TextMining(object):
     _ResourceStack = []
     __CurrentResource = []
     __LastUpdate = 0
-    __Configuration= ''
-    __Downloader = ''
+    __Configuration= None
+    __Downloader = None
 
     #step 1 -> reading config
     def __init__(self, ConfigurationFile):
@@ -45,7 +45,7 @@ class TextMining(object):
 
     #set a singel Filter to the Downloader
     def __setFilter(self, Container, Key, Flag):
-        Filter = ''
+        Filter = None
 
         if Container[Key]:
             for Filter in Container[Key]:

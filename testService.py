@@ -6,10 +6,6 @@ from classes.config import ConfigReader
 
 Config = ConfigReader()
 Config.parseConfigFile('../config.xml')
-#print(Config._Resources)
-#print(Config._Textmining)
-#print(Config._Database)
 
 Test = Service(Config)
-Test.queryDatabase({'q':'test'})
-print(Test.queryDatabase({'p':'test'}))
+print(Test.queryDatabase({'anyQueryKey':'dynamicValue'}))

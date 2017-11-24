@@ -22,7 +22,7 @@ PLUGIN_STREAM = 0x0
 PLUGIN_PULK = 0x1
 
 class ConfigReader(object):
-    __Root = ''
+    __Root = None
     _Textmining = {}
     _Database = {}
     _Resources = []
@@ -38,7 +38,7 @@ class ConfigReader(object):
         self.readMaxThreads()
 
     def readService(self, Root):
-        Node =''
+        Node =None
         Nodes = []
         Timeout = 0
         Return = {}
@@ -82,13 +82,13 @@ class ConfigReader(object):
         return Return
 
     def readSubNode(self, Node, TagName):
-        NodeStrich = ''
+        NodeStrich = None
         Nodes = []
         Return = {}
         Return['parameters'] = []
         Return['cookies'] = []
         Return['headers'] = []
-        Return['path'] = ''
+        Return['path'] = None
         Return['auth'] = {}
 
         NodeStrich = Node.find(TagName)
@@ -137,7 +137,7 @@ class ConfigReader(object):
 
 
     def readTextmining(self):
-        Node = ''
+        Node = None
 
         Node = self.__Root.find('./services/textmining')
         if None is Node:
@@ -147,7 +147,7 @@ class ConfigReader(object):
             self._Textmining = self.readService(Node)
 
     def readDatabase(self):
-        Node = ''
+        Node = None
 
         Node = self.__Root.find('./services/database')
         if None is Node:
@@ -162,7 +162,7 @@ class ConfigReader(object):
             self._Database['delete'] = self.readSubNode(Node, 'delete')
 
     def readMaxThreads(self):
-        Node = ''
+        Node = None
         Threads = 0
 
         Node = self.__Root.find('./limitations/threads')
@@ -177,7 +177,7 @@ class ConfigReader(object):
             self._Threads = int(Threads)
 
     def readRules(self, Nodes):
-        Node = ''
+        Node = None
 
         Return = {}
         Return['contains'] = []
@@ -257,8 +257,8 @@ class ConfigReader(object):
         Return = {}
         Return['folders'] = []
         Return['rules'] = {}
-        Nodes = ''
-        allzweckWegwerfVariable = ''
+        Nodes = None
+        allzweckWegwerfVariable = None
 
         if 'domain' not in Node.attrib:
         #raise a exception
@@ -274,7 +274,7 @@ class ConfigReader(object):
 
         if 'plugin' in Node.attrib:
             if OS.path.isfile('./plugin/' + Return['domain'] + '/plugin.py'):
-                if 'pulk' == Node.attrib['plugin'].text.strip():
+                if 'pulk' == Node.attrib['plugin'].strip():
                     Return['plugin'] = {'type' : PLUGIN_PULK, 'name' : Return['domain']}
                 else:
                     Return['plugin'] = {'type' : PLUGIN_STREAM, 'name' : Return['domain']}
@@ -313,7 +313,7 @@ class ConfigReader(object):
 
 
     def readResources(self):
-        Nodes = ''
+        Nodes = None
 
         Nodes = self.__Root.findall('./resourceCollection/resource')
         if not Nodes:

@@ -26,18 +26,18 @@ class HttpServiceException(Exception):
 
 #TODO: wenn noetig SSL Certs implementieren
 class HttpService(object):
-    __URLBase = ''
+    __URLBase = None
     __Headers = {}
-    __Session = ''
-    __Request = ''
+    __Session = None
+    __Request = None
     __Parameters = {}
-    __InputData = ''
+    __InputData = None
     __Cookies = []
     __PrepartionIsActive = False
     HoldBody = False
 
     def __init__(self, Configuration):
-        Domain = ''
+        Domain = None
         Port = 80
         Protokoll = 'http'
 
@@ -56,7 +56,7 @@ class HttpService(object):
         self.__Session.auth = (Username, Password)
 
     def addCookieFile(self, Filename):
-        Cookie = ''
+        Cookie = None
         if not OS.path.isfile(Filename):
             raise HttpServiceException(HttpServiceException.NO_COOKIE_FILE)
         File = open(Filename, r)
@@ -116,8 +116,8 @@ class HttpService(object):
                 self.__Request.headers[Name] = Value
 
     def call(self):
-        Response = ''
-        ToSend = ''
+        Response = None
+        ToSend = None
         if False == self.__PrepartionIsActive:
             return None
         else:
@@ -127,18 +127,18 @@ class HttpService(object):
             except Requests.exceptions.ConnectionError:
                 raise HttpServiceException(HttpServiceException.NO_CONECTION)
             if False == self.HoldBody:
-                self.__Request.body = ''
+                self.__Request.body = None
             return Response
 
     def reset(self):
         self.__Parameters = {}
-        self.__InputData = ''
+        self.__InputData = None
         self.__Cookies = {}
         self.__Headers = {}
 
         self.__Session = Requests.Session()
         self.__PrepartionIsActive = False
-        self.__Request = ''
+        self.__Request = None
 
     def removeParameter(self, Key):
         if Key in self.__Parameters:

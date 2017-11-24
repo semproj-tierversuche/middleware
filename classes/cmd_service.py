@@ -32,15 +32,15 @@ class CmdService(object):
     FORK_NORMAL_PROCESS = 0x1
     FORK_PTY_PROCESS = 0x2
     __PipenameCounter = 0
-    __Lock = ''
-    __Lock2 = ''
+    __Lock = None
+    __Lock2 = None
 
     def __init__(self, Configuration):
         if 'timeout' in Configuration['cmd']:
             self.__Timeout = Configuration['cmd']['timeout']
         self.__Lock = Lock()
         self.__Lock2 = Lock()
-        self.addParameter(Configuration['cmd']['name'], '')
+        self.addParameter(Configuration['cmd']['name'], None)
 
     def addParameter(self, Key, Value):
         self.__Lock.acquire()
@@ -58,9 +58,9 @@ class CmdService(object):
             self.__Lock.release()
 
     def __normalChildProcess(self, InputData):
-        Process = ''
-        Stdout = ''
-        Stderr = ''
+        Process = None
+        Stdout = None
+        Stderr = None
 
         Parameter = self.__Parameter
         Parameter.append(InputData)
@@ -86,7 +86,7 @@ class CmdService(object):
 
     def __ptyChildProcess(self, InputData):
         Output = []
-        InputData = ''
+        InputData = None
 
         MyId = str(OS.getpid())
         print(MyId)
@@ -101,8 +101,8 @@ class CmdService(object):
         self.__Lock2.release()
 
     def readFromPipe(self, Pipe, OnlyToNewLine=False):
-        Output = ''
-        Char = ''
+        Output = None
+        Char = None
 
         self.__Lock2.acquire()
         Char = OS.read(Pipe, 1)
@@ -118,10 +118,10 @@ class CmdService(object):
         return Output
 
     def __doPTYFork(self, InputData):
-        FD = ''
-        PId = ''
-        ChildId = ''
-        Char = ''
+        FD = None
+        PId = None
+        ChildId = None
+        Char = None
         print(InputData)
         (PId, FD) = Pty.fork()
         if -1 == PId:
@@ -131,7 +131,7 @@ class CmdService(object):
             #System.stdout.flush()
             self.__ptyChildProcess(InputData)
         else:#We are the parent
-            ChildId = ''
+            ChildId = None
     #        Time.sleep(1)
             print('In Parent Process: PID# %s' % OS.getpid())
     #        print(FD)
@@ -146,11 +146,11 @@ class CmdService(object):
 
     def __doNormalFork(self, InputData):
 
-        PId = ''
-        ChildId = ''
-        PipeIn = ''
-        PipeOut = ''
-        Output = ''
+        PId = None
+        ChildId = None
+        PipeIn = None
+        PipeOut = None
+        Output = None
 
         PipeOut, PipeIn = OS.pipe()
         PId = OS.fork()
