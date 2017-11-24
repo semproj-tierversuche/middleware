@@ -84,20 +84,16 @@ class CmdService(object):
         OS.close(Pipe)#we do not need this pipe anymore-> so close it
         OS._exit(0)
 
-    def __ptyChildProcess(self, Pipe):
+    def __ptyChildProcess(self, InputData):
         Output = []
         InputData = ''
 
         MyId = str(OS.getpid())
-        MyId += "\n"
         print(MyId)
-        OS._exit(0)
-        InputData = System.stdin.readline().strip()
         Output = self.__normalChildProcess(InputData)
         print("[stdout]:\n\n\r\r\n" + Output[0].decode('utf-8'))
-        print("[sterr]:\n\n\r\r\n" + Output[1].decode('utf-8'))
+        print(InputData + "[sterr]:\n\n\r\r\n" + Output[1].decode('utf-8'))
         OS._exit(0)
-
 
     def writeToPipe(self, Pipe, InputString):
         self.__Lock2.acquire()
@@ -126,29 +122,25 @@ class CmdService(object):
         PId = ''
         ChildId = ''
         Char = ''
-        (Pid, FD) = Pty.fork()
-        if 0 == PId:#we are the child
-            print("TEEEEEEEEEEEESSSSSSSSSSSSSSSSSSSSTTTTTTTTTTTTTT")
-            System.stdout.flush()
-           # self.__ptyChildProcess()
+        print(InputData)
+        (PId, FD) = Pty.fork()
+        if -1 == PId:
+            pass
+        elif 0 == PId:#we are the child
+            #print("TEEEEEEEEEEEESSSSSSSSSSSSSSSSSSSSTTTTTTTTTTTTTT")
+            #System.stdout.flush()
+            self.__ptyChildProcess(InputData)
         else:#We are the parent
             ChildId = ''
-            Time.sleep(1)
+    #        Time.sleep(1)
             print('In Parent Process: PID# %s' % OS.getpid())
-            print(FD)
-            print(OS.read(FD, 100))
+    #        print(FD)
     #        Time.sleep(1)
-    #        Char = OS.read(3,1000000000)
-    #        Time.sleep(1)
-           # while Char:
-           #         ChildId += Char.decode('utf-8')
-           #         Char = OS.read(MasterDescriptor,1 )
-
-            #self.writeToPipe(MasterDescriptor, InputData)
-   #         print(Char)
-   #         Char = OS.read(FD,1000000000)
-   #         print(Char)
-            #OS.waitpid(int(ChildId), 0)
+            Char = OS.read(FD,10000)#readchild id
+            ChildId = int(Char.decode('utf-8'))
+            print(ChildId)
+            Pty.os.waitpid(int(ChildId), 0)
+            print(OS.read(FD, 100000).decode('utf-8'))
             #return self.readFromPipe(MasterDescriptor)
 
 

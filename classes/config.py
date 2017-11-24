@@ -88,7 +88,8 @@ class ConfigReader(object):
         Return['parameters'] = []
         Return['cookies'] = []
         Return['headers'] = []
-        Return['path'] = {}
+        Return['path'] = ''
+        Return['auth'] = {}
 
         NodeStrich = Node.find(TagName)
         Node = NodeStrich
@@ -99,16 +100,19 @@ class ConfigReader(object):
             #throw exception
             pass
         else:
+            if 'username' in Node.attrib and 'password' in Node.attrib and Node.attrib['username'].strip():
+                Return['auth']['username'] = Node.attrib['username'].strip()
+                Return['auth']['password'] = Node.attrib['password']
             Return['method'] = Node.attrib['method'].strip().upper()
             Node = NodeStrich.find('path')
             if None is Node or not Node.text.strip():
                 #throw exception if not in tagsoup
                 pass
             else:
-                Return['path']['url'] = Node.text.strip()
-                if 'username' in Node.attrib and 'password' in Node.attrib and Node.attrib['username'].strip() and Node.attrib['password']:
-                    Retrun['path']['username'] = Node.attrib['username'].strip()
-                    Return['path']['password'] = Node.attrib['password']
+                Return['path'] = Node.text.strip()
+                #if 'username' in Node.attrib and 'password' in Node.attrib and Node.attrib['username'].strip() and Node.attrib['password']:
+                #    Return['path']['username'] = Node.attrib['username'].strip()
+                #    Return['path']['password'] = Node.attrib['password']
                 Nodes = NodeStrich.findall('param')
                 if Nodes:
                     for Node in Nodes:
@@ -120,15 +124,15 @@ class ConfigReader(object):
                     for Node in Nodes:
                         if Node.text.strip() and 'type' in Node.attrib:
                             if 'storage' == Node.attrib['type']:
-                                Return['cookies'].append({'type': 0, 'value:':Node.text.strip()})
+                                Return['cookies'].append({'type': 0, 'value':Node.text.strip()})
                             elif 'string' == Node.attrib['type']:
-                                Return['cookies'].append({'type': 1, 'value:':Node.text.strip()})
+                                Return['cookies'].append({'type': 1, 'value':Node.text.strip()})
 
                 Nodes = NodeStrich.findall('header')
                 if Nodes:
                     for Node in Nodes:
                         if 'name' in Node.attrib and Node.attrib['name']:
-                            Return['headers'].append({'name': Node.attrib['name'].strip(), 'value:':Node.text.strip()})
+                            Return['headers'].append({'name': Node.attrib['name'].strip(), 'value':Node.text.strip()})
         return Return
 
 
@@ -248,7 +252,6 @@ class ConfigReader(object):
             for Node in Nodes:
                 Return.append(self.readSubFolder(Node))
         return Return
-
 
     def readResource(self, Node):
         Return = {}
