@@ -157,7 +157,7 @@ class ConfigReader(object):
             self._Database = self.readService(Node)
             self._Database['query'] = self.readSubNode(Node, 'query')
             self._Database['version'] = self.readSubNode(Node, 'version')
-            self._Database['store'] = self.readSubNode(Node, 'store')
+            self._Database['insert'] = self.readSubNode(Node, 'insert')
             self._Database['update'] = self.readSubNode(Node, 'update')
             self._Database['delete'] = self.readSubNode(Node, 'delete')
 

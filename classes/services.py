@@ -39,9 +39,8 @@ class HostAsDatabase(Database):
     __Version = ''
 
     def __init__(self, Configuration):
-        #prepare Query
-        Version = self.__startTransaction(Configuration['version'], HttpService(Configuration))
-        print(Version.call().content)
+        #Version = self.__startTransaction(Configuration['version'], HttpService(Configuration))
+        #print(Version.call().content)
         self.__Query = self.__startTransaction(Configuration['query'], HttpService(Configuration))
      #   if 'update' in Configuration:
      #       self.__Update = self.__startTransaction(Configuration['update'], HttpService(Configuration))
@@ -128,7 +127,10 @@ class Service(object):
         pass
 
     def queryDatabase(self, Dict):
-        return self.__Database.query(Dict)
+        Response = self.__Database.query(Dict)
+        #TODO -> Fehlerbehandlung responsecodes
+        return Response.content.decode('utf-8')
 
     def insertIntoDatabase(self, JSON):
-        return self.__Database.insert(JSON)
+        Response = self.__Database.insert(JSON)
+        return Response.content.decode('utf-8')

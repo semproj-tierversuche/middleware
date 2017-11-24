@@ -9,14 +9,14 @@
 		</textmining>
 		<database>
 			<host protokoll="String" port="Integer">String</host>
-			<store methode="string" username="String" password="String">
+			<insert methode="string" username="String" password="String">
 				<param key="String">String</param>
 				<param key="String">String</param>
 				<cookie type="stroage">String</cookie>
 				<cookie type="string">String</cookie>
 				<header name="String">String</header>
 				<path>String</path>
-			</store>
+			</insert>
 			<version methode="string" >
 				<param key="String">String</param>
 				<path>String</path>
