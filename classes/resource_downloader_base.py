@@ -6,26 +6,15 @@ class AbstractResourceDownloader(object):
     FILTER_FILE_EXCLUDE_ENDS_WITH = 0x0
     FILTER_FILE_EXCLUDE_CONTAINS = 0x1
     FILTER_FILE_EXCLUDE_PATTERN = 0x2
-    FILTER_FILE_EXCLUDE_START_DATE = 0x3
-    FILTER_FILE_EXCLUDE_END_DATE = 0x4
+    FILTER_FILE_EXCLUDE_BEFORE_DATE = 0x3
+    FILTER_FILE_EXCLUDE_AFTER_DATE = 0x4
     FILTER_FILE_EXCLUDE_DATE = 0x5
     FILTER_FILE_INCLUDE_ENDS_WITH = 0x6
     FILTER_FILE_INCLUDE_CONTAINS = 0x7
     FILTER_FILE_INCLUDE_PATTERN = 0x8
-    FILTER_FILE_INCLUDE_START_DATE = 0x9
-    FILTER_FILE_INCLUDE_END_DATE = 0xa
+    FILTER_FILE_INCLUDE_BEFORE_DATE = 0x9
+    FILTER_FILE_INCLUDE_AFTER_DATE = 0xa
     FILTER_FILE_INCLUDE_DATE = 0xb
-
-    #beides bitte nach dem jeweiligen Dir
-    _DownloadableFiles = []
-    _DownloadedFiles = []
-
-    _Username = ''
-    _Password = ''
-    _UseTLS = False
-
-    def __init__(self):
-        pass
 
     def setCredentials(self, Username, Password):
         raise Exception("NotImplementedException")
@@ -40,7 +29,7 @@ class AbstractResourceDownloader(object):
     def reset(self, Folder):
         raise Exception("NotImplementedException")
 
-    def filterFiles(self, Folder, FilterCondition, Flag):
+    def filterFiles(self, FilterCondition, Flag):
         raise Exception("NotImplementedException")
 
     def resetFilter(self):
@@ -51,11 +40,11 @@ class AbstractResourceDownloader(object):
         raise Exception("NotImplementedException")
 
     #Die Funktion läd das erste File der Downloadqueue her runter, entfernt den Eintrag aus dieser und fügt es der Gedownloades Liste hinzu
-    def downloadFile(self):
+    def downloadFile(self, PathInTmp):
         raise Exception("NotImplementedException")
 
     #Die Funktion soll immer alles downloaden, was die Filer erlauben
-    def downloadAll(self):
+    def downloadAll(self, PathInTmp):
         raise Exception("NotImplementedException")
 
     #De Funktion setzt die Downloadqueue zurueck

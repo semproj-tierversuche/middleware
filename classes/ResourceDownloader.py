@@ -1,119 +1,138 @@
-from classes.ftp_downloader import FTPBasicDownloader
+import os
+from classes.ftp_downloader import FTPBasicDownloader, FTPBasicDownloaderException
 from classes.resource_downloader_base import AbstractResourceDownloader
 
 
-class FileAttributes:
+class File:
+    Folder = None
     Access = None
     Symlinks = None
     Owner = None
     Group = None
-    Filesize = None
+    Size = None
     LastModification = None
-    Filename = None
+    Name = None
+
+
+class FileFilter:
+    Condition = None
+    Flag = None
 
 
 class ResourceDownloader(AbstractResourceDownloader):
     # TODO: Exception handling for whole class
     # TODO: filter files with no read access
-    # TODO: reconnect only if needed
+    # TODO: exclude subfolders when adding files to queue
 
     _Downloader = None
+    _DownloadableFiles = []
+    _DownloadedFiles = []
+    _Username = ''
+    _Password = ''
+    _UseTLS = False
     _Filters = []
 
-    def __init__(self):
-        super().__init__()
-        self._DownloadableFiles = []
-        self._DownloadedFiles = []
-        self.__Username = ''
-        self.__Password = ''
-        self.UseTLS = False
+    def setCredentials(self, Username, Password):
+        self._Username = Username
+        self._Password = Password
 
-    def setBaseAddress(self, Address):
-        #USERNAME = 'anonymous'
-        #PASSWORD = 'anonymous@hu-berlin.de'
+    def setBaseAddress(self, Address, UseTLS = False):
+        self._UseTLS = UseTLS
         self._Downloader = FTPBasicDownloader(Address)
-        self._Downloader.UseTLS = self.UseTLS
-        self._Downloader.Username = self.__Username
-        self._Downloader.Password = self.__Password
+        self._Downloader.UseTLS = self._UseTLS
+        self._Downloader.Username = self._Username
+        self._Downloader.Password = self._Password
         self._Downloader.initializeConnection()
         self._DownloadableFiles = []
         self._DownloadedFiles = []
 
     def addSubFolder(self, Folder):
-        self._Downloader.reconnect()
-        #self._Downloader.goBackToBaseDir()
+        try:
+            self._Downloader.checkConnection()
+        except FTPBasicDownloaderException:
+            self._Downloader.reconnect()
         FileList = self._Downloader.getFileList(Folder)
-        for File in FileList:
-            FileAttributes = self._parseFileAttributes(File)
-            # make file a tupel of path and filename
-            File = (Folder, FileAttributes.Filename)
+        for FileAttributes in FileList:
+            File = self._buildFileObject(Folder, FileAttributes)
             if self._filterFile(File):
                 self._DownloadableFiles.append(File)
 
-    def flush(self, Folder):
-        print('ok')
-        # TODO: what should this be doing?
+    def reset(self, Folder):
+        # TODO: this keeps downloaded files ???
+        self.resetFilter()
+        self.resetDownloadQueue()
 
     def filterFiles(self, FilterCondition, Flag):
-        self._Filters.append((Flag, FilterCondition))
+        # TODO: so far this only works with EXCLUDING files
+        FileFilter_ = FileFilter()
+        FileFilter_.Condition = FilterCondition
+        FileFilter_.Flag = Flag
+        self._Filters.append(FileFilter_)
+        NewDownloadableFiles = []
+        for File in self._DownloadableFiles:
+            if self._filterFile(File):
+                NewDownloadableFiles.append(File)
+        self._DownloadableFiles = NewDownloadableFiles
 
-    def flushFilter(self):
+    def resetFilter(self):
         self._Filters = []
 
     def checkMD5(self):
-        print('ok')
-        # TODO: check md5 of all files
+        pass
+        # TODO: md5 von patrick
 
-    def downloadFile(self, PathToDownloadFolder):
-        # reconnect
-        self._Downloader.reconnect()
+    def downloadFile(self, PathInTmp):
+        try:
+            self._Downloader.checkConnection()
+        except FTPBasicDownloaderException:
+            self._Downloader.reconnect()
         self._Downloader.goBackToBaseDir()
-        # check trailing slash
-        if not(PathToDownloadFolder[-1:] == '/'):
-            PathToDownloadFolder += '/'
-
+        # add trailing slash and remove leading
+        if not(PathInTmp[-1:] == '/'):
+            PathInTmp += '/'
+        PathInTmp.lstrip('/')
         File = self._DownloadableFiles.pop()
-        # File[0] ~> Folder; File[1] ~> FileAttributes instance
-        self._Downloader.changeDir(File[0])
-        self._Downloader.downloadFile(File[1], PathToDownloadFolder + File[1])
+        self._Downloader.changeDir(File.Folder)
+        self._Downloader.downloadFile(File.Name, 'tmp/' + PathInTmp + File.Name)
         self._DownloadedFiles.append(File)
 
-    def downloadAll(self, PathToDownloadFolder):
+    def downloadAll(self, PathInTmp):
         while len(self._DownloadableFiles) > 0:
-            self.downloadFile(PathToDownloadFolder)
+            self.downloadFile(PathInTmp)
 
-    def flushDownloadQueue(self):
+    def resetDownloadQueue(self):
         self._DownloadableFiles = []
 
-    def _parseFileAttributes(self, AttributesString):
+    def clearDownloadedFiles(self):
+        self._DownloadedFiles = []
+        # TODO: delete them in path
+
+    def _buildFileObject(self, Folder, AttributesString):
         Attributes = AttributesString.split(' ')
         Attributes = [a for a in Attributes if a]
-        # TODO: check if mapping works in every case
-        AttributesObject = FileAttributes()
-
-        AttributesObject.Access = Attributes[0]
-        AttributesObject.Symlinks = Attributes[1]
-        AttributesObject.Owner = Attributes[2]
-        AttributesObject.Group = Attributes[3]
-        AttributesObject.Filesize = Attributes[4]
-        AttributesObject.LastModification = Attributes[5] + ' ' + Attributes[6] + ' ' + Attributes[7]
-        AttributesObject.Filename = Attributes[8]
-
-        return AttributesObject
+        # TODO: check if mapping works in every case (windows?)
+        File_ = File()
+        File_.Folder = Folder
+        File_.Access = Attributes[0]
+        File_.Symlinks = Attributes[1]
+        File_.Owner = Attributes[2]
+        File_.Group = Attributes[3]
+        File_.Size = Attributes[4]
+        File_.LastModification = Attributes[5] + ' ' + Attributes[6] + ' ' + Attributes[7]
+        File_.Name = Attributes[8]
+        return File_
 
     def _filterFile(self, File):
         for Filter in self._Filters:
-            if Filter[0] == self.FILTER_FILE_EXCLUDE_ENDS_WITH and File[1].endswith(Filter[1]):
+            if Filter.Flag == self.FILTER_FILE_EXCLUDE_ENDS_WITH and File.Name.endswith(Filter.Condition):
                 return False
-            if Filter[0] == self.FILTER_FILE_EXCLUDE_CONTAINS and Filter[1] in File[1]:
+            if Filter.Flag == self.FILTER_FILE_EXCLUDE_CONTAINS and Filter.Condition in File.Name:
                 return False
             # TODO: FILTER_FILE_EXCLUDE_PATTERN
-            if Filter[0] == self.FILTER_FILE_INCLUDE_ENDS_WITH and File[1].endswith(Filter[1]):
-                return True
-            if Filter[0] == self.FILTER_FILE_INCLUDE_CONTAINS and Filter[1] in File[1]:
-                return True
+            # TODO: FILTER_FILE_INCLUDE_ENDS_WITH
+            # TODO: FILTER_FILE_INCLUDE_CONTAINS
             # TODO: FILTER_FILE_INCLUDE_PATTERN
-            # TODO: FILTER_FILE_START_DATE = 0x6
-            # TODO: FILTER_FILE_END_DATE = 0x7
+            # TODO: FILTER_FILE_START_DATE
+            # TODO: FILTER_FILE_END_DATE
         # TODO: default true?
         return True

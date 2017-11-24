@@ -25,7 +25,7 @@ class FTPBasicDownloader(object):
 #    _ReturnAsDOM = False
 #    _Base = ''
 #    _Dirs = ''
-    __Connectionnection= ''
+    __Connection = None
     Username = ''
     Password = ''
     __IsActiv = False
@@ -43,7 +43,7 @@ class FTPBasicDownloader(object):
         else:
             self.__Connection = FTP(self._Base)
         #except ftplib.all_errors as e:
-        self._IsActiv = True
+        self.__IsActiv = True
 
         #folgendes solltes später geloggt werden
         #try:
@@ -56,7 +56,7 @@ class FTPBasicDownloader(object):
     #fuer einen Reconnect reicht das erneute Login, die Sockets sind ja noch gebunden
     def reconnect(self):
 #       self.initializeConnection()
-        #try:
+        #try:''
         if False == self.__IsActiv:
             self.initializeConnection()
         else:
@@ -99,11 +99,7 @@ class FTPBasicDownloader(object):
     def downloadFile(self, FileName, OutputFile):
         self.checkConnection()
         with open(OutputFile, 'wb') as WriteInto:
-           def push(Block):
-                WriteInto.write(Block)
-                #try:
-                self.__Connection.retrbinary("RETR %s" % FileName, push)
-                #except ftplib.all_errors as e
+            self.__Connection.retrbinary('RETR %s' % FileName, WriteInto.write)
 
 
     def checkConnection(self):
