@@ -12,4 +12,4 @@ Config.parseConfigFile('../config.xml')
 
 Test = Service(Config)
 Test.queryDatabase({'q':'test'})
-print(Test.queryDatabase({'p':'test'}).content)
+print(Test.queryDatabase({'p':'test'}))

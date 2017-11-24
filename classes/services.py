@@ -5,6 +5,9 @@ from threading import Lock
 from classes.http_service import HttpService
 from classes.cmd_service import CmdService
 
+class Textming(object):
+    def do(self, Input):
+        pass
 class Database(object):
 
     def query(self, Query):
@@ -25,6 +28,9 @@ class CmdAsDatabase(object):
 
 class CmdAsTextmining(object):
     def __init__(self, Configuration):
+        pass
+
+    def do(self, Input):
         pass
 
 class HostAsDatabase(Database):
@@ -79,7 +85,6 @@ class HostAsDatabase(Database):
 
 
     def query(self, Query):
-        Key = ''
         Response = ''
         if not Query:
             return
@@ -87,7 +92,6 @@ class HostAsDatabase(Database):
         Response = self.__bodyless(Query, self.__Query)
         self.__QueryLock.release()
         return Response
-
 
     def insert(self, Insert):
         Response = ''
@@ -99,19 +103,31 @@ class HostAsDatabase(Database):
         return Response
 
     def update(self, Update):
-        pass
+        Response = ''
+        if not Update:
+            return
+        self.__UpdateLock.acquire()
+        Response = self.__withBody(Update, self.__Update)
+        self.__UpdateLock.release()
+        return Response
 
     def delete(self, Delete):
-        pass
+       Response = ''
+       if not Delete:
+           return
+       self.__DeleteLock.acquire()
+       Response = self.__bodyless(Query, self.__Delete)
+       self.__DeleteLock.release()
+       return Response
 
     def getDBVersion(self):
-        pass
+        return self.__Version
 
 class HostAsTextmining(object):
     def __init__(self, Configuration):
         pass
 
-
+#TODO -> Fehlerbehandlung responsecodes
 class Service(object):
 
     __Database = ''
@@ -133,4 +149,12 @@ class Service(object):
 
     def insertIntoDatabase(self, JSON):
         Response = self.__Database.insert(JSON)
+        return Response.content.decode('utf-8')
+
+    def updateInDatabase(self, JSON):
+        Response = self.__Database.update(JSON)
+        return Response.content.decode('utf-8')
+
+    def deleteInDatabase(self, Dict):
+        Response = self.__Database.delete(Dict)
         return Response.content.decode('utf-8')
