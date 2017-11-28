@@ -44,15 +44,25 @@ class HostAsDatabase(Database):
     __InsertLock = Lock()
     __Version = None
 
-    def __init__(self, Configuration):
+    #def __init__(self, Configuration):
         #Version = self.__startTransaction(Configuration['version'], HttpService(Configuration))
         #print(Version.call().content)
-        self.__Query = self.__startTransaction(Configuration['query'], HttpService(Configuration))
+     #   self.__Query = self.__startTransaction(Configuration['query'], HttpService(Configuration))
      #   if 'update' in Configuration:
      #       self.__Update = self.__startTransaction(Configuration['update'], HttpService(Configuration))
-        self.__Delete = self.__startTransaction(Configuration['insert'], HttpService(Configuration))
+     #   self.__Delete = self.__startTransaction(Configuration['insert'], HttpService(Configuration))
      #   if 'delete' in Configuration:
      #       self.__Insert = self.__startTransaction(Configuration['delete'], HttpService(Configuration))
+
+    def openDatabase(Query=True, Insert=True, Update=False, Delete=False):
+        if True == Query and not self.__Query:
+            self.__Query = self.__startTransaction(Configuration['query'], HttpService(Configuration))
+        if True == Insert and not self.__Insert:
+            self.__Insert = self.__startTransaction(Configuration['insert'], HttpService(Configuration))
+        if True == Update and not self__Update and 'update' in Configuration:
+             self.__Update = self.__startTransaction(Configuration['update'], HttpService(Configuration))
+        if True == Delete and not self.__Delete and 'delete' in Configuration:
+             self.__Delete = self.__startTransaction(Configuration['delete'], HttpService(Configuration))
 
     def __startTransaction(self, Configuration, HttpObject):
         if Configuration['auth']:
@@ -73,7 +83,7 @@ class HostAsDatabase(Database):
 
     def __bodyless(self, Input, HttpObject):
         for Key in Input:
-            HttpObject.addParameter(Key, Input[Key], True)
+            HttpObject.addParameter(Key, Input[Key])
         Response = HttpObject.call()
         for Key in Input:
             HttpObject.removeParameter(Key)
@@ -123,24 +133,39 @@ class HostAsDatabase(Database):
     def getDBVersion(self):
         return self.__Version
 
+    def closeUpdate(self):
+        self.__Update.close()
+        self.__Update = None
+
+    def closeDelete(self):
+        self.__Delete.close()
+        self.__Delete = None
+
+    def closeInsert(self):
+        self.__Insert.close()
+        self.__Insert = NOne
+
+    def closeQuery(self):
+        self.__Query.close()
+        self.__Query = None
+
 class HostAsTextmining(object):
     def __init__(self, Configuration):
         pass
 
 #TODO -> Fehlerbehandlung responsecodes
-class Service(object):
+class DatabaseService(object):
 
     __Database = None
-    __TextMining = None
 
     def __init__(self, Configuration):
 
-        if "host" in Configuration._Database:
+        if 'host' in Configuration._Database:
             self.__Database = HostAsDatabase(Configuration._Database)
+        else:
+            pass
+#            self.__Database = CmdAsDataBase(Configuration._Database)
 
-
-    def callTextMining(self, JSON):
-        pass
 
     def queryDatabase(self, Dict):
         Response = self.__Database.query(Dict)
@@ -158,3 +183,18 @@ class Service(object):
     def deleteInDatabase(self, Dict):
         Response = self.__Database.delete(Dict)
         return Response.content.decode('utf-8')
+
+class TextminingService(object):
+
+    __Textmining = None
+
+    def __init__(self, Configuration):
+        if 'host' in Configuration._Textmining:
+            pass
+            #self.__Textmining = HostAsTextmining(Configuration._Textmining)
+        else:
+            self.__Textmining = CmdAsTextmining(Configuration._Textmining)
+
+    def do(self, ForTextmining):
+#        self.__Textmining.do(ForTextmining)
+        pass

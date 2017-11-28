@@ -34,7 +34,8 @@ class HttpService(object):
     __InputData = None
     __Cookies = []
     __PrepartionIsActive = False
-    HoldBody = False
+    __BuildNew = False
+    __Path = None
 
     def __init__(self, Configuration):
         Domain = None
@@ -55,7 +56,7 @@ class HttpService(object):
     def setUsernameAndPassword(self, Username, Password):
         self.__Session.auth = (Username, Password)
 
-    def addCookieFile(self, Filename):
+    def addCookieFile(self, Filename, Persistent=False):
         Cookie = None
         if not OS.path.isfile(Filename):
             raise HttpServiceException(HttpServiceException.NO_COOKIE_FILE)
@@ -63,17 +64,23 @@ class HttpService(object):
         for Line in File:
             Cookie += Line
         File.close()
-        self.addCookieFile(Cookie)
+        self.addCookieFile(Cookie, Persistent)
 
-    def addCookieString(self, CookieString):
+    def addCookieString(self, CookieString, Persistent=False):
         Cookie = Cookies.SimpleCookie()
         Cookie.load(CookieString)
         CookieDirc = {}
         for Key in Cookie:
             CookieDirc[Key] = Cookie[Key]
-        self.__Cookies.append(CookieDirc)
+        if False == self.__PrepartionIsActive:
+            self.__Cookies.append(CookieDirc)
+            return
+        if True == Persistent:
+            self.__Cookies.append(CookieDirc)
+            self.__BuildNew = True
 
     def startACall(self, Method, Path):
+        self.__Path = Path
         if self.__PrepartionIsActive:
             return
         if self.__Cookies and self.__Parameters:
@@ -86,8 +93,8 @@ class HttpService(object):
             self.__Request = Requests.Request(method=Method, url=self.__URLBase + Path)
 
         if self.__InputData:
-            self.__Request.body = InputData
-
+            self.__Request.body = self.__InputData
+            self.__InputData = None
        # self.__Request = self.__Session.prepare_request(Req)
         self.__PrepartionIsActive = True
 
@@ -97,30 +104,49 @@ class HttpService(object):
         else:
             self.__InputData = InputData
 
-    def addParameter(self, Name, Value):
-        self.__Parameters[Name] = Value
+    def addParameter(self, Name, Value, Persistent=False):
         if True == self.__PrepartionIsActive:
+            self.__Request.params[Name] = Value
+            if True == Persistent:
+                self.__Parameters[Name] = Value
+                self.__BuildNew = True
+        else:
+            self.__Parameters[Name] = Value
+
+#    if True == self.__PrepartionIsActive:
             #if not self.__Request.parameters[Key]:
             #    for Key in self.__Parameters:
             #    self.__Request.parameters[Key] = self.__Parameters[Key]
             #else
-                self.__Request.params[Name] = Value
+#                self.__Request.params[Name] = Value
 
-    def addHeader(self, Name, Value):
-        self.__Headers[Name] = Value
+    def addHeader(self, Name, Value, Persistent=False):
+#        self.__Headers[Name] = Value
         if True == self.__PrepartionIsActive:
+            self.__Request.headers[Name] = Value
+            if True == Persistent:
+                self.__Header[Name] = Value
+                self.__BuildNew = True
+        else:
+            self.__Headers[Name] = Value
             #if not self.__Request.headers:
             #    for Key in self.__Headers:
             #        self.__Request.headers[Key] = self.__Headers[Key]
             #else:
-                self.__Request.headers[Name] = Value
+            self.__Request.headers[Name] = Value
 
     def call(self):
         Response = None
         ToSend = None
+        SwapBody = None
         if False == self.__PrepartionIsActive:
             return None
         else:
+            if True == self.__BuildNew:
+                SwapBody = self.__Request.body
+                self.startACall(self.__Request.method, self.__Path)
+                if SwapBody:
+                    self.setInputData(SwapBody)
             try:
                 ToSend = self.__Request.prepare()
                 Response = self.__Session.send(ToSend)
@@ -130,19 +156,42 @@ class HttpService(object):
                 self.__Request.body = None
             return Response
 
+    def close(self):
+        self.__Session.close()
+         __URLBase = None
+         __Headers = {}
+         __Session = None
+         __Request = None
+         __Parameters = {}
+         __InputData = None
+         __Cookies = []
+         __PrepartionIsActive = False
+         __BuildNew = False
+         __Path = None
+
+
+    def __del__(self):
+        self.close()
+
+
     def reset(self):
         self.__Parameters = {}
         self.__InputData = None
         self.__Cookies = {}
         self.__Headers = {}
+        self.__Request = None
+        self.__Path = None
+        self.__PrepartionIsActive = False
+        self.__BuildNew = False
 
+        self.__Session.close()
         self.__Session = Requests.Session()
         self.__PrepartionIsActive = False
-        self.__Request = None
 
     def removeParameter(self, Key):
         if Key in self.__Parameters:
             del self.__Parameters[Key]
         if True == self.__PrepartionIsActive:
-            if Key in self.__Request.params:
-                del self.__Request.params[Key]
+#            if Key in self.__Session.params:
+#                del self.__Session.params[Key]
+            self.__BuildNew = True
