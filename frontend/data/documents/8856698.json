@@ -1,0 +1,37 @@
+{ 
+  "Abstract" : [ "The neuroprotective activity of basic fibroblast growth factor (bFGF) in combination with the N-methyl-D-aspartate (NMDA) receptor antagonist MK-801 was evaluated in organotypic hippocampal slice cultures. Oxygen/glucose deprivation produced neuronal damage which was assessed using propidium iodide fluorescence. Treatment with increasing doses of bFGF demonstrated significant neuroprotection that was optimal at 10 ng ml-t. This effect was diminished at higher concentrations. MK-801, at the optimal concentration of 30 microM, demonstrated greater neuroprotective efficacy than bFGF. However, bFGF significantly enhanced the protection conferred by MK-801 alone. These results suggest that neurotrophic factors such as bFGF may augment the neuroprotective effects of NMDA antagonists against ischemic neuronal injury." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Barth, A",
+      "Barth, L",
+      "Morrison, R S",
+      "Newell, D W"
+    ],
+  "Date" : "1996",
+  "Identifier" : [  ],
+  "Journal" : [ "Neuroreport" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/8856698",
+  "MeshHeadings" : [ 
+      "Animals",
+      "Brain Ischemia",
+      "Cell Survival",
+      "Dizocilpine Maleate",
+      "Drug Synergism",
+      "Excitatory Amino Acid Antagonists",
+      "Fibroblast Growth Factor 2",
+      "Hippocampus",
+      "Neurons",
+      "Neuroprotective Agents",
+      "Organ Culture Techniques",
+      "Rats",
+      "Rats, Sprague-Dawley",
+      "Receptors, N-Methyl-D-Aspartate"
+    ],
+  "PMID" : 8856698,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "bFGF enhances the protective effects of MK-801 against ischemic neuronal injury in vitro."
+}

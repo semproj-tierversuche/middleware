@@ -1,0 +1,25 @@
+{ 
+  "Abstract" : [ "Neuroprotective drugs tested in clinical trials, particularly those that block N-methyl-D-aspartate-sensitive glutamate receptors (NMDARs), have failed miserably in large part because of intolerable side effects. However, one such drug, memantine, was recently approved by the European Union and the US FDA for the treatment of dementia following our group's discovery of its clinically tolerated mechanism of action. Here, we review the molecular basis for memantine efficacy in neurological diseases that are mediated, at least in part, by overactivation of NMDARs, producing excessive Ca(2+) influx through the receptor's associated ion channel and consequent free-radical formation." ],
+  "Annotations" : [  ],
+  "Authors" : [ "Lipton, Stuart A" ],
+  "Date" : "2006",
+  "Identifier" : [  ],
+  "Journal" : [ "Nature reviews. Drug discovery" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/16424917",
+  "MeshHeadings" : [ 
+      "Animals",
+      "Excitatory Amino Acid Antagonists",
+      "Humans",
+      "Memantine",
+      "Neuroprotective Agents",
+      "Neurotoxins",
+      "Receptors, N-Methyl-D-Aspartate"
+    ],
+  "PMID" : 16424917,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Paradigm shift in neuroprotection by NMDA receptor blockade: memantine and beyond."
+}

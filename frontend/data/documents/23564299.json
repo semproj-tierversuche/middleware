@@ -1,0 +1,40 @@
+{ 
+  "Abstract" : [ "Homocysteine (Hcy), a neurotoxic amino acid, is a risk factor for neurodegenerative diseases. Previous in vitro studies have demonstrated that group I metabotropic glutamate receptors along with N-methyl-D-aspartic acid (NMDA) receptors participate in acute and chronic aspects of Hcy-induced neuronal damage. In the present study, we examined whether the same mechanism may be involved in homocysteine neurotoxicity in vivo. Memantine, MPEP, and LY367385 were used as NMDA, mGlu5, and mGlu1 antagonists, respectively. Repeated i.c.v injection of Hcy was performed for three consecutive days. Neuronal loss in different zones of the hippocampus was assessed by Nissl, Fluoro-Jade B, and TUNEL staining. Neuronal degeneration was observed in both types of apoptosis and necrosis. All glutamate receptor antagonists, even when given alone, provided some degree of neuroprotection. The degree of protection was dependent on the area of the hippocampus. While memantine was more potent against Hcy-induced apoptosis, the potency of mGluR antagonists in neuronal protection against apoptosis and necrosis was almost equal. No more protection was observed when all three antagonists were used simultaneously. It seems that Fluoro-Jade could be a useful marker of apoptotic cell death. Taken together, results demonstrate that, in vivo, Hcy neurotoxicity is mediated mainly by the NMDA receptors and group I mGluRs." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Yeganeh, F",
+      "Nikbakht, F",
+      "Bahmanpour, S",
+      "Rastegar, K",
+      "Namavar, R"
+    ],
+  "Date" : "2013",
+  "Identifier" : [  ],
+  "Journal" : [ "Journal of molecular neuroscience : MN" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/23564299",
+  "MeshHeadings" : [ 
+      "Animals",
+      "Apoptosis",
+      "Benzoates",
+      "Cell Survival",
+      "Excitatory Amino Acid Antagonists",
+      "Glycine",
+      "Hippocampus",
+      "Homocysteine",
+      "Male",
+      "Memantine",
+      "Necrosis",
+      "Neuroprotective Agents",
+      "Pyridines",
+      "Rats",
+      "Rats, Sprague-Dawley",
+      "Receptors, N-Methyl-D-Aspartate"
+    ],
+  "PMID" : 23564299,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Neuroprotective effects of NMDA and group I metabotropic glutamate receptor antagonists against neurodegeneration induced by homocysteine in rat hippocampus: in vivo study."
+}

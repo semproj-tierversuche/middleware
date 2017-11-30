@@ -1,0 +1,38 @@
+{ 
+  "Abstract" : [ "Long before the onset of clinical Alzheimer's disease non-fibrillar, soluble assembly states of amyloid-beta (Abeta) peptides are believed to cause cognitive problems by disrupting synaptic function in the absence of significant neurodegeneration. Since many of the risk factors for Alzheimer's disease are vascular, impairment of cerebral blood flow by soluble Abeta has been proposed to be critical in triggering these early changes. However, it is not known if soluble Abeta can affect cerebrovascular function at the concentrations required to cause inhibition of synaptic plasticity mechanisms believed to underlie the early cognitive deficits of Alzheimer's disease. Here we developed a new method to simultaneously assess the ability of soluble Abeta to impair plasticity at synapses and to affect resting and activity-dependent local blood flow in the rat hippocampus in vivo. Intracerebroventricular injection of soluble synthetic Abeta(40) dimers rapidly inhibited plasticity of excitatory synaptic transmission at doses (10-42 pmol) comparable to natural Abeta, but failed to affect vascular function measured using laser-Doppler flowmetry (LDF). Like wild-type Abeta(40), the more vasculotropic Abeta produced by people with familial hemorrhagic stroke of the Dutch type (Abeta(40)E22Q), impaired hippocampal plasticity without causing a significant change in local blood flow. Furthermore, neither resting nor activation-evoked hippocampal perfusion was affected by soluble Abeta(42), even at a concentration that markedly (25%) reduced baseline synaptic transmission. These findings demonstrate that the putative synaptotoxic soluble Abeta species of early Alzheimer's disease cause synaptic dysfunction in the absence of detectible changes in local blood flow. This strongly indicates that early cognitive deficits can be caused by soluble Abeta independently of deleterious effects on cerebrovascular dynamics." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Hu, Neng-Wei",
+      "Smith, Imelda M",
+      "Walsh, Dominic M",
+      "Rowan, Michael J"
+    ],
+  "Date" : "2008",
+  "Identifier" : [  ],
+  "Journal" : [ "Brain : a journal of neurology" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/18678563",
+  "MeshHeadings" : [ 
+      "Amino Acid Sequence",
+      "Amyloid beta-Peptides",
+      "Animals",
+      "Cerebral Cortex",
+      "Cerebrovascular Circulation",
+      "Electric Stimulation",
+      "Hippocampus",
+      "Hyperemia",
+      "Laser-Doppler Flowmetry",
+      "Male",
+      "Molecular Sequence Data",
+      "Neuronal Plasticity",
+      "Rats",
+      "Rats, Wistar",
+      "Synapses"
+    ],
+  "PMID" : 18678563,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Soluble amyloid-beta peptides potently disrupt hippocampal synaptic plasticity in the absence of cerebrovascular dysfunction in vivo."
+}

@@ -1,0 +1,38 @@
+{ 
+  "Abstract" : [ "Accumulation of amyloid-beta peptide (Abeta) is widely believed to play a critical role in the pathogenesis of Alzheimer's disease. Although amyloid-containing plaques are a key neuropathological feature of AD, soluble forms of Abeta can interfere with synaptic plasticity in the brain, suggesting that this form of the peptide may be responsible for much of the memory deficit seen early in the disease. Here, we investigate the mechanism underlying the effects of Abeta on long-term potentiation (LTP) in area CA1 of rat hippocampus. Extracellular field recordings were made in area CA1 of hippocampal slices taken from young, adult male rats. A non-toxic concentration of Abeta (200 nM) produced a rapid inhibition of LTP induced by 100 Hz stimulation while having no long-term effect on normal synaptic transmission. The same dose of Abeta had no effect on long-term depression (LTD) induced by 1200 pulses at 1 or 3 Hz. Picrotoxin had no effect on the inhibition of LTP, suggesting Abeta does not act by enhancing GABAergic transmission. Since the LTP induction in this study was dependent on N-methyl-D-aspartate (NMDA) receptor activation, we looked at the effect of Abeta on isolated NMDA receptor-mediated field potentials. Abeta produced a small but significant inhibition of NMDA receptor-mediated synaptic potentials ( approximately 25%). However, a low dose of MK-801 (0.5 microM) that produced a similar inhibition of NMDA potentials had no effect on LTP induction but completely blocked LTD induction. These results suggest that Abeta does not inhibit LTP via effects on NMDA receptors, but rather interferes with a downstream pathway." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Raymond, Clarke R",
+      "Ireland, David R",
+      "Abraham, Wickliffe C"
+    ],
+  "Date" : "2003",
+  "Identifier" : [  ],
+  "Journal" : [ "Brain research" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/12663096",
+  "MeshHeadings" : [ 
+      "2-Amino-5-phosphonovalerate",
+      "6-Cyano-7-nitroquinoxaline-2,3-dione",
+      "Amyloid beta-Peptides",
+      "Animals",
+      "Dizocilpine Maleate",
+      "Excitatory Amino Acid Antagonists",
+      "GABA Antagonists",
+      "Hippocampus",
+      "In Vitro Techniques",
+      "Long-Term Potentiation",
+      "Long-Term Synaptic Depression",
+      "Male",
+      "Picrotoxin",
+      "Rats",
+      "Rats, Sprague-Dawley",
+      "Receptors, N-Methyl-D-Aspartate"
+    ],
+  "PMID" : 12663096,
+  "PublicationType" : "Comparative Study",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "NMDA receptor regulation by amyloid-beta does not account for its inhibition of LTP in rat hippocampus."
+}

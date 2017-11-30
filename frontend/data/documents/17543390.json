@@ -1,0 +1,29 @@
+{ 
+  "Abstract" : [ "In this review we bring together three different lines of evidence to bear on the issue of local shaping of function in the motor cortex. The first line of evidence comes from the description by Cajal (1904) of the recurrent collaterals of pyramidal cell axons in the precentral gyrus. The second line of evidence comes from the electrophysiological study of the functional effects of these collaterals [Stefanis, C., Jasper, H. 1964a. Intracellular microelectrode studies of antidromic responses in cortical pyramidal tract neurons. J. Neurophysiol. 27, 828-854.; Stefanis, C., Jasper, H. 1964b. Recurrent collateral inhibition in pyramidal tract neurons. J. Neurophysiol. 27, 855-877.] and associated interneurons [Stefanis, C. 1969. Interneuronal mechanisms in the cortex. In: The Interneuron, Brazier, M.A.B. (ed.), Berkeley, CA: University of California Press, pp. 497-526.] using intracellular recordings. And third came the discovery of directional tuning in the motor cortex [Georgopoulos, A.P., Kalaska, J.F., Caminiti, R., Massey, J.T. 1982. On the relations between the direction of two-dimensional arm movements and cell discharge in primate motor cortex. J. Neurosci. 2, 1527-1537.] in the behaving monkey. We hazard the hypothesis that the bell-shaped directional tuning curve is the outcome of orderly, local neuronal interactions in the motor cortex in which the recurrent pyramidal cell collaterals play a crucial role. Specifically, we propose that these collaterals and the intercalated interneurons they impinge upon serve to spatially sharpen the motor cortical activation to a locus corresponding to the direction of the intended movement. Thus, the originally proposed role of the pyramidal cell collaterals in enhancing \"motor contrast\" [Stefanis, C. 1969. Interneuronal mechanisms in the cortex. In: The Interneuron, Brazier, M.A.B. (ed.), Berkeley, CA: University of California Press, pp. 497-526.] would translate to creating a \"directional tuning field\" on the motor cortical surface, where the enhanced motor contrast would correspond to high activity at the center of directional field, and the suppression of the fringe would correspond to lower activity at the periphery of the field, resulting, together in spatial tuning." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Georgopoulos, Apostolos P",
+      "Stefanis, Costas N"
+    ],
+  "Date" : "2007",
+  "Identifier" : [  ],
+  "Journal" : [ "Brain research reviews" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/17543390",
+  "MeshHeadings" : [ 
+      "Animals",
+      "Humans",
+      "Models, Neurological",
+      "Motor Cortex",
+      "Motor Neurons",
+      "Movement",
+      "Nerve Net",
+      "Orientation"
+    ],
+  "PMID" : 17543390,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Local shaping of function in the motor cortex: motor contrast, directional tuning."
+}

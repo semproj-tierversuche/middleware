@@ -1,0 +1,42 @@
+{ 
+  "Abstract" : [ "Mutations in the leucine-rich repeat kinase 2 (LRRK2) gene are currently recognized as the most common genetic cause of parkinsonism. Among the large number of LRRK2 mutations identified to date, the G2019S variant is the most common. In Asia, however, another LRRK2 variant, G2385R, appears to occur more frequently. To better understand the contribution of different LRRK2 variants toward disease pathogenesis, we generated transgenic Drosophila over-expressing various human LRRK2 alleles, including wild type, G2019S, Y1699C, and G2385R LRRK2. We found that transgenic flies harboring G2019S, Y1699C, or G2385R LRRK2 variant, but not the wild-type protein, exhibit late-onset loss of dopaminergic (DA) neurons in selected clusters that is accompanied by locomotion deficits. Furthermore, LRRK2 mutant flies also display reduced lifespan and increased sensitivity to rotenone, a mitochondrial complex I inhibitor. Importantly, coexpression of human parkin in LRRK2 G2019S-expressing flies provides significant protection against DA neurodegeneration that occurs with age or in response to rotenone. Together, our results suggest a potential link between LRRK2, parkin, and mitochondria in the pathogenesis of LRRK2-related parkinsonism." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Ng, Chee-Hoe",
+      "Mok, Shaun Z S",
+      "Koh, Cherlyn",
+      "Ouyang, Xuezhi",
+      "Fivaz, Marc L",
+      "Tan, Eng-King",
+      "Dawson, Valina L",
+      "Dawson, Ted M",
+      "Yu, Fengwei",
+      "Lim, Kah-Leong"
+    ],
+  "Date" : "2009",
+  "Identifier" : [  ],
+  "Journal" : [ "The Journal of neuroscience : the official journal of the Society for Neuroscience" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/19741132",
+  "MeshHeadings" : [ 
+      "Amino Acid Substitution",
+      "Animals",
+      "Animals, Genetically Modified",
+      "Dopamine",
+      "Drosophila",
+      "Drosophila Proteins",
+      "Genetic Variation",
+      "Glycine",
+      "Humans",
+      "Nerve Degeneration",
+      "Protein-Serine-Threonine Kinases",
+      "Serine",
+      "Ubiquitin-Protein Ligases"
+    ],
+  "PMID" : 19741132,
+  "PublicationType" : "Comparative Study",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Parkin protects against LRRK2 G2019S mutant-induced dopaminergic neurodegeneration in Drosophila."
+}

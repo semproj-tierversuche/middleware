@@ -1,0 +1,34 @@
+{ 
+  "Abstract" : [ "There is great interest in testing neuroprotectants which inhibit the neurodegeneration that results from excessive activation of N-methyl-D-aspartate (NMDA) receptors. As an alternative to in vivo testing in animal models, we demonstrate here the use of a complex in vitro model to compare the efficacy and toxicity of NMDA receptor inhibitors. Organotypic hippocampal slice cultures were used to compare the effectiveness of the Alzheimer's disease drug, memantine, the Parkinson's disease drug, procyclidine, and the novel neuroprotectant, gacyclidine (GK11), against NMDA-induced toxicity. All three drugs are non-competitive NMDA receptor open-channel blockers that inhibit excitotoxic injury, and their neuroprotective capacities have been extensively investigated in vivo in animal models. They have also been evaluated as potential countermeasure agents against organophosphate poisoning. Quantitative densitometric image analysis of propidium iodide uptake in hippocampal regions CA1, CA3 and DG, showed that, after exposure to 10microM NMDA for 24 hours, GK11 was the most potent of the three drugs, with an IC50 of about 50nM and complete protection at 250nM. When applied at high doses, GK11 was still the more potent neuroprotectant, and also the least cytotoxic. These findings are consistent with those from in vivo tests in rodents. We conclude that the slice culture model provides valuable pre-clinical data, and that applying the model to the screening of neuroprotectants might significantly limit the use of in vivo tests in animals." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Ring, Avi",
+      "Tanso, Rita",
+      "Noraberg, Jens"
+    ],
+  "Date" : "2010",
+  "Identifier" : [  ],
+  "Journal" : [ "Alternatives to laboratory animals : ATLA" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/20377305",
+  "MeshHeadings" : [ 
+      "Animals",
+      "Clinical Trials as Topic",
+      "Cyclohexenes",
+      "Excitatory Amino Acid Antagonists",
+      "Hippocampus",
+      "In Vitro Techniques",
+      "Neuroprotective Agents",
+      "Piperidines",
+      "Propidium",
+      "Rats",
+      "Rats, Wistar",
+      "Receptors, N-Methyl-D-Aspartate"
+    ],
+  "PMID" : 20377305,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "The use of organotypic hippocampal slice cultures to evaluate protection by non-competitive NMDA receptor antagonists against excitotoxicity."
+}

@@ -1,0 +1,41 @@
+{ 
+  "Abstract" : [ "Mutations in LRRK2 are thus far the most frequent known cause of autosomal dominant and idiopathic Parkinson's disease (PD) with prevalent mutations being found within the GTPase (R1441C/G) and kinase (G2019S) domains. Previous in vitro studies have revealed that R1441C and G2019S mutations are associated with increased kinase activity. To better understand LRRK2-linked PD pathogenesis in vivo, we have generated transgenic C. elegans overexpressing human LRRK2 wild type, R1441C and G2019S in dopaminergic (DA) neurons. Overexpression of these LRRK2 proteins causes age-dependent DA neurodegeneration, behavioral deficits, and locomotor dysfunction that are accompanied by a reduction of dopamine levels in vivo. In comparison, R1441C and G2019S mutants cause more severe phenotypes than the wild type protein. Interestingly, treatment with exogenous dopamine rescues the LRRK2-induced behavioral and locomotor phenotypes. In contrast, expression of the GTP binding defective mutant, K1347A, or knockout of the C. elegans LRRK2 homolog, LRK-1, prevents the LRRK2-induced neurodegeneration and behavioral abnormalities. Hence, our transgenic LRRK2 C. elegans models recapitulate key features of PD including progressive neurodegeneration, impairment of dopamine-dependent behavior and locomotor function, and reduction in dopamine levels. Furthermore, our findings provide strong support for the critical role of GTPase/kinase activity in LRRK2-linked pathologies. These invertebrate models will be useful for studying pathogenesis of PD and for development of potential therapeutics for the disease." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Yao, Chen",
+      "El Khoury, Rabih",
+      "Wang, Wen",
+      "Byrd, Tara A",
+      "Pehek, Elizabeth A",
+      "Thacker, Colin",
+      "Zhu, Xiongwei",
+      "Smith, Mark A",
+      "Wilson-Delfosse, Amy L",
+      "Chen, Shu G"
+    ],
+  "Date" : "2010",
+  "Identifier" : [  ],
+  "Journal" : [ "Neurobiology of disease" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/20382224",
+  "MeshHeadings" : [ 
+      "Animals",
+      "Animals, Genetically Modified",
+      "Caenorhabditis elegans",
+      "Disease Models, Animal",
+      "Dopamine",
+      "Humans",
+      "Leucine-Rich Repeat Serine-Threonine Protein Kinase-2",
+      "Nerve Degeneration",
+      "Nervous System Diseases",
+      "Neurons",
+      "Parkinson Disease",
+      "Protein-Serine-Threonine Kinases"
+    ],
+  "PMID" : 20382224,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "LRRK2-mediated neurodegeneration and dysfunction of dopaminergic neurons in a Caenorhabditis elegans model of Parkinson's disease."
+}

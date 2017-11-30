@@ -1,0 +1,39 @@
+{ 
+  "Abstract" : [ "Excessive cerebral accumulation of the 42-residue amyloid beta-protein (Abeta) is an early and invariant step in the pathogenesis of Alzheimer's disease. Many studies have examined the cellular production of Abeta from its membrane-bound precursor, including the role of the presenilin proteins therein, but almost nothing is known about how Abeta is degraded and cleared following its secretion. We previously screened neuronal and nonneuronal cell lines for the production of proteases capable of degrading naturally secreted Abeta under biologically relevant conditions and concentrations. The major such protease identified was a metalloprotease released particularly by a microglial cell line, BV-2. We have now purified and characterized the protease and find that it is indistinguishable from insulin-degrading enzyme (IDE), a thiol metalloendopeptidase that degrades small peptides such as insulin, glucagon, and atrial natriuretic peptide. Degradation of both endogenous and synthetic Abeta at picomolar to nanomolar concentrations was completely inhibited by the competitive IDE substrate, insulin, and by two other IDE inhibitors. Immunodepletion of conditioned medium with an IDE antibody removed its Abeta-degrading activity. IDE was present in BV-2 cytosol, as expected, but was also released into the medium by intact, healthy cells. To confirm the extracellular occurrence of IDE in vivo, we identified intact IDE in human cerebrospinal fluid of both normal and Alzheimer subjects. In addition to its ability to degrade Abeta, IDE activity was unexpectedly found be associated with a time-dependent oligomerization of synthetic Abeta at physiological levels in the conditioned media of cultured cells; this process, which may be initiated by IDE-generated proteolytic fragments of Abeta, was prevented by three different IDE inhibitors. We conclude that a principal protease capable of down-regulating the levels of secreted Abeta extracellularly is IDE." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Qiu, W Q",
+      "Walsh, D M",
+      "Ye, Z",
+      "Vekrellis, K",
+      "Zhang, J",
+      "Podlisny, M B",
+      "Rosner, M R",
+      "Safavi, A",
+      "Hersh, L B",
+      "Selkoe, D J"
+    ],
+  "Date" : "1998",
+  "Identifier" : [  ],
+  "Journal" : [ "The Journal of biological chemistry" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/9830016",
+  "MeshHeadings" : [ 
+      "Alzheimer Disease",
+      "Amyloid beta-Peptides",
+      "Animals",
+      "Cell Line",
+      "Culture Media, Conditioned",
+      "Humans",
+      "Hydrolysis",
+      "Insulysin",
+      "Mice",
+      "Microglia"
+    ],
+  "PMID" : 9830016,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Insulin-degrading enzyme regulates extracellular levels of amyloid beta-protein by degradation."
+}

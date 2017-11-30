@@ -1,0 +1,43 @@
+{ 
+  "Abstract" : [ "Glutamate is the main excitatory neurotransmitter in the mammalian nervous system and is essential for its normal functions. However, overstimulation of glutamatergic system due to hyperactivation of NMDA receptors and/or impairment of glutamate reuptake system has been implicated in many acute and chronic neurological diseases. Regulation of extracellular glutamate concentrations relies on the function of glutamate transporters which can be reversed in situations related to excitotoxicity. Guanosine-5'-monophosphate (GMP), a guanine nucleotide which displays important extracellular roles, such as trophic effects to neurons and astrocytes, behaves as antagonist of glutamate receptors and is neuroprotective in hippocampal slices against excitotoxicity or ischemic conditions. Hippocampal slices exposed to 1 or 10 mM glutamate, or 100 microM NMDA with 10 microM glycine for 1 h and evaluated after 6 or 18 h, showed reduced cell viability and DNA fragmentation, respectively. Glutamate- or NMDA-induced cell death was prevented by 50 microM MK-801, but only NMDA-induced cell damage was prevented by GMP (1 mM). Glutamate-induced cell viability impairment and glutamate-induced l-[(3)H]glutamate release were both prevented by adding DL-TBOA (10 microM). Otherwise, NMDA-induced cell viability loss was not prevented by 10 microM of DL-TBOA and NMDA did not induce l-[(3)H]glutamate release. Our results demonstrate that GMP is neuroprotective when acting selectively at NMDA receptors. Glutamate-induced hippocampal slice damage and glutamate release were blocked by glutamate transporter inhibitor, indicating that glutamate-induced toxicity also involves the reversal of glutamate uptake, which cannot be prevented by GMP." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Molz, Simone",
+      "Tharine, Dal-Cim",
+      "Decker, Helena",
+      "Tasca, Carla I"
+    ],
+  "Date" : "2008",
+  "Identifier" : [  ],
+  "Journal" : [ "Brain research" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/18655777",
+  "MeshHeadings" : [ 
+      "Animals",
+      "Aspartic Acid",
+      "Brain Diseases, Metabolic",
+      "Cell Survival",
+      "DNA Fragmentation",
+      "Dose-Response Relationship, Drug",
+      "Excitatory Amino Acid Agonists",
+      "Excitatory Amino Acid Antagonists",
+      "Glutamic Acid",
+      "Guanosine Monophosphate",
+      "Hippocampus",
+      "Male",
+      "N-Methylaspartate",
+      "Neuroprotective Agents",
+      "Neurotoxins",
+      "Organ Culture Techniques",
+      "Rats",
+      "Rats, Wistar",
+      "Receptors, N-Methyl-D-Aspartate",
+      "Vesicular Glutamate Transport Proteins"
+    ],
+  "PMID" : 18655777,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "GMP prevents excitotoxicity mediated by NMDA receptor activation but not by reversal activity of glutamate transporters in rat hippocampal slices."
+}

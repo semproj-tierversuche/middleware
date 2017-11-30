@@ -1,0 +1,36 @@
+{ 
+  "Abstract" : [ "We investigated by immunohistochemistry dendritic and axonal changes occurring in the rat brain after mild focal cortical trauma produced by the weight drop technique. One and 3 days after injury, nerve cell bodies and dendrites in the perimeter of the impact site displayed decreased microtubule-associated protein 2 (MAP2) immunoreactivity. Some dendrites in the immediate adjacent region were more intensely stained and distorted. The dentate hilar region of the hippocampus showed a reduction of immunoreactive nerve cell bodies and dendrites. Twenty-one days after injury the strongly stained cortical dendrites and the reduction of immunoreactivity in the hippocampus remained, whereas the reduced staining in the perimeter of the lesion had normalised. These results indicate that there is a long-lasting disturbed dendritic organisation implicating impaired neurotransmission after this type of mild brain trauma. beta-Amyloid precursor protein (APP) immunohistochemistry revealed numerous stained axons in the ipsilateral subcortical white matter and thalamus indicating local and remote axonal injuries with disturbed axonal transport. Twenty-one days after injury, numerous small immunostained profiles appeared in the neuropil of the cortical impact site and in the ipsilateral thalamus. The axonal changes indicate disturbed connectivity between the site of the impact and other brain regions, chiefly the thalamus. The presence of beta-amyloid was investigated 21 days after trauma. There were no signs of beta-amyloid depositions in the brain after injury. Finally, we tested if the non-competitive NMDA receptor antagonist dizocilpine maleate (MK-801) could influence the observed MAP2 and APP changes. Pretreatment with this compound did not affect the early MAP2 and APP alterations. Instead, an increased expression of the APP antigen in the thalamus was observed 21 days after trauma in the MK-801-treated animals. The cause of this phenomenon is not known but may be related to a delayed neurotoxic action of MK-801 treatment." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Lewén, A",
+      "Li, G L",
+      "Olsson, Y",
+      "Hillered, L"
+    ],
+  "Date" : "1996",
+  "Identifier" : [  ],
+  "Journal" : [ "Brain research" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/8782876",
+  "MeshHeadings" : [ 
+      "Amyloid beta-Protein Precursor",
+      "Animals",
+      "Brain Injuries",
+      "Dizocilpine Maleate",
+      "Excitatory Amino Acid Antagonists",
+      "Immunohistochemistry",
+      "Male",
+      "Microtubule-Associated Proteins",
+      "Nerve Tissue Proteins",
+      "Neuroprotective Agents",
+      "Rats",
+      "Rats, Sprague-Dawley",
+      "Receptors, N-Methyl-D-Aspartate"
+    ],
+  "PMID" : 8782876,
+  "PublicationType" : "Comparative Study",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Changes in microtubule-associated protein 2 and amyloid precursor protein immunoreactivity following traumatic brain injury in rat: influence of MK-801 treatment."
+}

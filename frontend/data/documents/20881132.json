@@ -1,0 +1,38 @@
+{ 
+  "Abstract" : [ "Intraneuronal tau aggregations are distinctive pathological features of Parkinson's disease (PD) with autosomal-dominant mutations in leucine-rich repeat kinase 2 (LRRK2). The most prevalent LRRK2 mutation, G2019S (glycine to serine substitution at amino acid 2019), causes neurite shrinkage through unclear pathogenetic mechanisms. We found that expression of G2019S mutant in Drosophila dendritic arborization neurons induces mislocalization of the axonal protein tau in dendrites and causes dendrite degeneration. G2019S-induced dendrite degeneration is suppressed by reducing the level of tau protein and aggravated by tau coexpression. Additional genetic analyses suggest that G2019S and tau function synergistically to cause microtubule fragmentation, inclusion formation, and dendrite degeneration. Mechanistically, hyperactivated G2019S promotes tau phosphorylation at the T212 site by the Drosophila glycogen synthase kinase 3β homolog Shaggy (Sgg). G2019S increases the recruitment of autoactivated Sgg, thus inducing hyperphosphorylation and mislocalization of tau with resultant dendrite degeneration." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Lin, Chin-Hsien",
+      "Tsai, Pei-I",
+      "Wu, Ruey-Meei",
+      "Chien, Cheng-Ting"
+    ],
+  "Date" : "2010",
+  "Identifier" : [  ],
+  "Journal" : [ "The Journal of neuroscience : the official journal of the Society for Neuroscience" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/20881132",
+  "MeshHeadings" : [ 
+      "Amino Acid Substitution",
+      "Animals",
+      "Animals, Genetically Modified",
+      "Dendrites",
+      "Drosophila Proteins",
+      "Drosophila melanogaster",
+      "Enzyme Activation",
+      "Glycogen Synthase Kinase 3",
+      "Humans",
+      "Leucine-Rich Repeat Serine-Threonine Protein Kinase-2",
+      "Mutation",
+      "Nerve Degeneration",
+      "Phosphorylation",
+      "Protein-Serine-Threonine Kinases",
+      "tau Proteins"
+    ],
+  "PMID" : 20881132,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "LRRK2 G2019S mutation induces dendrite degeneration through mislocalization and phosphorylation of tau by recruiting autoactivated GSK3ß."
+}

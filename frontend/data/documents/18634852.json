@@ -1,0 +1,42 @@
+{ 
+  "Abstract" : [ "A hallmark of Parkinson's disease (PD) is the progressive loss of the A9 midbrain dopaminergic (mDA) neurons in the substantia nigra pars compacta. Recently, multiple causative mutations have been identified in the leucine-rich repeat kinase 2 (LRRK2) gene for both familial and sporadic PD cases. Therefore, to investigate functional roles of LRRK2 in normal and/or diseased brain, it is critical to define LRRK2 expression in mDA neurons. To address whether LRRK2 mRNA and protein are expressed in mDA neurons, we purified DA neurons from the tyrosine hydroxylase (TH)-GFP transgenic mouse using FACS-sorting and analyzed the expression of LRRK2 and other mDA markers. We observed that all mDA markers tested in this study (TH, Pitx3, DAT, Nurr1 and Lmx1a) are robustly expressed only in GFP(+) cells, but not in GFP(-) cells. Notably, LRRK2 was expressed in both GFP(+) and GFP(-) cells. Consistent with this, our immunohistochemical analyses showed that LRRK2 is expressed in TH-positive mDA neurons as well as in surrounding TH-negative cells in the rat brain. Importantly, in the midbrain region, LRRK2 protein was preferentially expressed in A9 DA neurons of the substantia nigra, compared to A10 DA neurons of the ventral tegmental area. However, LRRK2 was also highly expressed in the cortical and hippocampal regions. Taken together, our results suggest that LRRK2 may have direct functional role(s) in the neurophysiology of A9 DA neurons and that dysfunction of these neurons by mutant LRRK2 may directly cause their selective degeneration." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Han, Baek-Soo",
+      "Iacovitti, Lorraine",
+      "Katano, Taku",
+      "Hattori, Nobutaka",
+      "Seol, Wongi",
+      "Kim, Kwang-Soo"
+    ],
+  "Date" : "2008",
+  "Identifier" : [  ],
+  "Journal" : [ "Neuroscience letters" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/18634852",
+  "MeshHeadings" : [ 
+      "Animals",
+      "Dopamine",
+      "Flow Cytometry",
+      "Fluorescent Antibody Technique",
+      "Gene Expression",
+      "Green Fluorescent Proteins",
+      "Immunohistochemistry",
+      "Leucine-Rich Repeat Serine-Threonine Protein Kinase-2",
+      "Mesencephalon",
+      "Mice",
+      "Mice, Transgenic",
+      "Neurons",
+      "Protein-Serine-Threonine Kinases",
+      "RNA, Messenger",
+      "Reverse Transcriptase Polymerase Chain Reaction",
+      "Substantia Nigra",
+      "Tyrosine 3-Monooxygenase"
+    ],
+  "PMID" : 18634852,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Expression of the LRRK2 gene in the midbrain dopaminergic neurons of the substantia nigra."
+}

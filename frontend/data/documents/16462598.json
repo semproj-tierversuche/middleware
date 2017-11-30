@@ -1,0 +1,35 @@
+{ 
+  "Abstract" : [ "Abruptly stopping a planned movement before it has even begun can be crucial to retarding a premature action. In the monkey motor cortex, we report herein that rapid cancellation of a prepared motor act involved the brief activation of neurons representing a movement in the opposite direction (anti-directional activity). When an expected GO signal failed to occur, this opposing anti-directional discharge appeared. It coincided in time with the cessation of the motor cortical activity preparing the requested arm reach. We suggest that functional interactions between subpopulations of neurons eliciting movements in opposite directions could rapidly alter population dynamics, and therefore be used to abruptly cancel a planned movement." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Riehle, Alexa",
+      "Grammont, Franck",
+      "MacKay, William A"
+    ],
+  "Date" : "2006",
+  "Identifier" : [  ],
+  "Journal" : [ "Neuroreport" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/16462598",
+  "MeshHeadings" : [ 
+      "Action Potentials",
+      "Animals",
+      "Behavior, Animal",
+      "Cell Count",
+      "Macaca mulatta",
+      "Male",
+      "Mental Processes",
+      "Motor Cortex",
+      "Movement",
+      "Neurons",
+      "Psychomotor Performance",
+      "Reaction Time",
+      "Time Factors"
+    ],
+  "PMID" : 16462598,
+  "PublicationType" : "Comparative Study",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Cancellation of a planned movement in monkey motor cortex."
+}

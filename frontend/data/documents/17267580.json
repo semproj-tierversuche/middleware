@@ -1,0 +1,40 @@
+{ 
+  "Abstract" : [ "Spreading depression (SD) has long been associated with the underlying pathophysiology of migraine. Evidence that the N-methyl-D-aspartate (NMDA) glutamate receptor (NMDA-R) is implicated in the generation and propagation of SD has itself been available for more than 15 years. However, to date, there are no reports of NMDA-R antagonists being developed for migraine therapy. In this study, an uncompetitive, pan-NMDA-R blocker, memantine, approved for clinical use, and two antagonists with selectivity for NMDA-R containing the NR2B subunit, (1S,2S)-1-(4-hydroxyphenyl)-2-(4-hydroxy-4-phenylpiperidino)-1-propanol (CP-101,606) and (+/-)-(R*,S*)-alpha-(4-hydroxyphenyl)-beta-methyl-4-(phenylmethyl)-1-piperidine propanol (Ro 25-6981), were investigated to assess their protective effects against SD in the rat. Under isoflurane anesthesia, d.c. potential and the related cortical blood flow and partial pressure of O2 (pO2) were recorded simultaneously at separate cortical sites. Drugs (1, 3, and 10 mg/kg i.p.) were given 1 h or 30 min before KCl application to the brain surface. Core temperature and arterial pCO2,pO2, and pH measurements confirmed physiological stability. KCl induced 7.7+/-1.8 (mean+/-S.D.) SD events with d.c. amplitude of 14.9+/-2.8 mV. Memantine and CP-101,606 dose-dependently decreased SD event number (to 2.0+/-1.8 and 2.3+/-2.9, respectively) and SD amplitude at doses relevant for therapeutic use. Ro 25-6981 also decreased SD events significantly, but less effectively (to 4.5+/-1.6), without affecting amplitude. These results indicate that NR2B-containing NMDA receptors are key mediators of SD, and as such, memantine- and NR2B-selective antagonists may be useful new therapeutic agents for the treatment of migraine and other SD-related disorders (e.g., stroke and brain injury). Whether chronic, rather than acute, treatment may improve their efficacy remains to be determined." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Peeters, Magali",
+      "Gunthorpe, Martin J",
+      "Strijbos, Paul J L M",
+      "Goldsmith, Paul",
+      "Upton, Neil",
+      "James, Michael F"
+    ],
+  "Date" : "2007",
+  "Identifier" : [  ],
+  "Journal" : [ "The Journal of pharmacology and experimental therapeutics" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/17267580",
+  "MeshHeadings" : [ 
+      "Animals",
+      "Cerebrovascular Circulation",
+      "Cortical Spreading Depression",
+      "Dizocilpine Maleate",
+      "Dose-Response Relationship, Drug",
+      "Excitatory Amino Acid Antagonists",
+      "Male",
+      "Memantine",
+      "Migraine Disorders",
+      "Oxygen",
+      "Phenols",
+      "Piperidines",
+      "Rats",
+      "Rats, Sprague-Dawley",
+      "Receptors, N-Methyl-D-Aspartate"
+    ],
+  "PMID" : 17267580,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Effects of pan- and subtype-selective N-methyl-D-aspartate receptor antagonists on cortical spreading depression in the rat: therapeutic potential for migraine."
+}

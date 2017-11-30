@@ -1,0 +1,42 @@
+{ 
+  "Abstract" : [ "Mutations in the leucine-rich repeat kinase 2 gene (LRRK2) are the most common genetic cause of Parkinson's disease (PD) and cause both autosomal dominant familial and sporadic PD. Currently, the physiological and pathogenic activities of LRRK2 are poorly understood. To decipher the biological functions of LRRK2, including the genes and pathways modulated by LRRK2 kinase activity in vivo, we assayed genome-wide mRNA expression in the brain and peripheral tissues from LRRK2 knockout (KO) and kinase hyperactive G2019S (G2019S) transgenic mice. Subtle but significant differences in mRNA expression were observed relative to wild-type (WT) controls in the cortex, striatum and kidney of KO animals, but only in the striatum in the G2019S model. In contrast, robust, consistent and highly significant differences were identified by the direct comparison of KO and G2019S profiles in the cortex, striatum, kidney and muscle, indicating opposite effects on mRNA expression by the two models relative to WT. Ribosomal and glycolytic biological functions were consistently and significantly up-regulated in LRRK2 G2019S compared with LRRK2 KO tissues. Genes involved in membrane-bound organelles, oxidative phosphorylation, mRNA processing and the endoplasmic reticulum were down-regulated in LRRK2 G2019S mice compared with KO. We confirmed the expression patterns of 35 LRRK2-regulated genes using quantitative reverse transcription polymerase chain reaction. These findings provide the first description of the transcriptional responses to genetically modified LRRK2 activity and provide preclinical target engagement and/or pharmacodynamic biomarker strategies for LRRK2 and may inform future therapeutic strategies for LRRK2-associated PD." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Nikonova, Elena V",
+      "Xiong, Yulan",
+      "Tanis, Keith Q",
+      "Dawson, Valina L",
+      "Vogel, Robert L",
+      "Finney, Eva M",
+      "Stone, David J",
+      "Reynolds, Ian J",
+      "Kern, Jonathan T",
+      "Dawson, Ted M"
+    ],
+  "Date" : "2012",
+  "Identifier" : [  ],
+  "Journal" : [ "Human molecular genetics" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/21972245",
+  "MeshHeadings" : [ 
+      "Animals",
+      "Brain",
+      "Female",
+      "Humans",
+      "Leucine-Rich Repeat Serine-Threonine Protein Kinase-2",
+      "Male",
+      "Mice",
+      "Mice, Inbred C57BL",
+      "Mice, Knockout",
+      "Mice, Transgenic",
+      "Parkinson Disease",
+      "Protein-Serine-Threonine Kinases",
+      "Transcription, Genetic"
+    ],
+  "PMID" : 21972245,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Transcriptional responses to loss or gain of function of the leucine-rich repeat kinase 2 (LRRK2) gene uncover biological processes modulated by LRRK2 activity."
+}

@@ -1,0 +1,38 @@
+{ 
+  "Abstract" : [ "The present study investigates the role of pharmacologic blockade of NMDA (N-methyl-D-aspartate) and non-NMDA receptors at deep prepiriform cortex (area tempestas, AT) in neuronal injury during prolonged seizures in rat. Status epilepticus was induced by intravenous kainate (15 mg/kg) and neuronal death was assessed in hippocampal CA3 sector 72 h following status epilepticus. Unilateral equimolar microinjections of 2-amino-7-phosphonoheptanoic acid (AP-7), an NMDA receptor antagonist, or 2,3-dihydroxy-6-nitro-7-sulfamoyl-benzo(F)quinoxaline (NBQX), a non-NMDA receptor antagonist, into AT were given prior to kainate administration. Counts of surviving cells in CA3 ipsilateral to NBQX-injected AT were significantly greater than on the contralateral control-side, but no significant difference between the AP-7-injected and saline-injected side was found. These results indicate that neurotransmission via non-NMDA receptors is more important than that via NMDA receptors at AT in the genesis of neuronal injury in hippocampus during kainate-induced status epilepticus." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Kawaguchi, K",
+      "Simon, R P"
+    ],
+  "Date" : "1997",
+  "Identifier" : [  ],
+  "Journal" : [ "Brain research" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/9125442",
+  "MeshHeadings" : [ 
+      "2-Amino-5-phosphonovalerate",
+      "Animals",
+      "Anticonvulsants",
+      "Cell Death",
+      "Drug Evaluation, Preclinical",
+      "Excitatory Amino Acid Antagonists",
+      "Hippocampus",
+      "Kainic Acid",
+      "Male",
+      "Neuroprotective Agents",
+      "Olfactory Pathways",
+      "Quinoxalines",
+      "Rats",
+      "Rats, Sprague-Dawley",
+      "Receptors, N-Methyl-D-Aspartate",
+      "Reproducibility of Results",
+      "Status Epilepticus"
+    ],
+  "PMID" : 9125442,
+  "PublicationType" : "Comparative Study",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Non-NMDA but not NMDA blockade at deep prepiriform cortex protects against hippocampal cell death in status epilepticus."
+}

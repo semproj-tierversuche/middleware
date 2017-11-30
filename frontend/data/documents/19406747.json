@@ -1,0 +1,43 @@
+{ 
+  "Abstract" : [ "Accumulation of amyloid beta (Abeta) oligomers in the brain is toxic to synapses and may play an important role in memory loss in Alzheimer disease. However, how these toxins are built up in the brain is not understood. In this study we investigate whether impairments of insulin and insulin-like growth factor-1 (IGF-1) receptors play a role in aggregation of Abeta. Using primary neuronal culture and immortal cell line models, we show that expression of normal insulin or IGF-1 receptors confers cells with abilities to reduce exogenously applied Abeta oligomers (also known as ADDLs) to monomers. In contrast, transfection of malfunctioning human insulin receptor mutants, identified originally from patient with insulin resistance syndrome, or inhibition of insulin and IGF-1 receptors via pharmacological reagents increases ADDL levels by exacerbating their aggregation. In healthy cells, activation of insulin and IGF-1 receptor reduces the extracellular ADDLs applied to cells via seemingly the insulin-degrading enzyme activity. Although insulin triggers ADDL internalization, IGF-1 appears to keep ADDLs on the cell surface. Nevertheless, both insulin and IGF-1 reduce ADDL binding, protect synapses from ADDL synaptotoxic effects, and prevent the ADDL-induced surface insulin receptor loss. Our results suggest that dysfunctions of brain insulin and IGF-1 receptors contribute to Abeta aggregation and subsequent synaptic loss." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Zhao, Wei-Qin",
+      "Lacor, Pascale N",
+      "Chen, Hui",
+      "Lambert, Mary P",
+      "Quon, Michael J",
+      "Krafft, Grant A",
+      "Klein, William L"
+    ],
+  "Date" : "2009",
+  "Identifier" : [  ],
+  "Journal" : [ "The Journal of biological chemistry" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/19406747",
+  "MeshHeadings" : [ 
+      "Amyloid beta-Peptides",
+      "Animals",
+      "Antigens, CD",
+      "Brain",
+      "Humans",
+      "Insulin",
+      "Insulin Resistance",
+      "Insulin-Like Growth Factor I",
+      "Mice",
+      "Models, Biological",
+      "Mutation",
+      "NIH 3T3 Cells",
+      "Neurons",
+      "Neurotoxins",
+      "Rats",
+      "Receptor, Insulin",
+      "Synapses"
+    ],
+  "PMID" : 19406747,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Insulin receptor dysfunction impairs cellular clearance of neurotoxic oligomeric a{beta}."
+}

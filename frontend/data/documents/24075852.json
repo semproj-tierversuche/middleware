@@ -1,0 +1,42 @@
+{ 
+  "Abstract" : [ "Parkinson's disease (PD) is the second most common neurodegenerative disorder behind Alzheimer's disease. There are currently no therapies proven to halt or slow the progressive neuronal cell loss in PD. A better understanding of the molecular and cellular causes of PD is needed to develop disease-modifying therapies. PD is an age-dependent disease that causes the progressive death of dopamine-producing neurons in the brain. Loss of substantia nigra dopaminergic neurons results in locomotor symptoms such as slowness of movement, tremor, rigidity and postural instability. Abnormalities in other neurotransmitters, such as serotonin, may also be involved in both the motor and non-motor symptoms of PD. Most cases of PD are sporadic but many families show a Mendelian pattern of inherited Parkinsonism and causative mutations have been identified in genes such as Parkin, DJ-1, PINK1, alpha-synuclein and leucine rich repeat kinase 2 (LRRK2). Although the definitive causes of idiopathic PD remain uncertain, the activity of the antioxidant enzyme glutathione peroxidase 1 (Gpx1) is reduced in PD brains and has been shown to be a key determinant of vulnerability to dopaminergic neuron loss in PD animal models. Furthermore, Gpx1 activity decreases with age in human substantia nigra but not rodent substantia nigra. Therefore, we crossed mice deficient for both Parkin and DJ-1 with mice deficient for Gpx1 to test the hypothesis that loss-of-function mutations in Parkin and DJ-1 cause PD by increasing vulnerability to Gpx1 deficiency. Surprisingly, mice lacking Parkin, DJ-1 and Gpx1 have increased striatal dopamine levels in the absence of nigral cell loss compared to wild type, Gpx1(-/-), and Parkin(-/-)DJ-1(-/-) mutant mice. Additionally, Parkin(-/-)DJ-1(-/-) mice exhibit improved rotarod performance and have increased serotonin in the striatum and hippocampus. Stereological analysis indicated that the increased serotonin levels were not due to increased serotonergic projections. The results of our behavioral, neurochemical and immunohistochemical analyses reveal that PD-linked mutations in Parkin and DJ-1 cause dysregulation of neurotransmitter systems beyond the nigrostriatal dopaminergic circuit and that loss-of-function mutations in Parkin and DJ-1 lead to adaptive changes in dopamine and serotonin especially in the context of Gpx1 deficiency." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Hennis, Meghan R",
+      "Marvin, Marian A",
+      "Taylor, Charles M",
+      "Goldberg, Matthew S"
+    ],
+  "Date" : "2014",
+  "Identifier" : [  ],
+  "Journal" : [ "Neurobiology of disease" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/24075852",
+  "MeshHeadings" : [ 
+      "Age Factors",
+      "Animals",
+      "Biogenic Monoamines",
+      "Cell Count",
+      "Corpus Striatum",
+      "Dopamine",
+      "Dopaminergic Neurons",
+      "Glutathione Peroxidase",
+      "Hippocampus",
+      "Mice",
+      "Mice, Inbred C57BL",
+      "Mice, Knockout",
+      "Motor Activity",
+      "Oncogene Proteins",
+      "Parkinson Disease",
+      "Peroxiredoxins",
+      "Protein Deglycase DJ-1",
+      "Serotonin",
+      "Ubiquitin-Protein Ligases"
+    ],
+  "PMID" : 24075852,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Surprising behavioral and neurochemical enhancements in mice with combined mutations linked to Parkinson's disease."
+}

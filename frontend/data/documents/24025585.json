@@ -1,0 +1,28 @@
+{ 
+  "Abstract" : [ "Mutations in the leucine-rich repeat kinase 2 (LRRK2, PARK8, OMIM 607060) gene represent the most common known cause of hereditary Parkinson's disease (PD) with late-onset and dominant inheritance. LRRK2 protein is composed of multiple domains including two distinct enzymatic domains, a kinase and a Ras-of-complex (Roc) GTPase, connected by a C-terminal-of-Roc (COR) domain, and belongs to the ROCO protein family. Disease-causing mutations located in the kinase domain enhance kinase activity (i.e., G2019S) whereas mutations clustering within the Roc-COR tandem domain impair GTPase activity (i.e., R1441C/G and Y1699C). Familial LRRK2 mutations commonly induce neuronal toxicity that, at least for the frequent G2019S variant, is dependent on kinase activity. The contribution of GTPase activity to LRRK2-dependent neuronal toxicity is not yet clear. Therefore, both GTPase and kinase activity may be important for mediating neurodegeneration in PD due to familial LRRK2 mutations. At present, the physiological function of LRRK2 in the mammalian brain and the regulation of its enzymatic activity are incompletely understood. In this review, we focus on the GTPase domain of LRRK2 and discuss the recent advances in elucidating its function and its interplay with the kinase domain for the regulation of LRRK2 activity and toxicity. GTPase activity is an important feature of LRRK2 biology and pathophysiology and represents an underexplored yet potentially tractable therapeutic target for treating LRRK2-associated PD." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Tsika, Elpida",
+      "Moore, Darren J"
+    ],
+  "Date" : "",
+  "Identifier" : [  ],
+  "Journal" : [ "Small GTPases" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/24025585",
+  "MeshHeadings" : [ 
+      "GTP Phosphohydrolases",
+      "Humans",
+      "Leucine-Rich Repeat Serine-Threonine Protein Kinase-2",
+      "Parkinson Disease",
+      "Polymorphism, Single Nucleotide",
+      "Protein Structure, Tertiary",
+      "Protein-Serine-Threonine Kinases"
+    ],
+  "PMID" : 24025585,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Contribution of GTPase activity to LRRK2-associated Parkinson disease."
+}

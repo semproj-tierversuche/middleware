@@ -1,0 +1,43 @@
+{ 
+  "Abstract" : [ "Activation of NMDA receptors has been shown to induce either neuronal cell death or neuroprotection against excitotoxicity in cultured cerebellar granule neurons in vitro. We have investigated the effects of pretreatment with NMDA on kainate-induced neuronal cell death in mouse hippocampus in vivo. The systemic administration of kainate (30 mg/kg), but not NMDA (100 mg/kg), induced severe damage in pyramidal neurons of the hippocampal CA1 and CA3 subfields 3-7 days later, without affecting granule neurons in the dentate gyrus. An immunohistochemical study using an anti-single-stranded DNA antibody and TdT-mediated dUTP nick end labeling analysis both revealed that kainate, but not NMDA, induced DNA fragmentation in the CA1 and CA3 pyramidal neurons 1-3 days after administration. Kainate-induced neuronal loss was completely prevented by the systemic administration of NMDA (100 mg/kg) 1 h to 1 day previously. No pyramidal neuron was seen with fragmented DNA in the hippocampus of animals injected with kainate 1 day after NMDA treatment. The neuroprotection mediated by NMDA was prevented by the non-competitive NMDA receptor antagonist MK-801. Taken together these results indicate that in vivo activation of NMDA receptors is capable of protecting against kainate-induced neuronal damage through blockade of DNA fragmentation in murine hippocampus." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Ogita, Kiyokazu",
+      "Okuda, Hiroaki",
+      "Yamamoto, Yasuhiro",
+      "Nishiyama, Norito",
+      "Yoneda, Yukio"
+    ],
+  "Date" : "2003",
+  "Identifier" : [  ],
+  "Journal" : [ "Journal of neurochemistry" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/12753091",
+  "MeshHeadings" : [ 
+      "Animals",
+      "Behavior, Animal",
+      "Cytoprotection",
+      "DNA Fragmentation",
+      "Dizocilpine Maleate",
+      "Excitatory Amino Acid Antagonists",
+      "Hippocampus",
+      "Injections, Intraperitoneal",
+      "Kainic Acid",
+      "Male",
+      "Mice",
+      "Mice, Inbred Strains",
+      "N-Methylaspartate",
+      "Neuroprotective Agents",
+      "Neurotoxins",
+      "Pyramidal Cells",
+      "Receptors, N-Methyl-D-Aspartate",
+      "Transcription Factor AP-1",
+      "Trimethyltin Compounds"
+    ],
+  "PMID" : 12753091,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "In vivo neuroprotective role of NMDA receptors against kainate-induced excitotoxicity in murine hippocampal pyramidal neurons."
+}

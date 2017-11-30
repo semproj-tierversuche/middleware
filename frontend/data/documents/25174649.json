@@ -1,0 +1,38 @@
+{ 
+  "Abstract" : [ "Mutations in leucine-rich repeated kinase 2 (LRRK2) cause autosomal dominant late-onset Parkinson's disease (PD), and the G2019S mutation in the kinase domain of LRRK2 is the most common genetic cause of familial PD. Enhanced kinase activity of G2019S LRRK2 is a suspected mechanism for carriers to develop PD but pathophysiological function of G2019S LRRK2 is not clear. The objective of the present study was to characterize a bacterial artificial chromosome rat expressing human G2019S LRRK2. Immunoblotting analysis showed that G2019S LRRK2 expression was approximately 5-8 times higher than wild-type rat LRRK2. At ages of 4, 8, and 12 months, our characterization showed that expression of G2019S LRRK2 induced oxidative stress in striatum and substantia nigra, increased inducible nitric oxide synthase expression in nigral dopamine neurons, and abnormal morphology of nigral dopaminergic neurons in transgenic rats compared with wild-type, without inducing overt neurodegeneration in nigrostriatal dopaminergic neurons. Thus, we conclude that although this model does not reproduce the key features of end-stage PD, important preclinical features of the disease are evident, which may be useful in studying the earliest stages of PD and for gene-environment interaction studies." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Lee, Jang-Won",
+      "Tapias, Victor",
+      "Di Maio, Roberto",
+      "Greenamyre, J Timothy",
+      "Cannon, Jason R"
+    ],
+  "Date" : "2015",
+  "Identifier" : [  ],
+  "Journal" : [ "Neurobiology of aging" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/25174649",
+  "MeshHeadings" : [ 
+      "Animals",
+      "Chromosomes, Artificial, Bacterial",
+      "Disease Models, Animal",
+      "Dopaminergic Neurons",
+      "Gene-Environment Interaction",
+      "Humans",
+      "Leucine-Rich Repeat Serine-Threonine Protein Kinase-2",
+      "Mutation",
+      "Nitric Oxide Synthase Type II",
+      "Oxidative Stress",
+      "Parkinsonian Disorders",
+      "Protein-Serine-Threonine Kinases",
+      "Rats, Sprague-Dawley",
+      "Rats, Transgenic"
+    ],
+  "PMID" : 25174649,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Behavioral, neurochemical, and pathologic alterations in bacterial artificial chromosome transgenic G2019S leucine-rich repeated kinase 2 rats."
+}

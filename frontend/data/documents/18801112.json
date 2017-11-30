@@ -1,0 +1,43 @@
+{ 
+  "Abstract" : [ "The purpose of this study, on mice, was to determine whether memantine, a glutamate-receptor antagonist of the N-methyl-(d)-aspartate (NMDA) subtype, protects against neuronal degeneration in the dorsal lateral geniculate nucleus (dLGN) and superior colliculus (SC) after the induction of retinal damage by intravitreal injection of NMDA. NMDA (20 mM/2 microl) was injected into the vitreous body of the left eye in mice (day 0). To evaluate the neuroprotective effect of memantine, mice were assigned to one of two memantine-treated groups: receiving a daily administration of memantine at 30 mg/kg/day, p.o. either from day 0 (administered at 1 h before NMDA injection) to day 90 (pretreated group) or from day 7 to day 90 (post-treated group). The pretreated group exhibited significant suppression of the retinal damage induced by intravitreal injection of NMDA and significant prevention of transsynaptic neuronal degeneration in the dLGN and SC on the contralateral side. Although the mice of the post-treated group displayed no reversion of such retinal damage, they did exhibit protection against neuronal degeneration in the LGN and SC on the contralateral side. These data indicate that memantine can protect against transsynaptic neuronal degeneration in the murine brain (LGN and SC) even if treatment is begun after retinal ganglion cell (RGC) death has started. Memantine protects against the secondary neuronal degeneration in brain regions in the visual pathway that occurs after retinal damage in mice." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Ito, Yasushi",
+      "Nakamura, Shinsuke",
+      "Tanaka, Hirotaka",
+      "Shimazawa, Masamitsu",
+      "Araie, Makoto",
+      "Hara, Hideaki"
+    ],
+  "Date" : "2008",
+  "Identifier" : [  ],
+  "Journal" : [ "CNS neuroscience & therapeutics" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/18801112",
+  "MeshHeadings" : [ 
+      "Animals",
+      "Cell Death",
+      "Disease Models, Animal",
+      "Drug Administration Schedule",
+      "Excitatory Amino Acid Antagonists",
+      "Follow-Up Studies",
+      "Geniculate Bodies",
+      "Male",
+      "Memantine",
+      "Mice",
+      "Mice, Inbred C57BL",
+      "Nerve Degeneration",
+      "Neuroprotective Agents",
+      "Retina",
+      "Retinal Diseases",
+      "Retinal Ganglion Cells",
+      "Superior Colliculi",
+      "Visual Pathways"
+    ],
+  "PMID" : 18801112,
+  "PublicationType" : "Comparative Study",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Memantine protects against secondary neuronal degeneration in lateral geniculate nucleus and superior colliculus after retinal damage in mice."
+}

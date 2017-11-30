@@ -1,0 +1,35 @@
+{ 
+  "Abstract" : [ "The mechanism of cerebral hypoxia-induced myoclonic jerks is not known. Some studies have suggested that glutaminergic NMDA receptor activation in the inferior olive resulting in excitotoxic neuronal injury in the cerebellum is the underlying cause of posthypoxic myoclonus. To test this hypothesis, the effect of memantine, an NMDA receptor antagonist, on the intensity of myoclonic jerks and the extent of cerebral ischemia-induced neurodegeneration in the cerebellum were evaluated in a rat model of posthypoxic myoclonus. The myoclonus scores for the posthypoxic rats treated with memantine were significantly higher than those treated with saline. The myoclonic scores for the posthypoxic rats injected with 100mg/kg memantine are higher than those posthypoxic rats injected with 30 mg/kg memantine. In contrast, the number of Fluoro-Jade B positive degenerating neurons in the Purkinje cell layer of the cerebellum did not differ significantly between the memantine-treated and the saline-treated posthypoxic rats. This pattern of results suggests that glutaminergic NMDA receptor activation in the cerebellum does not play a significant role in the generation of myoclonus in a rat model of posthypoxic myoclonus. Further, these results also suggest that NMDA receptor antagonists would exacerbate posthypoxic myoclonus in this animal model." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Tai, Kwok-Keung",
+      "Truong, Daniel D"
+    ],
+  "Date" : "2010",
+  "Identifier" : [  ],
+  "Journal" : [ "Brain research" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/20434435",
+  "MeshHeadings" : [ 
+      "Animals",
+      "Cerebellum",
+      "Disease Models, Animal",
+      "Dose-Response Relationship, Drug",
+      "Excitatory Amino Acid Antagonists",
+      "Hypoxia, Brain",
+      "Male",
+      "Memantine",
+      "Myoclonus",
+      "Nerve Degeneration",
+      "Purkinje Cells",
+      "Rats",
+      "Rats, Sprague-Dawley",
+      "Receptors, N-Methyl-D-Aspartate"
+    ],
+  "PMID" : 20434435,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Memantine exacerbates myoclonic jerks in a rat model of posthypoxic myoclonus."
+}

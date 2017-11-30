@@ -1,0 +1,38 @@
+{ 
+  "Abstract" : [ "Direct cortical recordings were taken from 12 patients with implanted subdural electrode arrays during performance of a 2-dimensional, multi-joint, visually guided arm movement task. Task-related changes in the amplitude of the motor cortex 8-12 Hz surface local field oscillations were evaluated for the encoding of direction and amplitude of movement in the 6 patients in whom no epileptogenic or ECoG background abnormalities were detected over the motor-sensory cortical areas under the recording electrode array. The topography, time of onset and duration of these responses were evaluated in the context of motor cortex somatotopy, as defined by cortical stimulation delivered through the electrode array. Multi-joint arm movements were accompanied by a decrease in the power of the 8-12 Hz frequency components of the ECoG signal. These power changes were spatially distributed over the upper extremity, motor-sensory representation. Movement amplitude influenced the magnitude, duration, and extent of the spatial distribution of ECoG power changes in the 8-12 Hz band. These effects occurred predominantly over cortical areas corresponding to the upper extremity motor-sensory representations. Direction of movement had a weaker influence on the 8-12 Hz frequency components of the ECoG over the upper extremity motor-sensory representations, but influenced the patterns of 8-12 Hz ECoG response on adjacent cortical regions. These results show that the amplitude of surface electrical oscillations generated over the rolandic cortex are correlated with the kinematics of multi-joint arm movements. These changes in the ECoG signal appear to reflect shifts in the functional state of neuronal ensembles involved in the initiation and execution of motor tasks." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Toro, C",
+      "Cox, C",
+      "Friehs, G",
+      "Ojakangas, C",
+      "Maxwell, R",
+      "Gates, J R",
+      "Gumnit, R J",
+      "Ebner, T J"
+    ],
+  "Date" : "1994",
+  "Identifier" : [  ],
+  "Journal" : [ "Electroencephalography and clinical neurophysiology" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/7525247",
+  "MeshHeadings" : [ 
+      "Adult",
+      "Analysis of Variance",
+      "Arm",
+      "Brain Mapping",
+      "Electroencephalography",
+      "Female",
+      "Humans",
+      "Male",
+      "Middle Aged",
+      "Motor Cortex",
+      "Movement"
+    ],
+  "PMID" : 7525247,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "8-12 Hz rhythmic oscillations in human motor cortex during two-dimensional arm movements: evidence for representation of kinematic parameters."
+}

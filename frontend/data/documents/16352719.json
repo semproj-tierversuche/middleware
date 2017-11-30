@@ -1,0 +1,38 @@
+{ 
+  "Abstract" : [ "Parkinson's disease (PD) is a disorder of movement, cognition, and emotion, and it is characterized pathologically by neuronal degeneration with Lewy bodies, which are cytoplasmic inclusion bodies containing deposits of aggregated proteins. Most PD cases appear to be sporadic, but genetic forms of the disease, caused by mutations in alpha-synuclein, parkin, and other genes, have helped elucidate pathogenesis. Mutations in leucine-rich repeat kinase 2 (LRRK2) cause autosomal-dominant Parkinsonism with clinical features of PD and with pleomorphic pathology including deposits of aggregated protein. To study expression and interactions of LRRK2, we synthesized cDNAs and generated expression constructs coding for human WT and mutant LRRK2 proteins. Expression of full-length LRRK2 in cells in culture suggests that the protein is predominately cytoplasmic, as is endogenous protein by subcellular fractionation. Using coimmunoprecipitation, we find that LRRK2, expressed in cells in culture, interacts with parkin but not with alpha-synuclein, DJ-1, or tau. A small proportion of the cells overexpressing LRRK2 contain protein aggregates, and this proportion is greatly increased by coexpression of parkin. In addition, parkin increases ubiquitination of aggregated protein. Also, mutant LRRK2 causes neuronal degeneration in both SH-SY5Y cells and primary neurons. This cell model may be useful for studies of PD cellular pathogenesis and therapeutics. These findings suggest a gain-of-function mechanism in the pathogenesis of LRRK2-linked PD and suggest that LRRK2 may be involved in a pathogenic pathway with other PD-related proteins such as parkin, which may help illuminate both familial and sporadic PD." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Smith, Wanli W",
+      "Pei, Zhong",
+      "Jiang, Haibing",
+      "Moore, Darren J",
+      "Liang, Yideng",
+      "West, Andrew B",
+      "Dawson, Valina L",
+      "Dawson, Ted M",
+      "Ross, Christopher A"
+    ],
+  "Date" : "2005",
+  "Identifier" : [  ],
+  "Journal" : [ "Proceedings of the National Academy of Sciences of the United States of America" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/16352719",
+  "MeshHeadings" : [ 
+      "Cell Line",
+      "Cytoplasm",
+      "Humans",
+      "Leucine-Rich Repeat Serine-Threonine Protein Kinase-2",
+      "Mutation",
+      "Nerve Degeneration",
+      "Protein Binding",
+      "Protein-Serine-Threonine Kinases",
+      "Ubiquitin",
+      "Ubiquitin-Protein Ligases"
+    ],
+  "PMID" : 16352719,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Leucine-rich repeat kinase 2 (LRRK2) interacts with parkin, and mutant LRRK2 induces neuronal degeneration."
+}

@@ -1,0 +1,36 @@
+{ 
+  "Abstract" : [ "beta-Amyloid peptide (Abeta) is known to be involved in Alzheimer's disease (AD). Although the fibril form of Abeta is known to have neurotoxicity, it has been shown that not only the fibril form but also the oligomer form of Abeta may be related to the neuropathophysiology of AD, specifically to memory loss. Some studies have demonstrated that low concentrations of the Abeta oligomer impair long-term potentiation (LTP), a cellular model for learning and memory, after short exposure times in vivo and in vitro, although little is known about the mechanism involved in Abeta-mediated inhibition of LTP. In this study, we used the patch clamp whole-cell technique in rat hippocampal CA1 pyramidal neurons to study more precisely how the Abeta oligomer affects synaptic plasticity. The brief perfusion of slices with a low concentration (1microM) of Abeta(1-42) significantly impaired LTP induction of the excitatory input. The same concentration of Abeta did not affect basal transmission or paired-pulse facilitation. We also demonstrated that neither NMDAR-EPSCs nor the voltage-depended calcium channel (VDCC) currents were affected by the same concentration of Abeta(1-42) as used in the LTP experiments. These data suggest that Abeta mediated impairment of LTP induction is independent of NMDARs or VDCCs." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Nomura, Izumi",
+      "Kato, Nobuo",
+      "Kita, Toru",
+      "Takechi, Hajime"
+    ],
+  "Date" : "2005",
+  "Identifier" : [  ],
+  "Journal" : [ "Neuroscience letters" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/16154266",
+  "MeshHeadings" : [ 
+      "Amyloid beta-Peptides",
+      "Animals",
+      "Calcium Channels",
+      "Cells, Cultured",
+      "Hippocampus",
+      "Long-Term Potentiation",
+      "Neuronal Plasticity",
+      "Peptide Fragments",
+      "Pyramidal Cells",
+      "Rats",
+      "Rats, Wistar",
+      "Receptors, N-Methyl-D-Aspartate",
+      "Synaptic Transmission"
+    ],
+  "PMID" : 16154266,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Mechanism of impairment of long-term potentiation by amyloid beta is independent of NMDA receptors or voltage-dependent calcium channels in hippocampal CA1 pyramidal neurons."
+}

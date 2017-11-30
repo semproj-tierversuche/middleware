@@ -1,0 +1,40 @@
+{ 
+  "Abstract" : [ "Amyloid plaques are hallmark neuropathological lesions in Alzheimer's disease, which consist of abnormally aggregated Abeta protein. Multiple Abeta aggregated species have been identified, and neurotoxicity appears to be correlated with the amount of nonfibrillar oligomers. Therefore, selective inhibition of Abeta oligomer formation has emerged as an attractive means of therapeutic intervention. To investigate whether small molecules can modulate aggregation to achieve selective inhibition of neurotoxic amyloid oligomers, Abeta aggregation was assayed in vitro in the presence of methylene blue, using immunoreactivity with the prefibrillar oligomer-specific antibody A11, transmission electron microscopy, and turbidity assays. Methylene blue inhibited oligomerization when used at substoichiometric concentrations relative to that of the Abeta monomer. Inhibition of Abeta oligomerization was achieved concomitant with promotion of fibrillization, suggesting that oligomer and fibril formation are distinct and competing pathways. Methylene blue-mediated promotion of fiber formation occurred via a dose-dependent decrease in the lag time and an increase in the fibrillization rate, consistent with promotion of both filament nucleation and elongation. Addition of methylene blue to preformed oligomers resulted in oligomer loss and promotion of fibrillization. The data show that Abeta oligomer formation is inhibited by promoting fibril formation, which suggests that the relative pathological significance of oligomers and fibrils may be tested in vivo using methylene blue. If Abeta oligomers represent the primary pathogenic species, then inhibition of this highly toxic species via promotion of formation of less toxic aggregates may be therapeutically useful." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Necula, Mihaela",
+      "Breydo, Leonid",
+      "Milton, Saskia",
+      "Kayed, Rakez",
+      "van der Veer, Wytze E",
+      "Tone, Paul",
+      "Glabe, Charles G"
+    ],
+  "Date" : "2007",
+  "Identifier" : [  ],
+  "Journal" : [ "Biochemistry" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/17595112",
+  "MeshHeadings" : [ 
+      "Amyloid beta-Peptides",
+      "Dose-Response Relationship, Drug",
+      "Humans",
+      "In Vitro Techniques",
+      "Kinetics",
+      "Methylene Blue",
+      "Microscopy, Electron, Transmission",
+      "Nephelometry and Turbidimetry",
+      "Plaque, Amyloid",
+      "Protein Binding",
+      "Protein Denaturation",
+      "Protein Structure, Quaternary",
+      "Recombinant Proteins",
+      "Solubility"
+    ],
+  "PMID" : 17595112,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Methylene blue inhibits amyloid Abeta oligomerization by promoting fibrillization."
+}

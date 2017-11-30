@@ -1,0 +1,39 @@
+{ 
+  "Abstract" : [ "Cardiac arrest-induced cerebral hypoxic injury could induce posthypoxic movement disorders. Here we investigated the effects of memantine, an NMDA receptor channel blocker, on the neurodegeneration occurred in an established rat model of posthypoxic myoclonus. We found that administration of memantine for 7 days significantly reduced cerebral hypoxia-induced neurodegeneration in the CA1 of the hippocampus, the reticular thalamic nucleus (RTN) and the primary fissure of the cerebellum of the posthypoxic animals. The results suggest that the neurodegeneration observed in specific areas of the brain of the posthypoxic rats is contributed by NMDA receptor-mediated excitotoxicity." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Tai, Kwok-Keung",
+      "Truong, Daniel D"
+    ],
+  "Date" : "2007",
+  "Identifier" : [  ],
+  "Journal" : [ "Brain research" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/17196560",
+  "MeshHeadings" : [ 
+      "Animals",
+      "Brain Damage, Chronic",
+      "Cerebellum",
+      "Disease Models, Animal",
+      "Excitatory Amino Acid Antagonists",
+      "Glutamic Acid",
+      "Hippocampus",
+      "Hypoxia, Brain",
+      "Intralaminar Thalamic Nuclei",
+      "Male",
+      "Memantine",
+      "Myoclonus",
+      "Nerve Degeneration",
+      "Neurotoxins",
+      "Rats",
+      "Rats, Sprague-Dawley",
+      "Receptors, N-Methyl-D-Aspartate",
+      "Synaptic Transmission"
+    ],
+  "PMID" : 17196560,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "NMDA receptor-mediated excitotoxicity contributes to the cerebral hypoxic injury of a rat model of posthypoxic myoclonus."
+}

@@ -1,0 +1,42 @@
+{ 
+  "Abstract" : [ "Abeta (beta-amyloid) peptides are found aggregated in the cortical amyloid plaques associated with Alzheimer's disease neuropathology. Inhibition of the proteasome alters the amount of Abeta produced from APP (amyloid precursor protein) by various cell lines in vitro. Proteasome activity is altered during aging, a major risk factor for Alzheimer's disease. In the present study, a human neuroblastoma cell line expressing the C-terminal 100 residues of APP (SH-SY5Y-SPA4CT) was used to determine the effect of proteasome inhibition, by lactacystin and Bz-LLL-COCHO (benzoyl-Leu-Leu-Leu-glyoxal), on APP processing at the gamma-secretase site. Proteasome inhibition caused a significant increase in Abeta peptide levels in medium conditioned by SH-SY5Y-SPA4CT cells, and was also associated with increased cell death. APP is a substrate of the apoptosis-associated caspase 3 protease, and we therefore investigated whether the increased Abeta levels could reflect caspase activation. We report that caspase activation was not required for proteasome-inhibitor-mediated effects on APP (SPA4CT) processing. Cleavage of Ac-DEVD-AMC (N-acetyl-Asp-Glu-Val-Asp-7-amino-4-methylcoumarin), a caspase substrate, was reduced following exposure of SH-SY5Y-SPA4CT cells to lactacystin, and co-treatment of cells with lactacystin and a caspase inhibitor [Z-DEVD-FMK (benzyloxycarbonyl-Val-Ala-DL-Asp-fluoromethylketone)] resulted in higher Abeta levels in medium, augmenting those seen with lactacystin alone. This study indicated that proteasome inhibition could increase APP processing specifically at the gamma-secretase site, and increase release of Abeta, in the absence of caspase activation. This indicates that the decline in proteasome function associated with aging would contribute to increased Abeta levels." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Flood, Fiona",
+      "Murphy, Suzanne",
+      "Cowburn, Richard F",
+      "Lannfelt, Lars",
+      "Walker, Brian",
+      "Johnston, Janet A"
+    ],
+  "Date" : "2005",
+  "Identifier" : [  ],
+  "Journal" : [ "The Biochemical journal" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/15473868",
+  "MeshHeadings" : [ 
+      "Acetylcysteine",
+      "Amyloid Precursor Protein Secretases",
+      "Amyloid beta-Peptides",
+      "Amyloid beta-Protein Precursor",
+      "Aspartic Acid Endopeptidases",
+      "Caspase Inhibitors",
+      "Caspases",
+      "Cell Line, Tumor",
+      "Cell Survival",
+      "Culture Media",
+      "Endopeptidases",
+      "Humans",
+      "Multienzyme Complexes",
+      "Neuroblastoma",
+      "Peptide Hydrolases",
+      "Proteasome Endopeptidase Complex",
+      "Proteasome Inhibitors"
+    ],
+  "PMID" : 15473868,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Proteasome-mediated effects on amyloid precursor protein processing at the gamma-secretase site."
+}

@@ -1,0 +1,30 @@
+{ 
+  "Abstract" : [ "AD (Alzheimer's disease) is characterized by a progressive and devastating mental decline that is usually presaged by impairment of a form of memory dependent on medial temporal lobe structures, including the hippocampus. The severity of clinical dementia correlates positively with the cerebral load of the AD-related protein Abeta (amyloid beta), particularly in its soluble form rather than the insoluble fibrillar Abeta found in amyloid plaques. Recent research in animal models of AD has pointed to a potentially important role for rapid disruptive effects of soluble species of Abeta on neural function in causing a relatively selective impairment of memory early in the disease. Our experiments assessing the mechanisms of Abeta inhibition of LTP (long-term potentiation), a correlate of memory-related synaptic plasticity, in the rodent hippocampus showed that low-n oligomers were the soluble Abeta species primarily responsible for the disruption of synaptic plasticity in vivo. Exogenously applied and endogenously generated anti-Abeta antibodies rapidly neutralized and prevented the synaptic plasticity disrupting effects of these very potent Abeta oligomers. This suggests that active or passive immunotherapeutic strategies for early AD should target Abeta oligomers in the brain. The ability of agents that reduce nitrosative/oxidative stress or antagonize stress-activated kinases to prevent Abeta inhibition of LTP in vitro points to a key role of these cellular mechanisms at very early stages in Abeta-induced neuronal dysfunction. A combination of antibody-mediated inactivation of Abeta oligomers and pharmacological prevention of cellular stress mechanisms underlying their synaptic plasticity disrupting effects provides an attractive strategy in the prevention of early AD." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Rowan, M J",
+      "Klyubin, I",
+      "Wang, Q",
+      "Anwyl, R"
+    ],
+  "Date" : "2005",
+  "Identifier" : [  ],
+  "Journal" : [ "Biochemical Society transactions" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/16042545",
+  "MeshHeadings" : [ 
+      "Alzheimer Disease",
+      "Amyloid beta-Peptides",
+      "Cognition Disorders",
+      "Hippocampus",
+      "Humans",
+      "Neuronal Plasticity",
+      "Synapses"
+    ],
+  "PMID" : 16042545,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Synaptic plasticity disruption by amyloid beta protein: modulation by potential Alzheimer's disease modifying therapies."
+}

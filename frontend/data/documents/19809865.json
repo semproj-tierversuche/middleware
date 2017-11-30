@@ -1,0 +1,37 @@
+{ 
+  "Abstract" : [ "The concentrations of soluble beta-amyloid (Abeta) oligomers paralleled with the extent of synaptic loss and severity of cognitive impairment in Alzheimer patients. However, the neurotoxicity of the naturally generated Abeta species remains unknown. This study was designed to examine the effects of naturally generated Abeta oligomers, secreted from amyloid precursor protein-expressing cells, on the homeostasis and viability of primary hippocampal neurons. Our results showed that primary hippocampal neurons incubated with condition media containing cell-secreted soluble Abeta had higher levels of heat-shock protein (HSP)27, HSP60 and HSP70, and lower levels of HSP32 than those of the control neurons. The cell-secreted soluble Abeta caused mitochondria dysfunction in hippocampal neurons as demonstrated by depolarized membrane potential and decreased cytochrome c oxidase activity and ATP levels. The levels of pro-apoptotic proteins, Bid, Bax and cytochrome C, were elevated; whereas anti-apoptotic Bcl-2 protein was reduced in the soluble Abeta-cultured neurons. Apoptosis was also evident in these soluble Abeta-cultured neurons. These results indicate that naturally secreted Abeta induces neuronal injury/death by activating an apoptotic pathway involving impaired mitochondria function and cellular homeostasis." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Yang, Ting-Ting",
+      "Hsu, Chao-Tien",
+      "Kuo, Yu-Min"
+    ],
+  "Date" : "2009",
+  "Identifier" : [  ],
+  "Journal" : [ "Journal of neural transmission (Vienna, Austria : 1996)" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/19809865",
+  "MeshHeadings" : [ 
+      "Amyloid beta-Peptides",
+      "Animals",
+      "Apoptosis",
+      "Cell Line",
+      "Cells, Cultured",
+      "Culture Media, Conditioned",
+      "Cytosol",
+      "Heat-Shock Proteins",
+      "Hippocampus",
+      "Homeostasis",
+      "Humans",
+      "Mitochondria",
+      "Neurons",
+      "Rats",
+      "Signal Transduction"
+    ],
+  "PMID" : 19809865,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Cell-derived soluble oligomers of human amyloid-beta peptides disturb cellular homeostasis and induce apoptosis in primary hippocampal neurons."
+}

@@ -1,0 +1,40 @@
+{ 
+  "Abstract" : [ "Progressive memory loss and deposition of amyloid beta (Abeta) peptides throughout cortical regions are hallmarks of Alzheimer's disease (AD). Several studies in mice and rats have shown that overexpression of amyloid precursor protein (APP) or pretreatment with Abeta peptide fragments results in the inhibition of hippocampal long-term potentiation (LTP) as well as impairments in learning and memory of hippocampal-dependent tasks. For these studies we have investigated the effects of the Abeta(25-35) peptide fragment on LTP induced by adenylate cyclase stimulation followed immediately by application of Mg(++)-free aCSF (\"chemLTP\"). Treatment of young adult slices with the Abeta(25-35) peptide had no significant effect on basal synaptic transmission in area CA1, but treatment with the peptide for 20 min before inducing chemLTP with isoproterenol (ISO; 1 microM) or forskolin (FSK;10 microM) + Mg(++)-free aCSF resulted in complete blockade of LTP. In contrast, normal ISO-chemLTP was observed after treatment with the control peptide Abeta(35-25). The ability of the Abeta(25-35) peptide fragment to block this and other forms of synaptic plasticity may help elucidate the mechanisms underlying hippocampal deficits observed in animal models of AD and/or AD individuals." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Bisel, Blaine E",
+      "Henkins, Kristen M",
+      "Parfitt, Karen D"
+    ],
+  "Date" : "2007",
+  "Identifier" : [  ],
+  "Journal" : [ "Annals of the New York Academy of Sciences" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/17413011",
+  "MeshHeadings" : [ 
+      "Adenylyl Cyclase Inhibitors",
+      "Adrenergic beta-Agonists",
+      "Alzheimer Disease",
+      "Amyloid beta-Peptides",
+      "Animals",
+      "Colforsin",
+      "Enzyme Inhibitors",
+      "Excitatory Postsynaptic Potentials",
+      "Hippocampus",
+      "Isoproterenol",
+      "Long-Term Potentiation",
+      "Magnesium",
+      "Male",
+      "Peptide Fragments",
+      "Rats",
+      "Rats, Inbred F344",
+      "Synapses",
+      "Synaptic Transmission"
+    ],
+  "PMID" : 17413011,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Alzheimer amyloid beta-peptide A-beta25-35 blocks adenylate cyclase-mediated forms of hippocampal long-term potentiation."
+}

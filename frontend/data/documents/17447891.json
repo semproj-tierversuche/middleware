@@ -1,0 +1,37 @@
+{ 
+  "Abstract" : [ "Mutations in the LRRK2 (leucine-rich repeat kinase-2) gene cause late-onset PD (Parkinson's disease). LRRK2 contains leucine-rich repeats, a GTPase domain, a COR [C-terminal of Roc (Ras of complex)] domain, a kinase and a WD40 (Trp-Asp 40) motif. Little is known about how LRRK2 is regulated, what its physiological substrates are or how mutations affect LRRK2 function. Thus far LRRK2 activity has only been assessed by autophosphorylation and phosphorylation of MBP (myelin basic protein), which is catalysed rather slowly. We undertook a KESTREL (kinase substrate tracking and elucidation) screen in rat brain extracts to identify proteins that were phosphorylated by an activated PD mutant of LRRK2 (G2019S). This led to the discovery that moesin, a protein which anchors the actin cytoskeleton to the plasma membrane, is efficiently phosphorylated by LRRK2, at Thr558, a previously identified in-vivo-phosphorylation site that regulates the ability of moesin to bind actin. LRRK2 also phosphorylated ezrin and radixin, which are related to moesin, at the residue equivalent to Thr558, as well as a peptide (LRRKtide: RLGRDKYKTLRQIRQ) encompassing Thr558. We exploited these findings to determine how nine previously reported PD mutations of LRRK2 affected kinase activity. Only one of the mutations analysed, namely G2019S, stimulated kinase activity. Four mutations inhibited LRRK2 kinase activity (R1941H, I2012T, I2020T and G2385R), whereas the remainder (R1441C, R1441G, Y1699C and T2356I) did not influence activity. Therefore the manner in which LRRK2 mutations induce PD is more complex than previously imagined and is not only caused by an increase in LRRK2 kinase activity. Finally, we show that the minimum catalytically active fragment of LRRK2 requires an intact GTPase, COR and kinase domain, as well as a WD40 motif and a C-terminal tail. The results of the present study suggest that moesin, ezrin and radixin may be LRRK2 substrates, findings that have been exploited to develop the first robust quantitative assay to measure LRRK2 kinase activity." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Jaleel, Mahaboobi",
+      "Nichols, R Jeremy",
+      "Deak, Maria",
+      "Campbell, David G",
+      "Gillardon, Frank",
+      "Knebel, Axel",
+      "Alessi, Dario R"
+    ],
+  "Date" : "2007",
+  "Identifier" : [  ],
+  "Journal" : [ "The Biochemical journal" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/17447891",
+  "MeshHeadings" : [ 
+      "Amino Acid Sequence",
+      "Animals",
+      "Cytoskeletal Proteins",
+      "Humans",
+      "Leucine-Rich Repeat Serine-Threonine Protein Kinase-2",
+      "Membrane Proteins",
+      "Microfilament Proteins",
+      "Parkinson Disease",
+      "Protein-Serine-Threonine Kinases",
+      "Rats",
+      "Threonine"
+    ],
+  "PMID" : 17447891,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "LRRK2 phosphorylates moesin at threonine-558: characterization of how Parkinson's disease mutants affect kinase activity."
+}

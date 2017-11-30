@@ -1,0 +1,37 @@
+{ 
+  "Abstract" : [ "Mutations in the leucine-rich repeat kinase 2 (LRRK2) gene are the most common cause of autosomal dominant familial Parkinson's disease (PD) and also contribute to idiopathic PD. LRRK2 encodes a large multi-domain protein with GTPase and kinase activity. Initial data indicates that an intact functional GTPase domain is critically required for LRRK2 kinase activity. PD-associated mutations in LRRK2, including the most common G2019S variant, have variable effects on enzymatic activity but commonly alter neuronal process morphology. The mechanisms underlying the intrinsic and extrinsic regulation of LRRK2 GTPase and kinase activity, and the pathogenic effects of familial mutations, are incompletely understood. Here, we identify a novel functional interaction between LRRK2 and ADP-ribosylation factor GTPase-activating protein 1 (ArfGAP1). LRRK2 and ArfGAP1 interact in vitro in mammalian cells and in vivo in brain, and co-localize in the cytoplasm and at Golgi membranes. PD-associated and functional mutations that alter the GTPase activity of LRRK2 modulate the interaction with ArfGAP1. The GTP hydrolysis activity of LRRK2 is markedly enhanced by ArfGAP1 supporting a role for ArfGAP1 as a GTPase-activating protein for LRRK2. Unexpectedly, ArfGAP1 promotes the kinase activity of LRRK2 suggesting a potential role for GTP hydrolysis in kinase activation. Furthermore, LRRK2 robustly and directly phosphorylates ArfGAP1 in vitro. Silencing of ArfGAP1 expression in primary cortical neurons rescues the neurite shortening phenotype induced by G2019S LRRK2 overexpression, whereas the co-expression of ArfGAP1 and LRRK2 synergistically promotes neurite shortening in a manner dependent upon LRRK2 GTPase activity. Neurite shortening induced by ArfGAP1 overexpression is also attenuated by silencing of LRRK2. Our data reveal a novel role for ArfGAP1 in regulating the GTPase activity and neuronal toxicity of LRRK2; reciprocally, LRRK2 phosphorylates ArfGAP1 and is required for ArfGAP1 neuronal toxicity. ArfGAP1 may represent a promising target for interfering with LRRK2-dependent neurodegeneration in familial and sporadic PD." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Stafa, Klodjan",
+      "Trancikova, Alzbeta",
+      "Webber, Philip J",
+      "Glauser, Liliane",
+      "West, Andrew B",
+      "Moore, Darren J"
+    ],
+  "Date" : "2012",
+  "Identifier" : [  ],
+  "Journal" : [ "PLoS genetics" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/22363216",
+  "MeshHeadings" : [ 
+      "Enzyme Activation",
+      "GTP Phosphohydrolases",
+      "GTPase-Activating Proteins",
+      "Humans",
+      "Hydrolysis",
+      "Leucine-Rich Repeat Serine-Threonine Protein Kinase-2",
+      "Mutation",
+      "Neurites",
+      "Neurons",
+      "Parkinson Disease",
+      "Phosphorylation",
+      "Protein-Serine-Threonine Kinases"
+    ],
+  "PMID" : 22363216,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "GTPase activity and neuronal toxicity of Parkinson's disease-associated LRRK2 is regulated by ArfGAP1."
+}

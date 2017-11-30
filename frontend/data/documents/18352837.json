@@ -1,0 +1,42 @@
+{ 
+  "Abstract" : [ "This report documents an analysis of post-traumatic neurodegeneration during the first 7 days after controlled cortical impact (CCI) traumatic brain injury (TBI) in mice and rats using the de Olmos aminocupric silver staining method, which selectively stains degenerating axons and nerve terminals, compared to the fluorojade method, which stains degenerating neuronal cell bodies. A progressive increase in cortical, hippocampal, and thalamic degeneration was observed over the first 48 h after injury in both species. Approximately 50% of the ipsilateral cortical volume was stained at 48 h. Similarly, the dorsal hippocampus showed widespread degeneration in all of the subfields. This included CA1, CA3, CA4, and dentate cell bodies revealed by fluorojade together with a high degree of axonal degeneration in areas carrying afferent and efferent hippocampal projections that is identified by silver staining. These results show that previous CCI studies which have relied on conventional histological methods that show cell body staining alone have underestimated the degree of axonal damage associated with the CCI-TBI model. In order to capture the full extent of the injury to both axons and cell bodies, the combination of silver staining and fluorojade staining is needed, respectively. Future studies of potential neuroprotective agents should probably not rely on the measure of cortical lesion volume or volume of spared cortical tissue using conventional histological stains alone, since these fail to identify the complete extent of the posttraumatic neuropathology that some agents which reduce cortical lesion volume may not be able to effect." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Hall, Edward D",
+      "Bryant, Ying Deng",
+      "Cho, Wongil",
+      "Sullivan, Patrick G"
+    ],
+  "Date" : "2008",
+  "Identifier" : [  ],
+  "Journal" : [ "Journal of neurotrauma" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/18352837",
+  "MeshHeadings" : [ 
+      "Animals",
+      "Brain Injuries",
+      "Cerebral Cortex",
+      "Copper",
+      "Disease Models, Animal",
+      "Disease Progression",
+      "Fluoresceins",
+      "Hippocampus",
+      "Male",
+      "Mice",
+      "Nerve Degeneration",
+      "Neurons",
+      "Organic Chemicals",
+      "Predictive Value of Tests",
+      "Rats",
+      "Rats, Sprague-Dawley",
+      "Silver Staining",
+      "Staining and Labeling",
+      "Wallerian Degeneration"
+    ],
+  "PMID" : 18352837,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Evolution of post-traumatic neurodegeneration after controlled cortical impact traumatic brain injury in mice and rats as assessed by the de Olmos silver and fluorojade staining methods."
+}

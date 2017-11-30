@@ -1,0 +1,40 @@
+{ 
+  "Abstract" : [ "The accumulation of amyloid beta-protein (Abeta) in brain regions serving memory and cognition is a central pathogenic feature of Alzheimer's disease (AD). We have shown that small soluble oligomers of human Abeta that are naturally secreted by cultured cells inhibit hippocampal long-term potentiation (LTP) in vitro and in vivo and transiently impair the recall of a complex learned behaviour in rats. These results support the hypothesis that diffusible oligomers of Abeta initiate a synaptic dysfunction that may be an early event in AD. We now report detailed electrophysiological analyses that define conditions under which acute application of soluble Abeta inhibits hippocampal synaptic plasticity in wild-type mice. To ascertain which Abeta assemblies contribute to the impairment of LTP, we fractionated oligomers by size-exclusion chromatography and found that Abeta trimers fully inhibit LTP, whereas dimers and tetramers have an intermediate potency. Natural Abeta oligomers are sensitive to heat denaturation, primarily inhibit the induction phase of LTP, and cause a sustained impairment of LTP even after extensive washout. We observed no effects of Abeta oligomers on presynaptic vesicle release. LTP in juvenile mice is resistant to the effects of Abeta oligomers, as is brain-derived-neurotrophic-factor-induced LTP in adult hippocampus. We conclude that specific assemblies, particularly timers, of naturally secreted Abeta oligomers are potent and selective inhibitors of certain forms of hippocampal LTP." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Townsend, Matthew",
+      "Shankar, Ganesh M",
+      "Mehta, Tapan",
+      "Walsh, Dominic M",
+      "Selkoe, Dennis J"
+    ],
+  "Date" : "2006",
+  "Identifier" : [  ],
+  "Journal" : [ "The Journal of physiology" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/16469784",
+  "MeshHeadings" : [ 
+      "Amyloid beta-Peptides",
+      "Animals",
+      "Blotting, Western",
+      "Chromatography, Gel",
+      "Chromosome Pairing",
+      "Electrophysiology",
+      "Female",
+      "Hippocampus",
+      "Hot Temperature",
+      "Immunoprecipitation",
+      "Long-Term Potentiation",
+      "Male",
+      "Mice",
+      "Neuronal Plasticity",
+      "Polymers",
+      "Protein Denaturation"
+    ],
+  "PMID" : 16469784,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Effects of secreted oligomers of amyloid beta-protein on hippocampal synaptic plasticity: a potent role for trimers."
+}

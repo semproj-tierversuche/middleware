@@ -1,0 +1,45 @@
+{ 
+  "Abstract" : [ 
+      "Action potentials and local field potentials (LFPs) recorded in primary motor cortex contain information about the direction of movement. LFPs are assumed to be more robust to signal instabilities than action potentials, which makes LFPs, along with action potentials, a promising signal source for brain-computer interface applications. Still, relatively little research has directly compared the utility of LFPs to action potentials in decoding movement direction in human motor cortex.",
+      "We conducted intracortical multi-electrode recordings in motor cortex of two persons (T2 and [S3]) as they performed a motor imagery task. We then compared the offline decoding performance of LFPs and spiking extracted from the same data recorded across a one-year period in each participant.",
+      "We obtained offline prediction accuracy of movement direction and endpoint velocity in multiple LFP bands, with the best performance in the highest (200-400 Hz) LFP frequency band, presumably also containing low-pass filtered action potentials. Cross-frequency correlations of preferred directions and directional modulation index showed high similarity of directional information between action potential firing rates (spiking) and high frequency LFPs (70-400 Hz), and increasing disparity with lower frequency bands (0-7, 10-40 and 50-65 Hz). Spikes predicted the direction of intended movement more accurately than any individual LFP band, however combined decoding of all LFPs was statistically indistinguishable from spike-based performance. As the quality of spiking signals (i.e. signal amplitude) and the number of significantly modulated spiking units decreased, the offline decoding performance decreased 3.6[5.65]%/month (for T2 and [S3] respectively). The decrease in the number of significantly modulated LFP signals and their decoding accuracy followed a similar trend (2.4[2.85]%/month, ANCOVA, p = 0.27[0.03]).",
+      "Field potentials provided comparable offline decoding performance to unsorted spikes. Thus, LFPs may provide useful external device control using current human intracortical recording technology. (",
+      "NCT00912041.)."
+    ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Perge, János A",
+      "Zhang, Shaomin",
+      "Malik, Wasim Q",
+      "Homer, Mark L",
+      "Cash, Sydney",
+      "Friehs, Gerhard",
+      "Eskandar, Emad N",
+      "Donoghue, John P",
+      "Hochberg, Leigh R"
+    ],
+  "Date" : "2014",
+  "Identifier" : [  ],
+  "Journal" : [ "Journal of neural engineering" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/24921388",
+  "MeshHeadings" : [ 
+      "Action Potentials",
+      "Brain-Computer Interfaces",
+      "Calibration",
+      "Electroencephalography",
+      "Humans",
+      "Imagination",
+      "Motor Cortex",
+      "Movement",
+      "Psychomotor Performance",
+      "Reproducibility of Results",
+      "Signal Processing, Computer-Assisted"
+    ],
+  "PMID" : 24921388,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Reliability of directional information in unsorted spikes and local field potentials recorded in human motor cortex."
+}

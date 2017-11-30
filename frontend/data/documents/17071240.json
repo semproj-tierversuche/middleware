@@ -1,0 +1,34 @@
+{ 
+  "Abstract" : [ "In order to study cerebral activity related to preparation and execution of movement, evoked and induced brain electrical activities were compared to each other and to fMRI results in voluntary self-paced movements. Also, the event-related desynchronization and synchronization (ERD/ERS) were studied in complex movements with various degrees of cognitive load. The Bereitschaftspotential (BP) and alpha (8-12 Hz) and beta (16-24 Hz) ERD/ERS rhythms in self-paced simple movements were analyzed in 14 epilepsy surgery candidates. In previous studies, the cortical sources of BP were consistently displayed contralateral to the movement in the primary motor cortex and somatosensory cortex, and bilateral in the supplementary motor area (SMA) and in the cingulate cortex. There were also small and inconstant BP generators in the ipsilateral sensorimotor, premotor, and dorsolateral prefrontal cortex. Alpha and beta ERD/ERS were also observed in these cortical regions. The distribution of contacts showing ERD or ERS was larger than of those showing BP. In contrast to BP, ERD, and ERS frequently occurred in the orbitofrontal, lateral and mesial temporal cortices, and inferior parietal lobule. The spatial location of brain activation for self-paced repetitive movements, i.e., writing simple dots, was studied using event-related functional MRI (fMRI) in 10 healthy right-handed subjects. We observed significant activation in regions known to participate in motor control: contralateral to the movement in the primary sensorimotor and supramarginal cortices, the SMA and the underlying cingulate, and, to a lesser extent, the ipsilateral sensorimotor region. When the fMRI was compared with the map of the brain areas electrically active with self-paced movements (intracerebral recordings; Rektor et al., 1994, 1998, 2001b, c; Rektor, 2003), there was an evident overlap of most results. Nevertheless, the electrophysiological studies were more sensitive in uncovering small active areas, i.e., in the premotor and prefrontal cortices. The BP and the event-related hemodynamic changes were displayed in regions known to participate in motor control. The cortical occurrence of oscillatory activities in the alpha-beta range was clearly more widespread. Four epilepsy surgery candidates with implanted depth brain electrodes performed two visuomotor-cognitive tasks with cued complex movements: a simple task--copying randomly presented letters from the monitor; and a more complex task--writing a letter other than that which appears on the monitor. The second task demanded an increased cognitive load, i.e., of executive functions. Alpha and beta ERD/ERS rhythms were evaluated. Similar results for both tasks were found in the majority of the frontal contacts, i.e., in the SMA, anterior cingulate, premotor, and dorsolateral prefrontal cortices. The most frequent observed activity was ERD in the beta rhythm; alpha ERS and ERD were also present. Significant differences between the two tasks appeared in several frontal areas--in the dorsolateral and ventrolateral prefrontal and orbitofrontal cortices (BA 9, 45, 11), and in the temporal neocortex (BA 21). In several contacts localized in these areas, namely in the lateral temporal cortex, there were significant changes only with the complex task--mostly beta ERD. Although the fMRI results fit well with the map of the evoked activity (BP), several discrepant localizations were displayed when the BP was compared with the distribution of the oscillatory activity (ERD-ERS). The BP and hemodynamic changes are closely related to the motor control areas; ERD/ERS represent the broader physiological aspects of motor execution and control. The BP probably reflects regional activation, while the more widespread ERD/ERS may reflect the spread of task-relevant information across relevant areas. In the writing tasks, the spatial distribution of the alpha-beta ERD/ERS in the frontal and lateral temporal cortices was partially task dependent. The ERD/ERS occurred there predominantly in the more complex of the writing tasks. Some sites were only active in the task with the increased demand on executive functions. In the temporal neocortex only, the oscillatory, but not the evoked, activity was recorded in the self-paced movement. The temporal appearance of changes of oscillatory activities in the self-paced movement task as well as in the cued movement task with an increased load of executive functions raises the interesting question of the role of this region in cognitive-movement information processing." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Rektor, I",
+      "Sochůrková, D",
+      "Bocková, M"
+    ],
+  "Date" : "2006",
+  "Identifier" : [  ],
+  "Journal" : [ "Progress in brain research" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/17071240",
+  "MeshHeadings" : [ 
+      "Adolescent",
+      "Adult",
+      "Cognition",
+      "Cortical Synchronization",
+      "Female",
+      "Humans",
+      "Magnetic Resonance Imaging",
+      "Male",
+      "Motor Cortex",
+      "Movement",
+      "Psychomotor Performance",
+      "Visual Cortex"
+    ],
+  "PMID" : 17071240,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Intracerebral ERD/ERS in voluntary movement and in cognitive visuomotor task."
+}

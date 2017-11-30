@@ -1,0 +1,35 @@
+{ 
+  "Abstract" : [ "The prevailing major theory of Alzheimer's disease (AD) is that insoluble amyloid beta-peptide (Abeta) found in the cerebral plaques characteristic of the disease is causative or is at least a contributing factor. According to this theory, inhibition of aberrant Abeta production should prevent or at least limit the extent of AD pathophysiology. As three 'secretase' enzymes (alpha, beta and gamma) catalyse the proteolytic cleavage of amyloid precursor protein (APP) (the precursor protein of Abeta), one or more secretases have become targets for potential novel AD pharmacotherapy. Secretase inhibitors have been designed and are in various stages of development. The clinical trials of these compounds will, if positive, result in drugs with dramatically better clinical efficacy or, if negative, will force a reassessment of the theory about the role of Abeta in AD." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Maiorini, A F",
+      "Gaunt, M J",
+      "Jacobsen, T M",
+      "McKay, A E",
+      "Waldman, L D",
+      "Raffa, R B"
+    ],
+  "Date" : "2002",
+  "Identifier" : [  ],
+  "Journal" : [ "Journal of clinical pharmacy and therapeutics" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/12081630",
+  "MeshHeadings" : [ 
+      "Alzheimer Disease",
+      "Amyloid Precursor Protein Secretases",
+      "Amyloid beta-Peptides",
+      "Aspartic Acid Endopeptidases",
+      "Drug Delivery Systems",
+      "Endopeptidases",
+      "Humans",
+      "Neurofibrillary Tangles",
+      "Plaque, Amyloid",
+      "Protease Inhibitors"
+    ],
+  "PMID" : 12081630,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Potential novel targets for Alzheimer pharmacotherapy: I. Secretases."
+}

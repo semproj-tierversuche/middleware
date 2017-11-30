@@ -1,0 +1,32 @@
+{ 
+  "Abstract" : [ "Purkinje cells of the cerebellum discharge complex spikes, named after the complexity of their waveforms, with a frequency of approximately 1 Hz during arm movements. Despite the low frequency of firing, complex spikes have been proposed to contribute to the initiation of arm movements or to the gradual improvement of motor skills. Here we recorded the activity of Purkinje cells from the hemisphere of cerebellar lobules IV-VI while trained monkeys made short-lasting reaching movements (of approximately 200 milliseconds in duration) to touch a visual target that appeared at a random location on a tangent screen. We examined the relationship between complex-spike discharges and the absolute touch position, and between complex-spike discharges and relative errors in touching the screen. We used information theory to show that the complex spikes occurring at the beginning of the reach movement encode the absolute destination of the reach, and the complex spikes occurring at the end of the short-lasting movements encode the relative errors. Thus, complex spikes convey multiple types of information, consistent with the idea that they contribute both to the generation of movements and to the gradual, long-term improvement of these movements." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Kitazawa, S",
+      "Kimura, T",
+      "Yin, P B"
+    ],
+  "Date" : "1998",
+  "Identifier" : [  ],
+  "Journal" : [ "Nature" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/9548253",
+  "MeshHeadings" : [ 
+      "Action Potentials",
+      "Animals",
+      "Arm",
+      "Macaca",
+      "Microelectrodes",
+      "Movement",
+      "Psychomotor Performance",
+      "Purkinje Cells",
+      "Reaction Time",
+      "Touch"
+    ],
+  "PMID" : 9548253,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Cerebellar complex spikes encode both destinations and errors in arm movements."
+}

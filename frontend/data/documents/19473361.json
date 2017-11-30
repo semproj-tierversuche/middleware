@@ -1,0 +1,52 @@
+{ 
+  "Abstract" : [ 
+      "Mutations in leucine-rich repeat kinase 2 (LRRK2) gene are associated with both familial and idiopathic Parkinson's disease (PD), whereas mutations in PARK2 (PARKIN) gene result in early onset recessive PD. Here, the objectives were to determine the frequency of LRRK2 G2019S and R1441G mutations in a PD population from southern Spain; to search for LRRK2 mutations in familial PD cases and to study the effect of PARKIN mutations on clinical features of LRRK2-associated; PD.",
+      "We included 187 PD patients (172 idiopathic, 15 familial) and 287 control subjects from southern Spain. LRRK2 and PARKIN mutations were screened, and clinical features of LRRK2-associated PD were examined.",
+      "Three (1.7%) idiopathic PD patients carried the G2019S, whereas another three (1.7%) had the R1441G. A novel polymorphism D1420N was found in two (13.3%) familial PD patients. One G2019S carrier also had a homozygous PARKIN deletion, who had early onset PD with clinical symptoms similar to those with PARKIN-associated PD. The remaining LRRK2-asscociated patients had clinical manifestations similar to those with idiopathic PD.",
+      "G2019S and R1441G are common LRRK2 mutations in PD patients in this region. PARKIN mutations override clinical features in LRRK2-associated PD."
+    ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Gao, L",
+      "Gómez-Garre, P",
+      "Díaz-Corrales, F J",
+      "Carrillo, F",
+      "Carballo, M",
+      "Palomino, A",
+      "Díaz-Martín, J",
+      "Mejías, R",
+      "Vime, P J",
+      "López-Barneo, J",
+      "Mir, P"
+    ],
+  "Date" : "2009",
+  "Identifier" : [  ],
+  "Journal" : [ "European journal of neurology" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/19473361",
+  "MeshHeadings" : [ 
+      "Adult",
+      "Age of Onset",
+      "DNA Mutational Analysis",
+      "Female",
+      "Gene Frequency",
+      "Haplotypes",
+      "Humans",
+      "Leucine-Rich Repeat Serine-Threonine Protein Kinase-2",
+      "Male",
+      "Middle Aged",
+      "Mutation",
+      "Mutation, Missense",
+      "Parkinson Disease",
+      "Polymorphism, Genetic",
+      "Protein-Serine-Threonine Kinases",
+      "Sequence Deletion",
+      "Ubiquitin-Protein Ligases"
+    ],
+  "PMID" : 19473361,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Prevalence and clinical features of LRRK2 mutations in patients with Parkinson's disease in southern Spain."
+}

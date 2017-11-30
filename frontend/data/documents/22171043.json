@@ -1,0 +1,34 @@
+{ 
+  "Abstract" : [ "The successful development of motor neuroprosthetic devices hinges on the ability to accurately and reliably decode signals from the brain. Motor neuroprostheses are widely investigated in behaving non-human primates, but technical constraints have limited progress in optimizing performance. In particular, the organization of movement-related neuronal activity across cortical layers remains poorly understood due, in part, to the widespread use of fixed-geometry multielectrode arrays. In this study, we use chronically implanted multielectrode arrays with individually movable electrodes to examine how the encoding of movement goals depends on cortical depth. In a series of recordings spanning several months, we varied the depth of each electrode in the prearcuate gyrus of frontal cortex in two monkeys as they performed memory-guided eye movements. We decode eye movement goals from local field potentials (LFPs) and multiunit spiking activity recorded across a range of depths up to 3 mm from the cortical surface. We show that both LFP and multiunit signals yield the highest decoding performance at superficial sites, within 0.5 mm of the cortical surface, while performance degrades substantially at sites deeper than 1 mm. We also analyze performance by varying bandpass filtering characteristics and simulating changes in microelectrode array channel count and density. The results indicate that the performance of LFP-based neuroprostheses strongly depends on recording configuration and that recording depth is a critical parameter limiting system performance." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Markowitz, David A",
+      "Wong, Yan T",
+      "Gray, Charles M",
+      "Pesaran, Bijan"
+    ],
+  "Date" : "2011",
+  "Identifier" : [  ],
+  "Journal" : [ "The Journal of neuroscience : the official journal of the Society for Neuroscience" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/22171043",
+  "MeshHeadings" : [ 
+      "Action Potentials",
+      "Animals",
+      "Goals",
+      "Macaca mulatta",
+      "Male",
+      "Memory",
+      "Motor Activity",
+      "Motor Cortex",
+      "Movement",
+      "Neurons",
+      "Saccades"
+    ],
+  "PMID" : 22171043,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Optimizing the decoding of movement goals from local field potentials in macaque cortex."
+}

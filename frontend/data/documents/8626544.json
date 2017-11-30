@@ -1,0 +1,40 @@
+{ 
+  "Abstract" : [ "Progressive cerebral deposition of the amyloid beta-peptide (Abeta) is an early and constant feature of Alzheimer's disease. Abeta is derived by proteolysis from the beta-amyloid precursor protein. beta-Amyloid precursor protein processing and the generation of Abeta have been extensively characterized, but little is known about the mechanisms of degradation of this potentially neurotoxic peptide. We identified and purified a proteolytic activity in culture medium that can degrade secreted Abeta but not larger proteins in the medium. Detection of the activity in conditioned medium required the presence of fetal bovine serum and the passage of the cells with a pancreatic trypsin preparation. Its inhibitor profile showed that the activity was a serine protease other than trypsin or chymotrypsin. The protease occurs as a stable approximately 700-kDa complex with the inhibitor, alpha2-macroglobulin (alpha2M), that retains activity against small substrates such as Abeta. Its NH2-terminal sequence suggests that the protease is previously unidentified. Our results indicate that the Abeta-degrading protease we have detected is a non-trypsin component of a pancreatic trypsin preparation or else derives from a zymogen in serum that is activated by a protease in the latter preparation. Because Abeta-bearing plaques in Alzheimer's disease brain contain both alpha2M and receptors of alpha2M-protease complexes, the same or a similar alpha2M-protease complex could arise in vivo and play a role in Abeta clearance." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Qiu, W Q",
+      "Borth, W",
+      "Ye, Z",
+      "Haass, C",
+      "Teplow, D B",
+      "Selkoe, D J"
+    ],
+  "Date" : "1996",
+  "Identifier" : [  ],
+  "Journal" : [ "The Journal of biological chemistry" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/8626544",
+  "MeshHeadings" : [ 
+      "Amino Acid Sequence",
+      "Amyloid beta-Peptides",
+      "Animals",
+      "CHO Cells",
+      "Cells, Cultured",
+      "Cercopithecus aethiops",
+      "Cricetinae",
+      "Culture Media",
+      "Macromolecular Substances",
+      "Molecular Sequence Data",
+      "Molecular Weight",
+      "Multienzyme Complexes",
+      "Protease Inhibitors",
+      "Serine Endopeptidases",
+      "alpha-Macroglobulins"
+    ],
+  "PMID" : 8626544,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Degradation of amyloid beta-protein by a serine protease-alpha2-macroglobulin complex."
+}

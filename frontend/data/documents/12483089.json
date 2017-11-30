@@ -1,0 +1,46 @@
+{ 
+  "Abstract" : [ 
+      "To evaluate the neuroprotective effect of memantine, an NMDA receptor channel blocker, in two retinal ganglion cell (RGC) injury models in rats.",
+      "Neuroprotective effect of memantine was tested in partial optic nerve injury and chronic ocular hypertensive models. In the optic nerve injury model, memantine (0.1 - 30 mg/kg) was injected intraperitoneally immediately after injury. Two weeks later, optic nerve function was determined by measuring compound action potential and surviving RGC was determined by retrograde labeling with dextran tetramethyl rhodamine. Chronic ocular hypertension was attained by laser photocoagulation of episcleral and limbal veins. Memantine (5 or 10 mg/kg) was administered continuously each day with an osmotic pump, either immediately after or 10 days after first laser photocoagulation, for 3 weeks, after which RGC survival was determined.",
+      "Two weeks after partial optic nerve injury, there was approximately 80% reduction in RGC number. Memantine (5 mg/kg) caused a twofold increase in compound action potential amplitude and a 1.7-fold increase in survival of RGCs, respectively. In the chronic ocular hypertension model there was 37% decrease in RGCs after 3 weeks of elevated intraocular pressure. Memantine (10 mg/kg daily) reduced ganglion cell loss to 12% when applied immediately after first laser photocoagulation, and prevented any further loss when applied 10 days after first laser photocoagulation.",
+      "The protective effect of memantine suggests that excessive stimulation of NMDA receptors by glutamate is involved in causing cell damage in these RGC injury models."
+    ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "WoldeMussie, Elizabeth",
+      "Yoles, Eti",
+      "Schwartz, Michal",
+      "Ruiz, Guadalupe",
+      "Wheeler, Larry A"
+    ],
+  "Date" : "2002",
+  "Identifier" : [  ],
+  "Journal" : [ "Journal of glaucoma" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/12483089",
+  "MeshHeadings" : [ 
+      "Action Potentials",
+      "Animals",
+      "Cell Count",
+      "Cell Survival",
+      "Chronic Disease",
+      "Electrophysiology",
+      "Excitatory Amino Acid Antagonists",
+      "Infusion Pumps, Implantable",
+      "Injections, Intraperitoneal",
+      "Memantine",
+      "Neuroprotective Agents",
+      "Ocular Hypertension",
+      "Optic Nerve Injuries",
+      "Rats",
+      "Rats, Sprague-Dawley",
+      "Receptors, N-Methyl-D-Aspartate",
+      "Retinal Ganglion Cells"
+    ],
+  "PMID" : 12483089,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Neuroprotective effect of memantine in different retinal injury models in rats."
+}

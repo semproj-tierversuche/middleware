@@ -1,0 +1,32 @@
+{ 
+  "Abstract" : [ "Deciphering the information or signals carried by the complex spike discharge of Purkinje cells has proven to be problematic, primarily because of low frequency discharge and lack of adequate analytical techniques. This problem is particularly acute for studies of limb movements. To this end the relationship of cerebellar Purkinje cell complex spike discharge to direction and speed were studied in a manual-tracking task. Two monkeys were trained to pursue track targets moving in one of eight directions and at one of four speeds. An analysis based on Poisson regression modeling fitted the complex spike counts during single movement trials to target direction and/or speed. Using single trial data, the Poisson modeling demonstrated that the complex spike discharge for a majority of the Purkinje cells was significantly fit to tracking direction and speed. A second analysis based on the directional distribution of position and speed errors and a Poisson regression model of complex spike discharge to tracking position and speed errors found little relationship to movement error. Comparison of the preferred direction of the complex spike discharge with that of the simple spike activity revealed a reciprocal relationship for many cells. Thus, the complex spike discharge signals both tracking direction and speed but not movement errors. Furthermore, treating complex spike counts as a Poisson process provides a powerful tool for analyzing these events in single trials, without the need for extensive averaging." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Ebner, Timothy J",
+      "Johnson, Michael T V",
+      "Roitman, Alexander",
+      "Fu, Qinggong"
+    ],
+  "Date" : "2002",
+  "Identifier" : [  ],
+  "Journal" : [ "Annals of the New York Academy of Sciences" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/12582054",
+  "MeshHeadings" : [ 
+      "Action Potentials",
+      "Animals",
+      "Arm",
+      "Extremities",
+      "Female",
+      "Macaca mulatta",
+      "Movement",
+      "Psychomotor Performance",
+      "Purkinje Cells"
+    ],
+  "PMID" : 12582054,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "What do complex spikes signal about limb movements?"
+}

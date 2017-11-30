@@ -1,0 +1,29 @@
+{ 
+  "Abstract" : [ "Functional neurosurgery in patients with movement disorders has provided a unique opportunity to record directly form the human basal ganglia (BG) and to thereby further our understanding of these 'dark basements of the mind.' Two possibilities exist: either single unit and local field potential (LFP) recordings can be made intra-operatively through microelectrodes, or LFPs may be recorded directly from the deep brain stimulation electrode in the peri-operative period. The LFPs so recorded in the BG of patients are pleomorphic, oscillatory, focal and the product of synchronised current changes in local neuronal elements. They are presently most simply classified by frequency into activities at <8, 8-30 and >60 Hz, although such a schema is unlikely to capture the full complexity of rhythmic synchronisation with respect to behavioural and disease dependency. The best characterised group of LFP oscillations is that at 8-30 Hz. This activity is prominent in the subthalamic nucleus and globus pallidus of Parkinsonian patients withdrawn from their dopaminergic medication. Dopaminergic treatments, behaviourally relevant stimuli and voluntary movement suppress it. The available evidence points to the 8-30 Hz activity being essentially antikinetic in character and inversely related to motor processing. Its exaggeration may therefore contribute to the bradykinesia of Parkinson's disease." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Brown, Peter",
+      "Williams, David"
+    ],
+  "Date" : "2005",
+  "Identifier" : [  ],
+  "Journal" : [ "Clinical neurophysiology : official journal of the International Federation of Clinical Neurophysiology" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/16029963",
+  "MeshHeadings" : [ 
+      "Action Potentials",
+      "Animals",
+      "Basal Ganglia",
+      "Humans",
+      "Movement",
+      "Oscillometry",
+      "Parkinson Disease",
+      "Reaction Time"
+    ],
+  "PMID" : 16029963,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Basal ganglia local field potential activity: character and functional significance in the human."
+}

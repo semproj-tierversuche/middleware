@@ -1,0 +1,42 @@
+{ 
+  "Abstract" : [ "The beta-amyloid peptide (Abeta) is thought to play a critical role in the pathophysiology of Alzheimer's disease (AD). To study the effects of Abeta on the brain, transgenic mouse models have been developed that express high levels of Abeta. These mice show some features of AD, including amyloid plaques and mild cognitive impairment, but not others such as progressive neurodegeneration. We investigated the age-dependent effects of Abeta on synaptic physiology in Tg2576 mice that express human Abeta. We report that both basal synaptic activity and long-term potentiation (LTP), as measured in the CA1 region of the hippocampus, were compromised by 7 months of age before plaque deposition. Despite a persistent increase in Abeta levels with age, LTP recovered in 14-month-old mice, with no further loss of basal activity compared with activity measured in 7-month-old mice. Previous work has shown that inhibitors of gamma-secretase, an enzyme critical for Abeta synthesis, can significantly reduce Abeta production and plaque formation in Tg2576 mice. Our data demonstrate that 7-month-old Tg2576 mice treated with an orally available gamma-secretase inhibitor showed a significant improvement in synaptic function and plasticity within days, and the effect was correlated with the extent and duration of Abeta reduction. These results indicate that recovery from Abeta-mediated synaptotoxicity can occur rapidly with Abeta-lowering therapies. These findings highlight some of the strengths and limitations of using Abeta-overexpressing mouse models for Alzheimer's drug discovery." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Townsend, Matthew",
+      "Qu, Yujie",
+      "Gray, Audrey",
+      "Wu, Zhenhua",
+      "Seto, Tiffany",
+      "Hutton, Mike",
+      "Shearman, Mark S",
+      "Middleton, Richard E"
+    ],
+  "Date" : "2010",
+  "Identifier" : [  ],
+  "Journal" : [ "The Journal of pharmacology and experimental therapeutics" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/20056779",
+  "MeshHeadings" : [ 
+      "Administration, Oral",
+      "Aging",
+      "Alzheimer Disease",
+      "Amyloid Precursor Protein Secretases",
+      "Amyloid beta-Protein Precursor",
+      "Animals",
+      "Hippocampus",
+      "Humans",
+      "Long-Term Potentiation",
+      "Mice",
+      "Mice, Transgenic",
+      "Mutation",
+      "Plaque, Amyloid",
+      "Sulfonamides",
+      "Synapses"
+    ],
+  "PMID" : 20056779,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Oral treatment with a gamma-secretase inhibitor improves long-term potentiation in a mouse model of Alzheimer's disease."
+}

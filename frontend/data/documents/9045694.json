@@ -1,0 +1,36 @@
+{ 
+  "Abstract" : [ "Amyloid beta-protein (Abeta) is the major component of neuritic (amyloid) plaques in Alzheimer's disease, and its deposition is an early and constant event in the complex pathogenetic cascade of the disease. Although many studies have focused on the biosynthetic processing of the beta-amyloid precursor protein and on the production and polymerization of Abeta, understanding the degradation and clearance of Abeta has received very little attention. By incubating the conditioned medium of metabolically labeled Abeta-secreting cells with media of various cultured cell lines, we observed a time-dependent decrease in the amount of Abeta in the mixed media. The factor principally responsible for this decrease was a secreted metalloprotease released by both neural and non-neural cells. Among the cells examined, the microglial cell line, BV-2, produced the most Abeta-degrading activity. The protease was completely blocked by the metalloprotease inhibitor, 1,10-phenanthroline, and partially inhibited by EDTA, whereas inhibitors of other protease classes produced little or no inhibition. Substrate analysis suggests that the enzyme was a non-matrix metalloprotease. The protease cleaved both Abeta1-40 and Abeta1-42 peptides secreted by beta-amyloid precursor protein-transfected cells but failed to degrade low molecular weight oligomers of Abeta that form in the culture medium. Lipopolysaccharide, a stimulator of macrophages/microglia, activated BV-2 cells to increase their Abeta-degrading metalloprotease activity. We conclude that secreted Abeta1-40 and Abeta1-42 peptides are constitutively degraded by a metalloprotease released by microglia and other neural cells, providing a potential mechanism for the clearance of Abeta in brain tissue." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Qiu, W Q",
+      "Ye, Z",
+      "Kholodenko, D",
+      "Seubert, P",
+      "Selkoe, D J"
+    ],
+  "Date" : "1997",
+  "Identifier" : [  ],
+  "Journal" : [ "The Journal of biological chemistry" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/9045694",
+  "MeshHeadings" : [ 
+      "Amyloid beta-Peptides",
+      "Animals",
+      "CHO Cells",
+      "COS Cells",
+      "Cricetinae",
+      "Culture Media",
+      "Humans",
+      "Metalloendopeptidases",
+      "Microglia",
+      "Neuroblastoma",
+      "Recombinant Proteins",
+      "Tumor Cells, Cultured"
+    ],
+  "PMID" : 9045694,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Degradation of amyloid beta-protein by a metalloprotease secreted by microglia and other neural and non-neural cells."
+}

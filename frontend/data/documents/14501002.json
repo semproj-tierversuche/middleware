@@ -1,0 +1,39 @@
+{ 
+  "Abstract" : [ "An integral membrane aspartyl protease, BACE, is responsible for beta-secretase processing of the beta-amyloid precursor protein (APP) to the large secreted sAPPbeta and membrane-bound CTFbeta of 99 residues. CTFbeta is subsequently cleaved within the membrane by gamma-secretase to the amyloid beta protein (Abeta) that is deposited in the Alzheimer's disease (AD) brain. In this manuscript, we argue that BACE is not limiting for Abeta production and report the existence of a high molecular weight complex of BACE that is more active than the monomer. We also present evidence that the BACE complex is enriched in lipid raft fractions prepared from brain membranes. These findings support the hypothesis that cleavage by BACE is limited by trafficking of APP (<10%) to a lipid raft-derived compartment containing the BACE complex. In addition, the localization of the BACE complex to lipid rafts can explain previous findings that cholesterol and glycosylphosphatidylinositol (GPI)-anchored proteins are necessary for beta-secretase processing of APP. We propose that the BACE complex is a better drug target than the monomer for specific inhibition of Abeta biogenesis." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Marlow, Laura",
+      "Cain, Melissa",
+      "Pappolla, Miguel A",
+      "Sambamurti, Kumar"
+    ],
+  "Date" : "2003",
+  "Identifier" : [  ],
+  "Journal" : [ "Journal of molecular neuroscience : MN" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/14501002",
+  "MeshHeadings" : [ 
+      "Alzheimer Disease",
+      "Amyloid Precursor Protein Secretases",
+      "Amyloid beta-Peptides",
+      "Amyloid beta-Protein Precursor",
+      "Animals",
+      "Aspartic Acid Endopeptidases",
+      "Brain",
+      "CHO Cells",
+      "Cricetinae",
+      "Endopeptidases",
+      "Guinea Pigs",
+      "Macromolecular Substances",
+      "Membrane Microdomains",
+      "Molecular Weight",
+      "Neurons",
+      "Protein Transport"
+    ],
+  "PMID" : 14501002,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Beta-secretase processing of the Alzheimer's amyloid protein precursor (APP)."
+}

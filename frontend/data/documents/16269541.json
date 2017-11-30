@@ -1,0 +1,42 @@
+{ 
+  "Abstract" : [ "Mutations in the leucine-rich repeat kinase 2 gene (LRRK2) cause late-onset Parkinson's disease (PD) with a clinical appearance indistinguishable from idiopathic PD. Initial studies suggest that LRRK2 mutations are the most common yet identified determinant of PD susceptibility, transmitted in an autosomal-dominant mode of inheritance. Herein, we characterize the LRRK2 gene and transcript in human brain and subclone the predominant ORF. Exogenously expressed LRRK2 protein migrates at approximately 280 kDa and is present largely in the cytoplasm but also associates with the mitochondrial outer membrane. Familial-linked mutations G2019S or R1441C do not have an obvious effect on protein steady-state levels, turnover, or localization. However, in vitro kinase assays using full-length recombinant LRRK2 reveal an increase in activity caused by familial-linked mutations in both autophosphorylation and the phosphorylation of a generic substrate. These results suggest a gain-of-function mechanism for LRRK2-linked disease with a central role for kinase activity in the development of PD." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "West, Andrew B",
+      "Moore, Darren J",
+      "Biskup, Saskia",
+      "Bugayenko, Artem",
+      "Smith, Wanli W",
+      "Ross, Christopher A",
+      "Dawson, Valina L",
+      "Dawson, Ted M"
+    ],
+  "Date" : "2005",
+  "Identifier" : [  ],
+  "Journal" : [ "Proceedings of the National Academy of Sciences of the United States of America" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/16269541",
+  "MeshHeadings" : [ 
+      "Amino Acid Sequence",
+      "Base Sequence",
+      "Cell Line",
+      "DNA Primers",
+      "Fluorescent Antibody Technique",
+      "Humans",
+      "Leucine-Rich Repeat Serine-Threonine Protein Kinase-2",
+      "Molecular Sequence Data",
+      "Mutation",
+      "Parkinson Disease",
+      "Phosphorylation",
+      "Protein-Serine-Threonine Kinases",
+      "RNA, Messenger",
+      "Sequence Homology, Amino Acid",
+      "Subcellular Fractions"
+    ],
+  "PMID" : 16269541,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Parkinson's disease-associated mutations in leucine-rich repeat kinase 2 augment kinase activity."
+}

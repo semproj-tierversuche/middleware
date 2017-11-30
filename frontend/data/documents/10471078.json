@@ -1,0 +1,33 @@
+{ 
+  "Abstract" : [ "This study compared the ability of memantine and (+)MK-801 to counteract deficits in the induction of long term potentiation (LTP) following reduction of Mg2+ in hippocampal slices--a model of increased synaptic noise due to tonic N-methyl-D-aspartate (NMDA) receptor activation. Decreasing Mg2+ from 1 mM to 10 microM for 60 min enhanced baseline field excitatory post-synaptic potential (fEPSP) slopes (87.2 +/- 10.6% above control) and impaired LTP (-4.1 +/- 9.8% compared to pre-tetanic levels). Long pre-incubations with memantine (1 microM), a concentration achieved in the CSF of dementia patients, almost fully restored the induction of LTP (to 43.4 +/- 8.4%) without changing the enhancement of baseline fEPSP slopes (84.1 +/- 11.6%). Memantine (10 microM) fully restored the induction of LTP (61.5 +/- 5.3%) and also decreased the enhancement of baseline fEPSP slopes (30.1 +/- 4.9%). In contrast, although (+)MK-801 (0.01, 0.1 and 1 microM) caused a concentration-dependent reduction in the low Mg2+ -induced enhancement of baseline fEPSP slopes, it was not able to restore the induction of LTP (3.0 +/- 9.8%, 16.3 +/- 5.7% and 4.8 +/- 6.7% respectively). These data indicate that memantine could produce symptomatological improvement in learning under conditions of tonic NMDA receptor activation such as those occurring in chronic neurodegenerative diseases whereas (+)MK-801 is likely to have only negative effects." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Frankiewicz, T",
+      "Parsons, C G"
+    ],
+  "Date" : "1999",
+  "Identifier" : [  ],
+  "Journal" : [ "Neuropharmacology" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/10471078",
+  "MeshHeadings" : [ 
+      "Animals",
+      "Dizocilpine Maleate",
+      "Excitatory Amino Acid Antagonists",
+      "Hippocampus",
+      "In Vitro Techniques",
+      "Magnesium",
+      "Male",
+      "Memantine",
+      "Oxidation-Reduction",
+      "Rats",
+      "Rats, Sprague-Dawley",
+      "Receptors, N-Methyl-D-Aspartate"
+    ],
+  "PMID" : 10471078,
+  "PublicationType" : "Comparative Study",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Memantine restores long term potentiation impaired by tonic N-methyl-D-aspartate (NMDA) receptor activation following reduction of Mg2+ in hippocampal slices."
+}

@@ -1,0 +1,39 @@
+{ 
+  "Abstract" : [ "Odorants evoke characteristic, but complex, local field potentials (LFPs) in the molluscan brain. Wavelet tools in combination with Fourier analysis can detect and characterize hitherto unknown discrete, slow potentials underlying the conspicuous oscillations. Ethanol was one of the odorants that we have extensively studied (J. Neurosci. Methods, 119 (2002) 89). To detect new features and to elucidate their functions, we tested the wavelet tools on the ethanol-evoked LFP responses of the slug (Limax) procerebrum. Recordings were made in vitro from the neuropile and the cell layer. The present study led to the following findings: (i) Mutual exclusion. Energy concentrated mainly in two ranges, (a) 0.1-0.4 Hz and (b) 1.56-12.5 Hz, and the sum of energy remained constant throughout experiments regardless of the condition. A redistribution of relative energy within this sum seemed to occur in the course of main, possible interactions between the two components excluding each other ('mutual exclusion'). (ii) Transient signal ordering and disordering. Ethanol stimulation alternatingly evoked periods of strongly time evolving oscillation dominated by the energy of 1.56-12.5 Hz (increase of entropy=disordered or complexly ordered state) and those of near-silence were predominated by the energy of 0.1-0.4 Hz (decrease of entropy=ordered state). (iii) About 0.1 Hz slow wave oscillation. It was robust. The dominant energy oscillation and the resulting large entropy fluctuation were negatively correlated to each other, and revealed strong frequency-tuning or synchronization at this frequency. Our findings suggest that discrete slow waves play functionally important roles in the invertebrate brain, as widely known in vertebrate EEG. Wavelet tools allow an easy interpretation of several minutes of frequency variations in a single display and give precise information on stimulus-evoked complex change of the neural system describing the new state 'more ordered' or 'non-ordered or more complexly ordered'." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Schütt, Atsuko",
+      "Ito, Iori",
+      "Rosso, Osvaldo A",
+      "Figliola, Alejandra"
+    ],
+  "Date" : "2003",
+  "Identifier" : [  ],
+  "Journal" : [ "Journal of neuroscience methods" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/14511817",
+  "MeshHeadings" : [ 
+      "Animals",
+      "Biological Clocks",
+      "Brain",
+      "Electrophysiology",
+      "Entropy",
+      "Ethanol",
+      "Evoked Potentials",
+      "Fourier Analysis",
+      "Mollusca",
+      "Neurons",
+      "Neurophysiology",
+      "Neuropil",
+      "Olfactory Pathways",
+      "Reaction Time",
+      "Signal Processing, Computer-Assisted",
+      "Smell"
+    ],
+  "PMID" : 14511817,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Wavelet analysis can sensitively describe dynamics of ethanol evoked local field potentials of the slug (Limax marginatus) brain."
+}

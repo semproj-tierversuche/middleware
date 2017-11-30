@@ -1,0 +1,29 @@
+{ 
+  "Abstract" : [ "Single neuron activity was recorded in monkey motor cortex during the execution of pointing movements in six directions. The amount of prior information was manipulated by varying the range of precued directions. A distribution of neural population activation was constructed in the space of movement directions. This population representation of movement direction was preshaped by the precue. Peak location and width reflected the precued range of movement directions. From this preshaped form, the population representation evolved continuously in time and gradually in parameter space toward a more sharply peaked distribution centered on the parameter value specified by the response signal. A theoretical model of motor programming generated a similar temporal evolution of an activation field representing movement direction." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Bastian, A",
+      "Riehle, A",
+      "Erlhagen, W",
+      "Schöner, G"
+    ],
+  "Date" : "1998",
+  "Identifier" : [  ],
+  "Journal" : [ "Neuroreport" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/9507975",
+  "MeshHeadings" : [ 
+      "Animals",
+      "Macaca mulatta",
+      "Models, Neurological",
+      "Motor Cortex",
+      "Movement",
+      "Signal Transduction"
+    ],
+  "PMID" : 9507975,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Prior information preshapes the population representation of movement direction in motor cortex."
+}

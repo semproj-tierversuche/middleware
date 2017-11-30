@@ -1,0 +1,34 @@
+{ 
+  "Abstract" : [ "Most of the fatigue in everyday life is a combination of physical and mental fatigue. Recently, an animal model of combined fatigue was designed by housing rats in a cage filled with water. We have previously hypothesized that mental fatigue is caused partly by neuronal brain damage through the activation of N-methyl-D-aspartate (NMDA) receptors by quinolinic acid (QUIN), a metabolite of tryptophan (TRP). Therefore, we investigated whether the same mechanism also participates in combined fatigue. Rats were housed for 5 d under water-immersed conditions, and the extent of fatigue was evaluated by a weight-loaded forced swimming test. The swimming time of the water-immersed group was shorter than that of the control group, indicating that rats were fatigued by water-immersion. However, unexpectedly, the blood and brain levels of QUIN in the water-immersed group were lower than those of the control group. QUIN levels in both the blood and brains of a food-restricted nonimmersed group, where body weight was matched with the water-immersed group, were also decreased, suggesting that decreased QUIN in the water-immersed group originated from a reduced intake of TRP-containing food. On the other hand, hippocampal neuronal damage was shown in the water-immersed group, similar to that seen in other fatigue models where QUIN increased. Memantine, an NMDA receptor antagonist, inhibited not only the reduction in swimming times but also the neuronal damage induced by water-immersion. These results suggest that neuronal brain damage by an endogenous NMDA receptor agonist other than QUIN participates in combined fatigue by water immersion." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Morimoto, Yasuo",
+      "Zhang, Qian",
+      "Adachi, Koji"
+    ],
+  "Date" : "2012",
+  "Identifier" : [  ],
+  "Journal" : [ "Biological & pharmaceutical bulletin" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/22466550",
+  "MeshHeadings" : [ 
+      "Animals",
+      "Brain Injuries",
+      "Fatigue",
+      "Male",
+      "Memantine",
+      "Models, Animal",
+      "Neuroprotective Agents",
+      "Pyramidal Cells",
+      "Quinolinic Acid",
+      "Rats",
+      "Rats, Sprague-Dawley",
+      "Receptors, N-Methyl-D-Aspartate"
+    ],
+  "PMID" : 22466550,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Effects of memantine, an N-methyl-D-aspartate receptor antagonist, on fatigue and neuronal brain damage in a rat model of combined (physical and mental) fatigue."
+}

@@ -1,0 +1,30 @@
+{ 
+  "Abstract" : [ "Data that have accumulated for well over a decade have implicated the beta-amyloid (Abeta) peptide as a central player in the pathogenesis of Alzheimer's disease (AD). Amyloid plaques, composed primarily of Abeta progressively form in the brains of AD patients, and mutations in three genes (amyloid precursor protein [APP] and presenilin 1 and 2 [PS1 and PS2]) cause early-onset familial AD (FAD) by directly increasing production of the toxic, plaque-promoting Abeta42 peptide. Given the strong association between Abeta and AD, it is likely that therapeutic strategies to lower the levels of Abeta in the brain should prove beneficial for the treatment of AD. One such strategy could involve inhibiting the enzymes that generate Abeta. Abeta is a product of catabolism of the large type-I membrane protein APP. Two proteases, called beta- and gamma-secretase, endoproteolyze APP to liberate the Abeta peptide. Recently, the molecules responsible for these proteolytic activities have been identified. Several lines of evidence suggest that the PS1 and PS2 proteins are gamma-secretase, and the identity of beta-secretase has been shown to be the novel transmembrane aspartic protease, beta-site APP-cleaving enzyme 1 (BACE1; also called Asp2 and memapsin 2). BACE2, a protease homologous to BACE1, was also identified, and together the two enzymes define a new family of transmembrane aspartic proteases. BACE1 exhibits all the functional properties of beta-secretase, and as the key enzyme that initiates the formation of Abeta, BACE1 is an attractive drug target for AD. This review discusses the identification and initial characterization of BACE1 and BACE2, and summarizes recent studies of BACE1 knockout mice that have validated BACE1 as the authentic beta-secretase in vivo." ],
+  "Annotations" : [  ],
+  "Authors" : [ "Vassar, Robert" ],
+  "Date" : "2004",
+  "Identifier" : [  ],
+  "Journal" : [ "Journal of molecular neuroscience : MN" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/15126696",
+  "MeshHeadings" : [ 
+      "Alzheimer Disease",
+      "Amyloid Precursor Protein Secretases",
+      "Amyloid beta-Peptides",
+      "Amyloid beta-Protein Precursor",
+      "Animals",
+      "Aspartic Acid Endopeptidases",
+      "Disease Models, Animal",
+      "Endopeptidases",
+      "Humans",
+      "Membrane Proteins",
+      "Presenilin-1",
+      "Sequence Homology, Amino Acid"
+    ],
+  "PMID" : 15126696,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "BACE1: the beta-secretase enzyme in Alzheimer's disease."
+}

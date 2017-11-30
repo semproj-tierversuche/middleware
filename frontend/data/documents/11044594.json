@@ -1,0 +1,42 @@
+{ 
+  "Abstract" : [ "Previous studies have utilized a lesion model of cortical injury that produces transient behavioral impairments to investigate the recovery of function process. To better understand the recovery process, it would be beneficial to use a lesion model that produces more severe, enduring, behavioral impairments. The purpose of experiment 1 was to validate whether large lesions of the sensorimotor cortex (SMC), which included the rostral forelimb and caudal forelimb regions, produced enduring behavioral deficits. Rats were given large unilateral electrolytic lesions of the SMC, administered either the N-methyl-D-aspartate (NMDA) antagonist, MK-801 or saline 16 h after injury, and tested on a battery of behavioral tests. Enduring behavioral deficits were observed, for at least 6 months, on two tests of forelimb placing while transient deficits were observed on the foot-fault and somatosensory neutralization tests. Administration of MK-801 facilitated recovery on the somatosensory neutralization test; however, it did not induce recovery on either forelimb placing test. A second experiment was performed to determine if earlier administration of MK-801, the NMDA antagonist magnesium chloride (MgCl(2)), or the anti-oxidant N-tert-butyl-alpha-phenylnitrone (PBN) could induce behavioral recovery in this chronic model. Treatment with these drugs induced behavioral recovery on the forelimb placing tests, whereas, the saline-treated rats did not show any signs of behavioral recovery for at least 3 months. Anatomical analysis of the striatum showed that MK-801 and MgCl(2) but not PBN reduced the extent of lesion-induced striatal atrophy. These results suggest that administration of MK-801, MgCl(2), or PBN shortly after cortical injury can induce recovery of function when recovery is otherwise not expected in un-treated rats." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Hoane, M R",
+      "Barbay, S",
+      "Barth, T M"
+    ],
+  "Date" : "2000",
+  "Identifier" : [  ],
+  "Journal" : [ "Brain research bulletin" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/11044594",
+  "MeshHeadings" : [ 
+      "Animals",
+      "Antioxidants",
+      "Brain Injuries",
+      "Cyclic N-Oxides",
+      "Dizocilpine Maleate",
+      "Excitatory Amino Acid Antagonists",
+      "Forelimb",
+      "Lameness, Animal",
+      "Magnesium Chloride",
+      "Male",
+      "Motor Activity",
+      "Motor Cortex",
+      "Nerve Degeneration",
+      "Neuroprotective Agents",
+      "Nitrogen Oxides",
+      "Rats",
+      "Rats, Wistar",
+      "Receptors, N-Methyl-D-Aspartate",
+      "Touch",
+      "Vibrissae"
+    ],
+  "PMID" : 11044594,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Large cortical lesions produce enduring forelimb placing deficits in un-treated rats and treatment with NMDA antagonists or anti-oxidant drugs induces behavioral recovery."
+}

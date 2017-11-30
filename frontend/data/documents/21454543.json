@@ -1,0 +1,37 @@
+{ 
+  "Abstract" : [ "Mutations in leucine-rich repeat kinase 2 (LRRK2) are currently the most common genetic cause of familial late-onset Parkinson disease, which is clinically indistinguishable from idiopathic disease. The most common pathological mutation in LRRK2, G2019S LRRK2, is known to cause neurite retraction. However, molecular mechanisms underlying regulation of neurite length by LRRK2 are unknown. Here, we demonstrate a novel interaction between LRRK2 and the Rho GTPase, Rac1, which plays a critical role in actin cytoskeleton remodeling necessary for the maintenance of neurite morphology. LRRK2 binds strongly to endogenous or expressed Rac1, while showing weak binding to Cdc42 and no binding to RhoA. Co-expression with LRRK2 increases Rac1 activity, as shown by increased binding to the p21-activated kinase, which modulates actin cytoskeletal dynamics. LRRK2 constructs carrying mutations that inactivate the kinase or GTPase activities do not activate Rac1. Interestingly, LRRK2 does not increase levels of membrane-bound Rac1 but dramatically changes the cellular localization of Rac1, causing polarization, which is augmented further when LRRK2 is co-expressed with constitutively active Rac1. Four different disease-related mutations in LRRK2 altered binding to Rac1, with the G2019S and R1441C LRRK2 mutations attenuating Rac1 binding and the Y1699C and I2020T LRRK2 mutations increasing binding. Co-expressing Rac1 in SH-SY5Y cells rescues the G2019S mutant phenotype of neurite retraction. We hypothesize that pathological mutations in LRRK2 attenuates activation of Rac1, causing disassembly of actin filaments, leading to neurite retraction. The interactions between LRRK2 and Rho GTPases provide a novel pathway through which LRRK2 might modulate cellular dynamics and contribute to the pathophysiology of Parkinson disease." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Chan, Diane",
+      "Citro, Allison",
+      "Cordy, Joanna M",
+      "Shen, Grace C",
+      "Wolozin, Benjamin"
+    ],
+  "Date" : "2011",
+  "Identifier" : [  ],
+  "Journal" : [ "The Journal of biological chemistry" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/21454543",
+  "MeshHeadings" : [ 
+      "Actin Cytoskeleton",
+      "Amino Acid Substitution",
+      "HEK293 Cells",
+      "Humans",
+      "Leucine-Rich Repeat Serine-Threonine Protein Kinase-2",
+      "Mutation, Missense",
+      "Neurites",
+      "Parkinson Disease",
+      "Protein Binding",
+      "Protein-Serine-Threonine Kinases",
+      "cdc42 GTP-Binding Protein",
+      "rac1 GTP-Binding Protein",
+      "rhoA GTP-Binding Protein"
+    ],
+  "PMID" : 21454543,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Rac1 protein rescues neurite retraction caused by G2019S leucine-rich repeat kinase 2 (LRRK2)."
+}

@@ -1,0 +1,40 @@
+{ 
+  "Abstract" : [ "Rats repeatedly intoxicated with alcohol (ethanol, three times daily) over a 4-day period display neuronal degeneration in the dentate gyrus; entorhinal, piriform, insular, orbital, and perirhinal cortices; and in the olfactory nerve fibers and terminals in the olfactory bulb. Postulating a role for excitotoxicity, we have attempted to prevent the degeneration using antagonists that are neuroprotective in this type of brain damage. In an initial study, continuous subcutaneous infusion of a high dose of the glutamate/NMDA receptor antagonist MK-801 (2 mg/kg/day) by itself caused extensive neuronal degeneration in several brain regions and severe behavioral intoxication that precluded survival if combined with high blood alcohol levels (approximately 300 mg/dl). Moreover, the lower, nonneurotoxic blood alcohol levels (approximately 150 mg/dl) that were compatible with survival worsened the MK-801-induced brain damage. In a subsequent experiment, daily intraperitoneal injections of a lower dose of MK-801 (1 mg/kg/day) resulted in no MK-801 toxicity and, when combined with neurotoxic levels of alcohol, no reduction in alcohol-induced neurotoxicity. Nimodipine, a voltage-gated Ca2+ channel blocker, reduced the neuronal damage in the dentate gyrus, but greatly increased it in the piriform cortex when administered intragastrically at 600 mg/kg/day; it provided no protection from alcohol-dependent degeneration when given intragastrically at 100 mg/kg/day. Continuous intracerebroventricular delivery of 0.24 to 0.29 mg/day of 6,7-dinitro-quinoxaline-2,3-dione, a glutamate/alpha-amino-3-hydroxy-5-methyl-4-isoxazole receptor antagonist, failed to diminish alcohol-dependent neuronal damage in any brain region. We conclude that brain damage from episodic \"binge\" alcohol intoxication is not primarily mediated by excitotoxic mechanisms, implying that other, nonexcitotoxic pathophysiological mechanisms, are involved. Furthermore, MK-801, far from protecting from the alcohol-induced damage, at high doses causes widespread neuropathology that is significantly potentiated by alcohol." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Corso, T D",
+      "Mostafa, H M",
+      "Collins, M A",
+      "Neafsey, E J"
+    ],
+  "Date" : "1998",
+  "Identifier" : [  ],
+  "Journal" : [ "Alcoholism, clinical and experimental research" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/9514310",
+  "MeshHeadings" : [ 
+      "Alcoholic Intoxication",
+      "Animals",
+      "Brain",
+      "Calcium Channel Blockers",
+      "Dentate Gyrus",
+      "Dizocilpine Maleate",
+      "Dose-Response Relationship, Drug",
+      "Drug Administration Schedule",
+      "Excitatory Amino Acid Antagonists",
+      "Male",
+      "Nerve Degeneration",
+      "Neurons",
+      "Neuroprotective Agents",
+      "Nimodipine",
+      "Quinoxalines",
+      "Rats",
+      "Rats, Sprague-Dawley"
+    ],
+  "PMID" : 9514310,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Brain neuronal degeneration caused by episodic alcohol intoxication in rats: effects of nimodipine, 6,7-dinitro-quinoxaline-2,3-dione, and MK-801."
+}

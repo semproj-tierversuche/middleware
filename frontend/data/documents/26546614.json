@@ -1,0 +1,43 @@
+{ 
+  "Abstract" : [ "Mutations in leucine-rich repeat kinase 2 (LRRK2) are the most common known cause of inherited Parkinson's disease (PD), and LRRK2 is a risk factor for idiopathic PD. How LRRK2 function is regulated is not well understood. Recently, the highly conserved 14-3-3 proteins, which play a key role in many cellular functions including cell death, have been shown to interact with LRRK2. In this study, we investigated whether 14-3-3s can regulate mutant LRRK2-induced neurite shortening and kinase activity. In the presence of 14-3-3θ overexpression, neurite length of primary neurons from BAC transgenic G2019S-LRRK2 mice returned back to wild-type levels. Similarly, 14-3-3θ overexpression reversed neurite shortening in neuronal cultures from BAC transgenic R1441G-LRRK2 mice. Conversely, inhibition of 14-3-3s by the pan-14-3-3 inhibitor difopein or dominant-negative 14-3-3θ further reduced neurite length in G2019S-LRRK2 cultures. Since G2019S-LRRK2 toxicity is likely mediated through increased kinase activity, we examined 14-3-3θ's effects on LRRK2 kinase activity. 14-3-3θ overexpression reduced the kinase activity of G2019S-LRRK2, while difopein promoted the kinase activity of G2019S-LRRK2. The ability of 14-3-3θ to reduce LRRK2 kinase activity required direct binding of 14-3-3θ with LRRK2. The potentiation of neurite shortening by difopein in G2019S-LRRK2 neurons was reversed by LRRK2 kinase inhibitors. Taken together, we conclude that 14-3-3θ can regulate LRRK2 and reduce the toxicity of mutant LRRK2 through a reduction of kinase activity." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Lavalley, Nicholas J",
+      "Slone, Sunny R",
+      "Ding, Huiping",
+      "West, Andrew B",
+      "Yacoubian, Talene A"
+    ],
+  "Date" : "2016",
+  "Identifier" : [  ],
+  "Journal" : [ "Human molecular genetics" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/26546614",
+  "MeshHeadings" : [ 
+      "14-3-3 Proteins",
+      "Animals",
+      "Cell Enlargement",
+      "Cells, Cultured",
+      "HEK293 Cells",
+      "Humans",
+      "Leucine-Rich Repeat Serine-Threonine Protein Kinase-2",
+      "Mice",
+      "Mice, Inbred C57BL",
+      "Mice, Transgenic",
+      "Mutation",
+      "Neurites",
+      "Neurons",
+      "Parkinson Disease",
+      "Phosphorylation",
+      "Protein Isoforms",
+      "Protein-Serine-Threonine Kinases",
+      "Proteins",
+      "Serine"
+    ],
+  "PMID" : 26546614,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "14-3-3 Proteins regulate mutant LRRK2 kinase activity and neurite shortening."
+}

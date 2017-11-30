@@ -1,0 +1,29 @@
+{ 
+  "Abstract" : [ "Amyloid plaques, hallmark neuropathological lesions in Alzheimer's disease (AD) brain, are composed of the beta-amyloid peptide (Abeta). A large body of evidence suggests Abeta is central to the pathophysiology of AD and is likely to start this intractable neurodegenerative disorder. Mutations in three genes (amyloid precursor protein/APP, presenilin1, presenilin2) cause early on-set familial AD by increasing synthesis of the toxic 42 amino acid species of Abeta (Abeta42). Fibrillar Abeta in amyloid plaques appears to cause neurodegeneration, although recent studies suggest soluble Abeta oligomers may also be neurotoxic. Regardless, given the strong correlation between Abeta and AD, therapeutic strategies to lower cerebral Abeta levels should prove beneficial for the treatment of AD. Abeta is derived from APP via cleavage by two proteases, beta- and gamma-secretase. beta-secretase, recently identified as the novel aspartic protease BACEI, initiates the formation of Abeta. Consequently, BACE1 in principle is an excellent therapeutic target for strategies to reduce the production of Abeta in AD. However, the discovery of the homologue BACE2 raised the question of whether it too may be a beta-secretase. To settle this issue, our group and others have used gene targeting to generate BACE1 deficient (knockout) mice. These BACEI knockout mice have been instrumental in validating BACEI as the authentic beta-secretase in vivo. Here, I review the roles of BACE1, APP, and Abeta in AD and discuss the implications of therapeutic approaches that target BACE1 for the treatment of AD." ],
+  "Annotations" : [  ],
+  "Authors" : [ "Vassar, Robert" ],
+  "Date" : "2005",
+  "Identifier" : [  ],
+  "Journal" : [ "Sub-cellular biochemistry" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/15709474",
+  "MeshHeadings" : [ 
+      "Alzheimer Disease",
+      "Amyloid Precursor Protein Secretases",
+      "Amyloid beta-Peptides",
+      "Amyloid beta-Protein Precursor",
+      "Animals",
+      "Aspartic Acid Endopeptidases",
+      "Endopeptidases",
+      "Humans",
+      "Mice",
+      "Mice, Knockout",
+      "Nerve Degeneration"
+    ],
+  "PMID" : 15709474,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "beta-Secretase, APP and Abeta in Alzheimer's disease."
+}

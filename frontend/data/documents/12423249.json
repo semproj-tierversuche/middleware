@@ -1,0 +1,42 @@
+{ 
+  "Abstract" : [ "Aggregates of beta-amyloid peptide (Abeta) are the major component of the amyloid core of the senile plaques observed in Alzheimer's disease (AD). Abeta results from the amyloidogenic processing of its precursor, the amyloid precursor protein (APP), by beta- and gamma-secretase activities. If beta-secretase has recently been identified and termed BACE, the identity of gamma-secretase is still obscure. Studies with knock-out mice showed that presenilin 1 (PS1), of which mutations are known to be the first cause of inherited AD, is mandatory for the gamma-secretase activity. However, the proteolytic activity of PS1 remains a matter of debate. Here we used transfected Sf9 insect cells, a cellular model lacking endogenous beta- and/or gamma-secretase activities, to characterize the role of BACE and PS1 in the amyloidogenic processing of human APP. We show that, in Sf9 cells, BACE performs the expected beta-secretase cleavage of APP, generating C99. We also show that C99, which is a substrate of gamma-secretase, tightly binds to the human PS1. Despite this interaction, Sf9 cells still do not produce Abeta. This strongly argues against a direct proteolytic activity of PS1 in APP processing, and points toward an implication of PS1 in trafficking/presenting its substrate to the gamma-secretase." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Pitsi, Didier",
+      "Kienlen-Campard, Pascal",
+      "Octave, Jean-Noël"
+    ],
+  "Date" : "2002",
+  "Identifier" : [  ],
+  "Journal" : [ "Journal of neurochemistry" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/12423249",
+  "MeshHeadings" : [ 
+      "Alzheimer Disease",
+      "Amyloid Precursor Protein Secretases",
+      "Amyloid beta-Peptides",
+      "Amyloid beta-Protein Precursor",
+      "Animals",
+      "Aspartic Acid Endopeptidases",
+      "Blotting, Western",
+      "Cells, Cultured",
+      "Endopeptidases",
+      "Humans",
+      "Membrane Proteins",
+      "Neurons",
+      "Presenilin-1",
+      "Protein Binding",
+      "Protein Processing, Post-Translational",
+      "Protein Transport",
+      "Rats",
+      "Rats, Wistar",
+      "Spodoptera",
+      "Transfection"
+    ],
+  "PMID" : 12423249,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Failure of the interaction between presenilin 1 and the substrate of gamma-secretase to produce Abeta in insect cells."
+}

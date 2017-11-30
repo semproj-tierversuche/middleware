@@ -1,0 +1,43 @@
+{ 
+  "Abstract" : [ "Increasing evidence suggests that the low density lipoprotein receptor-related protein (LRP) affects the processing of amyloid precursor protein (APP) and amyloid beta (Abeta) protein production as well as mediates the clearance of Abeta from the brain. Recent studies indicate that the cytoplasmic domain of LRP is critical for this modulation of APP processing requiring perhaps a complex between APP, the adaptor protein FE65, and LRP. In this study, we expressed a small LRP domain consisting of the C-terminal 97 amino acids of the cytoplasmic domain, or LRP-soluble tail (LRP-ST), in CHO cells to test the hypothesis that the APP.LRP complex can be disrupted. We anticipated that LRP-ST would inhibit the normal interaction between LRP and APP and therefore perturb APP processing to resemble a LRP-deficient state. Surprisingly, CHO cells expressing LRP-ST demonstrated an increase in both sAPP secretion and Abeta production compared with control CHO cells in a manner reminiscent of the cellular effects of the APP \"Swedish mutation.\" The increase in sAPP secretion consisted mainly of sAPPbeta, consistent with the increase in Abeta release. Further, this effect is LRP-independent, as the same alterations remained when LRP-ST was expressed in LRP-deficient cells but not when the construct was membrane-anchored. Finally, deletion experiments suggested that the last 50 amino acid residues of LRP-ST contain the important domain for altering APP processing and Abeta production. These observations indicate that there are cellular pathways that may suppress Abeta generation but that can be altered to facilitate Abeta production." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Yoon, Il-Sang",
+      "Pietrzik, Claus U",
+      "Kang, David E",
+      "Koo, Edward H"
+    ],
+  "Date" : "2005",
+  "Identifier" : [  ],
+  "Journal" : [ "The Journal of biological chemistry" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/15772078",
+  "MeshHeadings" : [ 
+      "Amyloid Precursor Protein Secretases",
+      "Amyloid beta-Peptides",
+      "Amyloid beta-Protein Precursor",
+      "Animals",
+      "Aspartic Acid Endopeptidases",
+      "CHO Cells",
+      "Cricetinae",
+      "DNA-Binding Proteins",
+      "Endopeptidases",
+      "Humans",
+      "Kinetics",
+      "Leucine-Responsive Regulatory Protein",
+      "Peptide Fragments",
+      "Protein Processing, Post-Translational",
+      "Protein Structure, Tertiary",
+      "Recombinant Proteins",
+      "Signal Transduction",
+      "Transcription Factors",
+      "Transcription, Genetic",
+      "Transfection"
+    ],
+  "PMID" : 15772078,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Sequences from the low density lipoprotein receptor-related protein (LRP) cytoplasmic domain enhance amyloid beta protein production via the beta-secretase pathway without altering amyloid precursor protein/LRP nuclear signaling."
+}

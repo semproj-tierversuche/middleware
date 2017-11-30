@@ -1,0 +1,41 @@
+{ 
+  "Abstract" : [ "Parkinson's disease (PD) is associated with loss of dopaminergic signalling, and affects not just movement, but also vision. As both mammalian and fly visual systems contain dopaminergic neurons, we investigated the effect of LRRK2 mutations (the most common cause of inherited PD) on Drosophila electroretinograms (ERGs). We reveal progressive loss of photoreceptor function in flies expressing LRRK2-G2019S in dopaminergic neurons. The photoreceptors showed elevated autophagy, apoptosis and mitochondrial disorganization. Head sections confirmed extensive neurodegeneration throughout the visual system, including regions not directly innervated by dopaminergic neurons. Other PD-related mutations did not affect photoreceptor function, and no loss of vision was seen with kinase-dead transgenics. Manipulations of the level of Drosophila dLRRK suggest G2019S is acting as a gain-of-function, rather than dominant negative mutation. Increasing activity of the visual system, or of just the dopaminergic neurons, accelerated the G2019S-induced deterioration of vision. The fly visual system provides an excellent, tractable model of a non-autonomous deficit reminiscent of that seen in PD, and suggests that increased energy demand may contribute to the mechanism by which LRRK2-G2019S causes neurodegeneration." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Hindle, Samantha",
+      "Afsari, Farinaz",
+      "Stark, Meg",
+      "Middleton, C Adam",
+      "Evans, Gareth J O",
+      "Sweeney, Sean T",
+      "Elliott, Christopher J H"
+    ],
+  "Date" : "2013",
+  "Identifier" : [  ],
+  "Journal" : [ "Human molecular genetics" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/23396536",
+  "MeshHeadings" : [ 
+      "Animals",
+      "Apoptosis",
+      "Disease Models, Animal",
+      "Dopaminergic Neurons",
+      "Drosophila Proteins",
+      "Electroretinography",
+      "Female",
+      "Gene Expression",
+      "Humans",
+      "Mitochondria",
+      "Mutation",
+      "Parkinson Disease",
+      "Photoreceptor Cells",
+      "Protein-Serine-Threonine Kinases",
+      "Retinal Degeneration"
+    ],
+  "PMID" : 23396536,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Dopaminergic expression of the Parkinsonian gene LRRK2-G2019S leads to non-autonomous visual neurodegeneration, accelerated by increased neural demands for energy."
+}

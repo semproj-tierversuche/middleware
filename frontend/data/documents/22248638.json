@@ -1,0 +1,41 @@
+{ 
+  "Abstract" : [ "Memantine, a non-competitive NMDA receptor antagonist, is used for the treatment of Alzheimer's disease (AD) and off-label as an anti-depressant. Here we investigated possible anti-depressant, cognitive enhancing and neuroprotective effects of memantine in the olfactory bulbectomized (OBX) rat. OBX is used as a screening model for antidepressants and shows cognitive disturbances. In Experiment I, memantine treatment started 14 days after OBX surgery (this setup is similar to what we use for screening of potential antidepressants) and 2 days before surgery in experiment II. In both experiments, memantine (20 mg/kg, p.o) was administered once daily for 28 days. Animals were tested in the open field (locomotor activity), passive avoidance (fear learning and memory), and holeboard (spatial acquisition and memory) before and after the bulbectomy. Memantine, when administered before surgery, prevented OBX-induced hyperactivity and partly fear memory loss. These behavioral effects were present for at least 3 weeks after cessation of treatment. Memantine, however did not improve spatial memory. When administered 2 weeks after OBX surgery, memantine was ineffective in normalizing open field hyperactivity and improving cognitive deficits. Interestingly, after the animals were retrained in passive avoidance, memantine- treated OBX rats (both in experiment I and II) showed improved fear learning and memory. Our findings suggest that memantine has both neuroprotective and cognitive enhancing effects without antidepressant-like properties in the OBX rat. Based on our results, we propose that memantine may be more beneficial to AD patients when administered early in the disease process." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Borre, Yuliya",
+      "Bosman, Esmeralda",
+      "Lemstra, Susan",
+      "Westphal, Koen G",
+      "Olivier, Berend",
+      "Oosting, Ronald S"
+    ],
+  "Date" : "2012",
+  "Identifier" : [  ],
+  "Journal" : [ "Neuropharmacology" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/22248638",
+  "MeshHeadings" : [ 
+      "Animals",
+      "Avoidance Learning",
+      "Behavior, Animal",
+      "Cognition",
+      "Cognition Disorders",
+      "Excitatory Amino Acid Antagonists",
+      "Male",
+      "Memantine",
+      "Memory",
+      "Motor Activity",
+      "Nerve Degeneration",
+      "Neuroprotective Agents",
+      "Olfactory Bulb",
+      "Rats",
+      "Rats, Sprague-Dawley",
+      "Receptors, N-Methyl-D-Aspartate"
+    ],
+  "PMID" : 22248638,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Memantine partly rescues behavioral and cognitive deficits in an animal model of neurodegeneration."
+}

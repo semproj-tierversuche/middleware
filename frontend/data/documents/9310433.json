@@ -1,0 +1,32 @@
+{ 
+  "Abstract" : [ "Dorsal spinocerebellar tract (DSCT) neurons have been shown to transmit signals related to hindlimb position and movement direction in the anesthetized cat. Because both parameters may be encoded by single neurons, we examined the extent to which their representations might occur sequentially or simultaneously by recording unit activity while the hindlimb was moved passively in the sagittal plane by a robot arm. A center-out/out-center paradigm moved the foot 2 cm from a given position radially to eight positions located 45 degrees apart, holding each position for 8 s. Another paradigm moved the foot along various paths to 20 positions distributed throughout most of the limb's workspace. With each paradigm, we could assess the activity related to foot position and the direction of movement to each position. Modulation of unit activity evoked by center-out/out-center movements was determined for each 1-s postmovement interval by use of a cosine tuning model that specified modulation amplitude and preferred direction. Of 125 units tested, 82.4% were significantly modulated (P < 0.05) according to this model. We assessed the relative contributions of position and movement by taking advantage of the fact that directional modulation following out-center movements to a common position could only be related to the movement, whereas that following the center-out movements related to both position and movement. The results suggested a simultaneous modulation by these two parameters. Each cell could be characterized by a similar preferred direction for position or movement modulation and the distribution of preferred directions across cells clustered significantly along an axis close to the limb axis. When the limb axis was rotated, the unit preferred directions rotated similarly, on average. Unexpectedly, we found the activity of more than half the cells to be modulated for > or = 8 s after out-center movements, implying a persistent movement-related activity well after a movement is completed. These findings were confirmed and extended with the second paradigm by using a multivariate regression model that included terms for position, movement, and their multiplicative interaction. The activity of 81.3% of the 97 neurons tested fit the model (R2 > 0.4, P < .0001); 31.6% were modulated exclusively by foot position, and 58.2% simultaneously by both position and movement, with significant interaction. We conclude from our results that DSCT neurons may be modulated simultaneously by limb position and movement, and their preferred directions tend to align with the limb axis. The modulation is interactive such that movement modulation amplitude depends on limb position, and many cells also retain a memory trace of recent movements. The results are discussed in terms of a possible role for the DSCT in encoding limb compliance." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Bosco, G",
+      "Poppele, R E"
+    ],
+  "Date" : "1997",
+  "Identifier" : [  ],
+  "Journal" : [ "Journal of neurophysiology" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/9310433",
+  "MeshHeadings" : [ 
+      "Animals",
+      "Axons",
+      "Cats",
+      "Cerebellum",
+      "Environment",
+      "Foot",
+      "Hindlimb",
+      "Models, Neurological",
+      "Movement",
+      "Regression Analysis",
+      "Spinal Cord"
+    ],
+  "PMID" : 9310433,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Representation of multiple kinematic parameters of the cat hindlimb in spinocerebellar activity."
+}

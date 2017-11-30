@@ -1,0 +1,41 @@
+{ 
+  "Abstract" : [ "Mutation of leucine-rich repeat kinase 2 (LRRK2) is the most common genetic cause of both familial and sporadic Parkinson's disease (PD) cases. Several mutations in LRRK2 gene were reported in PD patients. R1441 is the second most frequent site of LRRK2 mutation. We generated (R1441C) LRRK2 transgenic mice that displayed motor deficits at the age of 16 months. Compared with wild-type mice, 16-month-old (R1441C) LRRK2 mice exhibited a significant reduction in the number of substantia nigra (SN) dopaminergic neurons. To elucidate molecular pathogenic pathways involved in (R1441C) LRRK2-induced death of SN dopaminergic neurons, we performed microarray analysis to visualize altered mRNA expressions in the SN of (R1441C) LRRK2 mouse. In the SN of (R1441C) LRRK2 transgenic mouse, the mRNA expression of three genes that promote cell death was upregulated, while the mRNA expression of seven genes that contribute to neurogenesis/neuroprotection was significantly downregulated. Our results suggest that altered expression of these genes involved in regulating neuronal survival may contribute to the pathogenesis of (R1441C) LRRK2-induced PD." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Weng, Yi-Hsin",
+      "Chen, Chu-Yu",
+      "Lin, Kun-Jun",
+      "Chen, Ying-Ling",
+      "Yeh, Tu-Hsueh",
+      "Hsiao, Ing-Tsung",
+      "Chen, Ing-Jou",
+      "Lu, Chin-Song",
+      "Wang, Hung-Li"
+    ],
+  "Date" : "2016",
+  "Identifier" : [  ],
+  "Journal" : [ "Experimental neurology" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/26363496",
+  "MeshHeadings" : [ 
+      "Animals",
+      "Cell Survival",
+      "Dopaminergic Neurons",
+      "Gene Expression Regulation",
+      "Leucine-Rich Repeat Serine-Threonine Protein Kinase-2",
+      "Levodopa",
+      "Mice",
+      "Mice, Transgenic",
+      "Motor Activity",
+      "Nerve Degeneration",
+      "Neurogenesis",
+      "Protein-Serine-Threonine Kinases",
+      "Substantia Nigra"
+    ],
+  "PMID" : 26363496,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "(R1441C) LRRK2 induces the degeneration of SN dopaminergic neurons and alters the expression of genes regulating neuronal survival in a transgenic mouse model."
+}

@@ -1,0 +1,33 @@
+{ 
+  "Abstract" : [ "We present a biologically plausible spiking neuronal network model of free monkey scribbling that reproduces experimental findings on cortical activity and the properties of the scribbling trajectory. The model is based on the idea that synfire chains can encode movement primitives. Here, we map the propagation of activity in a chain to a linearly evolving preferred velocity, which results in parabolic segments that fulfill the two-thirds power law. Connections between chains that match the final velocity of one encoded primitive to the initial velocity of the next allow the composition of random sequences of primitives with smooth transitions. The model provides an explanation for the segmentation of the trajectory and the experimentally observed deviations of the trajectory from the parabolic shape at primitive transition sites. Furthermore, the model predicts low frequency oscillations (<10 Hz) of the motor cortex local field potential during ongoing movements and increasing firing rates of non-specific motor cortex neurons before movement onset." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Hanuschkin, Alexander",
+      "Herrmann, J Michael",
+      "Morrison, Abigail",
+      "Diesmann, Markus"
+    ],
+  "Date" : "2011",
+  "Identifier" : [  ],
+  "Journal" : [ "Journal of computational neuroscience" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/20953686",
+  "MeshHeadings" : [ 
+      "Action Potentials",
+      "Animals",
+      "Arm",
+      "Cortical Synchronization",
+      "Haplorhini",
+      "Models, Neurological",
+      "Motor Cortex",
+      "Movement",
+      "Nerve Net",
+      "Neural Pathways"
+    ],
+  "PMID" : 20953686,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Compositionality of arm movements can be realized by propagating synchrony."
+}

@@ -1,0 +1,43 @@
+{ 
+  "Abstract" : [ "Although stroke is a major cause of death and disability in the elderly, the inhibitory effects of neuroprotectants in acute stroke have been investigated using experimental cerebral ischemic models of young animals. Recent clinical trials have found that few neuroprotectants are effective. These observations indicate that effects in the clinical setting do not always reflect data from young animals. Thus, we compared the effects of the NMDA receptor antagonist MK-801 and of the AMPA receptor antagonist NBQX [2,3-dihydroxy-6-nitro-7-sulfamoyl-benzo(F)quinixaline] on ischemic cerebral damage in the photothrombosis model of aged and young rats. MK-801 administered immediately after MCA occlusion significantly (P<0.05) reduced the extent of cerebral damage in young, but not in aged, rats and the effects of NBQX were similar. In separate experiments, we evaluated brain damage after microinjecting NMDA or kainic acid into the cortex using a stereotaxic apparatus. We found no significant differences in focal cerebral damage caused by NMDA between young and aged rats. On the other hand, kainic acid caused all of the aged rats tested to die, but none of the young rats. Our observations indicate that NMDA and AMPA receptor antagonists are less effective in aged, than in young, rats and that cerebral damage by receptor agonists depends on the type of receptor, such as NMDA and AMPA." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Suzuki, Yasuhiro",
+      "Takagi, Yumie",
+      "Nakamura, Ryuta",
+      "Hashimoto, Kunihisa",
+      "Umemura, Kazuo"
+    ],
+  "Date" : "2003",
+  "Identifier" : [  ],
+  "Journal" : [ "Brain research" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/12573519",
+  "MeshHeadings" : [ 
+      "Aging",
+      "Animals",
+      "Brain Ischemia",
+      "Cerebral Infarction",
+      "Disease Models, Animal",
+      "Dizocilpine Maleate",
+      "Excitatory Amino Acid Antagonists",
+      "Infarction, Middle Cerebral Artery",
+      "Kainic Acid",
+      "Male",
+      "Nerve Degeneration",
+      "Neurons",
+      "Neuroprotective Agents",
+      "Quinoxalines",
+      "Rats",
+      "Rats, Sprague-Dawley",
+      "Receptors, AMPA",
+      "Receptors, N-Methyl-D-Aspartate",
+      "Telencephalon"
+    ],
+  "PMID" : 12573519,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Ability of NMDA and non-NMDA receptor antagonists to inhibit cerebral ischemic damage in aged rats."
+}

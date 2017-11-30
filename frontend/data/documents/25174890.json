@@ -1,0 +1,43 @@
+{ 
+  "Abstract" : [ "Mutations in the leucine-rich repeat kinase 2 (LRRK2) gene cause late-onset, autosomal dominant Parkinson's disease (PD). The clinical and neurochemical features of LRRK2-linked PD are similar to idiopathic disease although neuropathology is somewhat heterogeneous. Dominant mutations in LRRK2 precipitate neurodegeneration through a toxic gain-of-function mechanism which can be modeled in transgenic mice overexpressing human LRRK2 variants. A number of LRRK2 transgenic mouse models have been developed that display abnormalities in dopaminergic neurotransmission and alterations in tau metabolism yet without consistently inducing dopaminergic neurodegeneration. To directly explore the impact of mutant LRRK2 on the nigrostriatal dopaminergic pathway, we developed conditional transgenic mice that selectively express human R1441C LRRK2 in dopaminergic neurons from the endogenous murine ROSA26 promoter. The expression of R1441C LRRK2 does not induce the degeneration of substantia nigra dopaminergic neurons or striatal dopamine deficits in mice up to 2years of age, and fails to precipitate abnormal protein inclusions containing alpha-synuclein, tau, ubiquitin or autophagy markers (LC3 and p62). Furthermore, mice expressing R1441C LRRK2 exhibit normal motor activity and olfactory function with increasing age. Intriguingly, the expression of R1441C LRRK2 induces age-dependent abnormalities of the nuclear envelope in nigral dopaminergic neurons including reduced nuclear circularity and increased invaginations of the nuclear envelope. In addition, R1441C LRRK2 mice display increased neurite complexity of cultured midbrain dopaminergic neurons. Collectively, these novel R1441C LRRK2 conditional transgenic mice reveal altered dopaminergic neuronal morphology with advancing age, and provide a useful tool for exploring the pathogenic mechanisms underlying the R1441C LRRK2 mutation in PD." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Tsika, Elpida",
+      "Kannan, Meghna",
+      "Foo, Caroline Shi-Yan",
+      "Dikeman, Dustin",
+      "Glauser, Liliane",
+      "Gellhaar, Sandra",
+      "Galter, Dagmar",
+      "Knott, Graham W",
+      "Dawson, Ted M",
+      "Dawson, Valina L",
+      "Moore, Darren J"
+    ],
+  "Date" : "2014",
+  "Identifier" : [  ],
+  "Journal" : [ "Neurobiology of disease" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/25174890",
+  "MeshHeadings" : [ 
+      "Animals",
+      "Arginine",
+      "Cell Nucleolus",
+      "Cells, Cultured",
+      "Cysteine",
+      "Dopaminergic Neurons",
+      "Humans",
+      "Leucine-Rich Repeat Serine-Threonine Protein Kinase-2",
+      "Mesencephalon",
+      "Mice",
+      "Mice, Transgenic",
+      "Mutation",
+      "Protein-Serine-Threonine Kinases"
+    ],
+  "PMID" : 25174890,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Conditional expression of Parkinson's disease-related R1441C LRRK2 in midbrain dopaminergic neurons of mice causes nuclear abnormalities without neurodegeneration."
+}

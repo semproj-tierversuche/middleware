@@ -1,0 +1,28 @@
+{ 
+  "Abstract" : [ "We review experiments in which single-cell primary motor cortical activity was recorded from Rhesus monkeys (Macaca mulatta) while they performed reaching and drawing tasks. The directional tuning curves generated during reaching were modulated by the speed of movement and this was reflected in the magnitude of population vectors calculated from firing rates of a large population of cells. Directional and speed representation in the firing rates of these cells is robust across both reaching and drawing. Several behavioural invariants related to the speed of drawing were represented in the time-series of population vectors. This high fidelity neural representation of velocity found in motor cortex can be used to visualize the dynamics of motor cortical activity during drawing and suggests that the cost function governing the rate of drawing is bound by neural processing." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Schwartz, A B",
+      "Moran, D W"
+    ],
+  "Date" : "2000",
+  "Identifier" : [  ],
+  "Journal" : [ "The European journal of neuroscience" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/10886326",
+  "MeshHeadings" : [ 
+      "Animals",
+      "Arm",
+      "Macaca mulatta",
+      "Models, Neurological",
+      "Motor Cortex",
+      "Motor Neurons",
+      "Movement"
+    ],
+  "PMID" : 10886326,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Arm trajectory and representation of movement processing in motor cortical activity."
+}

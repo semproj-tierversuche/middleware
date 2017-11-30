@@ -1,0 +1,32 @@
+{ 
+  "Abstract" : [ "Since few years, gamma oscillations have given rise to an increasing interest. They have been successively described as being involved in cognitive function and various sensory systems. However, their role remains the subject of much debate. Gamma rhythms are difficult to study in scalp recordings due to low amplitudes and because the skull filters out high-frequency signals. Hence, their study makes necessary intracerebral recordings. Here, we report our intracerebral data issuing from study of gamma oscillations in the human sensorimotor cortex during the preparation and execution of voluntary movements. These studies have been performed in epileptic patients explored by stereoelectroencephalography (SEEG). Whereas mu and beta rhythms reactivity was diffused, the gamma rhythm reactivity to the movement was very focused and was observed predominantly in the primary sensorimotor areas that were involved in the movement, as assessed by the electrical cortical stimulations. Gamma oscillations seemed to be related to the movement execution rather than to the movement preparation. We have compared the temporo-spatial relationships between movement-related cortical potentials (MRCPs) and sensorimotor rhythms. We show that (i) the late components of MRCPs (motor potential--MP and post-movement complex--PMc) and the gamma event-related synchronization (ERS) within the 40-60-Hz band always occurred in the same contacts (located in the primary sensorimotor areas) and (ii) the PMc peaked during the gamma ERS, whereas the MP began before it. The PMc, so-called 'Reafferent Potential', is supposed to reflect the somesthetic reafferentation of the sensorimotor cortex. Hence, it seems that the PMc and the gamma ERS represent two electrophysiological facets of the reafferentation of the cortex during the movement. We suggest that gamma oscillations within the 40-60-Hz band serve to facilitate kinesthesic afferences from the muscles and joints involved in the movement to the primary sensorimotor cortex, which would be necessary for controlling the ongoing movement." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Szurhaj, William",
+      "Derambure, Philippe"
+    ],
+  "Date" : "2006",
+  "Identifier" : [  ],
+  "Journal" : [ "Progress in brain research" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/17071239",
+  "MeshHeadings" : [ 
+      "Adolescent",
+      "Adult",
+      "Brain",
+      "Data Interpretation, Statistical",
+      "Electroencephalography",
+      "Evoked Potentials",
+      "Female",
+      "Humans",
+      "Male",
+      "Motor Cortex",
+      "Somatosensory Cortex"
+    ],
+  "PMID" : 17071239,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Intracerebral study of gamma oscillations in the human sensorimotor cortex."
+}

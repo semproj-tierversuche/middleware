@@ -1,0 +1,39 @@
+{ 
+  "Abstract" : [ "The perforant path projecting from the entorhinal cortex to the hippocampal dentate gyrus is a particularly vulnerable target to the early deposition of amyloid beta (Abeta) peptides in Alzheimer's brain. The authors previously showed that brief applications of Abeta at subneurotoxic concentrations suppressed the early-phase long-term potentiation (E-LTP) in rat dentate gyrus. The current study further examines the effect of Abeta on the late-phase LTP (L-LTP) in this area. Using multiple high-frequency stimulus trains, a stable L-LTP lasting for at least 3 h was induced in the medial perforant path of rat hippocampal slices. Bath application of Abeta(1-42) (0.2-1.0 microM) during the induction trains attenuated both the initial and late stages of L-LTP. On the other hand, Abeta(1-42) perfusion within the first hour following the induction primarily impaired the late stage of L-LTP, which resembled the action of the protein synthesis inhibitor emetine. Blockade of calcineurin activity with FK506 or cyclosporin A completely prevented Abeta-induced L-LTP deficits. These results suggest that Abeta(1-42) impaired both the induction and maintenance phase of dentate L-LTP through calcineurin-dependent mechanisms. In the concentration range effective for inhibiting L-LTP, Abeta(1-42) also reduced the amplitude of NMDA receptor-mediated synaptic currents in dentate granule cells via a postsynaptic mechanism. In addition, concurrent applications of Abeta(1-42) with the protein synthesis inhibitor caused no additive reduction of L-LTP, indicating a common mechanism underlying the action of both. Thus, inhibition of NMDA receptor channels and disruption of protein synthesis were two possible mechanisms contributing to Abeta-induced L-LTP impairment." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Chen, Qi-Sheng",
+      "Wei, Wei-Zheng",
+      "Shimahara, Takeshi",
+      "Xie, Cui-Wei"
+    ],
+  "Date" : "2002",
+  "Identifier" : [  ],
+  "Journal" : [ "Neurobiology of learning and memory" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/11991763",
+  "MeshHeadings" : [ 
+      "Alzheimer Disease",
+      "Amyloid beta-Peptides",
+      "Animals",
+      "Calcineurin",
+      "Cyclosporine",
+      "Dentate Gyrus",
+      "Disease Models, Animal",
+      "Hippocampus",
+      "Immunosuppressive Agents",
+      "Long-Term Potentiation",
+      "Male",
+      "N-Methylaspartate",
+      "Phospholipids",
+      "Rats",
+      "Rats, Sprague-Dawley",
+      "Tacrolimus"
+    ],
+  "PMID" : 11991763,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Alzheimer amyloid beta-peptide inhibits the late phase of long-term potentiation through calcineurin-dependent mechanisms in the hippocampal dentate gyrus."
+}

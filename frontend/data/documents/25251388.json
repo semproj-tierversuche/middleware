@@ -1,0 +1,31 @@
+{ 
+  "Abstract" : [ "Mutations in the catalytic Roc-COR and kinase domains of leucine-rich repeat kinase 2 (LRRK2) are a common cause of familial Parkinson's disease (PD). LRRK2 mutations cause PD with age-related penetrance and clinical features identical to late-onset sporadic PD. Biochemical studies support an increase in LRRK2 kinase activity and a decrease in GTPase activity for kinase domain and Roc-COR mutations, respectively. Strong evidence exists that LRRK2 toxicity is kinase dependent leading to extensive efforts to identify selective and brain-permeable LRRK2 kinase inhibitors for clinical development. Cell and animal models of PD indicate that LRRK2 mutations affect vesicular trafficking, autophagy, protein synthesis, and cytoskeletal function. Although some of these biological functions are affected consistently by most disease-linked mutations, others are not and it remains currently unclear how mutations that produce variable effects on LRRK2 biochemistry and function all commonly result in the degeneration and death of dopamine neurons. LRRK2 is typically present in Lewy bodies and its toxicity in mammalian models appears to be dependent on the presence of α-synuclein, which is elevated in human iPS-derived dopamine neurons from patients harboring LRRK2 mutations. Here, we summarize biochemical and functional studies of LRRK2 and its mutations and focus on aberrant vesicular trafficking and protein synthesis as two leading mechanisms underlying LRRK2-linked disease." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Martin, Ian",
+      "Kim, Jungwoo Wren",
+      "Dawson, Valina L",
+      "Dawson, Ted M"
+    ],
+  "Date" : "2014",
+  "Identifier" : [  ],
+  "Journal" : [ "Journal of neurochemistry" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/25251388",
+  "MeshHeadings" : [ 
+      "GTP Phosphohydrolases",
+      "Humans",
+      "Leucine-Rich Repeat Serine-Threonine Protein Kinase-2",
+      "Mutation",
+      "Parkinson Disease",
+      "Protein Transport",
+      "Protein-Serine-Threonine Kinases",
+      "Synucleins"
+    ],
+  "PMID" : 25251388,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "LRRK2 pathobiology in Parkinson's disease."
+}

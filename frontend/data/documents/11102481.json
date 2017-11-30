@@ -1,0 +1,40 @@
+{ 
+  "Abstract" : [ "Insulysin (EC. 3.4.22.11) has been implicated in the clearance of beta amyloid peptides through hydrolytic cleavage. To further study the action of insulysin on Abeta peptides recombinant rat insulysin was used. Cleavage of both Abeta(1-40) and Abeta(1-42) by the recombinant enzyme was shown to initially occur at the His(13)-His(14), His(14)-Gln(15), and Phe(19)-Phe(20) bonds. This was followed by a slower cleavage at the Lys(28)-Gly(29), Val(18)-Phe(19), and Phe(20)-Ala(21) positions. None of the products appeared to be further metabolized by insulysin. Using a rat cortical cell system, the action of insulysin on Abeta(1-40) and Abeta(1-42) was shown to eliminate the neurotoxic effects of these peptides. Insulysin was further shown to prevent the deposition of Abeta(1-40) onto a synthetic amyloid. Taken together these results suggest that the use of insulysin to hydrolyze Abeta peptides represents an alternative gene therapeutic approach to the treatment of Alzheimer's disease." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Mukherjee, A",
+      "Song, E",
+      "Kihiko-Ehmann, M",
+      "Goodman, J P",
+      "Pyrek, J S",
+      "Estus, S",
+      "Hersh, L B"
+    ],
+  "Date" : "2000",
+  "Identifier" : [  ],
+  "Journal" : [ "The Journal of neuroscience : the official journal of the Society for Neuroscience" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/11102481",
+  "MeshHeadings" : [ 
+      "Amyloid beta-Peptides",
+      "Animals",
+      "Cell Survival",
+      "Cells, Cultured",
+      "Chromatography, High Pressure Liquid",
+      "Hydrolysis",
+      "Insulysin",
+      "Neurons",
+      "Neuroprotective Agents",
+      "Peptide Fragments",
+      "Plaque, Amyloid",
+      "Rats",
+      "Recombinant Proteins",
+      "Spectrometry, Mass, Matrix-Assisted Laser Desorption-Ionization"
+    ],
+  "PMID" : 11102481,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Insulysin hydrolyzes amyloid beta peptides to products that are neither neurotoxic nor deposit on amyloid plaques."
+}

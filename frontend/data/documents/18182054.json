@@ -1,0 +1,43 @@
+{ 
+  "Abstract" : [ "Neuritic retraction represents a prominent feature of the degenerative phenotype associated with mutations in leucine rich repeat kinase 2 (LRRK2) that are implicated in autosomal dominant and some cases of sporadic Parkinson's disease. Alterations in macroautophagy, the vacuolar catabolism of cytoplasmic constituents, have been described in Parkinson's disease. In this study, we utilized retinoic-acid differentiated SH-SY5Y cells to determine whether autophagy contributes to mutant LRRK2-associated neurite degeneration. Transfection of pre-differentiated SH-SY5Y cells with LRRK2 cDNA containing the common G2019S mutation resulted in significant decreases in neurite length, which were not observed in cells transfected with wild type LRRK2 or its kinase-dead K1906M mutation. G2019S LRRK2 transfected cells also exhibited striking increases in autophagic vacuoles in both neuritic and somatic compartments, as demonstrated by fluorescence and western blot analysis of the autophagy marker green fluorescent protein-tagged microtubule-associated protein Light Chain 3 and by transmission electron microscopy. RNA interference knockdown of LC3 or Atg7, two essential components of the conserved autophagy machinery, reversed the effects of G2019S LRRK2 expression on neuronal process length, whereas rapamycin potentiated these effects. The mitogen activated protein kinase/extracellular signal regulated protein kinase (MAPK/ERK) kinase (MEK) inhibitor 1,4-diamino-2,3-dicyano-1,4-bis[2-aminophenylthio]butadiene (U0126) reduced LRRK2-induced neuritic autophagy and neurite shortening, implicating MAPK/ERK-related signaling. These results indicate an active role for autophagy in neurite remodeling induced by pathogenic mutation of LRRK2." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Plowey, Edward D",
+      "Cherra, Salvatore J",
+      "Liu, Yong-Jian",
+      "Chu, Charleen T"
+    ],
+  "Date" : "2008",
+  "Identifier" : [  ],
+  "Journal" : [ "Journal of neurochemistry" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/18182054",
+  "MeshHeadings" : [ 
+      "Autophagy",
+      "Autophagy-Related Protein 7",
+      "Cell Line, Tumor",
+      "DNA, Complementary",
+      "Enzyme Inhibitors",
+      "Humans",
+      "Leucine-Rich Repeat Serine-Threonine Protein Kinase-2",
+      "MAP Kinase Kinase 1",
+      "MAP Kinase Signaling System",
+      "Microscopy, Electron, Transmission",
+      "Microtubule-Associated Proteins",
+      "Mutation",
+      "Nerve Degeneration",
+      "Neurites",
+      "Parkinson Disease",
+      "Protein Synthesis Inhibitors",
+      "Protein-Serine-Threonine Kinases",
+      "Transfection",
+      "Ubiquitin-Activating Enzymes",
+      "Vacuoles"
+    ],
+  "PMID" : 18182054,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Role of autophagy in G2019S-LRRK2-associated neurite shortening in differentiated SH-SY5Y cells."
+}

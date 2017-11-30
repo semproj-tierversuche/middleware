@@ -1,0 +1,35 @@
+{ 
+  "Abstract" : [ "Local field potentials (LFPs) have been proposed for use in controlling neural prosthetic devices because they can provide reliable motor and sensory-related information, and can easily be recorded over long periods of time. While studies have shown that directional information about motor movements can be inferred from LFPs, it is not known at what depth these signals should be recorded from in order to maximize the amount of movement information. Towards this end, we used a directional motor task in Long Evans rats, while sampling LFPs with an electrode consisting of 16 vertical recording sites that were evenly-spaced 100 microm apart. This allowed for simultaneous recording of all layers of the motor cortex. The frequency components of LFPs were then analyzed using k-means clustering to determine directional information as a function of depth. Here we report our initial findings that superficial layers (II/III) of motor cortex may provide more information about movement directions then deeper layers (V)." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Gage, Gregory J",
+      "Kawahara, Chie",
+      "Ross, Shani E",
+      "Marzullo, Timothy C",
+      "Kipke, Daryl R"
+    ],
+  "Date" : "2006",
+  "Identifier" : [  ],
+  "Journal" : [ "Conference proceedings : ... Annual International Conference of the IEEE Engineering in Medicine and Biology Society. IEEE Engineering in Medicine and Biology Society. Annual Conference" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/17946968",
+  "MeshHeadings" : [ 
+      "Animals",
+      "Brain Mapping",
+      "Computer Simulation",
+      "Evoked Potentials, Motor",
+      "Models, Neurological",
+      "Motor Cortex",
+      "Movement",
+      "Nerve Net",
+      "Neural Pathways",
+      "Rats",
+      "Rats, Long-Evans"
+    ],
+  "PMID" : 17946968,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Laminar analysis of movement direction information in local field potentials of the rat motor cortex."
+}

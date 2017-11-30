@@ -1,0 +1,43 @@
+{ 
+  "Abstract" : [ "The G2019S leucine rich repeat kinase 2 (LRRK2) mutation is the most common genetic cause of Parkinson's disease (PD), clinically and pathologically indistinguishable from idiopathic PD. Mitochondrial abnormalities are a common feature in PD pathogenesis and we have investigated the impact of G2019S mutant LRRK2 expression on mitochondrial bioenergetics. LRRK2 protein expression was detected in fibroblasts and lymphoblasts at levels higher than those observed in the mouse brain. The presence of G2019S LRRK2 mutation did not influence LRRK2 expression in fibroblasts. However, the expression of the G2019S LRRK2 mutation in both fibroblast and neuroblastoma cells was associated with mitochondrial uncoupling. This was characterized by decreased mitochondrial membrane potential and increased oxygen utilization under basal and oligomycin-inhibited conditions. This resulted in a decrease in cellular ATP levels consistent with compromised cellular function. This uncoupling of mitochondrial oxidative phosphorylation was associated with a cell-specific increase in uncoupling protein (UCP) 2 and 4 expression. Restoration of mitochondrial membrane potential by the UCP inhibitor genipin confirmed the role of UCPs in this mechanism. The G2019S LRRK2-induced mitochondrial uncoupling and UCP4 mRNA up-regulation were LRRK2 kinase-dependent, whereas endogenous LRRK2 levels were required for constitutive UCP expression. We propose that normal mitochondrial function was deregulated by the expression of G2019S LRRK2 in a kinase-dependent mechanism that is a modification of the normal LRRK2 function, and this leads to the vulnerability of selected neuronal populations in PD." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Papkovskaia, Tatiana D",
+      "Chau, Kai-Yin",
+      "Inesta-Vaquera, Francisco",
+      "Papkovsky, Dmitri B",
+      "Healy, Daniel G",
+      "Nishio, Koji",
+      "Staddon, James",
+      "Duchen, Michael R",
+      "Hardy, John",
+      "Schapira, Anthony H V",
+      "Cooper, J Mark"
+    ],
+  "Date" : "2012",
+  "Identifier" : [  ],
+  "Journal" : [ "Human molecular genetics" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/22736029",
+  "MeshHeadings" : [ 
+      "Animals",
+      "Cells, Cultured",
+      "Fibroblasts",
+      "Humans",
+      "Leucine-Rich Repeat Serine-Threonine Protein Kinase-2",
+      "Membrane Transport Proteins",
+      "Mice",
+      "Mice, Inbred C57BL",
+      "Mice, Knockout",
+      "Mitochondria",
+      "Mutation, Missense",
+      "Parkinson Disease",
+      "Protein-Serine-Threonine Kinases"
+    ],
+  "PMID" : 22736029,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "G2019S leucine-rich repeat kinase 2 causes uncoupling protein-mediated mitochondrial depolarization."
+}

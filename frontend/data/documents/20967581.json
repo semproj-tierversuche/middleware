@@ -1,0 +1,35 @@
+{ 
+  "Abstract" : [ "Recent data suggest that soluble, non-fibrillar assemblies of the amyloid β-protein (Aβ) may mediate the synaptic deficits that characterize the early stages of Alzheimer's disease. Consequently, much effort has been expended in isolating and studying a variety of different Aβ assemblies. Here, we describe the use of immunoprecipitation/western blotting and size exclusion chromatography/western blotting to characterize Aβ present in conditioned medium from cultured cells, human cerebrospinal fluid, and human cortex extracted with aqueous buffer, detergent, and formic acid." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Shankar, Ganesh M",
+      "Welzel, Alfred T",
+      "McDonald, Jessica M",
+      "Selkoe, Dennis J",
+      "Walsh, Dominic M"
+    ],
+  "Date" : "2011",
+  "Identifier" : [  ],
+  "Journal" : [ "Methods in molecular biology (Clifton, N.J.)" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/20967581",
+  "MeshHeadings" : [ 
+      "Amyloid beta-Peptides",
+      "Blotting, Western",
+      "Brain",
+      "Cell Line",
+      "Cells, Cultured",
+      "Chromatography, Gel",
+      "Culture Media, Conditioned",
+      "Electrophoresis, Polyacrylamide Gel",
+      "Humans",
+      "Immunoprecipitation",
+      "In Vitro Techniques"
+    ],
+  "PMID" : 20967581,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Isolation of low-n amyloid β-protein oligomers from cultured cells, CSF, and brain."
+}

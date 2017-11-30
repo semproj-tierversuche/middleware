@@ -1,0 +1,43 @@
+{ 
+  "Abstract" : [ 
+      "Leucine-rich repeat kinase 2 (LRRK2) is the gene responsible for autosomal-dominant Parkinson's disease (PD), PARK8, but the mechanism by which LRRK2 mutations cause neuronal dysfunction remains unknown. In the present study, we investigated for the first time a transgenic (TG) mouse strain expressing human LRRK2 with an I2020T mutation in the kinase domain, which had been detected in the patients of the original PARK8 family.",
+      "The TG mouse expressed I2020T LRRK2 in dopaminergic (DA) neurons of the substantia nigra, ventral tegmental area, and olfactory bulb. In both the beam test and rotarod test, the TG mice exhibited impaired locomotive ability in comparison with their non-transgenic (NTG) littermates. Although there was no obvious loss of DA neurons in either the substantia nigra or striatum, the TG brain showed several neurological abnormalities such as a reduced striatal dopamine content, fragmentation of the Golgi apparatus in DA neurons, and an increased degree of microtubule polymerization. Furthermore, the tyrosine hydroxylase-positive primary neurons derived from the TG mouse showed an increased frequency of apoptosis and had neurites with fewer branches and decreased outgrowth in comparison with those derived from the NTG controls.",
+      "The I2020T LRRK2 TG mouse exhibited impaired locomotive ability accompanied by several dopaminergic neuron abnormalities. The TG mouse should provide valuable clues to the etiology of PD caused by the LRRK2 mutation."
+    ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Maekawa, Tatsunori",
+      "Mori, Sayuri",
+      "Sasaki, Yui",
+      "Miyajima, Takashi",
+      "Azuma, Sadahiro",
+      "Ohta, Etsuro",
+      "Obata, Fumiya"
+    ],
+  "Date" : "2012",
+  "Identifier" : [  ],
+  "Journal" : [ "Molecular neurodegeneration" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/22534020",
+  "MeshHeadings" : [ 
+      "Animals",
+      "Behavior, Animal",
+      "Cells, Cultured",
+      "Disease Models, Animal",
+      "Dopaminergic Neurons",
+      "Humans",
+      "Leucine-Rich Repeat Serine-Threonine Protein Kinase-2",
+      "Locomotion",
+      "Mice",
+      "Mice, Transgenic",
+      "Mutation",
+      "Parkinson Disease",
+      "Protein-Serine-Threonine Kinases"
+    ],
+  "PMID" : 22534020,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "The I2020T Leucine-rich repeat kinase 2 transgenic mouse exhibits impaired locomotive ability accompanied by dopaminergic neuron abnormalities."
+}

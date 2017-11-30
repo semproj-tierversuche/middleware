@@ -1,0 +1,40 @@
+{ 
+  "Abstract" : [ "Mutations in Leucine-rich repeat kinase 2 (LRRK2) are linked to the most common familial forms and some sporadic forms of Parkinson's disease (PD). The LRRK2 protein contains two well-known functional domains, MAPKKK-like kinase and Rab-like GTPase domains. Emerging evidence shows that LRRK2 contains kinase activity which is enhanced in several PD-associated mutants of LRRK2. However, the GTPase activity of LRRK2 has yet to be formally demonstrated. Here, we produced and purified the epitope-tagged LRRK2 protein from transgenic mouse brain, and showed that purified brain LRRK2 possesses both kinase and GTPase activity as assayed by GTP binding and hydrolysis. The brain LRRK2 is associated with elevated kinase activity in comparison to that from transgenic lung or transfected cultured cells. In transfected cell cultures, we detected GTP hydrolysis activity in full-length as well as in GTPase domain of LRRK2. This result indicates that LRRK2 GTPase can be active independent of LRRK2 kinase activity (while LRRK2 kinase activity requires the presence of LRRK2 GTPase as previously shown). We further found that PD mutation R1441C/G in the GTPase domain causes reduced GTP hydrolysis activity, consistent with the altered enzymatic activity in the mutant LRRK2 carrying PD familial mutations. Therefore, our study shows the biochemical characteristics of brain-specific LRRK2 which is associated with robust kinase and GTPase activity. The distinctive levels of kinase/GTPase activity in brain LRRK2 may help explain LRRK2-associated neuronal functions or dysfunctions in the pathogenesis of PD." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Li, Xianting",
+      "Tan, Yin-Cai",
+      "Poulose, Shibu",
+      "Olanow, C Warren",
+      "Huang, Xin-Yun",
+      "Yue, Zhenyu"
+    ],
+  "Date" : "2007",
+  "Identifier" : [  ],
+  "Journal" : [ "Journal of neurochemistry" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/17623048",
+  "MeshHeadings" : [ 
+      "Amino Acid Substitution",
+      "Animals",
+      "Cell Line",
+      "Enzyme Activation",
+      "GTP Phosphohydrolases",
+      "Guanosine Triphosphate",
+      "Humans",
+      "Leucine-Rich Repeat Serine-Threonine Protein Kinase-2",
+      "Mice",
+      "Mice, Transgenic",
+      "Mutation",
+      "Organ Specificity",
+      "Parkinson Disease",
+      "Protein Structure, Tertiary",
+      "Protein-Serine-Threonine Kinases"
+    ],
+  "PMID" : 17623048,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Leucine-rich repeat kinase 2 (LRRK2)/PARK8 possesses GTPase activity that is altered in familial Parkinson's disease R1441C/G mutants."
+}

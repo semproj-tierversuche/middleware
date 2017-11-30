@@ -1,0 +1,37 @@
+{ 
+  "Abstract" : [ "Motor cortex neurons are activated at different times during self-initiated voluntary movement. However, the manner in which excitatory and inhibitory neurons in distinct cortical layers help to organize voluntary movement is poorly understood. We carried out juxtacellular and multiunit recordings from actively behaving rats and found temporally and functionally distinct activations of excitatory pyramidal cells and inhibitory fast-spiking interneurons. Across cortical layers, pyramidal cells were activated diversely for sequential motor phases (for example, preparation, initiation and execution). In contrast, fast-spiking interneurons, including parvalbumin-positive basket cells, were recruited predominantly for motor execution, with pyramidal cells producing a command-like activity. Thus, fast-spiking interneurons may underlie command shaping by balanced inhibition or recurrent inhibition, rather than command gating by temporally alternating excitation and inhibition. Furthermore, initiation-associated pyramidal cells excited similar and different functional classes of neurons through putative monosynaptic connections. This suggests that these cells may temporally integrate information to initiate and coordinate voluntary movement." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Isomura, Yoshikazu",
+      "Harukuni, Rie",
+      "Takekawa, Takashi",
+      "Aizawa, Hidenori",
+      "Fukai, Tomoki"
+    ],
+  "Date" : "2009",
+  "Identifier" : [  ],
+  "Journal" : [ "Nature neuroscience" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/19898469",
+  "MeshHeadings" : [ 
+      "Action Potentials",
+      "Animals",
+      "Conditioning, Operant",
+      "Forelimb",
+      "Interneurons",
+      "Motor Activity",
+      "Motor Cortex",
+      "Movement",
+      "Neural Inhibition",
+      "Pyramidal Cells",
+      "Rats",
+      "Synapses",
+      "Volition"
+    ],
+  "PMID" : 19898469,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Microcircuitry coordination of cortical motor information in self-initiation of voluntary movements."
+}

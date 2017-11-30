@@ -1,0 +1,40 @@
+{ 
+  "Abstract" : [ "Amyloid beta protein (Abeta) is thought to be responsible for the deficit of learning and memory in Alzheimer's disease (AD), possibly through interfering with synaptic plasticity such as hippocampal long-term potentiation (LTP). Nicotinic acetylcholine receptors (nAChRs) participate in various cognitive brain functions. However, it is unclear whether nAChRs, especially alpha4beta2 subtype nAChRs, are involved in Abeta-induced impairment of hippocampal LTP. The present study investigates a possible role of nAChRs during the impairment of LTP by Abeta. Our results showed that: (1) intracerebroventricular injection of Abeta(1-40), Abeta(25-35) or Abeta(31-35) significantly suppressed high-frequency stimulation-induced LTP, while Abeta(35-31), a reversed sequence of Abeta(31-35), have no effect on the LTP; (2) epibatidine, a specific agonist of alpha4beta2 subtype of nAChRs, dose-dependently suppressed the induction of LTP; (3) co-injection of epibatidine together with Abeta(31-35) did not further enhance the suppression of LTP induced by Abeta(31-35) or epibatidine alone; (4) dihydro-beta-erythroidine, a selective antagonist against alpha4beta2 subtype of nAChRs, showed no effect on the induction of LTP, but significantly reversed Abeta(31-35)-induced LTP impairment. These results indicate that: (1) sequence 31-35 in Abeta molecule might be a shorter active center responsible for the neurotoxicity of full length of Abeta; (2) alpha4beta2 subtype of nAChRs is required for the suppressive action of Abeta on the hippocampal LTP in vivo. Thus, the present study provides further insight into the mechanisms by which Abeta impairs synaptic plasticity and cognitive function in the AD brain." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Wu, M N",
+      "He, Y X",
+      "Guo, F",
+      "Qi, J S"
+    ],
+  "Date" : "2008",
+  "Identifier" : [  ],
+  "Journal" : [ "Brain research bulletin" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/18602971",
+  "MeshHeadings" : [ 
+      "Amyloid beta-Peptides",
+      "Animals",
+      "Bridged Bicyclo Compounds, Heterocyclic",
+      "Dihydro-beta-Erythroidine",
+      "Electrophysiology",
+      "Excitatory Postsynaptic Potentials",
+      "Hippocampus",
+      "Humans",
+      "Long-Term Potentiation",
+      "Male",
+      "Neuronal Plasticity",
+      "Nicotinic Agonists",
+      "Peptide Fragments",
+      "Pyridines",
+      "Rats",
+      "Rats, Wistar",
+      "Receptors, Nicotinic"
+    ],
+  "PMID" : 18602971,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Alpha4beta2 nicotinic acetylcholine receptors are required for the amyloid beta protein-induced suppression of long-term potentiation in rat hippocampal CA1 region in vivo."
+}

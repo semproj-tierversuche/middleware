@@ -1,0 +1,40 @@
+{ 
+  "Abstract" : [ "PARK8/LRRK2 (leucine-rich repeat kinase 2) was recently identified as a causative gene for autosomal dominant Parkinson's disease (PD), with LRRK2 mutation G2019S linked to the most frequent familial form of PD. Emerging in vitro evidence indicates that aberrant enzymatic activity of LRRK2 protein carrying this mutation can cause neurotoxicity. However, the physiological and pathophysiological functions of LRRK2 in vivo remain elusive. Here we characterize two bacterial artificial chromosome (BAC) transgenic mouse strains overexpressing LRRK2 wild-type (Wt) or mutant G2019S. Transgenic LRRK2-Wt mice had elevated striatal dopamine (DA) release with unaltered DA uptake or tissue content. Consistent with this result, LRRK2-Wt mice were hyperactive and showed enhanced performance in motor function tests. These results suggest a role for LRRK2 in striatal DA transmission and the consequent motor function. In contrast, LRRK2-G2019S mice showed an age-dependent decrease in striatal DA content, as well as decreased striatal DA release and uptake. Despite increased brain kinase activity, LRRK2-G2019S overexpression was not associated with loss of DAergic neurons in substantia nigra or degeneration of nigrostriatal terminals at 12 months. Our results thus reveal a pivotal role for LRRK2 in regulating striatal DA transmission and consequent control of motor function. The PD-associated mutation G2019S may exert pathogenic effects by impairing these functions of LRRK2. Our LRRK2 BAC transgenic mice, therefore, could provide a useful model for understanding early PD pathological events." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Li, Xianting",
+      "Patel, Jyoti C",
+      "Wang, Jing",
+      "Avshalumov, Marat V",
+      "Nicholson, Charles",
+      "Buxbaum, Joseph D",
+      "Elder, Gregory A",
+      "Rice, Margaret E",
+      "Yue, Zhenyu"
+    ],
+  "Date" : "2010",
+  "Identifier" : [  ],
+  "Journal" : [ "The Journal of neuroscience : the official journal of the Society for Neuroscience" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/20130188",
+  "MeshHeadings" : [ 
+      "Aging",
+      "Animals",
+      "Corpus Striatum",
+      "Dopamine",
+      "Leucine-Rich Repeat Serine-Threonine Protein Kinase-2",
+      "Mice",
+      "Mice, Transgenic",
+      "Motor Activity",
+      "Motor Skills",
+      "Mutation",
+      "Parkinson Disease",
+      "Protein-Serine-Threonine Kinases"
+    ],
+  "PMID" : 20130188,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Enhanced striatal dopamine transmission and motor performance with LRRK2 overexpression in mice is eliminated by familial Parkinson's disease mutation G2019S."
+}

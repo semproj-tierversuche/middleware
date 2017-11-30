@@ -1,0 +1,39 @@
+{ 
+  "Abstract" : [ "Memantine, a drug recently approved for treatment of Alzheimer's disease, has been characterized as a unique NMDA antagonist that confers protection against excitotoxic neurodegeneration without the serious side effects that other NMDA antagonists are known to cause. In the present study, we determined what dose of memantine is required to protect the adult rat brain against an NMDA receptor-mediated excitotoxic process and then tested that dose and a range of lower doses to determine whether the drug in this dose range is associated with significant side effects. Consistent with previous research, we found that memantine confers a neuroprotective effect beginning at an intraperitoneal dose of 20 mg/kg, a dose that we found, contrary to previous reports, produces locomotor disturbances severe enough to preclude testing for learning and memory effects. We then determined that, at intraperitoneal doses of 10 and 5 mg/kg, memantine disrupts both memory and locomotor behaviors. Rats treated with these doses performed at control-like levels in learning a hole-board task but were significantly impaired in demonstrating what they had learned when tested 24 h later. This impairment of memory retention was not state dependent in that it was demonstrable regardless of whether the rats were or were not exposed to memantine on the day of retention testing. We conclude that, in the adult rat, memantine behaves like other NMDA antagonists in that it is neuroprotective only at doses that produce intolerable side effects, including memory impairment." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Creeley, Catherine",
+      "Wozniak, David F",
+      "Labruyere, Joanne",
+      "Taylor, George T",
+      "Olney, John W"
+    ],
+  "Date" : "2006",
+  "Identifier" : [  ],
+  "Journal" : [ "The Journal of neuroscience : the official journal of the Society for Neuroscience" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/16611808",
+  "MeshHeadings" : [ 
+      "Alzheimer Disease",
+      "Animals",
+      "Antiparkinson Agents",
+      "Brain Edema",
+      "Disease Models, Animal",
+      "Excitatory Amino Acid Antagonists",
+      "Female",
+      "Hippocampus",
+      "Humans",
+      "Memantine",
+      "Memory",
+      "Memory Disorders",
+      "Neuroprotective Agents",
+      "Rats",
+      "Rats, Sprague-Dawley"
+    ],
+  "PMID" : 16611808,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Low doses of memantine disrupt memory in adult rats."
+}

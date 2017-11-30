@@ -1,0 +1,39 @@
+{ 
+  "Abstract" : [ "Deep prepiriform cortex has an important role in modulating neurotransmission during limbic seizures. We used pharmacologic blockade of non-N-methyl-D-aspartate (NMDA) receptors to study excitatory circuitry from the deep prepiriform cortex to the hippocampus during global ischemia in rat. NBQX, a potent non-NMDA glutamate receptor antagonist, was microinjected stereotactically into the deep prepiriform cortex before global ischemia for 10 min. Neuronal cell death in the hippocampus was evaluated quantitatively 72 h after ischemia. The NBQX-injected rats had a greater number of surviving cells in CA1 sector of hippocampus than did saline-injected controls or rats that received NBQX injections 1 mm from the target. Thus, excitatory amino acid-mediated circuitry emanating from deep prepiriform cortex modulates ischemic neuronal injury in the hippocampus." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Kawaguchi, K",
+      "Simon, R P"
+    ],
+  "Date" : "1997",
+  "Identifier" : [  ],
+  "Journal" : [ "Journal of cerebral blood flow and metabolism : official journal of the International Society of Cerebral Blood Flow and Metabolism" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/9119908",
+  "MeshHeadings" : [ 
+      "Animals",
+      "Brain Ischemia",
+      "Cell Count",
+      "Cell Death",
+      "Excitatory Amino Acid Antagonists",
+      "Hippocampus",
+      "Male",
+      "Microinjections",
+      "Neurons",
+      "Neuroprotective Agents",
+      "Olfactory Pathways",
+      "Premedication",
+      "Quinoxalines",
+      "Rats",
+      "Rats, Sprague-Dawley",
+      "Receptors, N-Methyl-D-Aspartate",
+      "Seizures",
+      "Stereotaxic Techniques"
+    ],
+  "PMID" : 9119908,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Deep prepiriform cortex modulates neuronal cell death in global ischemia."
+}

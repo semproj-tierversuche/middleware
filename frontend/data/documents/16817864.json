@@ -1,0 +1,38 @@
+{ 
+  "Abstract" : [ "The pathogenesis of stroke, trauma and chronic degenerative diseases, such as Alzheimer's disease (AD), has been linked to excitotoxic processes due to inappropriate stimulation of the N-methyl-D-aspartate receptor (NMDA-R). Attempts to use potent competitive NMDA-R antagonists as neuroprotectants have shown serious side-effects in patients. As an alternative approach, we were interested in the anti-excitotoxic properties of memantine, a well-tolerated low affinity uncompetitive NMDA-R antagonist presently used as an anti-dementia agent. We explored in a series of models of increasing complexity, whether this voltage-dependent channel blocker had neuroprotective properties at clinically relevant concentrations. As expected, memantine protected neurons in organotypic hippocampal slices or dissociated cultures from direct NMDA-induced excitotoxicity. However, low concentrations of memantine were also effective in neuronal (cortical neurons and cerebellar granule cells) stress models dependent on endogenous glutamate stimulation and mitochondrial stress, i.e. exposure to hypoxia, the mitochondrial toxin 1-methyl-4-phenylpyridinium (MPP+) or a nitric oxide (NO) donor. Furthermore, memantine reduced lethality and brain damage in vivo in a model of neonatal hypoxia-ischemia (HI). Finally, we investigated functional rescue (neuronal capacity to migrate along radial glia) by memantine in cerebellar microexplant cultures exposed to the indirect excitotoxin 3-nitropropionic acid (3-NP). Potent NMDA-R antagonists, such as (+)MK-801, are known to block neuronal migration in microexplant cultures. Interestingly, memantine significantly restored the number of neurons able to migrate out of the stressed microexplants. These findings suggest that inhibition of the NMDA-R by memantine is sufficient to block excitotoxicity, while still allowing some degree of signalling." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Volbracht, Christiane",
+      "van Beek, Johan",
+      "Zhu, Changlian",
+      "Blomgren, Klas",
+      "Leist, Marcel"
+    ],
+  "Date" : "2006",
+  "Identifier" : [  ],
+  "Journal" : [ "The European journal of neuroscience" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/16817864",
+  "MeshHeadings" : [ 
+      "Animals",
+      "Apoptosis",
+      "Dizocilpine Maleate",
+      "Excitatory Amino Acid Antagonists",
+      "Hippocampus",
+      "Hypoxia-Ischemia, Brain",
+      "In Vitro Techniques",
+      "Memantine",
+      "Membrane Potentials",
+      "Mice",
+      "Mice, Inbred BALB C",
+      "Neurons",
+      "Neuroprotective Agents",
+      "Receptors, N-Methyl-D-Aspartate"
+    ],
+  "PMID" : 16817864,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Neuroprotective properties of memantine in different in vitro and in vivo models of excitotoxicity."
+}

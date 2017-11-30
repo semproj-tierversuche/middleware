@@ -1,0 +1,27 @@
+{ 
+  "Abstract" : [ "Alzheimer's disease (AD) and Vascular dementia represent the most common forms of dementia. If left unabated, the economic cost of caring for patients with these maladies would consume the entire gross national product of the industrialized world by the middle of this century. Until recently, the only available drugs for this condition were cholinergic treatments, which symptomatically enhance cognitive state to some degree, but they were not neuroprotective. Many potential neuroprotective drugs tested in clinical trials failed because of intolerable side effects. However, after our discovery of its clinically-tolerated mechanism of action, one putatively neuroprotective drug, memantine, was recently approved by the European Union and the U.S. Food and Drug Administration (FDA) for the treatment of dementia. Recent phase 3 clinical trials have shown that memantine is effective in the treatment of both mild and moderate-to-severe Alzheimer's disease and possibly Vascular dementia (multi-infarct dementia). Here we review the molecular mechanism of memantine's action and also the basis for the drug's use in these neurological diseases, which are mediated at least in part by excitotoxicity. Excitotoxicity is defined as excessive exposure to the neurotransmitter glutamate or overstimulation of its membrane receptors, leading to neuronal injury or death. Excitotoxic neuronal cell damage is mediated in part by overactivation of N-methyl-D-aspartate (NMDA)-type glutamate receptors, which results in excessive Ca(2+) influx through the receptor associated ion channel and subsequent free radical formation. Physiological NMDA receptor activity, however, is also essential for normal neuronal function. This means that potential neuroprotective agents that block virtually all NMDA receptor activity will very likely have unacceptable clinical side effects. For this reason many previous NMDA receptor antagonists have disappointingly failed advanced clinical trials for a number of neurodegenerative disorders. In contrast, studies in our laboratory have shown that the adamantane derivative, memantine, preferentially blocks excessive NMDA receptor activity without disrupting normal activity. Memantine does this through its action as an uncompetitive, low-affinity, open-channel blocker; it enters the receptor-associated ion channel preferentially when it is excessively open, and, most importantly, its off-rate is relatively fast so that it does not substantially accumulate in the channel to interfere with subsequent normal synaptic transmission. Clinical use has corroborated the prediction that memantine is well tolerated. Besides Alzheimer's disease, memantine is currently in trials for additional neurological disorders, including HIV-associated dementia, depression, glaucoma, and severe neuropathic pain. A series of second-generation memantine derivatives are currently in development and may prove to have even greater neuroprotective properties than memantine. These second-generation drugs take advantage of the fact that the NMDA receptor has other modulatory sites in addition to its ion channel that potentially could also be used for safe but effective clinical intervention." ],
+  "Annotations" : [  ],
+  "Authors" : [ "Lipton, Stuart A" ],
+  "Date" : "2007",
+  "Identifier" : [  ],
+  "Journal" : [ "Current drug targets" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/17504105",
+  "MeshHeadings" : [ 
+      "Adamantane",
+      "Alzheimer Disease",
+      "Animals",
+      "Dementia, Vascular",
+      "Humans",
+      "Memantine",
+      "Neuroprotective Agents",
+      "Nitric Acid",
+      "Receptors, N-Methyl-D-Aspartate"
+    ],
+  "PMID" : 17504105,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Pathologically-activated therapeutics for neuroprotection: mechanism of NMDA receptor block by memantine and S-nitrosylation."
+}

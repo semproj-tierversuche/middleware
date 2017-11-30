@@ -1,0 +1,37 @@
+{ 
+  "Abstract" : [ "Mutations in leucine-rich repeat kinase 2 (LRRK2) underlie an autosomal-dominant form of Parkinson's disease (PD) that is clinically indistinguishable from idiopathic PD. The function of LRRK2 is not well understood, but it has become widely accepted that LRRK2 levels or its kinase activity, which is increased by the most commonly observed mutation (G2019S), regulate neurite growth. However, growth has not been measured; it is not known whether mean differences in length correspond to altered rates of growth or retraction, whether axons or dendrites are impacted differentially or whether effects observed are transient or sustained. To address these questions, we compared several developmental milestones in neurons cultured from mice expressing bacterial artificial chromosome transgenes encoding mouse wildtype-LRRK2 or mutant LRRK2-G2019S, Lrrk2 knockout mice and non-transgenic mice. Over the course of three weeks of development on laminin, the data show a sustained, negative effect of LRRK2-G2019S on dendritic growth and arborization, but counter to expectation, dendrites from Lrrk2 knockout mice do not elaborate more rapidly. In contrast, young neurons cultured on a slower growth substrate, poly-L-lysine, show significantly reduced axonal and dendritic motility in Lrrk2 transgenic neurons and significantly increased motility in Lrrk2 knockout neurons with no significant changes in length. Our findings support that LRRK2 can regulate patterns of axonal and dendritic growth, but they also show that effects vary depending on growth substrate and stage of development. Such predictable changes in motility can be exploited in LRRK2 bioassays and guide exploration of LRRK2 function in vivo." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Sepulveda, Bryan",
+      "Mesias, Roxana",
+      "Li, Xianting",
+      "Yue, Zhenyu",
+      "Benson, Deanna L"
+    ],
+  "Date" : "2013",
+  "Identifier" : [  ],
+  "Journal" : [ "PloS one" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/23646112",
+  "MeshHeadings" : [ 
+      "Animals",
+      "Axons",
+      "Cell Movement",
+      "Dendrites",
+      "Gene Expression",
+      "Genotype",
+      "Leucine-Rich Repeat Serine-Threonine Protein Kinase-2",
+      "Mice",
+      "Mice, Knockout",
+      "Mutation",
+      "Neurons",
+      "Phenotype",
+      "Protein-Serine-Threonine Kinases"
+    ],
+  "PMID" : 23646112,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Short- and long-term effects of LRRK2 on axon and dendrite growth."
+}

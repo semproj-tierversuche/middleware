@@ -1,0 +1,38 @@
+{ 
+  "Abstract" : [ "The most prominent mechanism proposed for death of dopaminergic neurons in Parkinson's disease (PD) is elevated generation of reactive oxygen/nitrogen species (ROS/RNS). Recent studies suggest that ROS produced during PD pathogenesis may contribute to cytotoxicity in cell culture models of PD. We hypothesized that inhibition of ROS production would prevent PD symptoms in the LRRK2(R1441G) transgenic (tg) mouse model of PD. These mice overexpress a mutant form of leucine-rich repeat kinase 2 (LRRK2) and are reported to develop PD-like symptoms at approximately 10 months of age. Despite similar expression of the transgene, our colony did not recapitulate the same type of motor dysfunction originally reported. However, tests of motor coordination (pole test, Rotor-Rod) revealed a significant defect in LRRK2(R1441G) mice by 16 months of age. LRRK2(R1441G) tg mice, or wild type littermates, were given diapocynin (200mg/kg, a proposed NADPH oxidase inhibitor) three times per week by oral gavage starting at 12 weeks of age. Decreased performance on the pole test and Rotor-Rod in the LRRK2(R1441G) mice was prevented with diapocynin treatment. No loss in open field movement or rearing was found. As expected, tyrosine hydroxylase staining was similar in both the substantia nigra and striatum in all treatment groups. Together these data demonstrate that diapocynin is a viable agent for protection of neurobehavioral function." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Dranka, Brian P",
+      "Gifford, Alison",
+      "Ghosh, Anamitra",
+      "Zielonka, Jacek",
+      "Joseph, Joy",
+      "Kanthasamy, Anumantha G",
+      "Kalyanaraman, Balaraman"
+    ],
+  "Date" : "2013",
+  "Identifier" : [  ],
+  "Journal" : [ "Neuroscience letters" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/23721786",
+  "MeshHeadings" : [ 
+      "Acetophenones",
+      "Animals",
+      "Biphenyl Compounds",
+      "Disease Models, Animal",
+      "Gait",
+      "Leucine-Rich Repeat Serine-Threonine Protein Kinase-2",
+      "Mice",
+      "Mice, Transgenic",
+      "Motor Activity",
+      "Parkinson Disease",
+      "Protein-Serine-Threonine Kinases",
+      "Rotarod Performance Test"
+    ],
+  "PMID" : 23721786,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Diapocynin prevents early Parkinson's disease symptoms in the leucine-rich repeat kinase 2 (LRRK2R¹⁴⁴¹G) transgenic mouse."
+}

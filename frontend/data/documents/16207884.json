@@ -1,0 +1,42 @@
+{ 
+  "Abstract" : [ "The cerebellum plays an essential role in pursuit tracking with the eye and with the hand. During smooth pursuit eye movements, both tracking position and velocity are signaled by Purkinje cells. Purkinje cell simple spike discharge is also modulated by direction and speed during linear manual tracking. This study evaluated how all three parameters, position, movement direction, and speed, are signaled in the simple spike discharge of Purkinje cells during circular manual tracking. Three rhesus monkeys intercepted and then tracked a target moving in a circle in both counterclockwise and clockwise directions across a range of constant target speeds. Two sets of analyses of the simple spike firing of 97 Purkinje cells examined the effects of position, movement direction, and speed. The first approach was the incremental improvement of regression models, initially modeling a pure position dependence, then incorporating movement direction, and finally incorporating speed dependence. The second was a model-independent approach, without any explicit assumptions about the character of the directional tuning or speed effects. Both analyses revealed the same three results: (1) Purkinje cell discharge is spatially tuned, to both the position and direction of movement, and (2) this spatial tuning is not altered by the speed, except (3) the speed scales the average firing and/or depth of modulation. The results suggest that the population of Purkinje cells forms a representation of the entire position-direction space of arm movements, and that the speed modulates the scale of that representation. This speed scaling provides insights into the cerebellar processing of movement-related timing." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Roitman, Alexander V",
+      "Pasalar, Siavash",
+      "Johnson, Michael T V",
+      "Ebner, Timothy J"
+    ],
+  "Date" : "2005",
+  "Identifier" : [  ],
+  "Journal" : [ "The Journal of neuroscience : the official journal of the Society for Neuroscience" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/16207884",
+  "MeshHeadings" : [ 
+      "Action Potentials",
+      "Animals",
+      "Behavior, Animal",
+      "Biomechanical Phenomena",
+      "Brain Mapping",
+      "Cerebellum",
+      "Electromyography",
+      "Eye Movements",
+      "Hand",
+      "Macaca mulatta",
+      "Models, Neurological",
+      "Models, Statistical",
+      "Movement",
+      "Muscle, Skeletal",
+      "Orientation",
+      "Psychomotor Performance",
+      "Purkinje Cells",
+      "Reaction Time",
+      "Task Performance and Analysis"
+    ],
+  "PMID" : 16207884,
+  "PublicationType" : "Comparative Study",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Position, direction of movement, and speed tuning of cerebellar Purkinje cells during circular manual tracking in monkey."
+}

@@ -1,0 +1,33 @@
+{ 
+  "Abstract" : [ "gamma-Secretase cleavage of the amyloid precursor protein already subjected to a prior beta-secretase cleavage generates beta-amyloid (Abeta) peptide fragments, which are major constituents of the amyloid plagues found in Alzheimer's disease brain tissues. gamma-Secretase activity and components of the gamma-secretase complex are found in the endoplasmic reticulum-Golgi intermediate compartment, the Golgi, the trans-Golgi network, the plasma membrane, the endosomal-lysosomal system and recently, the mitochondria. Abeta fragments have been shown to be neurotoxic, leading to mitochondrial dysfunction and enhanced apoptotic cell death. However, if Abeta fragments are indeed detrimental to neurons, the widespread presence of enzymatic activity that would result in their generation in the cell appears to make little sense. The presence of a gamma-secretase complex in the mitochondrion, an organelle that is particularly susceptible to Abeta toxicity, is even more puzzling. Emerging evidence suggests that both secreted and intracellular Abeta fragments have endogenous functions. Also, while the fibrillogenic Abeta1-42 is clearly neurotoxic, the more abundant and soluble Abeta1-40 is an antioxidant and could potentially be neuroprotective in several ways. A \"physiological\" amount of Abeta1-40 production by cellular gamma-secretase activity may be part of the neuron's natural counter against oxidative damage, in addition to endogenous roles in neuronal survival and modulation of synaptic transmission. In any case, whether Abeta is produced locally in the mitochondria and the function for mitochondrial Abeta, if produced, is yet unclear." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Teng, Felicia Yu Hsuan",
+      "Tang, Bor Luen"
+    ],
+  "Date" : "2005",
+  "Identifier" : [  ],
+  "Journal" : [ "Biochemical and biophysical research communications" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/15670741",
+  "MeshHeadings" : [ 
+      "Alzheimer Disease",
+      "Amyloid Precursor Protein Secretases",
+      "Amyloid beta-Peptides",
+      "Animals",
+      "Aspartic Acid Endopeptidases",
+      "Brain",
+      "Endopeptidases",
+      "Enzyme Activation",
+      "Humans",
+      "Mitochondria",
+      "Neurons",
+      "Tissue Distribution"
+    ],
+  "PMID" : 15670741,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Widespread gamma-secretase activity in the cell, but do we need it at the mitochondria?"
+}

@@ -1,0 +1,43 @@
+{ 
+  "Abstract" : [ "Aggregated 40-residue amyloid-beta peptide (beta40, 4 microg/microl), and 2 days later, ibotenate (NMDA receptor agonist, 0.3 microg/0.5 microl), were bilaterally injected into the hippocampus of rats. Five to six weeks after the beta40 injection, the rats showed learning deficits in the Morris water maze task and neuronal damage in the hippocampus, although the injection of beta40 or ibotenate alone did not result in cognitive deficits and hippocampal damage. Memantine (10, 20 mg/kg/day s.c. infusion for 6 weeks starting 24 h before the beta40 injection) significantly prevented learning deficits as measured for 4 days from 5 weeks after the beta40 injection, while a lower dose of memantine (5 mg/kg/day) and MK-801 (0.312, 0.624 mg/kg/day) did not have inhibitory effects on the learning deficits. The neuronal damage in the hippocampus, assessed as an elevation of the levels of the peripheral-type benzodiazepine-binding site (a gliosis marker for neuronal damage) produced by sequential intra-hippocampal injections of beta40 and ibotenate, at 6 weeks (39 days) after the beta40 injection, was significantly attenuated by memantine (10, 20 mg/kg/day) and MK-801 (0.624 mg/kg/day). These protective effects were also confirmed by histochemical examination (Cresyl violet staining of brain slices). In naive rats, MK-801 produced a significant learning impairment in the water maze task at a dose of 0.624 mg/kg/day, while memantine (20 mg/kg/day s.c. infusion) did not, although the beta40 plus ibotenate-induced hippocampal damage was lessened by both treatments. These results suggest that memantine and MK-801 exert protective effects on progressive neuronal damage, but that only memantine prevents memory impairment in hippocampal-lesioned rats, and that memantine may be a beneficial agent for the treatment of progressive cognitive dysfunction including Alzheimer's disease-type dementia." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Nakamura, Shizuo",
+      "Murayama, Norihito",
+      "Noshita, Takafumi",
+      "Katsuragi, Ryoko",
+      "Ohno, Tomochika"
+    ],
+  "Date" : "2006",
+  "Identifier" : [  ],
+  "Journal" : [ "European journal of pharmacology" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/16952349",
+  "MeshHeadings" : [ 
+      "Amyloid beta-Peptides",
+      "Animals",
+      "Disease Models, Animal",
+      "Dizocilpine Maleate",
+      "Excitatory Amino Acid Agonists",
+      "Excitatory Amino Acid Antagonists",
+      "Hippocampus",
+      "Ibotenic Acid",
+      "Male",
+      "Maze Learning",
+      "Memantine",
+      "Memory",
+      "Memory Disorders",
+      "Neurons",
+      "Neuroprotective Agents",
+      "Peptide Fragments",
+      "Rats",
+      "Rats, Inbred F344",
+      "Receptors, N-Methyl-D-Aspartate"
+    ],
+  "PMID" : 16952349,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Cognitive dysfunction induced by sequential injection of amyloid-beta and ibotenate into the bilateral hippocampus; protection by memantine and MK-801."
+}

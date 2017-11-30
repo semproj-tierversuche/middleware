@@ -1,0 +1,42 @@
+{ 
+  "Abstract" : [ "Intraventricular (i.c.v.) kainic acid (KA) causes an acute excitotoxic lesion to the CA3 region of rodent hippocampus. Recent evidence implicated c-fos gene in regulating neuron survival and death following an excitotoxic insult. In this study we attempted to prevent KA-induced damage in CA3 neurons with NMDA preconditioning, which produced a marked expression of c-fos in the hippocampus. NMDA (0.6-6 microg, i.c.v.) was injected to anesthetized rats alone or 1 h before KA (0.15 microg, i.c.v.). Following KA injection, vibratome sections were processed for immunohistochemistry/electron microscopy. c-Fos and Nissl staining were used to estimate the extent of neuronal excitation and damage, respectively. Quantitative evaluation of c-Fos-labeled cells showed significantly less c-Fos in CA3a than in neighboring CA3b and CA2 from 1 to 4 h after KA alone. Attenuation of expressed c-Fos in CA3a was accompanied by damage of neurons with more apoptotic than necrotic signs. NMDA preconditioning elevated CA3a c-Fos expression and at 1 and 2 h exceeded markedly that after KA alone. However, at 4 h after KA, NMDA-preconditioned c-Fos induction in CA3a diminished to the same level as that seen after KA alone. The onset of neuronal degeneration was delayed in similar way. While NMDA-induced c-Fos expression in CA3a could be blocked by MK-801 completely, MK-801 and CNQX were both without significant effect on KA-induced c-Fos expression and neuronal damage. In conclusion, inhibition of c-Fos expression and onset of neuronal damage in CA3a following icv KA injection might be transiently delayed by i.c.v. NMDA preconditioning." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Mohammadi, Shirin",
+      "Pavlik, Alfred",
+      "Krajci, Dimitrolos",
+      "Al-Sarraf, Hameed"
+    ],
+  "Date" : "2009",
+  "Identifier" : [  ],
+  "Journal" : [ "Brain research" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/19118538",
+  "MeshHeadings" : [ 
+      "6-Cyano-7-nitroquinoxaline-2,3-dione",
+      "Animals",
+      "Cell Death",
+      "Dizocilpine Maleate",
+      "Female",
+      "Gene Expression",
+      "Genes, fos",
+      "Hippocampus",
+      "Kainic Acid",
+      "N-Methylaspartate",
+      "Nerve Degeneration",
+      "Neurons",
+      "Neuroprotective Agents",
+      "Proto-Oncogene Proteins c-fos",
+      "Rats",
+      "Rats, Sprague-Dawley",
+      "Receptors, AMPA",
+      "Receptors, Kainic Acid",
+      "Receptors, N-Methyl-D-Aspartate"
+    ],
+  "PMID" : 19118538,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "NMDA preconditioning and neuroprotection in vivo: delayed onset of kainic acid-induced neurodegeneration and c-Fos attenuation in CA3a neurons."
+}

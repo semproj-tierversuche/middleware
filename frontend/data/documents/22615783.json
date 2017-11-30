@@ -1,0 +1,43 @@
+{ 
+  "Abstract" : [ "The G2019S mutation in the multidomain protein leucine-rich repeat kinase 2 (LRRK2) is one of the most frequently identified genetic causes of Parkinson's disease (PD). Clinically, LRRK2(G2019S) carriers with PD and idiopathic PD patients have a very similar disease with brainstem and cortical Lewy pathology (α-synucleinopathy) as histopathological hallmarks. Some patients have Tau pathology. Enhanced kinase function of the LRRK2(G2019S) mutant protein is a prime suspect mechanism for carriers to develop PD but observations in LRRK2 knock-out, G2019S knock-in and kinase-dead mutant mice suggest that LRRK2 steady-state abundance of the protein also plays a determining role. One critical question concerning the molecular pathogenesis in LRRK2(G2019S) PD patients is whether α-synuclein (aSN) has a contributory role. To this end we generated mice with high expression of either wildtype or G2019S mutant LRRK2 in brainstem and cortical neurons. High levels of these LRRK2 variants left endogenous aSN and Tau levels unaltered and did not exacerbate or otherwise modify α-synucleinopathy in mice that co-expressed high levels of LRRK2 and aSN in brain neurons. On the contrary, in some lines high LRRK2 levels improved motor skills in the presence and absence of aSN-transgene-induced disease. Therefore, in many neurons high LRRK2 levels are well tolerated and not sufficient to drive or exacerbate neuronal α-synucleinopathy." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Herzig, Martin C",
+      "Bidinosti, Michael",
+      "Schweizer, Tatjana",
+      "Hafner, Thomas",
+      "Stemmelen, Christine",
+      "Weiss, Andreas",
+      "Danner, Simone",
+      "Vidotto, Nella",
+      "Stauffer, Daniela",
+      "Barske, Carmen",
+      "Mayer, Franziska",
+      "Schmid, Peter",
+      "Rovelli, Giorgio",
+      "van der Putten, P Herman",
+      "Shimshek, Derya R"
+    ],
+  "Date" : "2012",
+  "Identifier" : [  ],
+  "Journal" : [ "PloS one" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/22615783",
+  "MeshHeadings" : [ 
+      "Animals",
+      "Brain",
+      "Female",
+      "In Situ Hybridization",
+      "Leucine-Rich Repeat Serine-Threonine Protein Kinase-2",
+      "Male",
+      "Mice",
+      "Protein-Serine-Threonine Kinases",
+      "alpha-Synuclein"
+    ],
+  "PMID" : 22615783,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "High LRRK2 levels fail to induce or exacerbate neuronal alpha-synucleinopathy in mouse brain."
+}

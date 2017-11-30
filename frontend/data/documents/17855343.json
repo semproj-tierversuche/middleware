@@ -1,0 +1,39 @@
+{ 
+  "Abstract" : [ "Numerous studies have now shown that the amyloid beta-protein (Abeta), the principal component of cerebral plaques in Alzheimer disease, rapidly and potently inhibits certain forms of synaptic plasticity. The amyloid (or Abeta) hypothesis proposes that the continuous disruption of normal synaptic physiology by Abeta contributes to the development of Alzheimer disease. However, there is little consensus about how Abeta mediates this inhibition at the molecular level. Using mouse primary hippocampal neurons, we observed that a brief treatment with cell-derived, soluble, human Abeta disrupted the activation of three kinases (Erk/MAPK, CaMKII, and the phosphatidylinositol 3-kinase-activated protein Akt/protein kinase B) that are required for long term potentiation, whereas two other kinases (protein kinase A and protein kinase C) were stimulated normally. An antagonist of the insulin receptor family of tyrosine kinases was found to mimic the pattern of Abeta-mediated kinase inhibition. We then found that soluble Abeta binds to the insulin receptor and interferes with its insulin-induced autophosphorylation. Taken together, these data demonstrate that physiologically relevant levels of naturally secreted Abeta interfere with insulin receptor function in hippocampal neurons and prevent the rapid activation of specific kinases required for long term potentiation." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Townsend, Matthew",
+      "Mehta, Tapan",
+      "Selkoe, Dennis J"
+    ],
+  "Date" : "2007",
+  "Identifier" : [  ],
+  "Journal" : [ "The Journal of biological chemistry" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/17855343",
+  "MeshHeadings" : [ 
+      "Amyloid beta-Peptides",
+      "Animals",
+      "CHO Cells",
+      "Cricetinae",
+      "Cricetulus",
+      "Electrophysiology",
+      "Enzyme Activation",
+      "Hippocampus",
+      "Humans",
+      "Insulin",
+      "Long-Term Potentiation",
+      "Mice",
+      "Models, Biological",
+      "Phosphatidylinositol 3-Kinases",
+      "Phosphorylation",
+      "Receptor, Insulin",
+      "Signal Transduction"
+    ],
+  "PMID" : 17855343,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Soluble Abeta inhibits specific signal transduction cascades common to the insulin receptor pathway."
+}

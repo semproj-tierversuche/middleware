@@ -1,0 +1,33 @@
+{ 
+  "Abstract" : [ 
+      "Missense mutations and multiplications of the alpha-synuclein gene cause autosomal dominant familial Parkinson's disease (PD). alpha-Synuclein protein is also a major component of Lewy bodies, the hallmark pathological inclusions of PD. Therefore, alpha-synuclein plays an important role in the pathogenesis of familial and sporadic PD. To model alpha-synuclein-linked disease in vivo, transgenic mouse models have been developed that express wild-type or mutant human alpha-synuclein from a variety of neuronal-selective heterologous promoter elements. These models exhibit a variety of behavioral and neuropathological features resembling some aspects of PD. However, an important deficiency of these models is the observed lack of robust or progressive nigrostriatal dopaminergic neuronal degeneration that is characteristic of PD.",
+      "We have developed conditional alpha-synuclein transgenic mice that can express A53T, E46K or C-terminally truncated (1-119) human alpha-synuclein pathological variants from the endogenous murine ROSA26 promoter in a Cre recombinase-dependent manner. Using these mice, we have evaluated the expression of these alpha-synuclein variants on the integrity and viability of nigral dopaminergic neurons with age. Expression of A53T alpha-synuclein or truncated alphaSyn119 selectively in nigrostriatal pathway dopaminergic neurons for up to 12 months fails to precipitate dopaminergic neuronal loss in these mice. However, alphaSyn119 expression in nigral dopaminergic neurons for up to 12 months causes a marked reduction in the levels of striatal dopamine and its metabolites together with other subtle neurochemical alterations.",
+      "We have developed and evaluated novel conditional alpha-synuclein transgenic mice with transgene expression directed selectively to nigrostriatal dopaminergic neurons as a potential new mouse model of PD. Our data support the pathophysiological relevance of C-terminally truncated alpha-synuclein species in vivo. The expression of alphaSyn119 in the mouse nigrostriatal dopaminergic pathway may provide a useful model of striatal dopamine depletion and could potentially provide a presymptomatic model of PD perhaps representative of the earliest derangements in dopaminergic neuronal function observed prior to neuronal loss. These conditional alpha-synuclein transgenic mice provide novel tools for evaluating and dissecting the age-related effects of alpha-synuclein pathological variants on the function of the nigrostriatal dopaminergic pathway or other specific neuronal populations."
+    ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Daher, João Paulo L",
+      "Ying, Mingyao",
+      "Banerjee, Rebecca",
+      "McDonald, Rebecca S",
+      "Hahn, Myriam Dumas",
+      "Yang, Lichuan",
+      "Flint Beal, M",
+      "Thomas, Bobby",
+      "Dawson, Valina L",
+      "Dawson, Ted M",
+      "Moore, Darren J"
+    ],
+  "Date" : "2009",
+  "Identifier" : [  ],
+  "Journal" : [ "Molecular neurodegeneration" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/19630976",
+  "MeshHeadings" : [  ],
+  "PMID" : 19630976,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Conditional transgenic mice expressing C-terminally truncated human alpha-synuclein (alphaSyn119) exhibit reduced striatal dopamine without loss of nigrostriatal pathway dopaminergic neurons."
+}

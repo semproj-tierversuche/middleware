@@ -1,0 +1,39 @@
+{ 
+  "Abstract" : [ "Mutations in the leucine-rich repeat kinase 2 (LRRK2) have been associated with familial and sporadic cases of Parkinson disease. Mutant LRRK2 causes in vitro and in vivo neurite shortening, mediated in part by autophagy, and a parkinsonian phenotype in transgenic mice; however, the underlying mechanisms remain unclear. Because mitochondrial content/function is essential for dendritic morphogenesis and maintenance, we investigated whether mutant LRRK2 affects mitochondrial homeostasis in neurons. Mouse cortical neurons expressing either LRRK2 G2019S or R1441C mutations exhibited autophagic degradation of mitochondria and dendrite shortening. In addition, mutant LRRK2 altered the ability of the neurons to buffer intracellular calcium levels. Either calcium chelators or inhibitors of voltage-gated L-type calcium channels prevented mitochondrial degradation and dendrite shortening. These data suggest that mutant LRRK2 causes a deficit in calcium homeostasis, leading to enhanced mitophagy and dendrite shortening." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Cherra, Salvatore J",
+      "Steer, Erin",
+      "Gusdon, Aaron M",
+      "Kiselyov, Kirill",
+      "Chu, Charleen T"
+    ],
+  "Date" : "2013",
+  "Identifier" : [  ],
+  "Journal" : [ "The American journal of pathology" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/23231918",
+  "MeshHeadings" : [ 
+      "Animals",
+      "Autophagy",
+      "Calcium",
+      "Calcium Channels, L-Type",
+      "Dendrites",
+      "Homeostasis",
+      "Leucine-Rich Repeat Serine-Threonine Protein Kinase-2",
+      "Membrane Potential, Mitochondrial",
+      "Mice",
+      "Mitochondria",
+      "Mitochondrial Degradation",
+      "Mutant Proteins",
+      "Mutation",
+      "Protein Transport",
+      "Protein-Serine-Threonine Kinases"
+    ],
+  "PMID" : 23231918,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Mutant LRRK2 elicits calcium imbalance and depletion of dendritic mitochondria in neurons."
+}

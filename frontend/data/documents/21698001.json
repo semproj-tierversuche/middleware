@@ -1,0 +1,42 @@
+{ 
+  "Abstract" : [ "Parkinson's disease (PD) results from progressive degeneration of dopaminergic neurons. Most PD cases are sporadic, but some have pathogenic mutation in the individual genes. Mutation of the leucine-rich repeat kinase-2 (LRRK2) gene is associated with familial and sporadic PD, as exemplified by G2019S substitution. While constitutive expression of mutant LRRK2 in transgenic mice fails to induce neuron death, transient expression of the disease gene by viral delivery causes a substantial loss of dopaminergic neurons in mice. To further assess LRRK2 pathogenesis, we created inducible transgenic rats expressing human LRRK2 with G2019S substitution. Temporal overexpression of LRRK2(G2019S) in adult rats impaired dopamine reuptake by dopamine transporter (DAT) and thus enhanced locomotor activity, the phenotypes that were not observed in transgenic rats constitutively expressing the gene throughout life time. Reduced DAT binding activity is an early sign of dopaminergic dysfunction in asymptomatic subjects carrying pathogenic mutation in LRRK2. Our transgenic rats recapitulated the initiation process of dopaminergic dysfunction caused by pathogenic mutation in LRRK2. Inducible transgenic approach uncovered phenotypes that may be obscured by developmental compensation in constitutive transgenic rats. Finding in inducible LRRK2 transgenic rats would guide developing effective strategy in transgenic studies: Inducible expression of transgene may induce greater phenotypes than constitutive gene expression, particularly in rodents with short life time." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Zhou, Hongxia",
+      "Huang, Cao",
+      "Tong, Jianbin",
+      "Hong, Weimin C",
+      "Liu, Yong-Jian",
+      "Xia, Xu-Gang"
+    ],
+  "Date" : "2011",
+  "Identifier" : [  ],
+  "Journal" : [ "International journal of biological sciences" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/21698001",
+  "MeshHeadings" : [ 
+      "Age Factors",
+      "Animals",
+      "Corpus Striatum",
+      "Disease Models, Animal",
+      "Dopamine",
+      "Dopamine Plasma Membrane Transport Proteins",
+      "Humans",
+      "Leucine-Rich Repeat Serine-Threonine Protein Kinase-2",
+      "Locus Coeruleus",
+      "Microdialysis",
+      "Motor Activity",
+      "Mutation",
+      "Parkinson Disease",
+      "Protein-Serine-Threonine Kinases",
+      "Rats",
+      "Rats, Transgenic",
+      "Substantia Nigra"
+    ],
+  "PMID" : 21698001,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Temporal expression of mutant LRRK2 in adult rats impairs dopamine reuptake."
+}

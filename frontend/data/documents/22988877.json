@@ -1,0 +1,31 @@
+{ 
+  "Abstract" : [ "PD (Parkinson's disease) is a neurodegenerative disorder caused by loss of dopamine-generating cells in the substantia nigra. The implication of genetic factors in the aetiology of PD has an essential importance in our understanding of the development of the disease. Mutations in the LRRK2 (leucine-rich repeat kinase 2) gene cause late-onset PD with a clinical appearance indistinguishable from idiopathic PD. Moreover, LRRK2 has been associated with the process of autophagy regulation. Autophagy is an intracellular catabolic mechanism whereby a cell recycles or degrades damaged proteins and cytoplasmic organelles. In the present paper, we discuss the role of LRRK2 in autophagy, and the importance of this relationship in the development of nigral degeneration in PD." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Bravo-San Pedro, José M",
+      "Gómez-Sánchez, Rubén",
+      "Niso-Santano, Mireia",
+      "Pizarro-Estrella, Elisa",
+      "González-Polo, Rosa A",
+      "Fuentes, José M"
+    ],
+  "Date" : "2012",
+  "Identifier" : [  ],
+  "Journal" : [ "Biochemical Society transactions" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/22988877",
+  "MeshHeadings" : [ 
+      "Autophagy",
+      "Humans",
+      "Leucine-Rich Repeat Serine-Threonine Protein Kinase-2",
+      "Mutation",
+      "Parkinson Disease",
+      "Protein-Serine-Threonine Kinases"
+    ],
+  "PMID" : 22988877,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Possible involvement of the relationship of LRRK2 and autophagy in Parkinson's disease."
+}

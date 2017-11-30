@@ -1,0 +1,36 @@
+{ 
+  "Abstract" : [ "Mutations in the Leucine Reach Repeat Kinase 2 (LRRK2) gene are the most frequent cause of familial Parkinson's disease (PD). Previously, we have sequenced the coding region of the LRRK2 gene in 85 PD patients and showed the prevalence of G2019S-associated PD (G2019S-PD) among all cases of LRRK2-associated PD in Russia. Screening of the most frequent LRRK2 mutations (G2019S, R1441C, R1441G) in the extended sample of PD patients (100 familial cases, 14 relatives and 230 sporadic cases) revealed two novel families with G2019S-PD in the addition to LRRK2-associated PD cases identified earlier. In summary, the frequency of LRRK2-associated PD among familial PD cases was estimated as 8%. The G2019S mutation was the most frequent (7% - in familial and 0.5% - in sporadic PD). Comparative analyses of the age-at-onset and main neurological symptoms in 13 patients with LRRK2-associated PD (8 with G2019S, 2 - V1613A and 1 - R1441C) and 80 PD patients without mutations in the LRRK2 gene did not reveal any differences. However, the G2019S LRRK2 mutation carriers had the increased rate of drug induced side-effects in comparison with genetically undefined patients (OR=6.4, p<0.02). The data obtained could improve our understanding of the pathogenesis of LRRK2-associated PD and be useful in clinical practice during disease therapy." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Pchelina, S N",
+      "Ivanova, O N",
+      "Emel'ianov, A K",
+      "Iakimovskiĭ, A F"
+    ],
+  "Date" : "2011",
+  "Identifier" : [  ],
+  "Journal" : [ "Zhurnal nevrologii i psikhiatrii imeni S.S. Korsakova" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/22433811",
+  "MeshHeadings" : [ 
+      "Aged",
+      "Aged, 80 and over",
+      "DNA Mutational Analysis",
+      "Female",
+      "Humans",
+      "Leucine-Rich Repeat Serine-Threonine Protein Kinase-2",
+      "Levodopa",
+      "Male",
+      "Mutation",
+      "Parkinson Disease",
+      "Pedigree",
+      "Protein Structure, Tertiary",
+      "Protein-Serine-Threonine Kinases"
+    ],
+  "PMID" : 22433811,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "[Clinical features of LRRK2-associated Parkinson's disease]."
+}

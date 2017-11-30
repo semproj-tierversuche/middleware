@@ -1,0 +1,34 @@
+{ 
+  "Abstract" : [ "Local field potentials (LFPs) were recorded in 13 patients from pairs of microelectrodes driven through thalamus during functional localization prior to implantation of a thalamic deep brain stimulation electrode for treatment of tremor or pain. Six patients had a history of essential tremor (ET), 3 of multiple sclerosis, and the remaining 4 had symptoms of chronic pain. Specific to the ET group was the observation that oscillatory field potentials recorded from the two microelectrodes in the motor thalamus (ventralis intermedius--Vim, ventralis oralis posterior--Vop) were highly coherent at frequencies characteristic of pathological tremor (4-7 Hz). This stands in contrast to the significantly more desynchronized state observed in the somatosensory thalamus (ventralis caudalis--Vc) for that frequency band. In addition, higher frequency coherent oscillations typically associated with physiological tremor (8-12 Hz) were observed in the ET patients in motor thalamus and Vc and in motor thalamus of pain patients. An examination of the inter-frequency correlation of the LFPs in Vim and Vop showed that the low frequency theta waves correlated with high frequency oscillations in the beta and gamma ranges. These findings are consistent with and extend those of other studies suggesting that alterations in thalamic oscillatory activity are involved in the pathophysiology of ET and furthermore suggest that increased synchronization in the 4-7 Hz range is related to the occurrence of tremor in the ET patient group. Furthermore, they support the idea that therapies such as lesions and high frequency stimulation of the motor thalamus are effective in reducing tremor symptoms since they destroy the abnormal low frequency synchronization in motor thalamus." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Kane, Abdoul",
+      "Hutchison, William D",
+      "Hodaie, Mojgan",
+      "Lozano, Andres M",
+      "Dostrovsky, Jonathan O"
+    ],
+  "Date" : "2009",
+  "Identifier" : [  ],
+  "Journal" : [ "Experimental neurology" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/19233174",
+  "MeshHeadings" : [ 
+      "Action Potentials",
+      "Brain Mapping",
+      "Deep Brain Stimulation",
+      "Essential Tremor",
+      "Humans",
+      "Multiple Sclerosis",
+      "Pain",
+      "Spectrum Analysis",
+      "Thalamus",
+      "Theta Rhythm"
+    ],
+  "PMID" : 19233174,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Enhanced synchronization of thalamic theta band local field potentials in patients with essential tremor."
+}

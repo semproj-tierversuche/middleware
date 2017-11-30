@@ -1,0 +1,30 @@
+{ 
+  "Abstract" : [ "Understanding the formation of extracellular amyloid neurofibrillar bundles/senile plaques and their role in the development of Alzheimer's disease is of considerable interest to neuroscientists and clinicians. Major components of the extracellular neurofibrillar bundles are polymerized amyloid beta (Abeta) peptides (1-40), (1-42) and (1-43), derived in vivo from the soluble amyloid precursor protein (sAPP) by proteolytic (beta- and gamma-secretase) cleavage. The Abeta(1-42) peptide is widely considered to be of greatest significance in relation to the pathogenesis of Alzheimer's disease. A well-defined ultrastructural characteristic within Alzheimer dense plaques is the presence of helical fibrils that are believed to consist of polymerized amyloid beta, together with other associated proteins such as the serum amyloid P protein, apolipoprotein E isoform epsilon 4, alpha1-anti-chymotrypsin, catalase, glycoproteins, proteoglycans, cholesterol and other lipids. The spontaneous in vitro fibrillogenesis of chemically synthesized Abeta(1-42) peptide (rat sequence), following 20h incubation at 37 degrees C, has been assessed from uranyl acetate negatively stained specimens studied by transmission electron microscopy (TEM). Amyloid beta(1-42) peptide fibrillogenesis in the presence of cholesterol has been investigated using aqueous suspensions of microcrystalline cholesterol and cholesteryl acetate, globular particles of cholesteryl oleate, a soluble (micellar) cholesterol derivative (polyoxyethyl cholesteryl sebacate/cholesteryl PEG 600 sebacate), cholesterol-sphingomyelin liposomes and sphingomyelin liposomes. In all these cases, with the exception of cholesteryl oleate, considerable potentiation of long smooth helical fibril formation occurred, compared to 20h 37 degrees C control samples containing the Abeta(1-42) peptide alone. The binding of polyoxyethyl cholesteryl sebacate micelles to helical Abeta fibrils/filaments and the binding of fibrils to the surface of cholesterol and cholesteryl acetate microcrystals, and to a lesser extent on cholesteryl oleate globules, indicates an affinity of the Abeta peptide for cholesterol. This potentiation of Abeta(1-42) polymerization is likely to be mediated at the molecular level via hydrophobic interaction between the amino acid side chains of the peptide and the tetracyclic sterol nucleus. Addition of cupric sulphate (0.1mM) to the Abeta solution produced large disorganized fibril aggregates. Inclusion of 1mM aspirin (sodium acetylsalicylate) in the Abeta peptide alone and as an addition to Abeta peptide solution containing cholesterol, cholesteryl acetate, soluble cholesterol, sphingomyelin and sphingomyelin-cholesterol liposomes, and to 0.1mM cupric sulphate solution, completely inhibited fibrillogenesis. Instead, only non-crystalline diffuse, non-filamentous microaggregates of insoluble Abeta particles were found, free and attached to the sterol particles. The in vitro system presented here provides a way to rapidly monitor at the structural/TEM level other compounds (e.g. chelating agents, drugs, beta-sheet breaking peptides and anti-oxidants) for their effects on amyloid beta peptide fibrillogenesis (and on preformed fibril disassembly) in parallel with in vitro biochemical studies and in vivo studies using animal models of Alzheimer's disease as well as studies on man." ],
+  "Annotations" : [  ],
+  "Authors" : [ "Harris, J R" ],
+  "Date" : "2002",
+  "Identifier" : [  ],
+  "Journal" : [ "Micron (Oxford, England : 1993)" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/12475558",
+  "MeshHeadings" : [ 
+      "Alzheimer Disease",
+      "Amyloid beta-Peptides",
+      "Animals",
+      "Aspirin",
+      "Cholesterol",
+      "Copper",
+      "Dimerization",
+      "Humans",
+      "Microscopy, Electron",
+      "Peptides",
+      "Rats",
+      "Sphingomyelins"
+    ],
+  "PMID" : 12475558,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "In vitro fibrillogenesis of the amyloid beta 1-42 peptide: cholesterol potentiation and aspirin inhibition."
+}

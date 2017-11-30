@@ -1,0 +1,43 @@
+{ 
+  "Abstract" : [ "Plaques in the parenchyma of the brain containing Abeta peptides are one of the hallmarks of Alzheimer's disease. These Abeta peptides are produced by the final proteolytic cleavage of the amyloid precursor protein by the intramembraneous aspartyl protease gamma-secretase. Thus, one approach to lowering levels of Abeta has been via the inhibition of the gamma-secretase enzyme. Here, we report a novel, bioavailable gamma-secretase inhibitor, N-[cis-4-[(4-chlorophenyl)sulfonyl]-4-(2,5-difluorophenyl)cyclohexyl]-1,1,1-trifluoromethanesulfonamide (MRK-560) that displayed oral pharmacokinetics suitable for once-a-day dosing. It was able to markedly reduce Abeta in the brain and cerebrospinal fluid (CSF) in the rat, with ED(50) values of 6 and 10 mg/kg, respectively. Time-course experiments using MRK-560 demonstrated these reductions in Abeta could be maintained for 24 h, and comparable temporal reductions in rat brain and CSF Abeta(40) further suggested that these two pools of Abeta are related. This relationship between the brain and CSF Abeta was maintained when MRK-560 was dosed once a day for 2 weeks, and accordingly, when all the data for the dose-response curve and time courses were correlated, a strong association was observed between the brain and CSF Abeta levels. These results demonstrate that MRK-560 is an orally bioavailable gamma-secretase inhibitor with the ability to markedly reduce Abeta peptide in the brain and CSF of the rat and confirm the utility of the rat for assessing the effects of gamma-secretase inhibitors on central nervous system Abeta(40) levels in vivo." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Best, Jonathan D",
+      "Jay, Mark T",
+      "Otu, Franklin",
+      "Churcher, Ian",
+      "Reilly, Michael",
+      "Morentin-Gutierrez, Pablo",
+      "Pattison, Christine",
+      "Harrison, Tim",
+      "Shearman, Mark S",
+      "Atack, John R"
+    ],
+  "Date" : "2006",
+  "Identifier" : [  ],
+  "Journal" : [ "The Journal of pharmacology and experimental therapeutics" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/16443723",
+  "MeshHeadings" : [ 
+      "Administration, Oral",
+      "Amyloid Precursor Protein Secretases",
+      "Amyloid beta-Peptides",
+      "Animals",
+      "Brain",
+      "Dose-Response Relationship, Drug",
+      "Endopeptidases",
+      "Male",
+      "Peptide Fragments",
+      "Protease Inhibitors",
+      "Rats",
+      "Rats, Sprague-Dawley",
+      "Sulfonamides",
+      "Sulfones"
+    ],
+  "PMID" : 16443723,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "In vivo characterization of Abeta(40) changes in brain and cerebrospinal fluid using the novel gamma-secretase inhibitor N-[cis-4-[(4-chlorophenyl)sulfonyl]-4-(2,5-difluorophenyl)cyclohexyl]-1,1,1-trifluoromethanesulfonamide (MRK-560) in the rat."
+}

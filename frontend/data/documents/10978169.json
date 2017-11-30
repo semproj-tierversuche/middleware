@@ -1,0 +1,43 @@
+{ 
+  "Abstract" : [ "The progressive aggregation and deposition of amyloid beta-protein (Abeta) in brain regions subserving memory and cognition is an early and invariant feature of Alzheimer's disease, the most common cause of cognitive failure in aged humans. Inhibiting Abeta aggregation is therapeutically attractive because this process is believed to be an exclusively pathological event. Whereas many studies have examined the aggregation of synthetic Abeta peptides under nonphysiological conditions and concentrations, we have detected and characterized the oligomerization of naturally secreted Abeta at nanomolar levels in cultures of APP-expressing CHO cells [Podlisny, M. B., Ostaszewski, B. L., Squazzo, S. L., Koo, E. H., Rydell, R. E., Teplow, D. B., and Selkoe, D. J. (1995) J. Biol. Chem. 270, 9564-9570 (1); Podlisny, M. B., Walsh, D. M., Amarante, P., Ostaszewski, B. L., Stimson, E. R., Maggio, J. E., Teplow, D. B., and Selkoe, D. J. (1998) Biochemistry 37, 3602-3611 (2)]. To determine whether similar species occur in vivo, we probed samples of human cerebrospinal fluid (CSF) and detected SDS-stable dimers of Abeta in some subjects. Incubation of CSF or of CHO conditioned medium at 37 degrees C did not lead to new oligomer formation. This inability to induce oligomers extracellularly as well as the detection of oligomers in cell medium very early during the course of pulse-chase experiments suggested that natural Abeta oligomers might first form intracellularly. We therefore searched for and detected intracellular Abeta oligomers, principally dimers, in primary human neurons and in neuronal and nonneural cell lines. These dimers arose intracellularly rather than being derived from the medium by reuptake. The dimers were particularly detectable in neural cells: the ratio of intracellular to extracellular oligomers was much higher in brain-derived than nonbrain cells. We conclude that the pathogenically critical process of Abeta oligomerization begins intraneuronally." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Walsh, D M",
+      "Tseng, B P",
+      "Rydel, R E",
+      "Podlisny, M B",
+      "Selkoe, D J"
+    ],
+  "Date" : "2000",
+  "Identifier" : [  ],
+  "Journal" : [ "Biochemistry" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/10978169",
+  "MeshHeadings" : [ 
+      "Amyloid beta-Peptides",
+      "Amyloid beta-Protein Precursor",
+      "Animals",
+      "Body Temperature",
+      "CHO Cells",
+      "Cell-Free System",
+      "Cells, Cultured",
+      "Cerebral Cortex",
+      "Cricetinae",
+      "Culture Media, Conditioned",
+      "Dimerization",
+      "Extracellular Space",
+      "Fetus",
+      "Humans",
+      "Intracellular Fluid",
+      "Molecular Weight",
+      "Neurons",
+      "Sodium Dodecyl Sulfate",
+      "Transfection"
+    ],
+  "PMID" : 10978169,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "The oligomerization of amyloid beta-protein begins intracellularly in cells derived from human brain."
+}

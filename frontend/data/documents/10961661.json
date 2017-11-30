@@ -1,0 +1,38 @@
+{ 
+  "Abstract" : [ "We examined the protective effect of gamma-glutamylethylamide (theanine) on ischemic delayed neuronal death in field CA1 of the gerbil hippocampus. One microliter of theanine from each three concentrations (50, 125 and 500 microM) was administered through the lateral ventricle 30 min before ischemia. Transient forebrain ischemia was induced by bilateral occlusion of the common carotid arteries for 3 min under careful control of brain temperature at approximately 37 degrees C. Seven days after ischemia, the number of intact CA1 neurons in the hippocampus was assessed. Ischemia-induced neuronal death in hippocampal CA1 region was significantly prevented in a dose-dependent manner in the theanine-pretreated groups. These findings indicate that theanine might be useful clinically for preventing ischemic neuronal damage." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Kakuda, T",
+      "Yanase, H",
+      "Utsunomiya, K",
+      "Nozawa, A",
+      "Unno, T",
+      "Kataoka, K"
+    ],
+  "Date" : "2000",
+  "Identifier" : [  ],
+  "Journal" : [ "Neuroscience letters" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/10961661",
+  "MeshHeadings" : [ 
+      "Animals",
+      "Brain Ischemia",
+      "Cell Count",
+      "Cell Death",
+      "Excitatory Amino Acid Antagonists",
+      "Gerbillinae",
+      "Glutamates",
+      "Glutamic Acid",
+      "Hippocampus",
+      "Nerve Degeneration",
+      "Neurons",
+      "Neuroprotective Agents",
+      "Reperfusion Injury"
+    ],
+  "PMID" : 10961661,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Protective effect of gamma-glutamylethylamide (theanine) on ischemic delayed neuronal death in gerbils."
+}

@@ -1,0 +1,35 @@
+{ 
+  "Abstract" : [ "The aim of this study was to examine whether the non-competitive NMDA-antagonist memantine might have neuroprotective properties in an animal model of pro-gressive functional neurodegeneration, without producing NMDA-specific learning and memory deficiencies. Rats were subjected to bilateral clamping of the carotid arteries (BCCA) under pentobarbital anaesthesia for 24 min, and 8-10 days later estimates of their escape latency in finding a hidden platform in a Morris water maze indicated a significant increase. This BCCA-induced increase in escape latency is maximally ameliorated by preinjection of 5 mg/kg of memantine, while higher doses have a lesser effect. BCCA for 60 min produces deficiencies in the maze performance during the second experimental day only, when animals were tested 8-10 days after surgery, but results in severe deficits 6 months later. Intraperitoneal injection of 30 mg/kg memantine 10 minutes before BCCA prevents the development of these deficiencies. In parallel experiments, the apomorphine-induced hypersensitivity of the post-synaptic dopamine receptors, observed 12 months after BCCA, was also prevented by the memantine pre-treatment. No neuronal necrosis was observed after BCCA of either 24 minutes' or 60 minutes' duration. The results suggest that memantine complements the therapeutic value of NMDA antagonists. Further, they lend support to the idea that the glutamatergic NMDA-receptor might play a significant role in the BCCA-induced development of progressive \"functional neurodegeneration\", i.e. behavioural disturbances and dopamine-receptor hypersensitivity." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Heim, C",
+      "Sontag, K H"
+    ],
+  "Date" : "1995",
+  "Identifier" : [  ],
+  "Journal" : [ "Journal of neural transmission. Supplementum" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/8821047",
+  "MeshHeadings" : [ 
+      "Analysis of Variance",
+      "Animals",
+      "Antiparkinson Agents",
+      "Apomorphine",
+      "Excitatory Amino Acid Antagonists",
+      "Male",
+      "Maze Learning",
+      "Memantine",
+      "Motor Activity",
+      "Nerve Degeneration",
+      "Neuroprotective Agents",
+      "Rats",
+      "Rats, Wistar",
+      "Receptors, N-Methyl-D-Aspartate"
+    ],
+  "PMID" : 8821047,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Memantine prevents progressive functional neurodegeneration in rats."
+}

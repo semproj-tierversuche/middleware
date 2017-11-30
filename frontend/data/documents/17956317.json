@@ -1,0 +1,29 @@
+{ 
+  "Abstract" : [ "There is growing evidence that mild cognitive impairment in early AD (Alzheimer's disease) may be due to synaptic dysfunction caused by the accumulation of non-fibrillar, oligomeric Abeta (amyloid beta-peptide), long before widespread synaptic loss and neurodegeneration occurs. Soluble Abeta oligomers can rapidly disrupt synaptic memory mechanisms at extremely low concentrations via stress-activated kinases and oxidative/nitrosative stress mediators. Here, we summarize experiments that investigated whether certain putative receptors for Abeta, the alphav integrin extracellular cell matrix-binding protein and the cytokine TNFalpha (tumour necrosis factor alpha) type-1 death receptor mediate Abeta oligomer-induced inhibition of LTP (long-term potentiation). Ligands that neutralize TNFalpha or genetic knockout of TNF-R1s (type-1 TNFalpha receptors) prevented Abeta-triggered inhibition of LTP in hippocampal slices. Similarly, antibodies to alphav-containing integrins abrogated LTP block by Abeta. Protection against the synaptic plasticity-disruptive effects of soluble Abeta was also achieved using systemically administered small molecules targeting these mechanisms in vivo. Taken together, this research lends support to therapeutic trials of drugs antagonizing synaptic plasticity-disrupting actions of Abeta oligomers in preclinical AD." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Rowan, M J",
+      "Klyubin, I",
+      "Wang, Q",
+      "Hu, N W",
+      "Anwyl, R"
+    ],
+  "Date" : "2007",
+  "Identifier" : [  ],
+  "Journal" : [ "Biochemical Society transactions" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/17956317",
+  "MeshHeadings" : [ 
+      "Alzheimer Disease",
+      "Amyloid beta-Peptides",
+      "Cell Adhesion Molecules",
+      "Humans",
+      "Synapses"
+    ],
+  "PMID" : 17956317,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Synaptic memory mechanisms: Alzheimer's disease amyloid beta-peptide-induced dysfunction."
+}

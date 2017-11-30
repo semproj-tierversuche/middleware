@@ -1,0 +1,38 @@
+{ 
+  "Abstract" : [ "Information about arm movement direction in neuronal activity of the cerebral cortex can be used for movement control mediated by a brain-machine interface (BMI). Here we provide a topographic analysis of the information related to arm movement direction that can be extracted from single trials of electrocorticographic (ECoG) signals recorded from the human frontal and parietal cortex based on a precise assignment of ECoG recording channels to the subjects' individual cortical anatomy and function. To this aim, each electrode contact was identified on structural MRI scans acquired while the electrodes were implanted and was thus related to the brain anatomy of each patient. Cortical function was assessed by direct cortical electrical stimulation. We show that activity from the primary motor cortex, in particular from the region showing hand and arm motor responses upon electrical stimulation, carries most directional information. The premotor, posterior parietal and lateral prefrontal cortex contributed gradually less, but still significant information. This gradient was observed for decoding from movement-related potentials, and from spectral amplitude modulations in low frequencies and in the high gamma band. Our findings thus demonstrate a close topographic correlation between cortical functional anatomy and direction-related information in humans that might be used for brain-machine interfacing." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Ball, Tonio",
+      "Schulze-Bonhage, Andreas",
+      "Aertsen, Ad",
+      "Mehring, Carsten"
+    ],
+  "Date" : "2009",
+  "Identifier" : [  ],
+  "Journal" : [ "Journal of neural engineering" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/19155551",
+  "MeshHeadings" : [ 
+      "Action Potentials",
+      "Adult",
+      "Arm",
+      "Electric Stimulation",
+      "Electrodes, Implanted",
+      "Female",
+      "Frontal Lobe",
+      "Humans",
+      "Magnetic Resonance Imaging",
+      "Male",
+      "Movement",
+      "Neurons",
+      "Parietal Lobe",
+      "Psychomotor Performance",
+      "Young Adult"
+    ],
+  "PMID" : 19155551,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Differential representation of arm movement direction in relation to cortical anatomy and function."
+}

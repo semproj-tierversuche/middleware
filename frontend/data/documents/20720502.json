@@ -1,0 +1,41 @@
+{ 
+  "Abstract" : [ "Mutation of the leucine-rich repeat kinase 2 (LRRK2) gene is the most frequent genetic cause of Parkinson disease (PD). To understand the role of LRRK2 in the neuropathology of PD, we investigated the protein expression in a healthy brain and brains from patients with PD and its subcellular localization in dopaminergic neurons. LRRK2 was found to be widely expressed in healthy adult brain, including areas involved in PD. By double fluorescent staining, we found that endogenous LRRK2 is colocalized with the endoplasmic reticulum (ER) markers Neurotrace and KDEL in human dopaminergic neurons. Labeling of brain sections with anti-LRRK2 and anti-α-synuclein antibodies revealed localization of LRRK2 in the core of 24% of Lewy bodies (LBs) in the substantia nigra and 11% of LBs in the locus coeruleus in idiopathic PD patients. The percentage was increased to 50% in both areas in a patient with the G2019S LRRK2 mutation. The finding of ER localization suggests the possibility that LRRK2 is involved in the ER stress response and could account for the susceptibility to neuronal degeneration of LRRK2 mutation carriers. The localization of LRRK2 protein in the core of a subset of LBs demonstrates the contribution of LRRK2 to LB formation and disease pathogenesis." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Vitte, Jérémie",
+      "Traver, Sabine",
+      "Maués De Paula, André",
+      "Lesage, Suzanne",
+      "Rovelli, Giorgio",
+      "Corti, Olga",
+      "Duyckaerts, Charles",
+      "Brice, Alexis"
+    ],
+  "Date" : "2010",
+  "Identifier" : [  ],
+  "Journal" : [ "Journal of neuropathology and experimental neurology" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/20720502",
+  "MeshHeadings" : [ 
+      "Adult",
+      "Animals",
+      "Brain",
+      "Cell Line",
+      "Dopamine",
+      "Endoplasmic Reticulum",
+      "Humans",
+      "Leucine-Rich Repeat Serine-Threonine Protein Kinase-2",
+      "Lewy Bodies",
+      "Neurons",
+      "Parkinson Disease",
+      "Point Mutation",
+      "Protein-Serine-Threonine Kinases",
+      "Tissue Distribution"
+    ],
+  "PMID" : 20720502,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Leucine-rich repeat kinase 2 is associated with the endoplasmic reticulum in dopaminergic neurons and accumulates in the core of Lewy bodies in Parkinson disease."
+}

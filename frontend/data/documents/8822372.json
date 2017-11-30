@@ -1,0 +1,33 @@
+{ 
+  "Abstract" : [ "To investigate the in vivo role of NMDA receptor stimulation in HIV-1-related CNS neurotoxicity, we evaluated the neuroprotective potential of the NMDA receptor antagonist memantine in transgenic mice which have gp120-induced CNS damage. Brains of mice treated chronically with memantine and of untreated controls were analysed for structural damage by laser scanning confocal microscopy of sections immunolabeled for microtubule-associated protein-2 (MAP-2) and synaptophysin. Qualitative and quantitative analysis of confocal images revealed that memantine treatment substantially decreased neuropathology in gp120 transgenic mice; this included statistically significant improvements in both dendritic and presynaptic terminal density. These results provide in vivo evidence that gp120 can activate neurotoxic pathways that can ultimately result in aberrant NMDA receptor stimulation and neuronal damage in the CNS. They also suggest that clinically tolerated NMDA receptor antagonists may be useful in the prevention of neuronal damage in HIV-1-infected patients." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Toggas, S M",
+      "Masliah, E",
+      "Mucke, L"
+    ],
+  "Date" : "1996",
+  "Identifier" : [  ],
+  "Journal" : [ "Brain research" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/8822372",
+  "MeshHeadings" : [ 
+      "Animals",
+      "Central Nervous System",
+      "Excitatory Amino Acid Antagonists",
+      "HIV Envelope Protein gp120",
+      "HIV-1",
+      "Memantine",
+      "Mice",
+      "Mice, Transgenic",
+      "Microscopy, Confocal",
+      "Neuroprotective Agents",
+      "Receptors, N-Methyl-D-Aspartate"
+    ],
+  "PMID" : 8822372,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Prevention of HIV-1 gp120-induced neuronal damage in the central nervous system of transgenic mice by the NMDA receptor antagonist memantine."
+}

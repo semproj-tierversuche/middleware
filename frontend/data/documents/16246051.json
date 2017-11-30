@@ -1,0 +1,35 @@
+{ 
+  "Abstract" : [ "Burgeoning evidence suggests that soluble oligomers of Abeta (amyloid beta-protein) are the earliest effectors of synaptic compromise in Alzheimer's disease. Whereas most other investigators have employed synthetic Abeta peptides, we have taken advantage of a beta-amyloid precursor protein-overexpressing cell line (referred to as 7PA2) that secretes sub-nanomolar levels of low-n oligomers of Abeta. These are composed of heterogeneous Abeta peptides that migrate on SDS/PAGE as dimers, trimers and tetramers. When injected into the lateral ventricle of rats in vivo, these soluble oligomers inhibit hippocampal long-term potentiation and alter the memory of a complex learned behaviour. Biochemical manipulation of 7PA2 medium including immunodepletion with Abeta-specific antibodies and fractionation by size-exclusion chromatography allowed us to unambiguously attribute these effects to low-n oligomers. Using this paradigm we have tested compounds directed at three prominent amyloid-based therapeutic targets: inhibition of the secretases responsible for Abeta production, inhibition of Abeta aggregation and immunization against Abeta. In each case, compounds capable of reducing oligomer production or antibodies that avidly bind Abeta oligomers also ameliorate the synaptotoxic effects of these natural, cell-derived oligomers." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Walsh, D M",
+      "Klyubin, I",
+      "Shankar, G M",
+      "Townsend, M",
+      "Fadeeva, J V",
+      "Betts, V",
+      "Podlisny, M B",
+      "Cleary, J P",
+      "Ashe, K H",
+      "Rowan, M J",
+      "Selkoe, D J"
+    ],
+  "Date" : "2005",
+  "Identifier" : [  ],
+  "Journal" : [ "Biochemical Society transactions" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/16246051",
+  "MeshHeadings" : [ 
+      "Alzheimer Disease",
+      "Amyloid beta-Peptides",
+      "Behavior",
+      "Humans",
+      "Neuronal Plasticity"
+    ],
+  "PMID" : 16246051,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "The role of cell-derived oligomers of Abeta in Alzheimer's disease and avenues for therapeutic intervention."
+}

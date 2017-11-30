@@ -1,0 +1,29 @@
+{ 
+  "Abstract" : [ "Mutations in Leucine-Rich Repeat Kinase-2 (LRRK2) result in familial Parkinson's disease and the G2019S mutation alone accounts for up to 30% in some ethnicities. Despite this, the function of LRRK2 is largely undetermined although evidence suggests roles in phosphorylation, protein interactions, autophagy and endocytosis. Emerging reports link loss of LRRK2 to altered synaptic transmission, but the effects of the G2019S mutation upon synaptic release in mammalian neurons are unknown. To assess wild type and mutant LRRK2 in established neuronal networks, we conducted immunocytochemical, electrophysiological and biochemical characterization of >3 week old cortical cultures of LRRK2 knock-out, wild-type overexpressing and G2019S knock-in mice. Synaptic release and synapse numbers were grossly normal in LRRK2 knock-out cells, but discretely reduced glutamatergic activity and reduced synaptic protein levels were observed. Conversely, synapse density was modestly but significantly increased in wild-type LRRK2 overexpressing cultures although event frequency was not. In knock-in cultures, glutamate release was markedly elevated, in the absence of any change to synapse density, indicating that physiological levels of G2019S LRRK2 elevate probability of release. Several pre-synaptic regulatory proteins shown by others to interact with LRRK2 were expressed at normal levels in knock-in cultures; however, synapsin 1 phosphorylation was significantly reduced. Thus, perturbations to the pre-synaptic release machinery and elevated synaptic transmission are early neuronal effects of LRRK2 G2019S. Furthermore, the comparison of knock-in and overexpressing cultures suggests that one copy of the G2019S mutation has a more pronounced effect than an ~3-fold increase in LRRK2 protein. Mutant-induced increases in transmission may convey additional stressors to neuronal physiology that may eventually contribute to the pathogenesis of Parkinson's disease." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Beccano-Kelly, Dayne A",
+      "Kuhlmann, Naila",
+      "Tatarnikov, Igor",
+      "Volta, Mattia",
+      "Munsie, Lise N",
+      "Chou, Patrick",
+      "Cao, Li-Ping",
+      "Han, Heather",
+      "Tapia, Lucia",
+      "Farrer, Matthew J",
+      "Milnerwood, Austen J"
+    ],
+  "Date" : "2014",
+  "Identifier" : [  ],
+  "Journal" : [ "Frontiers in cellular neuroscience" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/25309331",
+  "MeshHeadings" : [  ],
+  "PMID" : 25309331,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Synaptic function is modulated by LRRK2 and glutamate release is increased in cortical neurons of G2019S LRRK2 knock-in mice."
+}

@@ -1,0 +1,32 @@
+{ 
+  "Abstract" : [ "Cerebral accumulation of amyloid beta-protein (Abeta) is generally believed to play a critical role in the pathogenesis of Alzheimer's disease (AD). Recent evidence suggests that Abeta-induced synaptic dysfunction is one of earliest pathogenic events observed in AD. Here we report that synthetic Abeta(1-42) strongly inhibited the induction of long-term potentiation (LTP) in the CA1 region of rat hippocampal slices. To ascertain which Abeta(1-42) sequences contribute to the impairment of LTP, we compared actions of several Abeta fragments and found that the sequence within 25-35 region of Abeta mainly contributes to the expression of LTP impairment. Importantly, we show that insulin and insulin-like growth factor-1 significantly inhibit Abeta oligomer formation, particularly dimers and trimers, and ameliorate the synthetic Abeta-induced suppression of LTP. Furthermore, dithiothreitol was found to be capable of significantly preventing the inhibitory effect of insulin on Abeta oligomer formation. In contrast, hemoglobin promotes Abeta oligomer formation and enhances Abeta-mediated inhibition of LTP induction. These results suggest that insulin may have utility in treating the earliest stages of Abeta-induced synaptic dysfunction in AD patients." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Lee, Cheng-Che",
+      "Kuo, Yu-Min",
+      "Huang, Chiung-Chun",
+      "Hsu, Kuei-Sen"
+    ],
+  "Date" : "2009",
+  "Identifier" : [  ],
+  "Journal" : [ "Neurobiology of aging" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/17692997",
+  "MeshHeadings" : [ 
+      "Amyloid beta-Peptides",
+      "Animals",
+      "Hippocampus",
+      "Insulin",
+      "Long-Term Potentiation",
+      "Male",
+      "Organ Culture Techniques",
+      "Rats",
+      "Rats, Sprague-Dawley"
+    ],
+  "PMID" : 17692997,
+  "PublicationType" : "Comparative Study",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Insulin rescues amyloid beta-induced impairment of hippocampal long-term potentiation."
+}

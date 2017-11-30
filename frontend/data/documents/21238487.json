@@ -1,0 +1,33 @@
+{ 
+  "Abstract" : [ "Parkinson disease (PD) is the most common movement disorder. It is characterized by bradykinesia, postural instability, resting tremor, and rigidity associated with the progressive loss of dopaminergic neurons in the substantia nigra pars compacta. Another pathological hallmark of PD is the presence of α-synuclein proteiniacous inclusions, known as Lewy bodies and Lewy neurites, in some of the remaining dopaminergic neurons. Mounting evidence indicates that both genetic and environmental factors contribute to the etiology of PD. For example, genetic mutations (duplications, triplications or missense mutations) in the α-synuclein gene can lead to PD, but even in these patients, age-dependent physiological changes or environmental exposures appear to be involved in disease presentation. Several additional alterations in many other genes have been established to either cause or increase the risk of parkinson disease. More specifically, autosomal dominant missense mutations in the gene for leucine-rich repeat kinase 2 (LRRK2/PARK8) are the most common known cause of PD. Recently it was shown that G2019S, the most common diseasing-causing mutant of LRRK2, has dramatic effects on the kinase activity of LRRK2: while activity of wild-type LRRK2 is inhibited by manganese, the G2019S mutation abrogates this inhibition. Based on the in vitro kinetic properties of LRRK2 in the presence of manganese, we proposed that LRRK2 may be a sensor of cytoplasmic manganese levels and that the G2019S mutant has lost this function. This finding, alongside a growing number of studies demonstrating an interaction between PD-associated proteins and manganese, suggest that dysregulation of neuronal manganese homeostasis over a lifetime can play an important role in the etiology of PD." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Covy, Jason P",
+      "Giasson, Benoit I"
+    ],
+  "Date" : "2011",
+  "Identifier" : [  ],
+  "Journal" : [ "Neurotoxicology" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/21238487",
+  "MeshHeadings" : [ 
+      "Aging",
+      "Amino Acid Sequence",
+      "Animals",
+      "Cell Membrane",
+      "Humans",
+      "Leucine-Rich Repeat Serine-Threonine Protein Kinase-2",
+      "Manganese",
+      "Molecular Sequence Data",
+      "Mutation, Missense",
+      "Parkinson Disease",
+      "Protein-Serine-Threonine Kinases",
+      "alpha-Synuclein"
+    ],
+  "PMID" : 21238487,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "α-Synuclein, leucine-rich repeat kinase-2, and manganese in the pathogenesis of Parkinson disease."
+}

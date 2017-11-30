@@ -1,0 +1,34 @@
+{ 
+  "Abstract" : [ "Leucine-rich repeat kinase 2 (LRRK2) mutations are the most common cause of dominant and sporadic Parkinson's disease (PD), a common neurodegenerative disorder. Yeast-two-hybrid screening using human LRRK2 kinase domain as bait identified microtubule associated protein 1B (MAP1B) as a LRRK2 interactor. The interacting domains were LRRK2 kinase and the light chain portion of MAP1B (LC1). LRRK2 + LC1 interaction resulted in LRRK2 kinase inhibition. LRRK2 mutants (R1441C, G2019S and I2020T) exhibited decreased endogenous LC1 expression and its co-expression with LC1 rescued LRRK2 mutant-mediated toxicity. This study presented the first data on the effects of LRRK2 + LC1 interaction and also suggested that LCI possibly rescued LRRK2 mutant-induced cytotoxicity by inhibiting LRRK2 kinase activity. Compounds that upregulate LC1 expression may therefore hold therapeutic potential for LRRK2-linked diseases." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Chan, Sharon L",
+      "Chua, Ling-Ling",
+      "Angeles, Dario C",
+      "Tan, Eng-King"
+    ],
+  "Date" : "2014",
+  "Identifier" : [  ],
+  "Journal" : [ "Molecular brain" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/24754922",
+  "MeshHeadings" : [ 
+      "Cell Death",
+      "Cell Line",
+      "Humans",
+      "Leucine-Rich Repeat Serine-Threonine Protein Kinase-2",
+      "Microtubule-Associated Proteins",
+      "Mutant Proteins",
+      "Phosphorylation",
+      "Protein Binding",
+      "Protein Transport",
+      "Protein-Serine-Threonine Kinases",
+      "Two-Hybrid System Techniques"
+    ],
+  "PMID" : 24754922,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "MAP1B rescues LRRK2 mutant-mediated cytotoxicity."
+}

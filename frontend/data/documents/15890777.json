@@ -1,0 +1,40 @@
+{ 
+  "Abstract" : [ "gamma-Secretase is a membrane protein complex that cleaves the beta-amyloid precursor protein (APP) within the transmembrane region, after prior processing by beta-secretase, producing amyloid beta-peptides Abeta(40) and Abeta(42). Errant production of Abeta-peptides that substantially increases Abeta(42) production has been associated with the formation of amyloid plaques in Alzheimer's disease patients. Biophysical and genetic studies indicate that presenilin-1, which contains the proteolytic active site, and three other membrane proteins [nicastrin, anterior pharynx defective-1 (APH-1), and presenilin enhancer-2 (PEN-2)] are required to form the core of the active gamma-secretase complex. Here, we report the purification of the native gamma-secretase complexes from HeLa cell membranes and the identification of an additional gamma-secretase complex subunit, CD147, a transmembrane glycoprotein with two Ig-like domains. The presence of this subunit as an integral part of the complex itself was confirmed through coimmunoprecipitation studies of the purified protein from HeLa cells and of solubilized complexes from other cell lines such as neural cell HCN-1A and HEK293. Depletion of CD147 by RNA interference was found to increase the production of Abeta peptides without changing the expression level of the other gamma-secretase components or APP substrates whereas CD147 overexpression had no statistically significant effect on Abeta-peptide production, other gamma-secretase components or APP substrates, indicating that the presence of the CD147 subunit within the gamma-secretase complex down-modulates the production of Abeta-peptides." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Zhou, Shuxia",
+      "Zhou, Hua",
+      "Walian, Peter J",
+      "Jap, Bing K"
+    ],
+  "Date" : "2005",
+  "Identifier" : [  ],
+  "Journal" : [ "Proceedings of the National Academy of Sciences of the United States of America" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/15890777",
+  "MeshHeadings" : [ 
+      "Alzheimer Disease",
+      "Amyloid Precursor Protein Secretases",
+      "Amyloid beta-Peptides",
+      "Amyloid beta-Protein Precursor",
+      "Antigens, CD",
+      "Antigens, CD147",
+      "Aspartic Acid Endopeptidases",
+      "Blotting, Western",
+      "Cell Membrane",
+      "Endopeptidases",
+      "HeLa Cells",
+      "Humans",
+      "Immunoprecipitation",
+      "Oligonucleotides",
+      "Protease Nexins",
+      "RNA Interference",
+      "Receptors, Cell Surface"
+    ],
+  "PMID" : 15890777,
+  "PublicationType" : "Comparative Study",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "CD147 is a regulatory subunit of the gamma-secretase complex in Alzheimer's disease amyloid beta-peptide production."
+}

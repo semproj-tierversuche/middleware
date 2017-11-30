@@ -1,0 +1,32 @@
+{ 
+  "Abstract" : [ "Sedimentation velocity experiments show that only monomers coexist with amyloid fibrils of human islet amyloid-polypeptide. No oligomers containing <100 monomers could be detected, suggesting that the putative toxic oligomers are much larger than those found for the Alzheimer's peptide, Abeta(1-42)." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Vaiana, Sara M",
+      "Ghirlando, Rodolfo",
+      "Yau, Wai-Ming",
+      "Eaton, William A",
+      "Hofrichter, James"
+    ],
+  "Date" : "2008",
+  "Identifier" : [  ],
+  "Journal" : [ "Biophysical journal" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/18223003",
+  "MeshHeadings" : [ 
+      "Amyloid",
+      "Centrifugation",
+      "Fractionation, Field Flow",
+      "Humans",
+      "Islet Amyloid Polypeptide",
+      "Molecular Weight",
+      "Reproducibility of Results",
+      "Sensitivity and Specificity"
+    ],
+  "PMID" : 18223003,
+  "PublicationType" : "Letter",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Sedimentation studies on human amylin fail to detect low-molecular-weight oligomers."
+}

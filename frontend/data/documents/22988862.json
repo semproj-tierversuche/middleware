@@ -1,0 +1,29 @@
+{ 
+  "Abstract" : [ "Mutations in LRRK2 (leucine-rich repeat kinase 2) are the most common genetic cause of PD (Parkinson's disease). To investigate how mutations in LRRK2 cause PD, we generated LRRK2 mutant mice either lacking its expression or expressing the R1441C mutant form. Homozygous R1441C knockin mice exhibit no dopaminergic neurodegeneration or alterations in steady-state levels of striatal dopamine, but they show impaired dopamine neurotransmission, as was evident from reductions in amphetamine-induced locomotor activity and stimulated catecholamine release in cultured chromaffin cells as well as impaired dopamine D2 receptor-mediated functions. Whereas LRRK2-/- brains are normal, LRRK2-/- kidneys at 20 months of age develop striking accumulation and aggregation of α-synuclein and ubiquitinated proteins, impairment of the autophagy-lysosomal pathway, and increases in apoptotic cell death, inflammatory responses and oxidative damage. Our further analysis of LRRK2-/- kidneys at multiple ages revealed unique age-dependent biphasic alterations of the autophagic activity, which is unchanged at 1 month of age, enhanced at 7 months, but reduced at 20 months. Levels of α-synuclein and protein carbonyls, a general oxidative damage marker, are also decreased in LRRK2-/- kidneys at 7 months of age. Interestingly, this biphasic alteration is associated with increased levels of lysosomal proteins and proteases as well as progressive accumulation of autolysosomes and lipofuscin granules. We conclude that pathogenic mutations in LRRK2 impair the nigrostriatal dopaminergic pathway, and LRRK2 plays an essential role in the dynamic regulation of autophagy function in vivo." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Tong, Youren",
+      "Shen, Jie"
+    ],
+  "Date" : "2012",
+  "Identifier" : [  ],
+  "Journal" : [ "Biochemical Society transactions" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/22988862",
+  "MeshHeadings" : [ 
+      "Animals",
+      "Humans",
+      "Leucine-Rich Repeat Serine-Threonine Protein Kinase-2",
+      "Mice",
+      "Mice, Knockout",
+      "Mutation",
+      "Parkinson Disease",
+      "Protein-Serine-Threonine Kinases"
+    ],
+  "PMID" : 22988862,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Genetic analysis of Parkinson's disease-linked leucine-rich repeat kinase 2."
+}

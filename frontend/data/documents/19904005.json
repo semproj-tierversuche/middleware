@@ -1,0 +1,37 @@
+{ 
+  "Abstract" : [ "Memantine, a NMDA receptor antagonist used in several experimental models of neuronal cell injury, is a neuroprotective agent that can attenuate neuronal apoptosis connected with over-stimulation of NMDA receptors. In the present study, we evaluated the impact of memantine on apoptosis in primary cerebellar granule cell (CGC) cultures at 7 and 12 day in vitro (DIV). Cell death was induced by staurosporine (St, 0.5 microM) or by decreasing the level of potassium in the culture medium (LP, 5 mM KCl). Both treatments induced cell death in CGC with higher cell-damaging effects at 12 DIV and 7 DIV neurons for St and LP, respectively. Memantine (0.1-2 microM) partially attenuated St-induced apoptosis only in 7 DIV CGC as assessed by DNA fragmentation and LDH release, but not caspase-3 activity. During LP-induced apoptosis, memantine decreased LDH release and DNA fragmentation, but not affected caspase-3 activity in 7 and 12 DIV CGC. Interestingly, we found no beneficial effects of other NMDA antagonists, including a competitive antagonist such as AP-5 (100 microM) and an uncompetitive antagonist such as MK-801, (1 microM). In conclusion, our data suggest that the anti-apoptotic effects of memantine in CGC are developmentally regulated and its neuroprotective action occurs through an NMDAR-independent mechanism." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Jantas, Danuta",
+      "Lasoń, Władysław"
+    ],
+  "Date" : "",
+  "Identifier" : [  ],
+  "Journal" : [ "Pharmacological reports : PR" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/19904005",
+  "MeshHeadings" : [ 
+      "Animals",
+      "Apoptosis",
+      "Caspase 3",
+      "Cells, Cultured",
+      "Cerebellum",
+      "DNA Fragmentation",
+      "Dose-Response Relationship, Drug",
+      "Excitatory Amino Acid Antagonists",
+      "L-Lactate Dehydrogenase",
+      "Memantine",
+      "Mice",
+      "Neuroprotective Agents",
+      "Potassium",
+      "Receptors, N-Methyl-D-Aspartate",
+      "Staurosporine",
+      "Time Factors"
+    ],
+  "PMID" : 19904005,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Anti-apoptotic effect of memantine against staurosporine- and low-potassium-induced cell death in cerebellar granule cells: a development-dependent effect."
+}

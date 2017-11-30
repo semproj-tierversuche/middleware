@@ -1,0 +1,41 @@
+{ 
+  "Abstract" : [ "The present study investigated whether chronic, low dose therapy with memantine could (1) prevent the loss of basal forebrain cholinergic cells induced by injection of N-methyl-D-aspartate (NMDA) into the nucleus basalis magnocellularis (NBM) of rats, and (2) attenuate impaired performance in the radial maze of rats with entorhinal cortex lesions. In addition, we investigated whether neuroprotection could be provided by neurokinin B (NKB). Following an injection of NMDA (0.015 M) into the NBM, rats were implanted with osmotic minipumps containing memantine (20 or 0.20 mg/kg/day for 2 weeks). Other rats were given unilateral NBM injections of 1.0 microliter of Solution A (0.5 microliter containing 8.26 mM NKB and 0.24 units of bacitracin and 0.5 microliter containing 0.03 M NMDA) or Solution B (0.5 microliter of PBS containing 0.24 U of bacitracin and 0.5 microliter containing 0.03 M NMDA). Two weeks later, the anterior cortex was analyzed for choline acetyltransferase (ChAT), a specific marker for the loss of acetylcholinergic neurons. Both chronic administration of memantine, and acute administration of NKB, prevented the decline in cortical ChAT activity associated with injection of NMDA into the NBM, and attenuated a reference memory deficit in the radial maze produced by entorhinal cortex lesions. Thus, memantine infusion at low doses leading to steady-state serum levels within a therapeutic range provides both neuroprotection and cognitive enhancement-an optimal combination for the treatment of neurodegenerative disorders." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Wenk, G L",
+      "Zajaczkowski, W",
+      "Danysz, W"
+    ],
+  "Date" : "1997",
+  "Identifier" : [  ],
+  "Journal" : [ "Behavioural brain research" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/9062671",
+  "MeshHeadings" : [ 
+      "Acetylcholine",
+      "Animals",
+      "Basal Ganglia",
+      "Cerebral Cortex",
+      "Choline O-Acetyltransferase",
+      "Excitatory Amino Acid Agonists",
+      "Excitatory Amino Acid Antagonists",
+      "Male",
+      "Maze Learning",
+      "Memantine",
+      "N-Methylaspartate",
+      "Neurokinin B",
+      "Neurons",
+      "Neuroprotective Agents",
+      "Parasympathetic Nervous System",
+      "Prosencephalon",
+      "Rats",
+      "Rats, Inbred Strains",
+      "Rats, Sprague-Dawley"
+    ],
+  "PMID" : 9062671,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Neuroprotection of acetylcholinergic basal forebrain neurons by memantine and neurokinin B."
+}

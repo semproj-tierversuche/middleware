@@ -1,0 +1,39 @@
+{ 
+  "Abstract" : [ "Memantine is an uncompetitive N-methyl-D-aspartate (NMDA) receptor antagonist which is registered in both Europe and the USA for the treatment of Alzheimer's disease (AD). Cultured rat hippocampal neurons were used to evaluate the potency and blocking kinetics of this therapeutically very well-tolerated agent in the presence of various concentrations of the synthetic agonist NMDA and a constant, saturating concentration of the co-agonist D-serine (10 microM). Whole-cell patch-clamp experiments at -70 mV revealed that the degree of \"equilibrium\" blockade of NMDA-induced currents by memantine was largely unaffected by the concentration of the agonist NMDA. The IC50 values for NMDA at 300, 100, 30 and 10 microM were 0.80+/-0.12, 1.01+/-0.08, 0.92+/-0.13 and 1.31+/-0.09 microM, respectively, giving an average IC(50) for all agonists concentrations tested of 1.01+/-0.11 microM. In contrast, and as expected, the onset and offset kinetics of blockade were clearly dependent on agonist concentration. For NMDA 300, 100, 30 and 10 microM, kon values were 10.55+/-1.41, 8.60+/-0.17, 4.90+/-0.20 and 3.22+/-0.08x10(4) M(-1) s(-1), respectively; 1/tauon values at the IC50 concentration of memantine-i.e. 1 microM-were 0.58+/-0.11, 0.28+/-0.05, 0.15+/-0.02 and 0.11+/-0.03 s(-1), respectively and koff values were 0.24+/-0.01, 0.19+/-0.01, 0.14+/-0.00 and 0.09+/-0.01 s(-1), respectively. It therefore appears that the kinetics, but not the equilibrium potency, of memantine are agonist concentration-dependent. These fast agonist concentration-dependent kinetic properties, in addition to the clear voltage-dependence of memantine, are proposed to be important for the therapeutic tolerability of this compound in the treatment of AD." ],
+  "Annotations" : [  ],
+  "Authors" : [ 
+      "Gilling, K E",
+      "Jatzke, C",
+      "Parsons, C G"
+    ],
+  "Date" : "2007",
+  "Identifier" : [  ],
+  "Journal" : [ "Neuropharmacology" ],
+  "Keywords" : [  ],
+  "Link" : "https://www.ncbi.nlm.nih.gov/pubmed/17632186",
+  "MeshHeadings" : [ 
+      "Animals",
+      "Cells, Cultured",
+      "Dose-Response Relationship, Drug",
+      "Dose-Response Relationship, Radiation",
+      "Drug Interactions",
+      "Electric Stimulation",
+      "Embryo, Mammalian",
+      "Excitatory Amino Acid Antagonists",
+      "Hippocampus",
+      "Kinetics",
+      "Memantine",
+      "Membrane Potentials",
+      "N-Methylaspartate",
+      "Neurons",
+      "Patch-Clamp Techniques",
+      "Rats",
+      "Receptors, N-Methyl-D-Aspartate"
+    ],
+  "PMID" : 17632186,
+  "PublicationType" : "Journal Article",
+  "Substances" : [  ],
+  "Suggest" : "",
+  "TextminingVersion" : "0",
+  "Title" : "Agonist concentration dependency of blocking kinetics but not equilibrium block of N-methyl-D-aspartate receptors by memantine."
+}
