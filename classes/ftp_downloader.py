@@ -3,11 +3,12 @@
 from ftplib import FTP
 from ftplib import FTP_TLS
 
+
 class FTPBasicDownloaderException(Exception):
     Reasons = ['The connection is not established']
     ReasonCodes = [0x0]
     Reason = 0x0
-    NO_CONECTION = 0x0
+    NO_CONNECTION = 0x0
 
     def __init__(self, ErrorCode):
         self.Reason = ErrorCode
@@ -104,7 +105,7 @@ class FTPBasicDownloader(object):
 
     def checkConnection(self):
         if False == self.__IsActiv:
-            raise FTPBasicDownloaderException(FTPBasicDownloaderException.NO_CONECTION)
+            raise FTPBasicDownloaderException(FTPBasicDownloaderException.NO_CONNECTION)
 
 #Schliessen der Verbindung nicht vergessen
     def closeConnection(self):

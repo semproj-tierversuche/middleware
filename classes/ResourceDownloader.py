@@ -1,4 +1,7 @@
 import os
+import hashlib
+from datetime import datetime
+from fnmatch import fnmatch
 from classes.ftp_downloader import FTPBasicDownloader, FTPBasicDownloaderException
 from classes.resource_downloader_base import AbstractResourceDownloader
 
@@ -12,6 +15,10 @@ class File:
     Size = None
     LastModification = None
     Name = None
+    localPath = None
+
+    def __eq__(self, other):
+        return self.__dict__ == other.__dict__
 
 
 class FileFilter:
@@ -20,11 +27,12 @@ class FileFilter:
 
 
 class ResourceDownloader(AbstractResourceDownloader):
-    # TODO: Exception handling for whole class
+    # TODO: Exception handling refinement -> what exceptions is ftp_downloader going to throw?
     # TODO: filter files with no read access
     # TODO: exclude subfolders when adding files to queue
 
     _Downloader = None
+    _unfilteredFiles = []
     _DownloadableFiles = []
     _DownloadedFiles = []
     _Username = ''
@@ -42,9 +50,10 @@ class ResourceDownloader(AbstractResourceDownloader):
         self._Downloader.UseTLS = self._UseTLS
         self._Downloader.Username = self._Username
         self._Downloader.Password = self._Password
-        self._Downloader.initializeConnection()
+        self._unfilteredFiles = []
         self._DownloadableFiles = []
         self._DownloadedFiles = []
+        self._Downloader.initializeConnection()
 
     def addSubFolder(self, Folder):
         try:
@@ -54,6 +63,7 @@ class ResourceDownloader(AbstractResourceDownloader):
         FileList = self._Downloader.getFileList(Folder)
         for FileAttributes in FileList:
             File = self._buildFileObject(Folder, FileAttributes)
+            self._unfilteredFiles.append(File)
             if self._filterFile(File):
                 self._DownloadableFiles.append(File)
 
@@ -63,13 +73,14 @@ class ResourceDownloader(AbstractResourceDownloader):
         self.resetDownloadQueue()
 
     def filterFiles(self, FilterCondition, Flag):
-        # TODO: so far this only works with EXCLUDING files
         FileFilter_ = FileFilter()
         FileFilter_.Condition = FilterCondition
         FileFilter_.Flag = Flag
         self._Filters.append(FileFilter_)
+        # sort filters by flag value to achieve correct precedence
+        self._Filters.sort(key=lambda Filter: Filter.Flag)
         NewDownloadableFiles = []
-        for File in self._DownloadableFiles:
+        for File in self._unfilteredFiles:
             if self._filterFile(File):
                 NewDownloadableFiles.append(File)
         self._DownloadableFiles = NewDownloadableFiles
@@ -78,8 +89,9 @@ class ResourceDownloader(AbstractResourceDownloader):
         self._Filters = []
 
     def checkMD5(self):
-        pass
-        # TODO: md5 von patrick
+        for File in self._DownloadedFiles:
+            Md5 = self._md5sum(File.localPath)
+        # TODO: download & validate md5 here
 
     def downloadFile(self, PathInTmp):
         try:
@@ -92,8 +104,10 @@ class ResourceDownloader(AbstractResourceDownloader):
             PathInTmp += '/'
         PathInTmp.lstrip('/')
         File = self._DownloadableFiles.pop()
+        self._unfilteredFiles.remove(File)
         self._Downloader.changeDir(File.Folder)
-        self._Downloader.downloadFile(File.Name, 'tmp/' + PathInTmp + File.Name)
+        File.localPath = 'tmp/' + PathInTmp + File.Name
+        self._Downloader.downloadFile(File.Name, File.localPath)
         self._DownloadedFiles.append(File)
 
     def downloadAll(self, PathInTmp):
@@ -101,11 +115,14 @@ class ResourceDownloader(AbstractResourceDownloader):
             self.downloadFile(PathInTmp)
 
     def resetDownloadQueue(self):
+        self._unfilteredFiles = []
         self._DownloadableFiles = []
 
     def clearDownloadedFiles(self):
+        for File in self._DownloadedFiles:
+            # TODO: try catch this
+            os.remove(File.localPath)
         self._DownloadedFiles = []
-        # TODO: delete them in path
 
     def _buildFileObject(self, Folder, AttributesString):
         Attributes = AttributesString.split(' ')
@@ -123,16 +140,40 @@ class ResourceDownloader(AbstractResourceDownloader):
         return File_
 
     def _filterFile(self, File):
+        Return = True
+        # TODO: timezone of ftp server
+        try:
+            LastModificationDatetime = datetime.strptime(File.LastModification, '%b %e %H:%M')
+        except ValueError:
+            LastModificationDatetime = datetime.strptime(File.LastModification, '%b %e %Y')
         for Filter in self._Filters:
             if Filter.Flag == self.FILTER_FILE_EXCLUDE_ENDS_WITH and File.Name.endswith(Filter.Condition):
-                return False
+                Return = False
             if Filter.Flag == self.FILTER_FILE_EXCLUDE_CONTAINS and Filter.Condition in File.Name:
-                return False
-            # TODO: FILTER_FILE_EXCLUDE_PATTERN
-            # TODO: FILTER_FILE_INCLUDE_ENDS_WITH
-            # TODO: FILTER_FILE_INCLUDE_CONTAINS
-            # TODO: FILTER_FILE_INCLUDE_PATTERN
-            # TODO: FILTER_FILE_START_DATE
-            # TODO: FILTER_FILE_END_DATE
-        # TODO: default true?
-        return True
+                Return = False
+            if Filter.Flag == self.FILTER_FILE_EXCLUDE_PATTERN and fnmatch(File.Name, Filter.Condition):
+                Return = False
+            if Filter.Flag == self.FILTER_FILE_EXCLUDE_BEFORE_DATE and (LastModificationDatetime.timestamp() - int(Filter.Condition)) < 0:
+                Return = False
+            if Filter.Flag == self.FILTER_FILE_EXCLUDE_AFTER_DATE and (LastModificationDatetime.timestamp() - int(Filter.Condition)) > 0:
+                Return = False
+            if Filter.Flag == self.FILTER_FILE_INCLUDE_ENDS_WITH and File.Name.endswith(Filter.Condition):
+                Return = True
+            if Filter.Flag == self.FILTER_FILE_INCLUDE_CONTAINS and Filter.Condition in File.Name:
+                Return = True
+            if Filter.Flag == self.FILTER_FILE_INCLUDE_PATTERN and fnmatch(File.Name, Filter.Condition):
+                Return = True
+            if Filter.Flag == self.FILTER_FILE_INCLUDE_BEFORE_DATE and (LastModificationDatetime.timestamp() - int(Filter.Condition)) < 0:
+                Return = True
+            if Filter.Flag == self.FILTER_FILE_INCLUDE_AFTER_DATE and (LastModificationDatetime.timestamp() - int(Filter.Condition)) > 0:
+                Return = True
+            if Filter.Flag == self.FILTER_FILE_INCLUDE_AFTER_DATE and (LastModificationDatetime.timestamp() - int(Filter.Condition)) == 0:
+                Return = True
+        return Return
+
+    def _md5sum(self, Filename, Blocksize=65536):
+        Hash = hashlib.md5()
+        with open(Filename, "rb") as f:
+            for Block in iter(lambda: f.read(Blocksize), b""):
+                Hash.update(Block)
+        return Hash.hexdigest()
