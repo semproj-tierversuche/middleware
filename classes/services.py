@@ -106,14 +106,14 @@ class HostAsDatabase(Database):
     #just for error handling...later
     def __prepareForHttpService(self, Type):
         Return = None
+        if Type not in self.__Configuration:
+            return Return
         if 'name' not in self.__Configuration['host']:
             pass#raise Error
-
         if 'port' in self.__Configuration['host']:
             Return = self.__startTransaction(self.__Configuration[Type], HttpService(self.__Configuration['host']['name'], self.__Configuration['host']['useHttps'], self.__Configuration['host']['port']))
         else:
             Return = self.__startTransaction(self.__Configuration[Type], HttpService(self.__Configuration['host']['name'], self.__Configuration['host']['useHttps']))
-
         return Return
 
     def __startTransaction(self, Configuration, HttpObject):
@@ -154,7 +154,7 @@ class HostAsDatabase(Database):
     def query(self, Query):
         Response = None
         if not Query:
-            return
+            self.__Query = self.__prepareForHttpService('query')
         self.__QueryLock.acquire()
         Response = self.__withOrWithoutBody(self.__Configuration['query']['method'],Query, self.__Query)
         self.__QueryLock.release()
@@ -163,7 +163,7 @@ class HostAsDatabase(Database):
     def insert(self, Insert):
         Response = None
         if not Insert:
-            return
+            self.__Insert = self.__prepareForHttpService('insert')
         self.__InsertLock.acquire()
         Response = self.__withOrWithoutBody(self.__Configuration['insert']['method'], Insert, self.__Insert)
         self.__QueryLock.release()
@@ -172,7 +172,9 @@ class HostAsDatabase(Database):
     def update(self, Update):
         Response = None
         if not Update:
-            return
+            self.__Update = self.__prepareForHttpService('update')
+            if None == self.__Update:
+                return None#throw error
         self.__UpdateLock.acquire()
         Response = self.__withOrWithoutBody(self.__Configuration['update']['method'],Query, self.__Update)
         self.__UpdateLock.release()
@@ -181,7 +183,9 @@ class HostAsDatabase(Database):
     def delete(self, Delete):
        Response = None
        if not Delete:
-           return
+           self.__Delete = self.__prepareForHttpService('delete')
+           if None == self.__Delete:
+               return None#throw error
        self.__DeleteLock.acquire()
        Response = self.__withOrWithoutBody(self.__Configuration['delete']['method'],Query, self.__Delete)
        self.__DeleteLock.release()
