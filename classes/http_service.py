@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 # requires at least python 3.4
 
-#import http.client, urllib.parse
-#from base64 import b64encode
 import requests as Requests
 from http import cookies as Cookies
 import os as OS
@@ -37,20 +35,22 @@ class HttpService(object):
     __BuildNew = False
     __Path = None
 
-    def __init__(self, Configuration):
+    def __init__(self, Host, UseHttps=False, PortNumber=None):
         Domain = None
         Port = 80
         Protokoll = 'http'
 
-        Domain = Configuration['host']['name']
-        if 'https' == Configuration['host']['protokoll']:
+        if not Host:
+            return None
+        Domain = Host
+        if True == UseHttps:
             Port = 443
             Potokoll = 'https'
 
-        if Configuration['host']['port']:
-            Port = Configuration['host']['port']
+        if PortNumber:
+            Port = PortNumber
 
-        self.__URLBase = Protokoll + '://' + Domain + ':' + Port
+        self.__URLBase = Protokoll + '://' + Domain + ':' + str(Port)
         self.__Session = Requests.Session()
 
     def setUsernameAndPassword(self, Username, Password):
@@ -95,7 +95,6 @@ class HttpService(object):
         if self.__InputData:
             self.__Request.body = self.__InputData
             self.__InputData = None
-       # self.__Request = self.__Session.prepare_request(Req)
         self.__PrepartionIsActive = True
 
     def setInputData(self, InputData):
@@ -113,15 +112,7 @@ class HttpService(object):
         else:
             self.__Parameters[Name] = Value
 
-#    if True == self.__PrepartionIsActive:
-            #if not self.__Request.parameters[Key]:
-            #    for Key in self.__Parameters:
-            #    self.__Request.parameters[Key] = self.__Parameters[Key]
-            #else
-#                self.__Request.params[Name] = Value
-
     def addHeader(self, Name, Value, Persistent=False):
-#        self.__Headers[Name] = Value
         if True == self.__PrepartionIsActive:
             self.__Request.headers[Name] = Value
             if True == Persistent:
@@ -129,10 +120,6 @@ class HttpService(object):
                 self.__BuildNew = True
         else:
             self.__Headers[Name] = Value
-            #if not self.__Request.headers:
-            #    for Key in self.__Headers:
-            #        self.__Request.headers[Key] = self.__Headers[Key]
-            #else:
             self.__Request.headers[Name] = Value
 
     def call(self):
@@ -142,7 +129,7 @@ class HttpService(object):
         if False == self.__PrepartionIsActive:
             return None
         else:
-            if True == self.__BuildNew:
+            if True == self.__BuildNew and ('POST' == self.__Request.method.upper() or 'PUT' == self.__Request.method.upper()):
                 SwapBody = self.__Request.body
                 self.startACall(self.__Request.method, self.__Path)
                 if SwapBody:
@@ -152,27 +139,24 @@ class HttpService(object):
                 Response = self.__Session.send(ToSend)
             except Requests.exceptions.ConnectionError:
                 raise HttpServiceException(HttpServiceException.NO_CONECTION)
-            if False == self.HoldBody:
-                self.__Request.body = None
             return Response
 
     def close(self):
         self.__Session.close()
-         __URLBase = None
-         __Headers = {}
-         __Session = None
-         __Request = None
-         __Parameters = {}
-         __InputData = None
-         __Cookies = []
-         __PrepartionIsActive = False
-         __BuildNew = False
-         __Path = None
+        __URLBase = None
+        __Headers = {}
+        __Session = None
+        __Request = None
+        __Parameters = {}
+        __InputData = None
+        __Cookies = []
+        __PrepartionIsActive = False
+        __BuildNew = False
+        __Path = None
 
 
     def __del__(self):
         self.close()
-
 
     def reset(self):
         self.__Parameters = {}
@@ -192,6 +176,4 @@ class HttpService(object):
         if Key in self.__Parameters:
             del self.__Parameters[Key]
         if True == self.__PrepartionIsActive:
-#            if Key in self.__Session.params:
-#                del self.__Session.params[Key]
             self.__BuildNew = True

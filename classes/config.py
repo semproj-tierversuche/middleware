@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # requires at least python 3.4
 
-import xml.etree.ElementTree as DOM
+from xml.etree import ElementTree as DOM
 import os as OS
 
 class ConfigException(Exception):
@@ -37,29 +37,102 @@ class ConfigReader(object):
         self.readResources()
         self.readMaxThreads()
 
+    #just a workaround,cause Elementree does NOT follow the order of the Elements in the given XML
+    def readCmdAttributes(self, Nodes):
+#        Order = []
+#        Appendix = []
+#        ElementPosition = 0
+#        x = 0
+        Return = []
+        for Node in Nodes:
+            if 'key' in Node.attrib and Node.attrib['key'].strip():
+                if Node.text and Node.text.strip():
+                    Return.append({'key' : Node.attrib['key'].strip(), 'value': Node.text.strip()})
+                else:
+                    Return.append({'key' : Node.attrib['key'].strip(), 'value':''})
+        return Return
+ # After updating ET -> it works as it supposed to...wow
+ #       HasChanged = False
+ #       for Node in Nodes:
+ #           print(Node.attrib['key'])
+ #           if ('order' in Node.attrib and Node.attrib['order'].strip()) and ('key' in Node.attrib and Node.attrib['key'].strip()):
+ #               ElementPosition = int(Node.attrib['order'].strip())
+ #               if not Order:
+ #                   if Node.text and Node.text.strip():
+ #                       Order.append({'order': ElementPosition, 'key' : Node.attrib['key'].strip(), 'value': Node.text.strip()})
+ #                   else:
+ #                       Order.append({'order': ElementPosition, 'key' : Node.attrib['key'].strip(), 'value': ''})
+ #               else:
+ #                   HasChanged = False
+ #                   for x in range(0, len(Order)):
+ #                       if ElementPosition < Order[x]['order']:
+ #                           if Node.text and Node.text.strip():
+ #                               Order.insert(x,{'order': ElementPosition, 'key' : Node.attrib['key'].strip(), 'value': Node.text.strip()})
+ #                           else:
+ #                               Order.insert(x,{'order': ElementPosition, 'key' : Node.attrib['key'].strip(), 'value': ''})
+ #                           HasChanged = True
+ #                   if False == HasChanged:
+ #                       if Node.text and Node.text.strip():
+ #                           Order.append({'order': ElementPosition, 'key' : Node.attrib['key'].strip(), 'value': Node.text.strip()})
+ #                       else:
+ #                           Order.append({'order': ElementPosition, 'key' : Node.attrib['key'].strip(), 'value': ''})
+ #           else:
+ #               if 'key' in Node.attrib and Node.attrib['key'].strip():
+ #                   if Node.text and  Node.text.strip():
+ #                       Appendix.append({'key' : Node.attrib['key'].strip(), 'value': Node.text.strip()})
+ #                   else:
+ #                       Appendix.append({'key' : Node.attrib['key'].strip(), 'value': ''})
+        #for x in range(0, len(Order)):
+        #    Return[Order[x]['key']] = Order[x]['value']
+        #for x in range(0, len(Appendix)):
+        #    Return[Appendix[x]['key']] = Appendix[x]['value']
+  #      Order += Appendix
+  #      print(Order)
+  #      return Order
+
+
     def readService(self, Root):
         Node =None
         Nodes = []
         Timeout = 0
         Return = {}
         Return['cmd'] = {}
-        Return['cmd']['param'] = []
+        Return['cmd']['parameter'] = {}
+        Return['cmd']['version'] = {}
+
         Return['host'] = {}
 
         Node = Root.find('cmd')
         #we going on to check if we need to use something else then commandline
         if None is not Node:
-            Return['cmd']['name'] = Node.text.strip()
+            Return['cmd']['param'] = {}
+            Return['cmd']['version'] = {}
+            Order = {}
+            if 'name' not in Node.attrib or not Node.attrib['name'].strip():
+                pass
+
+            Return['cmd']['name'] = Node.attrib['name'].strip()
             del Return['host']
+
             if 'timeout' in Node.attrib and Node.attrib['timeout'].strip():
                 Timeout = int(Node.attrib['timeout'].strip())
                 if 0<Timeout:
                     Return['cmd']['timeout'] = Timeout
+
+            if 'readFromStdin' in Node.attrib:
+                Return['cmd']['stdin'] = True
+            else:
+                Return['cmd']['stdin'] = False
+
             Nodes = Node.findall('param')
             if Nodes:
-                for Node in Nodes:
-                    if Node.text.strip():
-                        Return['cmd']['param'].append(Node.text.strip())
+                Return['cmd']['parameter'] = self.readCmdAttributes(Nodes)
+
+            Nodes = Node.findall('version')
+            if not Nodes:
+                pass#error
+            else:
+                Return['cmd']['version'] = self.readCmdAttributes(Nodes)
         else:
         #alternativ: We can say host[@protokoll@port], but we cannot exact error report
             Node = Root.find('host')
@@ -68,24 +141,47 @@ class ConfigReader(object):
                 pass
             else:
                 del Return['cmd']
-                if 'protokoll' not in Node.attrib:
-                    #raise a exception
-                    pass
-                elif 'port' not in Node.attrib:
-                    #raise a exception
-                    pass
+                if 'useHttps' in Node.attrib:
+                    Return['host']['useHttps'] = True
                 else:
+                    Return['host']['useHttps'] = False
+
+                if 'port' in Node.attrib:
+                    Return['host']['port'] = str(int(Node.attrib['port'].strip()))
+ #               if 'protokoll' not in Node.attrib:
+ #                   #raise a exception
+ #                   pass
+ #               elif 'port' not in Node.attrib:
+ #                   #raise a exception
+ #                   pass
+  #              else:
                     Return['host']['name'] = Node.text.strip()
-                    Return['host']['protokoll'] = Node.attrib['protokoll'].strip().lower()
-                    Return['host']['port'] = Node.attrib['port'].strip()
+  #                  Return['host']['protokoll'] = Node.attrib['protokoll'].strip().lower()
+  #                  Return['host']['port'] = Node.attrib['port'].strip()
+
+        return Return
+    def readSubNode(self, Configuration, Node, TagName):
+        if 'host' in Configuration:
+            return self.readSubNodeHttp(Node, TagName)
+        else:
+            return self.readSubNodeCmd(Node, TagName)
+
+    def readSubNodeCmd(self, Node, TagName):
+        Return = {}
+        Return['parameter'] = {}
+        Nodes = Node.findall('param')
+        if Nodes:
+            for Node in Nodes:
+                if 'key' in Node.attrib and Node.attrib['key'].strip():
+                    Return['parameter'][Node.attrib['key'].strip()] = Node.text
 
         return Return
 
-    def readSubNode(self, Node, TagName):
+    def readSubNodeHttp(self, Node, TagName):
         NodeStrich = None
         Nodes = []
         Return = {}
-        Return['parameters'] = []
+        Return['parameter'] = {}
         Return['cookies'] = []
         Return['headers'] = []
         Return['path'] = None
@@ -104,12 +200,12 @@ class ConfigReader(object):
                 Return['auth']['username'] = Node.attrib['username'].strip()
                 Return['auth']['password'] = Node.attrib['password']
             Return['method'] = Node.attrib['method'].strip().upper()
-            Node = NodeStrich.find('path')
-            if None is Node or not Node.text.strip():
+
+            if 'path' not in Node.attrib or not Node.attrib['path'].strip():
                 #throw exception if not in tagsoup
                 pass
             else:
-                Return['path'] = Node.text.strip()
+                Return['path'] = Node.attrib['path'].strip()
                 #if 'username' in Node.attrib and 'password' in Node.attrib and Node.attrib['username'].strip() and Node.attrib['password']:
                 #    Return['path']['username'] = Node.attrib['username'].strip()
                 #    Return['path']['password'] = Node.attrib['password']
@@ -117,7 +213,7 @@ class ConfigReader(object):
                 if Nodes:
                     for Node in Nodes:
                         if 'key' in Node.attrib and Node.attrib['key'].strip():
-                            Return['parameters'].append({'key': Node.attrib['key'].strip(), 'value' : Node.text})
+                            Return['parameter'][Node.attrib['key'].strip()] = Node.text
 
                 Nodes = NodeStrich.findall('cookie')
                 if Nodes:
@@ -134,7 +230,6 @@ class ConfigReader(object):
                         if 'name' in Node.attrib and Node.attrib['name']:
                             Return['headers'].append({'name': Node.attrib['name'].strip(), 'value':Node.text.strip()})
         return Return
-
 
     def readTextmining(self):
         Node = None
@@ -155,11 +250,12 @@ class ConfigReader(object):
             pass
         else:
             self._Database = self.readService(Node)
-            self._Database['query'] = self.readSubNode(Node, 'query')
-            self._Database['version'] = self.readSubNode(Node, 'version')
-            self._Database['insert'] = self.readSubNode(Node, 'insert')
-            self._Database['update'] = self.readSubNode(Node, 'update')
-            self._Database['delete'] = self.readSubNode(Node, 'delete')
+            #self._Database['query'] = self.readSubNode(Node, 'query')
+            self._Database['version'] = self.readSubNode(self._Database, Node, 'version')
+            self._Database['query'] = self.readSubNode(self._Database, Node, 'query')
+            self._Database['insert'] = self.readSubNode(self._Database, Node, 'insert')
+            self._Database['update'] = self.readSubNode(self._Database, Node, 'update')
+            self._Database['delete'] = self.readSubNode(self._Database, Node, 'delete')
 
     def readMaxThreads(self):
         Node = None

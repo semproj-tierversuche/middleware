@@ -5,8 +5,12 @@ from threading import Lock
 from classes.http_service import HttpService
 from classes.cmd_service import CmdService
 
-class Textming(object):
-    def do(self, Input):
+class Textmining(object):
+    def do(self, Input, ParameterKey=None, ReadFromStdin=False):
+        pass
+    def getVersion():
+        pass
+    def close():
         pass
 class Database(object):
 
@@ -22,16 +26,54 @@ class Database(object):
     def update(self, Update):
         pass
 
-class CmdAsDatabase(object):
-    def __init__(self, Configuration):
+class CmdAsDatabase(Database):
+    def query(self, Query):
+        pass
+    def delete(self, Delete):
+        pass
+    def insert(self, Insert):
+        pass
+    def update(self, Update):
         pass
 
-class CmdAsTextmining(object):
-    def __init__(self, Configuration):
-        pass
+class CmdAsTextmining(Textmining):
+    __Worker = None
+    __Version = None
+    __UseStdin = False
 
-    def do(self, Input):
-        pass
+    def __init__(self, Configuration):
+        Keys = []
+        if 'timeout' in Configuration:
+            self.__Worker = CmdService(Configuration['name'], Configuration['timeout'])
+        else:
+            self.__Worker = CmdService(Configuration['name'])
+        if 'stdin' in Configuration:
+            self.__UseStdin = Configuration['stdin']
+        #fetch Version
+        for x in range(0,len(Configuration['version'])-1):
+            self.__Worker.addParameter(Configuration['version'][x]['key'], Configuration['version'][x]['value'])
+        Stdout, Stderr = self.__Worker.do(Configuration['version'][len(Configuration['version'])-1]['key'], Configuration['version'][len(Configuration['version'])-1]['value'], CmdService.FORK_NORMAL_PROCESS, False)
+        if Stderr:
+            pass#Error und so
+        self.__Version = Stdout.strip()
+        for x in range(0, len(Configuration['version'])-1):
+            self.__Worker.removeParameter(Configuration['version'][x]['key'])
+        #add all params we need for execution
+        for x in range(0, len(Configuration['parameter'])):
+            self.__Worker.addParameter(Configuration['parameter'][x]['key'], Configuration['parameter'][x]['value'])
+#        for Parameter in Configuration['parameter']:
+#            self.__Worker.addParameter(Parameter, Configuration['parameter'][Parameter])
+
+    def getVersion(self):
+        if self.__Version:
+            return self.__Version
+
+    def do(self, Input, ParameterKey=None, ReadFromStdin=False):
+        #self.__Worker.printParam()
+        if not ParameterKey:
+            return self.__Worker.do('', Input, CmdService.FORK_PTY_PROCESS, ReadFromStdin)
+        else:
+            return self.__Worker.do(ParameterKey, Input, CmdService.FORK_PTY_PROCESS, ReadFromStdin)
 
 class HostAsDatabase(Database):
     __Query = None
@@ -43,34 +85,43 @@ class HostAsDatabase(Database):
     __Insert = None
     __InsertLock = Lock()
     __Version = None
+    __Configuration = None
 
-    #def __init__(self, Configuration):
-        #Version = self.__startTransaction(Configuration['version'], HttpService(Configuration))
-        #print(Version.call().content)
-     #   self.__Query = self.__startTransaction(Configuration['query'], HttpService(Configuration))
-     #   if 'update' in Configuration:
-     #       self.__Update = self.__startTransaction(Configuration['update'], HttpService(Configuration))
-     #   self.__Delete = self.__startTransaction(Configuration['insert'], HttpService(Configuration))
-     #   if 'delete' in Configuration:
-     #       self.__Insert = self.__startTransaction(Configuration['delete'], HttpService(Configuration))
+    def __init__(self, Configuration, StartQuery=True, StartInsert=False, StartUpdate=False, StartDelete=False, GetVersion=False):
+        self.__Configuration = Configuration
+        if True == GetVersion:
+            self.getDBVersion()
+        self.openDatabase(True,False)
 
-    def openDatabase(Query=True, Insert=True, Update=False, Delete=False):
+    def openDatabase(self, Query=True, Insert=True, Update=False, Delete=False):
         if True == Query and not self.__Query:
-            self.__Query = self.__startTransaction(Configuration['query'], HttpService(Configuration))
+            self.__Query = self.__prepareForHttpService('query')
         if True == Insert and not self.__Insert:
-            self.__Insert = self.__startTransaction(Configuration['insert'], HttpService(Configuration))
-        if True == Update and not self__Update and 'update' in Configuration:
-             self.__Update = self.__startTransaction(Configuration['update'], HttpService(Configuration))
-        if True == Delete and not self.__Delete and 'delete' in Configuration:
-             self.__Delete = self.__startTransaction(Configuration['delete'], HttpService(Configuration))
+            self.__Insert = self.__prepareForHttpService('insert')
+        if True == Update and not self__Update and 'update' in self.__Configuration:
+             self.__Update = self.__prepareForHttpService('update')
+        if True == Delete and not self.__Delete and 'delete' in self.__Configuration:
+             self.__Delete = self.__prepareForHttpService('delete')
+
+    #just for error handling...later
+    def __prepareForHttpService(self, Type):
+        Return = None
+        if 'name' not in self.__Configuration['host']:
+            pass#raise Error
+
+        if 'port' in self.__Configuration['host']:
+            Return = self.__startTransaction(self.__Configuration[Type], HttpService(self.__Configuration['host']['name'], self.__Configuration['host']['useHttps'], self.__Configuration['host']['port']))
+        else:
+            Return = self.__startTransaction(self.__Configuration[Type], HttpService(self.__Configuration['host']['name'], self.__Configuration['host']['useHttps']))
+
+        return Return
 
     def __startTransaction(self, Configuration, HttpObject):
         if Configuration['auth']:
             HttpObject.setUsernameAndPassword(Configuration['auth']['username'], Configuration['auth']['password'])
-        for Parameter in Configuration['parameters']:
-            HttpObject.addParameter(Parameter['key'], Parameter['value'])
+        for Parameter in Configuration['parameter']:
+            HttpObject.addParameter(Parameter, Configuration['parameter'][Parameter])
         for Cookie in Configuration['cookies']:
-            print(Cookie)
             if True == bool(Cookie['type']):
                 HttpObject.addCookieString(Cookie['value'])
             else:
@@ -81,7 +132,7 @@ class HostAsDatabase(Database):
         HttpObject.startACall(Configuration['method'], Configuration['path'])
         return HttpObject
 
-    def __bodyless(self, Input, HttpObject):
+    def __bodyless(self, HttpObject, Input):
         for Key in Input:
             HttpObject.addParameter(Key, Input[Key])
         Response = HttpObject.call()
@@ -89,17 +140,23 @@ class HostAsDatabase(Database):
             HttpObject.removeParameter(Key)
         return Response
 
-    def __withBody(self, Input, HttpObject):
+    def __withBody(self, HttpObject, Input):
         HttpObject.setInputData(Input)
         return HttpObject.call()
 
+    def __withOrWithoutBody(self, Method, HTTPObject, ToDo):
+        if 'POST' == Method or 'PUT' == Method:
+            Response = self.__withBody(ToDo, HTTPObject)
+        else:
+            Response = self.__bodyless(ToDo, HTTPObject)
+        return Response
 
     def query(self, Query):
         Response = None
         if not Query:
             return
         self.__QueryLock.acquire()
-        Response = self.__bodyless(Query, self.__Query)
+        Response = self.__withOrWithoutBody(self.__Configuration['query']['method'],Query, self.__Query)
         self.__QueryLock.release()
         return Response
 
@@ -108,7 +165,7 @@ class HostAsDatabase(Database):
         if not Insert:
             return
         self.__InsertLock.acquire()
-        Response = self.__withBody(Insert, self.__Insert)
+        Response = self.__withOrWithoutBody(self.__Configuration['insert']['method'], Insert, self.__Insert)
         self.__QueryLock.release()
         return Response
 
@@ -117,7 +174,7 @@ class HostAsDatabase(Database):
         if not Update:
             return
         self.__UpdateLock.acquire()
-        Response = self.__withBody(Update, self.__Update)
+        Response = self.__withOrWithoutBody(self.__Configuration['update']['method'],Query, self.__Update)
         self.__UpdateLock.release()
         return Response
 
@@ -126,30 +183,40 @@ class HostAsDatabase(Database):
        if not Delete:
            return
        self.__DeleteLock.acquire()
-       Response = self.__bodyless(Query, self.__Delete)
+       Response = self.__withOrWithoutBody(self.__Configuration['delete']['method'],Query, self.__Delete)
        self.__DeleteLock.release()
        return Response
 
-    def getDBVersion(self):
+    def getVersion(self):
         return self.__Version
 
     def closeUpdate(self):
-        self.__Update.close()
-        self.__Update = None
+        if self.__Update:
+           self.__Update.close()
+           self.__Update = None
 
     def closeDelete(self):
-        self.__Delete.close()
-        self.__Delete = None
+        if self.__Delete:
+            self.__Delete.close()
+            self.__Delete = None
 
     def closeInsert(self):
-        self.__Insert.close()
-        self.__Insert = NOne
+        if self.__Insert:
+            self.__Insert.close()
+            self.__Insert = None
 
     def closeQuery(self):
-        self.__Query.close()
-        self.__Query = None
+        if self.__Query:
+            self.__Query.close()
+            self.__Query = None
 
-class HostAsTextmining(object):
+    def close(self):
+        self.closeDelete()
+        self.closeInsert()
+        self.closeQuery()
+        self.closeUpdate()
+
+class HostAsTextmining(Textmining):
     def __init__(self, Configuration):
         pass
 
@@ -165,7 +232,6 @@ class DatabaseService(object):
         else:
             pass
 #            self.__Database = CmdAsDataBase(Configuration._Database)
-
 
     def queryDatabase(self, Dict):
         Response = self.__Database.query(Dict)
@@ -191,10 +257,17 @@ class TextminingService(object):
     def __init__(self, Configuration):
         if 'host' in Configuration._Textmining:
             pass
-            #self.__Textmining = HostAsTextmining(Configuration._Textmining)
+            #self.__Textmining = HostAsTextmining(Configuration._Textmining['host'])
         else:
-            self.__Textmining = CmdAsTextmining(Configuration._Textmining)
+            self.__Textmining = CmdAsTextmining(Configuration._Textmining['cmd'])
+    def version(self):
+        return self.__Textmining.getVersion()
 
-    def do(self, ForTextmining):
-#        self.__Textmining.do(ForTextmining)
-        pass
+    def do(self, Input, ParameterKey=None, ReadFromStdin=False):
+        Stdout, Stderr = self.__Textmining.do(Input, ParameterKey, ReadFromStdin)
+        if Stderr:
+            pass#Error und so
+        return Stdout
+
+    def close():
+        self.__Textmining.close()
