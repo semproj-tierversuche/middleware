@@ -133,22 +133,21 @@ class HostAsDatabase(Database):
     def __bodyless(self, HttpObject, Input, AdditionalParameter):
         if AdditionalParameter:
            Input = Utils.mergeDictionaries(AdditionalParameter, Input)
-
         for (Key, Value) in Input.items():
-            HttpObject.addParameter(Key, Value)
+            HttpObject.addParameter(Key, Value, False)
         Response = HttpObject.call()
-        for Key in Input:
-            HttpObject.removeParameter(Key)
+ #       for Key in Input:
+ #           HttpObject.removeParameter(Key)
         return Response
 
     def __withBody(self, HttpObject, Input, AdditionalParameter):
         if AdditionalParameter:
             for (Key, Value) in AdditionalParameter.items():
-                HttpObject.addParameter(Key, Value)
+                HttpObject.addParameter(Key, Value, False)
         HttpObject.setInputData(Input)
-        if AdditionalParameter:
-            for Value in AdditionalParameter:
-                HttpObject.removeParameter(Key)
+  #      if AdditionalParameter:
+  #          for Value in AdditionalParameter:
+  #              HttpObject.removeParameter(Key)
         return HttpObject.call()
 
     def __withOrWithoutBody(self, Method, HTTPObject, ToDo, AdditionalParameter):

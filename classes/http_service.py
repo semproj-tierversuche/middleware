@@ -4,6 +4,7 @@
 import requests as Requests
 from http import cookies as Cookies
 import os as OS
+import classes.utils as Utils
 
 class HttpServiceException(Exception):
     Reasons = ['The connection is not established', 'The given cookiefile was not found']
@@ -28,12 +29,13 @@ class HttpService(object):
     __Headers = {}
     __Session = None
     __Request = None
-    __Parameters = {}
+    __PersistentURLParameters = {}
     __InputData = None
     __Cookies = []
-    __PrepartionIsActive = False
-    __BuildNew = False
+    __PreparationIsActive = False
+    __UpdateURLParameter = False
     __Path = None
+    __VolatileURLParameter = {}
 
     def __init__(self, Host, UseHttps=False, PortNumber=None):
         Domain = None
@@ -72,22 +74,20 @@ class HttpService(object):
         CookieDirc = {}
         for Key in Cookie:
             CookieDirc[Key] = Cookie[Key]
-        if False == self.__PrepartionIsActive:
+        if False == self.__PreparationIsActive:
             self.__Cookies.append(CookieDirc)
             return
         if True == Persistent:
             self.__Cookies.append(CookieDirc)
-            self.__BuildNew = True
+            self.__UpdateURLParameter = True
 
     def startACall(self, Method, Path):
         self.__Path = Path
-        if self.__PrepartionIsActive:
-            return
-        if self.__Cookies and self.__Parameters:
-            self.__Request = Requests.Request(method=Method, url=self.__URLBase + Path, params=self.__Parameters, cookies=self.__Cookies)
-        elif not self.__Cookies and self.__Parameters:
-            self.__Request = Requests.Request(method=Method, url=self.__URLBase + Path, params=self.__Parameters)
-        elif self.__Cookies and not self.__Parameters:
+        if self.__Cookies and self.__PersistentURLParameters:
+            self.__Request = Requests.Request(method=Method, url=self.__URLBase + Path, params=self.__PersistentURLParameters.copy(), cookies=self.__Cookies)
+        elif not self.__Cookies and self.__PersistentURLParameters:
+            self.__Request = Requests.Request(method=Method, url=self.__URLBase + Path, params=self.__PersistentURLParameters.copy())
+        elif self.__Cookies and not self.__PersistentURLParameters:
             self.__Request = Requests.Request(method=Method, url=self.__URLBase + Path, cookies=self.__Cookies)
         else:
             self.__Request = Requests.Request(method=Method, url=self.__URLBase + Path)
@@ -95,29 +95,39 @@ class HttpService(object):
         if self.__InputData:
             self.__Request.body = self.__InputData
             self.__InputData = None
-        self.__PrepartionIsActive = True
+        self.__PreparationIsActive = True
 
     def setInputData(self, InputData):
-        if True == self.__PrepartionIsActive:
+        if True == self.__PreparationIsActive:
             self.__Request.body = InputData
         else:
             self.__InputData = InputData
 
     def addParameter(self, Name, Value, Persistent=False):
-        if True == self.__PrepartionIsActive and Name not in self.__Parameters:
-            self.__Request.params[Name] = Value
-            if True == Persistent:
-                self.__Parameters[Name] = Value
-                self.__BuildNew = True
+        if True == self.__PreparationIsActive:
+            if Name in self.__PersistentURLParameters:
+                if True == Persistent:
+                    self.__PersistentURLParameters[Name] = Value
+                    self.__UpdateURLParameter = True
+                else:
+                    self.__VolatileURLParameter[Name] = Value
+                    self.__UpdateURLParameter = True
+            else:
+                if True == Persistent:
+                    self.__PersistentURLParameters[Name] = Value
+                    self.__UpdateURLParameter = True
+                else:
+                    self.__Request.params[Name] = Value
+                    self.__VolatileURLParameter[Name] = Value
         else:
-            self.__Parameters[Name] = Value
+            self.__PersistentURLParameters[Name] = Value
 
     def addHeader(self, Name, Value, Persistent=False):
-        if True == self.__PrepartionIsActive:
+        if True == self.__PreparationIsActive:
             self.__Request.headers[Name] = Value
             if True == Persistent:
                 self.__Header[Name] = Value
-                self.__BuildNew = True
+                self.__UpdateURLParameter = True
         else:
             self.__Headers[Name] = Value
             self.__Request.headers[Name] = Value
@@ -126,54 +136,58 @@ class HttpService(object):
         Response = None
         ToSend = None
         SwapBody = None
-        if False == self.__PrepartionIsActive:
+        URLParameter = {}
+        if False == self.__PreparationIsActive:
             return None
         else:
-            if True == self.__BuildNew and ('POST' == self.__Request.method.upper() or 'PUT' == self.__Request.method.upper()):
-                SwapBody = self.__Request.body
-                self.startACall(self.__Request.method, self.__Path)
-                if SwapBody:
-                    self.setInputData(SwapBody)
+            print(self.__UpdateURLParameter)
+            if self.__VolatileURLParameter and True == self.__UpdateURLParameter:
+                URLParameter = self.__PersistentURLParameters.copy()
+                self.__PersistentURLParameters = Utils.mergeDictionaries(self.__PersistentURLParameters, self.__VolatileURLParameter)
+
+            #if True == self.__UpdateURLParameter and ('POST' == self.__Request.method.upper() or 'PUT' == self.__Request.method.upper()):
+            #    SwapBody = self.__Request.body
+            #elif True == self.__UpdateURLParameter:
+            if True == self.__UpdateURLParameter:
+                self.__Request.params = self.__PersistentURLParameters.copy()
+                #self.startACall(self.__Request.method, self.__Path)
+            #if SwapBody:
+            #    self.setInputData(SwapBody)
             try:
                 ToSend = self.__Request.prepare()
                 Response = self.__Session.send(ToSend)
             except Requests.exceptions.ConnectionError:
                 raise HttpServiceException(HttpServiceException.NO_CONECTION)
+            print(self.__Request.params)
+            if self.__VolatileURLParameter and True == self.__UpdateURLParameter:
+                self.__PersistentURLParameters = URLParameter.copy()
+            self.__VolatileURLParameter.clear()
+            if len(self.__PersistentURLParameters) != len(self.__Request.params):
+                self.__UpdateURLParameter = True
+            else:
+                self.__UpdateURLParameter = False
             return Response
 
     def close(self):
         self.__Session.close()
-        __URLBase = None
-        __Headers = {}
-        __Session = None
-        __Request = None
-        __Parameters = {}
-        __InputData = None
-        __Cookies = []
-        __PrepartionIsActive = False
-        __BuildNew = False
-        __Path = None
-
+        self.__PersistentURLParameters.clear()
+        self.__InputData = ''
+        self.__Cookies = []
+        self.__Headers.clear()
+        self.__Request = None
+        self.__Path = None
+        self.__PreparationIsActive = False
+        self.__UpdateURLParameter = False
 
     def __del__(self):
         self.close()
 
     def reset(self):
-        self.__Parameters = {}
-        self.__InputData = None
-        self.__Cookies = {}
-        self.__Headers = {}
-        self.__Request = None
-        self.__Path = None
-        self.__PrepartionIsActive = False
-        self.__BuildNew = False
-
-        self.__Session.close()
+        self.close()
         self.__Session = Requests.Session()
-        self.__PrepartionIsActive = False
 
     def removeParameter(self, Key):
-        if Key in self.__Parameters:
-            del self.__Parameters[Key]
-        if True == self.__PrepartionIsActive:
-            self.__BuildNew = True
+        if Key in self.__PersistentURLParameters:
+            del self.__PersistentURLParameters[Key]
+        if True == self.__PreparationIsActive:
+            self.__UpdateURLParameter = True
