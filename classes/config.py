@@ -114,6 +114,11 @@ class ConfigReader(object):
             Return['cmd']['name'] = Node.attrib['name'].strip()
             del Return['host']
 
+            if 'keepalive' in Node.attrib:
+                Return['cmd']['keepalive'] = True
+            else:
+                Return['cmd']['keepalive'] = False
+
             if 'timeout' in Node.attrib and Node.attrib['timeout'].strip():
                 Timeout = int(Node.attrib['timeout'].strip())
                 if 0<Timeout:

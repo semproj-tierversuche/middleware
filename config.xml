@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<!-- Auskommentierte Sachen sind nein "nett zu haben, aber brauchen wir eigentlich nicht //-->
 <config>
 	<services>
 		<textmining>
-			<cmd name="String" timeout="Integer"* readFromStdin=readFromStdin>
+			<cmd name="String" timeout="Integer"* readFromStdin="Any">
 				<param  key="String">String</param>
 				<param  key="String">String</param>
 				<version  key="String">String</version>
 			</cmd>
 		</textmining>
 		<database>
-			<host useHttps=useHttps port="Integer">String</host>
+			<host useHttps="Any" port="Integer" outputseperator="String">String</host>
 			<insert methode="string" path="String" username="String" password="String">
 				<param key="String">String</param>
 				<param key="String">String</param>
@@ -28,14 +27,14 @@
 				<cookie type="string">String</param>
 				<header name="String">String</header>
 			</query>
-			<update methode="string" username="String" password="String" path="">
+			<update methode="string" username="String" password="String" path="String">
 				<param key="String">String</param>
 				<param key="String">String</param>
 				<cookie type="storage">String</cookie>
 				<cookie type="string">String</cookie>
 				<header name="String">String</header>
 			</update>
-			<delete methode="string" username="String" password="String" path="">
+			<delete methode="string" username="String" password="String" path="String">
 				<param key="String">String</param>
 				<param key="String">String</param>
 				<cookie type="storage">String</cookie>
@@ -49,21 +48,21 @@
 		<cache>Integer</cache>
 	</limitations>
 	<resourceCollection>
-		<resource domain="Address" plugin="stream" pluginAlias="String" xlstTransformation="XLSTFile" md5Check="md5Check">
-			<subFolder onInitializion="onInitializion">./pubmed/baseline/</subFolder>
-			<subFolder>./pubmed/updatefiles/</subFolder>
+		<resource domain="String" plugin="String" pluginAlias="String" xlstTransformation="String" md5Check="md5Check">
+			<subFolder onInitializion="onInitializion">String</subFolder>
+			<subFolder>String</subFolder>
 				<includeFiles flag="endswith">String</includeFiles>
-				<!-- <includeFiles flag="contains"></includeFiles>
-				<includeFiles flag="pattern"></includeFiles>
-				<includeFiles flag="start_date"></includeFiles>
-				<includeFiles flag="end_date"></includeFiles>
-				<includeFiles flag="date"></includeFiles>//-->
-			<excludeFiles flag="endswith">String</excludeFiles>
-			<!-- <excludeFiles flag="contains"></excludeFiles>
-				<excludeFiles flag="pattern"></excludeFiles>
-				<excludeFiles flag="start_date"></excludeFiles>
-				<excludeFiles flag="end_date"></excludeFiles>
-				<excludeFiles flag="end_date"></excludeFiles> //-->
+				<includeFiles flag="contains">String</includeFiles>
+				<includeFiles flag="pattern">String</includeFiles>
+				<includeFiles flag="start_date">String</includeFiles>
+				<includeFiles flag="end_date">String</includeFiles>
+				<includeFiles flag="date">String</includeFiles>
+				<excludeFiles flag="endswith">String</excludeFiles>
+				<excludeFiles flag="contains">String</excludeFiles>
+				<excludeFiles flag="pattern">String</excludeFiles>
+				<excludeFiles flag="start_date">String</excludeFiles>
+				<excludeFiles flag="end_date">String</excludeFiles>
+				<excludeFiles flag="date">String</excludeFiles>
 		</resource>
 	</resourceCollection>
 </config>

@@ -4,6 +4,7 @@
 from threading import Lock
 from classes.http_service import HttpService
 from classes.cmd_service import CmdService
+import classes.utils as Utils
 
 class Textmining(object):
     def do(self, Input, ParameterKey=None, ReadFromStdin=False):
@@ -129,62 +130,78 @@ class HostAsDatabase(Database):
         HttpObject.startACall(Configuration['method'], Configuration['path'])
         return HttpObject
 
-    def __bodyless(self, HttpObject, Input):
-        for Key in Input:
-            HttpObject.addParameter(Key, Input[Key])
+    def __bodyless(self, HttpObject, Input, AdditionalParameter):
+        if AdditionalParameter:
+           Input = Utils.mergeDictionaries(AdditionalParameter, Input)
+
+        for (Key, Value) in Input.items():
+            HttpObject.addParameter(Key, Value)
         Response = HttpObject.call()
         for Key in Input:
             HttpObject.removeParameter(Key)
         return Response
 
-    def __withBody(self, HttpObject, Input):
+    def __withBody(self, HttpObject, Input, AdditionalParameter):
+        if AdditionalParameter:
+            for (Key, Value) in AdditionalParameter.items():
+                HttpObject.addParameter(Key, Value)
         HttpObject.setInputData(Input)
+        if AdditionalParameter:
+            for Value in AdditionalParameter:
+                HttpObject.removeParameter(Key)
         return HttpObject.call()
 
-    def __withOrWithoutBody(self, Method, HTTPObject, ToDo):
-        if 'POST' == Method or 'PUT' == Method:
-            Response = self.__withBody(ToDo, HTTPObject)
+    def __withOrWithoutBody(self, Method, HTTPObject, ToDo, AdditionalParameter):
+        if AdditionalParameter and AdditionalParameter is isinstance(AdditionalParameter, dict):
+            for Key in AdditionalParameter:
+                if not isinstance(AdditionalParameter[Key], basestring):
+                    AdditionalParameter[Key] = str(AdditionalParameter[Key])
         else:
-            Response = self.__bodyless(ToDo, HTTPObject)
+            pass#throw error
+
+        if 'POST' == Method or 'PUT' == Method:
+            Response = self.__withBody(ToDo, HTTPObject, AdditionalParameter)
+        else:
+            Response = self.__bodyless(ToDo, HTTPObject, AdditionalParameter)
         return Response
 
-    def query(self, Query):
+    def query(self, Query, AdditionalParameter=None):
         Response = None
         if not self.__Query:
             self.__Query = self.__prepareForHttpService('query')
         self.__QueryLock.acquire()
-        Response = self.__withOrWithoutBody(self.__Configuration['query']['method'],Query, self.__Query)
+        Response = self.__withOrWithoutBody(self.__Configuration['query']['method'],Query, self.__Query, AdditionalParameter)
         self.__QueryLock.release()
         return Response
 
-    def insert(self, Insert):
+    def insert(self, Insert, AdditionalParameter=None):
         Response = None
-        if not self.__nsert:
+        if not self.__Insert:
             self.__Insert = self.__prepareForHttpService('insert')
         self.__InsertLock.acquire()
-        Response = self.__withOrWithoutBody(self.__Configuration['insert']['method'], Insert, self.__Insert)
-        self.__QueryLock.release()
+        Response = self.__withOrWithoutBody(self.__Configuration['insert']['method'], Insert, self.__Insert, AdditionalParameter)
+        self.__InsertLock.release()
         return Response
 
-    def update(self, Update):
+    def update(self, Update, AdditionalParameter=None):
         Response = None
         if not self.__Update:
             self.__Update = self.__prepareForHttpService('update')
             if None == self.__Update:
                 return None#throw error
         self.__UpdateLock.acquire()
-        Response = self.__withOrWithoutBody(self.__Configuration['update']['method'],Query, self.__Update)
+        Response = self.__withOrWithoutBody(self.__Configuration['update']['method'],Query, self.__Update, AdditionalParameter)
         self.__UpdateLock.release()
         return Response
 
-    def delete(self, Delete):
+    def delete(self, Delete, AdditionalParameter=None):
        Response = None
-       if not self.__elete:
+       if not self.__Delete:
            self.__Delete = self.__prepareForHttpService('delete')
            if None == self.__Delete:
                return None#throw error
        self.__DeleteLock.acquire()
-       Response = self.__withOrWithoutBody(self.__Configuration['delete']['method'],Query, self.__Delete)
+       Response = self.__withOrWithoutBody(self.__Configuration['delete']['method'],Query, self.__Delete, AdditionalParameter)
        self.__DeleteLock.release()
        return Response
 
@@ -234,20 +251,20 @@ class DatabaseService(object):
             pass
 #            self.__Database = CmdAsDataBase(Configuration._Database)
 
-    def queryDatabase(self, Dict):
-        Response = self.__Database.query(Dict)
+    def queryDatabase(self, Dict, AdditionalParameter=None):
+        Response = self.__Database.query(Dict, AdditionalParameter)
         #TODO -> Fehlerbehandlung responsecodes
         return Response.content.decode('utf-8')
 
-    def insertIntoDatabase(self, JSON):
-        Response = self.__Database.insert(JSON)
+    def insertIntoDatabase(self, JSON, AdditionalParameter=None):
+        Response = self.__Database.insert(JSON, AdditionalParameter)
         return Response.content.decode('utf-8')
 
-    def updateInDatabase(self, JSON):
+    def updateInDatabase(self, JSON, AdditionalParameter=None):
         Response = self.__Database.update(JSON)
         return Response.content.decode('utf-8')
 
-    def deleteInDatabase(self, Dict):
+    def deleteInDatabase(self, Dict, AdditionalParameter=None):
         Response = self.__Database.delete(Dict)
         return Response.content.decode('utf-8')
 
