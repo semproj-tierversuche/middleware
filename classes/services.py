@@ -13,7 +13,6 @@ class Textmining(object):
     def close():
         pass
 class Database(object):
-
     def query(self, Query):
         pass
 
@@ -61,8 +60,6 @@ class CmdAsTextmining(Textmining):
         #add all params we need for execution
         for x in range(0, len(Configuration['parameter'])):
             self.__Worker.addParameter(Configuration['parameter'][x]['key'], Configuration['parameter'][x]['value'])
-#        for Parameter in Configuration['parameter']:
-#            self.__Worker.addParameter(Parameter, Configuration['parameter'][Parameter])
 
     def getVersion(self):
         if self.__Version:
@@ -153,7 +150,7 @@ class HostAsDatabase(Database):
 
     def query(self, Query):
         Response = None
-        if not Query:
+        if not self.__Query:
             self.__Query = self.__prepareForHttpService('query')
         self.__QueryLock.acquire()
         Response = self.__withOrWithoutBody(self.__Configuration['query']['method'],Query, self.__Query)
@@ -162,7 +159,7 @@ class HostAsDatabase(Database):
 
     def insert(self, Insert):
         Response = None
-        if not Insert:
+        if not self.__nsert:
             self.__Insert = self.__prepareForHttpService('insert')
         self.__InsertLock.acquire()
         Response = self.__withOrWithoutBody(self.__Configuration['insert']['method'], Insert, self.__Insert)
@@ -171,7 +168,7 @@ class HostAsDatabase(Database):
 
     def update(self, Update):
         Response = None
-        if not Update:
+        if not self.__Update:
             self.__Update = self.__prepareForHttpService('update')
             if None == self.__Update:
                 return None#throw error
@@ -182,7 +179,7 @@ class HostAsDatabase(Database):
 
     def delete(self, Delete):
        Response = None
-       if not Delete:
+       if not self.__elete:
            self.__Delete = self.__prepareForHttpService('delete')
            if None == self.__Delete:
                return None#throw error
