@@ -104,7 +104,7 @@ class HttpService(object):
             self.__InputData = InputData
 
     def addParameter(self, Name, Value, Persistent=False):
-        if True == self.__PrepartionIsActive:
+        if True == self.__PrepartionIsActive and Name not in self.__Parameters:
             self.__Request.params[Name] = Value
             if True == Persistent:
                 self.__Parameters[Name] = Value
