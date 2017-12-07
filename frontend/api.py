@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 
 from flask import Flask
-from flask_restful import abort, Api, Resource
+from flask_restplus import abort, Api, Resource
 
 def document_for_pmid(pmid):
     pmid = int(pmid)
@@ -30,6 +30,10 @@ api = Api(app)
 
 # API definition
 
+doc_responses = { 200: 'Success',
+                  404: 'Resource not found' }
+
+@api.doc(responses=doc_responses)
 class ResultsAPI(Resource):
     def get(self, id):
         results = results_for_pmid(id)
@@ -37,6 +41,7 @@ class ResultsAPI(Resource):
             abort(404, message="No results available for this id.")
         return results
 
+@api.doc(responses=doc_responses)
 class DocumentAPI(Resource):
     def get(self, id):
         document = document_for_pmid(id)
