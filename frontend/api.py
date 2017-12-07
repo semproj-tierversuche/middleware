@@ -1,18 +1,19 @@
 import json
 from pathlib import Path
 
+from elasticsearch5 import Elasticsearch
+
 from flask import Flask
 from flask_restplus import abort, Api, Resource
 
 def document_for_pmid(pmid):
-    pmid = int(pmid)
-    file_path = Path("data/documents", str(pmid) + ".json")
-    if not file_path.is_file():
+    query = {"query": {"match": {"PMID": pmid}}}
+    res = es.search(**es_options, body=query)
+    if res["hits"]["total"] == 0:
         return False
-    with file_path.open() as f:
-        return json.load(f)
+    return res["hits"]["hits"][0]["_source"]
 
-# load (example) results from file
+# load (example) results from file, but retrieve individual records from DB
 def results_for_pmid(pmid):
     # make sure that we only use ints when constructing the file name
     pmid = int(pmid)
@@ -20,7 +21,24 @@ def results_for_pmid(pmid):
     if not file_path.is_file():
         return False
     with file_path.open() as f:
-        return json.load(f)
+        results_json =  json.load(f)["Results"]
+
+    response = {}
+    response["Origin"] = document_for_pmid(pmid)
+    results = []
+    for result in results_json:
+        row = {}
+        row["Record"] = document_for_pmid(result["Record"]["PMID"])
+        row["Matching"] = result["Matching"]
+        results.append(row)
+    response["Results"] = results
+    return response
+
+# Elasticsearch setup
+es = Elasticsearch()
+es_options = {
+        "index": "article_test",
+        "doc_type": "article" }
 
 # Flask and flask_restful setup
 
