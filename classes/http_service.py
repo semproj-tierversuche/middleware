@@ -140,7 +140,6 @@ class HttpService(object):
         if False == self.__PreparationIsActive:
             return None
         else:
-            print(self.__UpdateURLParameter)
             if self.__VolatileURLParameter and True == self.__UpdateURLParameter:
                 URLParameter = self.__PersistentURLParameters.copy()
                 self.__PersistentURLParameters = Utils.mergeDictionaries(self.__PersistentURLParameters, self.__VolatileURLParameter)
@@ -158,7 +157,6 @@ class HttpService(object):
                 Response = self.__Session.send(ToSend)
             except Requests.exceptions.ConnectionError:
                 raise HttpServiceException(HttpServiceException.NO_CONECTION)
-            print(self.__Request.params)
             if self.__VolatileURLParameter and True == self.__UpdateURLParameter:
                 self.__PersistentURLParameters = URLParameter.copy()
             self.__VolatileURLParameter.clear()
