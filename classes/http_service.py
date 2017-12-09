@@ -127,7 +127,6 @@ class HttpService(object):
     #    if True == self.__PreparationIsActive:
     #        self.__Request.body = InputData
     #    else:
-        print(InputData)
         self.__InputData = InputData
 
     def addParameter(self, Name, Value, Persistent=False):

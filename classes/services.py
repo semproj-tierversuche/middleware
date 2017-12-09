@@ -146,7 +146,7 @@ class HostAsDatabase(Database):
         return HttpObject.call()
 
     def __withOrWithoutBody(self, Method, ToDo, HTTPObject, AdditionalParameter):
-        print(Method)
+        Method = Method.upper()
         if AdditionalParameter and AdditionalParameter is isinstance(AdditionalParameter, dict):
             for Key in AdditionalParameter:
                 if not isinstance(AdditionalParameter[Key], basestring):
@@ -154,11 +154,11 @@ class HostAsDatabase(Database):
         else:
             pass#throw error
 
-        if 'POST' == Method.upper():
+        if 'POST' == Method:
             HTTPObject.addHeader("Content-Type", "application/x-www-form-urlencoded; multipart/form-data")
             HTTPObject.addHeader("Content-Length", str(len(ToDo)))
             Response = self.__withBody(ToDo, HTTPObject, AdditionalParameter)
-        elif 'PUT' == Method.upper():
+        elif 'PUT' == Method:
             HTTPObject.addHeader("Content-Type", "text/plain; application/json")
             HTTPObject.addHeader("Content-Length", str(len(ToDo)))
             Response = self.__withBody(ToDo, HTTPObject, AdditionalParameter)
