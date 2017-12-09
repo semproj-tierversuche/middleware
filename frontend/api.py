@@ -1,5 +1,6 @@
 import json
 from pathlib import Path
+import time
 
 from elasticsearch5 import Elasticsearch
 
@@ -57,6 +58,7 @@ class ResultsAPI(Resource):
         results = results_for_pmid(id)
         if not results:
             abort(404, message="No results available for this id.")
+        time.sleep(3)
         return results
 
 @api.doc(responses=doc_responses)
@@ -65,6 +67,7 @@ class DocumentAPI(Resource):
         document = document_for_pmid(id)
         if not document:
             abort(404, message="No such document.")
+        time.sleep(3)
         return document
 
 api.add_resource(ResultsAPI, '/results/<int:id>')
