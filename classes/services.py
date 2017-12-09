@@ -276,26 +276,63 @@ class DatabaseService(object):
             pass
 #            self.__Database = CmdAsDataBase(Configuration._Database)
 
-    def queryDatabase(self, Dict, AdditionalParameter=None):
-        Response = self.__Database.query(Dict, AdditionalParameter)
-        #TODO -> Fehlerbehandlung responsecodes
-        return Response.content.decode('utf-8')
+    def queryDatabase(self, Dict, AdditionalParameter=None, ReconnectOnFail=False):
+        try:
+            Response = self.__Database.query(Dict, AdditionalParameter)
+        except HttpServiceException as e:
+            if True == ReconnectOnFail:
+                self.reconnect(self.DATABASE_QUERY)
+                Response = self.queryDatabase(Dict, AdditionalParameter, False)
+            else:
+                raise e
+        return Response.status_code, Response.content.decode('utf-8')
 
-    def insertIntoDatabase(self, JSON, AdditionalParameter=None):
-        Response = self.__Database.insert(JSON, AdditionalParameter)
-        return Response.content.decode('utf-8')
+    def insertIntoDatabase(self, JSON, AdditionalParameter=None, ReconnectOnFail=False):
+        try:
+            Response = self.__Database.insert(JSON, AdditionalParameter)
+        except HttpServiceException as e:
+            if True == ReconnectOnFail:
+                self.reconnect(self.DATABASE_INSERT)
+                Response = self.insertIntoDatabase(JSON, AdditionalParameter, False)
+            else:
+                raise e
+        return Response.status_code, Response.content.decode('utf-8')
 
-    def updateInDatabase(self, JSON, AdditionalParameter=None):
-        Response = self.__Database.update(JSON)
-        return Response.content.decode('utf-8')
+    def updateInDatabase(self, JSON, AdditionalParameter=None, ReconnectOnFail=False):
+        try:
+            Response = self.__Database.update(JSON)
+        except HttpServiceException as e:
+            if True == ReconnectOnFail:
+                self.reconnect(self.DATABASE_UPDATE)
+                Response = self.updateInDatabase(JSON, AdditionalParameter, False)
+            else:
+                raise e
+        return Response.status_code, Response.content.decode('utf-8')
 
-    def deleteInDatabase(self, Dict, AdditionalParameter=None):
-        Response = self.__Database.delete(Dict)
-        return Response.content.decode('utf-8')
+    def deleteInDatabase(self, Dict, AdditionalParameter=None, ReconnectOnFail=False):
+        try:
+            Response = self.__Database.delete(Dict)
+        except HttpServiceException as e:
+            if True == ReconnectOnFail:
+                self.reconnect(self.DATABASE_DELETE)
+                Response = self.deleteInDatabase(Dict, AdditionalParameter, False)
+            else:
+                raise e
+        return Response.status_code, Response.content.decode('utf-8')
 
-#    def reconnect(self, What):
-#        if self.DATABASE_QUERY:
-#            self.__Database.closeQuery()
+    def reconnect(self, What):
+        if self.DATABASE_QUERY == What:
+            self.__Database.closeQuery()
+            self.__Database.openDatabase()
+        elif self.DATABASE_INSERT == What:
+            self.__Database.closeInsert()
+            self.__Database.openDatabase(Query=Fase, Insert=True)
+        elif self.DATABASE_UPDATE == What:
+            self.__Database.closeUpdate()
+            self.__Database.openDatabase(Query=False, Update=True)
+        else:
+            self.__Database.closeDelete()
+            self.__Database.openDatabase(Query=False, Delete=True)
 
  #   def close(What:
 

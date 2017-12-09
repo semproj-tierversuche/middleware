@@ -121,6 +121,8 @@ class HttpService(object):
         self.__PreparationIsActive = True
 
     def setInputData(self, InputData):
+        if not InputData:
+            return
         if not isinstance(InputData, str):
             InputData = str(InputData)
         #BugFix: lost body
