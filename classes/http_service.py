@@ -5,6 +5,19 @@ import requests as Requests
 from http import cookies as Cookies
 import os as OS
 import classes.utils as Utils
+import urllib.parse as UrlHelper
+
+class HttpHelper(object):
+
+    @staticmethod
+    def DicionaryToPostRequestString(Dic):
+        Output = ''
+        if not isinstance(Dic, dict):
+            return None
+        else:
+            for Key, Value in Dic:
+                Output += UrlHelper.quote(Key) + '=' + Helper.quote(Value) + "&"
+        return Output[:-1]
 
 class HttpServiceException(Exception):
     Reasons = ['The connection is not established', 'The given cookiefile was not found']
@@ -72,6 +85,8 @@ class HttpService(object):
         Cookie = Cookies.SimpleCookie()
         Cookie.load(CookieString)
         CookieDirc = {}
+        if not isinstance(CookieString, str):
+            CookieString = str(CookieString)
         for Key in Cookie:
             CookieDirc[Key] = Cookie[Key]
         if False == self.__PreparationIsActive:
@@ -83,27 +98,43 @@ class HttpService(object):
 
     def startACall(self, Method, Path):
         self.__Path = Path
-        if self.__Cookies and self.__PersistentURLParameters:
+        if self.__Cookies and self.__PersistentURLParameters and self.__Headers:
+            self.__Request = Requests.Request(method=Method, url=self.__URLBase + Path, params=self.__PersistentURLParameters.copy(), cookies=self.__Cookies, headers=self.__Headers.copy())
+        elif self.__Cookies and self.__PersistentURLParameters and not self.__Headers:
             self.__Request = Requests.Request(method=Method, url=self.__URLBase + Path, params=self.__PersistentURLParameters.copy(), cookies=self.__Cookies)
-        elif not self.__Cookies and self.__PersistentURLParameters:
+        elif not self.__Cookies and self.__PersistentURLParameters and self.__Headers:
+             self.__Request = Requests.Request(method=Method, url=self.__URLBase + Path, params=self.__PersistentURLParameters.copy(), headers=self.__Headers.copy())
+        elif not self.__Cookies and self.__PersistentURLParameters and not self.__Headers:
             self.__Request = Requests.Request(method=Method, url=self.__URLBase + Path, params=self.__PersistentURLParameters.copy())
-        elif self.__Cookies and not self.__PersistentURLParameters:
+        elif self.__Cookies and not self.__PersistentURLParameters and self.__Headers:
+            self.__Request = Requests.Request(method=Method, url=self.__URLBase + Path, cookies=self.__Cookies, headers=self.__Headers.copy())
+        elif self.__Cookies and not self.__PersistentURLParameters and not self.__Headers:
             self.__Request = Requests.Request(method=Method, url=self.__URLBase + Path, cookies=self.__Cookies)
+        elif not self.__Cookies and not self.__PersistentURLParameters and self.__Headers:
+            self.__Request = Requests.Request(method=Method, url=self.__URLBase + Path, headers=self.__Headers)
         else:
             self.__Request = Requests.Request(method=Method, url=self.__URLBase + Path)
-
-        if self.__InputData:
-            self.__Request.body = self.__InputData
-            self.__InputData = None
+            # BugFix: Lost body
+#        if self.__InputData:
+#            self.__Request.body = self.__InputData
+#            self.__InputData = None
         self.__PreparationIsActive = True
 
     def setInputData(self, InputData):
-        if True == self.__PreparationIsActive:
-            self.__Request.body = InputData
-        else:
-            self.__InputData = InputData
+        if not isinstance(InputData, str):
+            InputData = str(InputData)
+        #BugFix: lost body
+    #    if True == self.__PreparationIsActive:
+    #        self.__Request.body = InputData
+    #    else:
+        print(InputData)
+        self.__InputData = InputData
 
     def addParameter(self, Name, Value, Persistent=False):
+        if not isinstance(Name, str):
+            Name = str(Name)
+        if not isinstance(Value, str):
+            Value = str(Value)
         if True == self.__PreparationIsActive:
             if Name in self.__PersistentURLParameters:
                 if True == Persistent:
@@ -154,6 +185,9 @@ class HttpService(object):
             #    self.setInputData(SwapBody)
             try:
                 ToSend = self.__Request.prepare()
+                if self.__InputData:
+                    ToSend.body = self.__InputData
+                    self.__InputData = None
                 Response = self.__Session.send(ToSend)
             except Requests.exceptions.ConnectionError:
                 raise HttpServiceException(HttpServiceException.NO_CONECTION)
@@ -167,7 +201,9 @@ class HttpService(object):
             return Response
 
     def close(self):
-        self.__Session.close()
+        if self.__Session:
+            self.__Session.close()
+            self.__Session = None
         self.__PersistentURLParameters.clear()
         self.__InputData = ''
         self.__Cookies = []
