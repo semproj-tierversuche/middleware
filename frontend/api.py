@@ -56,18 +56,18 @@ doc_responses = { 200: 'Success',
 class ResultsAPI(Resource):
     def get(self, id):
         results = results_for_pmid(id)
+        time.sleep(3)
         if not results:
             abort(404, message="No results available for this id.")
-        time.sleep(3)
         return results
 
 @api.doc(responses=doc_responses)
 class DocumentAPI(Resource):
     def get(self, id):
         document = document_for_pmid(id)
+        time.sleep(3)
         if not document:
             abort(404, message="No such document.")
-        time.sleep(3)
         return document
 
 api.add_resource(ResultsAPI, '/results/<int:id>')
