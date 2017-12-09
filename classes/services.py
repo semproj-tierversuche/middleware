@@ -5,6 +5,7 @@ from threading import Lock
 from classes.http_service import HttpService
 from classes.cmd_service import CmdService
 import classes.utils as Utils
+from classes.http_service import HttpServiceException
 
 class Textmining(object):
     def do(self, Input, ParameterKey=None, ReadFromStdin=False):
@@ -173,7 +174,11 @@ class HostAsDatabase(Database):
         if not self.__Query:
             self.__Query = self.__prepareForHttpService('query')
         self.__QueryLock.acquire()
-        Response = self.__withOrWithoutBody(self.__Configuration['query']['method'],Query, self.__Query, AdditionalParameter)
+        try:
+            Response = self.__withOrWithoutBody(self.__Configuration['query']['method'],Query, self.__Query, AdditionalParameter)
+        except HttpServiceException as e:
+            self.__QueryLock.release()
+            raise e
         self.__QueryLock.release()
         return Response
 
@@ -182,7 +187,11 @@ class HostAsDatabase(Database):
         if not self.__Insert:
             self.__Insert = self.__prepareForHttpService('insert')
         self.__InsertLock.acquire()
-        Response = self.__withOrWithoutBody(self.__Configuration['insert']['method'], Insert, self.__Insert, AdditionalParameter)
+        try:
+            Response = self.__withOrWithoutBody(self.__Configuration['insert']['method'], Insert, self.__Insert, AdditionalParameter)
+        except HttpServiceException as e:
+            self.__InsertLock.release()
+            raise e
         self.__InsertLock.release()
         return Response
 
@@ -193,7 +202,11 @@ class HostAsDatabase(Database):
             if None == self.__Update:
                 return None#throw error
         self.__UpdateLock.acquire()
-        Response = self.__withOrWithoutBody(self.__Configuration['update']['method'],Query, self.__Update, AdditionalParameter)
+        try:
+            Response = self.__withOrWithoutBody(self.__Configuration['update']['method'],Query, self.__Update, AdditionalParameter)
+        except HttpServiceException as e:
+            self.__UpdateLock.release()
+            raise e
         self.__UpdateLock.release()
         return Response
 
@@ -204,7 +217,11 @@ class HostAsDatabase(Database):
            if None == self.__Delete:
                return None#throw error
        self.__DeleteLock.acquire()
-       Response = self.__withOrWithoutBody(self.__Configuration['delete']['method'],Query, self.__Delete, AdditionalParameter)
+       try:
+           Response = self.__withOrWithoutBody(self.__Configuration['delete']['method'],Query, self.__Delete, AdditionalParameter)
+       except HttpServiceException as e:
+           self.__DeleteLock.release()
+           raise e
        self.__DeleteLock.release()
        return Response
 
@@ -243,6 +260,11 @@ class HostAsTextmining(Textmining):
 
 #TODO -> Fehlerbehandlung responsecodes
 class DatabaseService(object):
+    DATABASE_QUERY = 0x0
+    DATABASE_INSERT = 0x1
+    DATABASE_UPDATE = 0x2
+    DATABASE_DELETE = 0x3
+
 
     __Database = None
 
@@ -270,6 +292,12 @@ class DatabaseService(object):
     def deleteInDatabase(self, Dict, AdditionalParameter=None):
         Response = self.__Database.delete(Dict)
         return Response.content.decode('utf-8')
+
+#    def reconnect(self, What):
+#        if self.DATABASE_QUERY:
+#            self.__Database.closeQuery()
+
+ #   def close(What:
 
 class TextminingService(object):
 
