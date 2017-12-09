@@ -1,20 +1,34 @@
 import os
+import re
 import hashlib
+import ftplib
+from time import sleep
 from datetime import datetime
 from fnmatch import fnmatch
 from classes.ftp_downloader import FTPBasicDownloader, FTPBasicDownloaderException
 from classes.resource_downloader_base import AbstractResourceDownloader
 
 
+class NotExistentMD5Exception(Exception):
+    pass
+
+
+class MD5ValidationException(Exception):
+    pass
+
+
+class FileAlreadyExistsException(Exception):
+    pass
+
+
 class File:
     Folder = None
     Access = None
-    Symlinks = None
-    Owner = None
-    Group = None
+    Type = None
     Size = None
     LastModification = None
     Name = None
+    CheckMD5 = None
     localPath = None
 
     def __eq__(self, other):
@@ -27,9 +41,7 @@ class FileFilter:
 
 
 class ResourceDownloader(AbstractResourceDownloader):
-    # TODO: Exception handling refinement -> what exceptions is ftp_downloader going to throw?
     # TODO: filter files with no read access
-    # TODO: exclude subfolders when adding files to queue
 
     _Downloader = None
     _unfilteredFiles = []
@@ -55,20 +67,26 @@ class ResourceDownloader(AbstractResourceDownloader):
         self._DownloadedFiles = []
         self._Downloader.initializeConnection()
 
-    def addSubFolder(self, Folder):
+    def addSubFolder(self, Folder, CheckMD5 = False):
         try:
             self._Downloader.checkConnection()
         except FTPBasicDownloaderException:
             self._Downloader.reconnect()
+        print('retrieving file list of ' + Folder)
         FileList = self._Downloader.getFileList(Folder)
         for FileAttributes in FileList:
             File = self._buildFileObject(Folder, FileAttributes)
+            File.CheckMD5 = CheckMD5
             self._unfilteredFiles.append(File)
             if self._filterFile(File):
-                self._DownloadableFiles.append(File)
+                self._DownloadableFiles.insert(0, File)
+        # print file list
+        print('filtered filelist:')
+        for File in self._DownloadableFiles:
+            print(File.Name)
 
+    # reset löscht keine files!
     def reset(self, Folder):
-        # TODO: this keeps downloaded files ???
         self.resetFilter()
         self.resetDownloadQueue()
 
@@ -78,7 +96,7 @@ class ResourceDownloader(AbstractResourceDownloader):
         FileFilter_.Flag = Flag
         self._Filters.append(FileFilter_)
         # sort filters by flag value to achieve correct precedence
-        self._Filters.sort(key=lambda Filter: Filter.Flag)
+        # self._Filters.sort(key=lambda Filter: Filter.Flag)
         NewDownloadableFiles = []
         for File in self._unfilteredFiles:
             if self._filterFile(File):
@@ -88,27 +106,33 @@ class ResourceDownloader(AbstractResourceDownloader):
     def resetFilter(self):
         self._Filters = []
 
-    def checkMD5(self):
-        for File in self._DownloadedFiles:
-            Md5 = self._md5sum(File.localPath)
-        # TODO: download & validate md5 here
-
     def downloadFile(self, PathInTmp):
         try:
             self._Downloader.checkConnection()
         except FTPBasicDownloaderException:
             self._Downloader.reconnect()
-        self._Downloader.goBackToBaseDir()
-        # add trailing slash and remove leading
+        self._goBackToBaseDir()
+        # add trailing slash and remove leadingFile.localPath
         if not(PathInTmp[-1:] == '/'):
             PathInTmp += '/'
         PathInTmp.lstrip('/')
         File = self._DownloadableFiles.pop()
         self._unfilteredFiles.remove(File)
         self._Downloader.changeDir(File.Folder)
+        # dir exists?
+        if not os.path.exists('tmp/' + PathInTmp):
+            os.makedirs('tmp/' + PathInTmp)
         File.localPath = 'tmp/' + PathInTmp + File.Name
-        self._Downloader.downloadFile(File.Name, File.localPath)
-        self._DownloadedFiles.append(File)
+        print('downloading ' + File.Name)
+        # TODO: remove if
+        if not os.path.isfile(File.localPath):
+            self._downloadFile(File.Name, File.localPath)
+            self._DownloadedFiles.append(File)
+        else:
+            raise FileAlreadyExistsException('File ' + File.localPath + ' already exists.')
+        if File.CheckMD5:
+            print('checking md5 of ' + File.Name)
+            self._checkMD5(File)
 
     def downloadAll(self, PathInTmp):
         while len(self._DownloadableFiles) > 0:
@@ -119,33 +143,37 @@ class ResourceDownloader(AbstractResourceDownloader):
         self._DownloadableFiles = []
 
     def clearDownloadedFiles(self):
-        for File in self._DownloadedFiles:
-            # TODO: try catch this
-            os.remove(File.localPath)
         self._DownloadedFiles = []
 
     def _buildFileObject(self, Folder, AttributesString):
-        Attributes = AttributesString.split(' ')
-        Attributes = [a for a in Attributes if a]
-        # TODO: check if mapping works in every case (windows?)
         File_ = File()
+        Attributes = AttributesString.split(";")
+        File_.Name = Attributes[-1].strip()
+        for Attribute in Attributes[:-1]:
+            (Field, Value) = Attribute.split("=")
+            if 'modify' == Field:
+                File_.LastModification = Value
+            if 'perm' == Field:
+                File_.Access = Value
+            if 'size' == Field:
+                File_.Size = Value
+            if 'type' == Field:
+                File_.Type = Value
         File_.Folder = Folder
-        File_.Access = Attributes[0]
-        File_.Symlinks = Attributes[1]
-        File_.Owner = Attributes[2]
-        File_.Group = Attributes[3]
-        File_.Size = Attributes[4]
-        File_.LastModification = Attributes[5] + ' ' + Attributes[6] + ' ' + Attributes[7]
-        File_.Name = Attributes[8]
         return File_
 
     def _filterFile(self, File):
         Return = True
-        # TODO: timezone of ftp server
+        # filter all dirs
+        if not 'file' == File.Type:
+            return False
+        #parse date
         try:
-            LastModificationDatetime = datetime.strptime(File.LastModification, '%b %e %H:%M')
+            LastModificationDatetime = datetime.strptime(File.LastModification + ' UTC', '%Y%m%d%H%M%S %Z')
         except ValueError:
-            LastModificationDatetime = datetime.strptime(File.LastModification, '%b %e %Y')
+            # retry with fraction of seconds removed
+            LastModification = File.LastModification[:-4]
+            LastModificationDatetime = datetime.strptime(LastModification + ' UTC', '%Y%m%d%H%M%S %Z')
         for Filter in self._Filters:
             if Filter.Flag == self.FILTER_FILE_EXCLUDE_ENDS_WITH and File.Name.endswith(Filter.Condition):
                 Return = False
@@ -153,9 +181,11 @@ class ResourceDownloader(AbstractResourceDownloader):
                 Return = False
             if Filter.Flag == self.FILTER_FILE_EXCLUDE_PATTERN and fnmatch(File.Name, Filter.Condition):
                 Return = False
-            if Filter.Flag == self.FILTER_FILE_EXCLUDE_BEFORE_DATE and (LastModificationDatetime.timestamp() - int(Filter.Condition)) < 0:
+            if Filter.Flag == self.FILTER_FILE_EXCLUDE_END_DATE and (LastModificationDatetime.timestamp() - int(Filter.Condition)) < 0:
                 Return = False
-            if Filter.Flag == self.FILTER_FILE_EXCLUDE_AFTER_DATE and (LastModificationDatetime.timestamp() - int(Filter.Condition)) > 0:
+            if Filter.Flag == self.FILTER_FILE_EXCLUDE_START_DATE and (LastModificationDatetime.timestamp() - int(Filter.Condition)) > 0:
+                Return = False
+            if Filter.Flag == self.FILTER_FILE_EXCLUDE_DATE and (LastModificationDatetime.timestamp() - int(Filter.Condition)) == 0:
                 Return = False
             if Filter.Flag == self.FILTER_FILE_INCLUDE_ENDS_WITH and File.Name.endswith(Filter.Condition):
                 Return = True
@@ -163,13 +193,27 @@ class ResourceDownloader(AbstractResourceDownloader):
                 Return = True
             if Filter.Flag == self.FILTER_FILE_INCLUDE_PATTERN and fnmatch(File.Name, Filter.Condition):
                 Return = True
-            if Filter.Flag == self.FILTER_FILE_INCLUDE_BEFORE_DATE and (LastModificationDatetime.timestamp() - int(Filter.Condition)) < 0:
+            if Filter.Flag == self.FILTER_FILE_INCLUDE_END_DATE and (LastModificationDatetime.timestamp() - int(Filter.Condition)) < 0:
                 Return = True
-            if Filter.Flag == self.FILTER_FILE_INCLUDE_AFTER_DATE and (LastModificationDatetime.timestamp() - int(Filter.Condition)) > 0:
+            if Filter.Flag == self.FILTER_FILE_INCLUDE_START_DATE and (LastModificationDatetime.timestamp() - int(Filter.Condition)) > 0:
                 Return = True
-            if Filter.Flag == self.FILTER_FILE_INCLUDE_AFTER_DATE and (LastModificationDatetime.timestamp() - int(Filter.Condition)) == 0:
+            if Filter.Flag == self.FILTER_FILE_INCLUDE_DATE and (LastModificationDatetime.timestamp() - int(Filter.Condition)) == 0:
                 Return = True
         return Return
+
+    def _checkMD5(self, File):
+        MD5File = self._findMatchingMD5FileToFile(File)
+        # TODO: downloadFile to-path should be build relative to PathInTmp
+        md5FileLocalPath = 'tmp/' + MD5File.Name
+        self._downloadFile(MD5File.Name, md5FileLocalPath)
+        f = open(md5FileLocalPath, 'r')
+        try:
+            serverMD5 = re.search(r"([a-fA-F\d]{32})", f.read()).group(1)
+        except AttributeError:
+            serverMD5 = ''
+        localMD5 = self._md5sum(File.localPath)
+        if not serverMD5 == localMD5:
+            raise MD5ValidationException('MD5 checksums of ' + File.localPath + ' do not match.')
 
     def _md5sum(self, Filename, Blocksize=65536):
         Hash = hashlib.md5()
@@ -177,3 +221,35 @@ class ResourceDownloader(AbstractResourceDownloader):
             for Block in iter(lambda: f.read(Blocksize), b""):
                 Hash.update(Block)
         return Hash.hexdigest()
+
+    def _findMatchingMD5FileToFile(self, File):
+        for possibleMD5File in self._unfilteredFiles:
+            if File.Name + '.md5' == possibleMD5File.Name and File.Folder == possibleMD5File.Folder:
+                return possibleMD5File
+        raise NotExistentMD5Exception(File.Name + '.md5 not found in ' + File.Folder + '.')
+
+    def _downloadFile(self, Filename, Destination):
+        try:
+            self._Downloader.downloadFile(Filename, Destination)
+        except ftplib.all_errors as e:
+            StatusCode = int(e.args[0][:3])
+            # if statuscode 42x retry with reconnect
+            if StatusCode % 420 < 10 and StatusCode / 420 == 1:
+                print('connection lost. reconnecting..')
+                self._Downloader.reconnect()
+                self._Downloader.downloadFile(Filename, Destination)
+            else:
+                raise e
+
+    def _goBackToBaseDir(self):
+        try:
+            self._Downloader.goBackToBaseDir()
+        except ftplib.all_errors as e:
+            StatusCode = int(e.args[0][:3])
+            # if statuscode 42x retry with reconnect
+            if StatusCode - 420 in range(0, 9):
+                print('connection lost. reconnecting..')
+                self._Downloader.reconnect()
+                self._Downloader.goBackToBaseDir()
+            else:
+                raise e
