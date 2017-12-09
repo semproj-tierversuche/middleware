@@ -155,11 +155,11 @@ class HostAsDatabase(Database):
             pass#throw error
 
         if 'POST' == Method:
-            HTTPObject.addHeader("Content-Type", "application/x-www-form-urlencoded; multipart/form-data")
+            HTTPObject.addHeader("Content-Type", "application/x-www-form-urlencoded; multipart/form-data; charset=utf-8")
             HTTPObject.addHeader("Content-Length", str(len(ToDo)))
             Response = self.__withBody(ToDo, HTTPObject, AdditionalParameter)
         elif 'PUT' == Method:
-            HTTPObject.addHeader("Content-Type", "text/plain; application/json")
+            HTTPObject.addHeader("Content-Type", "text/plain; application/json; charset=utf-8")
             HTTPObject.addHeader("Content-Length", str(len(ToDo)))
             Response = self.__withBody(ToDo, HTTPObject, AdditionalParameter)
         else:
