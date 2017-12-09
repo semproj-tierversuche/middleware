@@ -139,6 +139,8 @@ class HostAsDatabase(Database):
         return Response
 
     def __withBody(self, Input, HttpObject, AdditionalParameter):
+        #we have to do this cause: https://github.com/python/cpython/blob/master/Lib/http/client.py#151
+        Input = Input.encode('utf-8').decode('latin-1')
         if AdditionalParameter:
             for (Key, Value) in AdditionalParameter.items():
                 HttpObject.addParameter(Key, Value, False)
