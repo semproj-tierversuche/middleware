@@ -17,6 +17,9 @@ def mergeDictionaries(D1, D2):
         return Merge
 
 class PipeHelper(object):
+    SINGLE_PACKAGE = 0x0
+    CONTINUOUS_PACKAGE = 0x1
+    MUTIBLE_PACKAGE = 0x2
     @staticmethod
     def padding(Input, DefinedLength):
         if not isinstance(Input, str):
@@ -35,44 +38,113 @@ class PipeHelper(object):
         return Input
 
     @staticmethod
-    def writeLineToPipe(Pipe, InputString, Lock, Encoding):
-        Lock.acquire()
-        OS.write(Pipe, (InputString + "\n").encode(Encoding))
-        Lock.release()
+    def writeLineToPipe(Pipe, InputString, Lock, DefinedLength, Encoding):
+#        Lock.acquire()
+#        OS.write(Pipe, (InputString + "\n").encode(Encoding))
+        return PipeHelper.writeToDelimter(Pipe, InputString, Lock, "\n", DefinedLength, Encoding, PipeHelper.MUTIBLE_PACKAGE)
+#        Lock.release()
 
     @staticmethod
-    def writeToPipe(Pipe, InputString, Lock, DefinedLength, Encoding, SinglePackage=False):
+    def writeToPipe(Pipe, InputString, Lock, DefinedLength, Encoding, Packageing=CONTINUOUS_PACKAGE):
+        Written = 0
+        Blocks = 0
+        Length = len(InputString)
         Lock.acquire()
-        if True == SinglePackage:
-            if len(InputString) > DefinedLength:
-                OS.write(Pipe, (InputString[0:DefinedLength]).encode(Encoding))
+        if PipeHelper.SINGLE_PACKAGE == Packageing:
+            if Length > DefinedLength:
+                Written = OS.write(Pipe, (InputString[0:DefinedLength]).encode(Encoding))
             else:
-                OS.write(Pipe, PipeHelper.padding(InputString, DefinedLength).encode(Encoding))
+                Written = OS.write(Pipe, PipeHelper.padding(InputString, DefinedLength).encode(Encoding))
+        elif PipeHelper.CONTINUOUS_PACKAGE == Packageing:
+            Written = OS.write(Pipe, (PipeHelper.padding(Length, DefinedLength) + InputString).encode(Encoding))
         else:
-            OS.write(Pipe, (PipeHelper.padding(len(InputString), DefinedLength) + InputString).encode(Encoding))
+            Blocks = round(Length/DefinedLength+0.5)
+            Written = OS.write(Pipe, PipeHelper.padding(Length, DefinedLength).encode(Encoding))
+            for X in range(0, Block):
+                if X+1 < Block:
+                    Written += OS.write(Pipe, InputString[X*DefinedLength:(X+1)*DefinedLength].encode(Encoding))
+                else:
+                    Written += OS.write(Pipe, PipeHelper.padding(InputString[X*DefinedLength:]).encode(Encoding))
         Lock.release()
+        return Written
 
     @staticmethod
-    def readFromPipe(Pipe, Lock, DefinedLength, Encoding, SinglePackage=False):
+    def writeToDelimter(Pipe, InputString, Lock, Delimiter, DefinedLength, Encoding, Packaging=CONTINUOUS_PACKAGE):
+        Written = 0
+        Length = len(InputString)
+        Blocks = 0
+        LastPackage = ''
+        if 0 == Delimiter:
+            return 0
+        Lock.acquire()
+        if PipeHelper.SINGLE_PACKAGE == Packaging:
+            --DefinedLength
+            if Length > DefinedLength:
+                Written = OS.write(Pipe, (InputString[0:DefinedLength] + Delimiter).encode(Encoding))
+            else:
+                Written = OS.write(Pipe, (InputString + Delimiter).encode(Encoding))
+        elif PipeHelper.CONTINUOUS_PACKAGE == Packaging:
+            Written = OS.write(Pipe, (InputString + Delimiter).encode(Encoding))
+        else:
+            Blocks = round(Length/DefinedLength+0.5)
+            for X in range(0, Block-1):
+                Written += OS.write(Pipe, InputString[X*DefinedLength:(X+1)*DefinedLength].encode(Encoding))
+
+            LastPackage = InputString[X*DefinedLength:]
+            if len(LastPackage)+1 > Delimiter:
+                Written += OS.write(Pipe, (InputString[DefinedLength*(Blocks-1):-1]).encode(Encoding))
+                Written += OS.write(Pipe, (InputString[len(InputString)-1]+Delimiter).encode(Encoding))
+            else:
+                Written += OS.write(Pipe, (InputString[DefinedLength*(Blocks-1):]+Delimiter).encode(Encoding))
+        Lock.release()
+        return Written
+
+    @staticmethod
+    def readToDelimter(Pipe, Lock, Delimiter, Encoding):
+        Output = ''
+        Chars = None
+        Lock.acquire()
+        Char = OS.read(Pipe, 1)
+        EncodedDelimiter = Delimiter.encode(Encoding)
+        while True:
+            print(Char)
+            if EncodedDelimiter == Char:
+                break
+            Output += Chars.decode(Encoding)
+            try:
+                Char = OS.read(Pipe, 1)
+            except:
+                break
+        Lock.release()
+        return Output
+
+
+    @staticmethod
+    def readFromPipe(Pipe, Lock, DefinedLength, Encoding, Packageing=CONTINUOUS_PACKAGE):
         Output = ''
         Package = None
         Length = 0
-        #Blocks
+        Blocks = 0
         Lock.acquire()
-        if True == SinglePackage:
-            try:
-                Package = OS.read(Pipe, DefinedLength)
-            except:
-                Lock.release()
-                return None
+        try:
+            Package = OS.read(Pipe, DefinedLength)
+        except:
             Lock.release()
+            return None
+        if PipeHelper.SINGLE_PACKAGE == Packageing:
+            #try:
+            #    Package = OS.read(Pipe, DefinedLength)
+            #except:
+            #    Lock.release()
+            #    return None
+            #Lock.release()
             return Package.rstrip()
         else:
-            try:
-                Package = OS.read(Pipe,  DefinedLength)
-            except:
-                Lock.release()
-                return None
+            #try:
+            #    Package = OS.read(Pipe,  DefinedLength)
+            #except:
+            #    Lock.release()
+            #    return None
             Package = Package.rstrip()
             if not Package:
                 Lock.release()
@@ -84,36 +156,39 @@ class PipeHelper(object):
                 print(Package)
                 print(OS.read(Pipe, 10000).decode(Encoding))
                 OS._exit(0)
+                if PipeHelper.MUTIBLE_PACKAGE == Packageing:
 # Das wird wohl wichtig, wenn wir nen großen Payload haben und dass sotte von
 # der aufrufenden Methode gemacht werden
-#            Blocks = round(Length/self.__TRANSMISSION_LENGTH+0.5)
-#            for X in range(0, Blocks):
-#                Package = OS.read(Pipe,  self.__TRANSMISSION_LENGTH)
-#                Output += Package.decode(self.__TRANSMISSION_ENCODING)
-            Output = OS.read(Pipe, Length).decode(Encoding)
+                    Blocks = round(Length/DefinedLength+0.5)
+                    for X in range(0, Blocks):
+                        Package = OS.read(Pipe,  DefinedLength)
+                        Output += Package.decode(Encoding)
+                else:
+                    Output = OS.read(Pipe, Length).decode(Encoding)
             Lock.release()
             return Output.rstrip()
 
     @staticmethod
     def readFromPipeLine(Pipe, Lock, Encoding):
-        Output = ''
-        Char = None
+        return PipeHelper.readToDelimter(Pipe, Lock, "\n", Encoding)
+#        Output = ''
+ #       Char = None
+#
+ #       Lock.acquire()
+  #      Char = OS.read(Pipe, 1)
+   #     while Char:
+    #        Char = Char.decode(Encoding)
+     #       if "\n" == Char:
+      #          Lock.release()
+       #         return Output
+        #    Output += Char
+         #   try:
+          #      Char = OS.read(Pipe, 1)
+           # except:
+            #    break
 
-        Lock.acquire()
-        Char = OS.read(Pipe, 1)
-        while Char:
-            Char = Char.decode(Encoding)
-            if "\n" == Char:
-                Lock.release()
-                return Output
-            Output += Char
-            try:
-                Char = OS.read(Pipe, 1)
-            except:
-                break
-
-        Lock.release()
-        return Output
+    #    Lock.release()
+     #   return Output
 
 class StdBuffering(list):
         __StdoutCapture = StringIO()

@@ -130,27 +130,25 @@ class HostAsDatabase(Database):
         HttpObject.startACall(Configuration['method'], Configuration['path'])
         return HttpObject
 
-    def __bodyless(self, HttpObject, Input, AdditionalParameter):
+    def __bodyless(self, Input, HttpObject, AdditionalParameter):
         if AdditionalParameter:
            Input = Utils.mergeDictionaries(AdditionalParameter, Input)
         for (Key, Value) in Input.items():
             HttpObject.addParameter(Key, Value, False)
         Response = HttpObject.call()
- #       for Key in Input:
- #           HttpObject.removeParameter(Key)
         return Response
 
-    def __withBody(self, HttpObject, Input, AdditionalParameter):
+    def __withBody(self, Input, HttpObject, AdditionalParameter):
+        #we have to do this cause: https://github.com/python/cpython/blob/master/Lib/http/client.py#151
+        Input = Input.encode('utf-8').decode('latin-1')
         if AdditionalParameter:
             for (Key, Value) in AdditionalParameter.items():
                 HttpObject.addParameter(Key, Value, False)
         HttpObject.setInputData(Input)
-  #      if AdditionalParameter:
-  #          for Value in AdditionalParameter:
-  #              HttpObject.removeParameter(Key)
         return HttpObject.call()
 
-    def __withOrWithoutBody(self, Method, HTTPObject, ToDo, AdditionalParameter):
+    def __withOrWithoutBody(self, Method, ToDo, HTTPObject, AdditionalParameter):
+        Method = Method.upper()
         if AdditionalParameter and AdditionalParameter is isinstance(AdditionalParameter, dict):
             for Key in AdditionalParameter:
                 if not isinstance(AdditionalParameter[Key], basestring):
@@ -158,7 +156,13 @@ class HostAsDatabase(Database):
         else:
             pass#throw error
 
-        if 'POST' == Method or 'PUT' == Method:
+        if 'POST' == Method:
+            HTTPObject.addHeader("Content-Type", "application/x-www-form-urlencoded; multipart/form-data; charset=utf-8")
+            HTTPObject.addHeader("Content-Length", str(len(ToDo)))
+            Response = self.__withBody(ToDo, HTTPObject, AdditionalParameter)
+        elif 'PUT' == Method:
+            HTTPObject.addHeader("Content-Type", "text/plain; application/json; charset=utf-8")
+            HTTPObject.addHeader("Content-Length", str(len(ToDo)))
             Response = self.__withBody(ToDo, HTTPObject, AdditionalParameter)
         else:
             Response = self.__bodyless(ToDo, HTTPObject, AdditionalParameter)
