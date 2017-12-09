@@ -22,7 +22,7 @@ class AbstractResourceDownloader(object):
     def setBaseAddress(self, Address, UseTLS = False):
         raise Exception("NotImplementedException")
 
-    def addSubFolder(self, Folder):
+    def addSubFolder(self, Folder, CheckMD5 = False):
         raise Exception("NotImplementedException")
 
     #reset all
@@ -33,10 +33,6 @@ class AbstractResourceDownloader(object):
         raise Exception("NotImplementedException")
 
     def resetFilter(self):
-        raise Exception("NotImplementedException")
-
-    #check die md5 hashes der files -> sollten die nicht stimmen werden die aus Downloadable komplett genommen
-    def checkMD5(self):
         raise Exception("NotImplementedException")
 
     #Die Funktion läd das erste File der Downloadqueue her runter, entfernt den Eintrag aus dieser und fügt es der Gedownloades Liste hinzu
