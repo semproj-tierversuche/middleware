@@ -56,16 +56,10 @@ class FTPBasicDownloader(object):
 
     #fuer einen Reconnect reicht das erneute Login, die Sockets sind ja noch gebunden
     def reconnect(self):
-#       self.initializeConnection()
-        #try:''
-        if False == self.__IsActiv:
-            self.initializeConnection()
-        else:
-            if not self.Username:
-                self.__Connection.login()
-            else:
-                self.__Connection.login(self.Username, self.Password)
-        #except ftplib.all_errors as e:
+        # bei 60 sekunden timeout wirft erneuter login bei mir EOFError
+        # baue alles neu
+        self.closeConnection()
+        self.initializeConnection()
 
 
     def getFileList(self, Dir):
@@ -76,7 +70,7 @@ class FTPBasicDownloader(object):
         self.__Connection.cwd(Dir)
         #except ftplib.all_errors as e
             #dosmt
-        self.__Connection.retrlines('LIST', Return.append)
+        self.__Connection.retrlines('MLSD', Return.append)
 
 #       try:
         self.__Connection.cwd('/')
