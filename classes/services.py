@@ -7,6 +7,9 @@ from classes.cmd_service import CmdService
 import classes.utils as Utils
 from classes.http_service import HttpServiceException
 
+#TODO: DB als cmd
+#TODO: Textmining as Host
+
 class Textmining(object):
     def do(self, Input, ParameterKey=None, ReadFromStdin=False):
         pass
@@ -40,7 +43,8 @@ class CmdAsDatabase(Database):
 class CmdAsTextmining(Textmining):
     __Worker = None
     __Version = None
-    __UseStdin = False
+#    __IsFlyingProcess = False
+#    __Delimiter = None
 
     def __init__(self, Configuration):
         Keys = []
@@ -53,7 +57,7 @@ class CmdAsTextmining(Textmining):
         #fetch Version
         for x in range(0,len(Configuration['version'])-1):
             self.__Worker.addParameter(Configuration['version'][x]['key'], Configuration['version'][x]['value'])
-        Stdout, Stderr = self.__Worker.do(Configuration['version'][len(Configuration['version'])-1]['key'], Configuration['version'][len(Configuration['version'])-1]['value'], CmdService.FORK_NORMAL_PROCESS, False)
+        Returncode, Stdout, Stderr = self.__Worker.do(Configuration['version'][len(Configuration['version'])-1]['key'], Configuration['version'][len(Configuration['version'])-1]['value'], CmdService.FORK_NORMAL_PROCESS, False)
         if Stderr:
             pass#Error und so
         self.__Version = Stdout.strip()
@@ -62,6 +66,13 @@ class CmdAsTextmining(Textmining):
         #add all params we need for execution
         for x in range(0, len(Configuration['parameter'])):
             self.__Worker.addParameter(Configuration['parameter'][x]['key'], Configuration['parameter'][x]['value'])
+        if True == Configuration['keepalive'] and Configuration['delimiter']:
+            self.__IsFlyingProcess = True
+            self.__Delimiter = Configuration['delimiter']
+            if True == Configuration['stdin']:
+                self.__Worker.startPermanentProcess(Configuration['delimiter'], CmdService.FORK_PTY_PROCESS, True)
+            else:
+                self.__Worker.startPermanentProcess(Configuration['delimiter'], CmdService.FORK_PTY_PROCESS, False)
 
     def getVersion(self):
         if self.__Version:
@@ -73,6 +84,9 @@ class CmdAsTextmining(Textmining):
             return self.__Worker.do('', Input, CmdService.FORK_PTY_PROCESS, ReadFromStdin)
         else:
             return self.__Worker.do(ParameterKey, Input, CmdService.FORK_PTY_PROCESS, ReadFromStdin)
+
+    def close(self):
+        self.__Worker.close()
 
 class HostAsDatabase(Database):
     __Query = None
@@ -97,7 +111,7 @@ class HostAsDatabase(Database):
             self.__Query = self.__prepareForHttpService('query')
         if True == Insert and not self.__Insert:
             self.__Insert = self.__prepareForHttpService('insert')
-        if True == Update and not self__Update and 'update' in self.__Configuration:
+        if True == Update and not self.__Update and 'update' in self.__Configuration:
              self.__Update = self.__prepareForHttpService('update')
         if True == Delete and not self.__Delete and 'delete' in self.__Configuration:
              self.__Delete = self.__prepareForHttpService('delete')
@@ -264,6 +278,7 @@ class DatabaseService(object):
     DATABASE_INSERT = 0x1
     DATABASE_UPDATE = 0x2
     DATABASE_DELETE = 0x3
+    DATABASE_ALL = 0x4
 
 
     __Database = None
@@ -321,20 +336,28 @@ class DatabaseService(object):
         return Response.status_code, Response.content.decode('utf-8')
 
     def reconnect(self, What):
-        if self.DATABASE_QUERY == What:
+        if self.DATABASE_QUERY == What or self.DATABASE_ALL == What:
             self.__Database.closeQuery()
             self.__Database.openDatabase()
-        elif self.DATABASE_INSERT == What:
+        if self.DATABASE_INSERT == What or self.DATABASE_ALL == What:
             self.__Database.closeInsert()
-            self.__Database.openDatabase(Query=Fase, Insert=True)
-        elif self.DATABASE_UPDATE == What:
+            self.__Database.openDatabase(Query=False, Insert=True)
+        if self.DATABASE_UPDATE == What or self.DATABASE_ALL == What:
             self.__Database.closeUpdate()
             self.__Database.openDatabase(Query=False, Update=True)
-        else:
+        if self.DATABASE_DELETE == What  or self.DATABASE_ALL == What:
             self.__Database.closeDelete()
             self.__Database.openDatabase(Query=False, Delete=True)
 
- #   def close(What:
+    def close(What):
+       if self.DATABASE_QUERY == What  or self.DATABASE_ALL == What:
+           self.__Database.closeQuery()
+       if self.DATABASE_INSERT == What or self.DATABASE_ALL == What:
+           self.__Database.closeInsert()
+       if self.DATABASE_UPDATE == What or self.DATABASE_ALL == What:
+           self.__Database.closeUpdate()
+       if self.DATABASE_DELETE == What or self.DATABASE_ALL == What:
+           self.__Database.closeDelete()
 
 class TextminingService(object):
 
@@ -350,10 +373,14 @@ class TextminingService(object):
         return self.__Textmining.getVersion()
 
     def do(self, Input, ParameterKey=None, ReadFromStdin=False):
-        Stdout, Stderr = self.__Textmining.do(Input, ParameterKey, ReadFromStdin)
+        ReturnCode, Stdout, Stderr = self.__Textmining.do(Input, ParameterKey, ReadFromStdin)
         if Stderr:
             pass#Error und so
         return Stdout
 
-    def close():
-        self.__Textmining.close()
+    def close(self):
+        if self.__Textmining:
+            self.__Textmining.close()
+
+    def __del__(self):
+        self.close()

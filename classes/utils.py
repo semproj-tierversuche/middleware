@@ -39,15 +39,14 @@ class PipeHelper(object):
 
     @staticmethod
     def writeLineToPipe(Pipe, InputString, Lock, DefinedLength, Encoding):
-#        Lock.acquire()
-#        OS.write(Pipe, (InputString + "\n").encode(Encoding))
-        return PipeHelper.writeToDelimter(Pipe, InputString, Lock, "\n", DefinedLength, Encoding, PipeHelper.MULTIBLE_PACKAGES)
-#        Lock.release()
+        return PipeHelper.writeWithDelimterToPipe(Pipe, InputString, Lock, "\n", DefinedLength, Encoding, PipeHelper.MULTIBLE_PACKAGES)
 
     @staticmethod
     def writeToPipe(Pipe, InputString, Lock, DefinedLength, Encoding, Packageing=CONTINUOUS_PACKAGE):
         Written = 0
         Blocks = 0
+        if not isinstance(InputString, str):
+            InputString = str(InputString)
         Length = len(InputString)
         Lock.acquire()
         if PipeHelper.SINGLE_PACKAGE == Packageing:
@@ -69,11 +68,13 @@ class PipeHelper(object):
         return Written
 
     @staticmethod
-    def writeToDelimter(Pipe, InputString, Lock, Delimiter, DefinedLength, Encoding, Packageing=CONTINUOUS_PACKAGE):
+    def writeWithDelimterToPipe(Pipe, InputString, Lock, Delimiter, DefinedLength, Encoding, Packageing=CONTINUOUS_PACKAGE):
         Written = 0
-        Length = len(InputString)
+        if not isinstance(InputString, str):
+            InputString = str(InputString)
+        Length = len(InputString)+1
         Blocks = 0
-        LastPackage = ''
+ #       LastPackage = ''
         if 0 == Delimiter:
             return 0
         Lock.acquire()
@@ -86,21 +87,26 @@ class PipeHelper(object):
         elif PipeHelper.CONTINUOUS_PACKAGE == Packageing:
             Written = OS.write(Pipe, (InputString + Delimiter).encode(Encoding))
         else:
+            InputString += Delimiter
             Blocks = round(Length/DefinedLength+0.5)
-            for X in range(0, Blocks-1):
-                Written += OS.write(Pipe, InputString[X*DefinedLength:(X+1)*DefinedLength].encode(Encoding))
-
-            LastPackage = InputString[Blocks-1*DefinedLength:]
-            if len(LastPackage)+1 > DefinedLength:
-                Written += OS.write(Pipe, (LastPackage[:-1]).encode(Encoding))
-                Written += OS.write(Pipe, (LastPackage+Delimiter).encode(Encoding))
-            else:
-                Written += OS.write(Pipe, (LastPackage+Delimiter).encode(Encoding))
+            for X in range(0, Blocks):
+                if X+1 < Blocks:
+                    Written += OS.write(Pipe, InputString[X*DefinedLength:(X+1)*DefinedLength].encode(Encoding))
+                else:
+                    Written += OS.write(Pipe, InputString[X*DefinedLength:].encode(Encoding))
+#                Written += OS.write(Pipe, InputString[X*DefinedLength:(X+1)*DefinedLength].encode(Encoding))
+#
+#            LastPackage = InputString[Blocks-1*DefinedLength:]
+#            if len(LastPackage)+1 > DefinedLength:
+#                Written += OS.write(Pipe, (LastPackage[:-1]).encode(Encoding))
+#                Written += OS.write(Pipe, (LastPackage+Delimiter).encode(Encoding))
+#            else:
+#                Written += OS.write(Pipe, (LastPackage+Delimiter).encode(Encoding))
         Lock.release()
         return Written
 
     @staticmethod
-    def readToDelimter(Pipe, Lock, Delimiter, Encoding):
+    def readUntilDelimiterFromPipe(Pipe, Lock, Delimiter, Encoding):
         Output = ''
         Chars = None
         Lock.acquire()
@@ -131,19 +137,8 @@ class PipeHelper(object):
             Lock.release()
             return None
         if PipeHelper.SINGLE_PACKAGE == Packageing:
-            #try:
-            #    Package = OS.read(Pipe, DefinedLength)
-            #except:
-            #    Lock.release()
-            #    return None
-            #Lock.release()
             return Package.rstrip()
         else:
-            #try:
-            #    Package = OS.read(Pipe,  DefinedLength)
-            #except:
-            #    Lock.release()
-            #    return None
             Package = Package.rstrip()
             if not Package:
                 Lock.release()
@@ -167,26 +162,8 @@ class PipeHelper(object):
             return Output.rstrip()
 
     @staticmethod
-    def readFromPipeLine(Pipe, Lock, Encoding):
-        return PipeHelper.readToDelimter(Pipe, Lock, "\n", Encoding)
-#        Output = ''
- #       Char = None
-#
- #       Lock.acquire()
-  #      Char = OS.read(Pipe, 1)
-   #     while Char:
-    #        Char = Char.decode(Encoding)
-     #       if "\n" == Char:
-      #          Lock.release()
-       #         return Output
-        #    Output += Char
-         #   try:
-          #      Char = OS.read(Pipe, 1)
-           # except:
-            #    break
-
-    #    Lock.release()
-     #   return Output
+    def readLineFromPipe(Pipe, Lock, Encoding):
+        return PipeHelper.readUntilDelimiterFromPipe(Pipe, Lock, "\n", Encoding)
 
 class StdBuffering(list):
         __StdoutCapture = StringIO()
@@ -245,3 +222,116 @@ class StdBuffering(list):
                 self.__StdoutCapture.close()
             if self.__StdoutCapture:
                 self.__StderrCapture.close()
+
+#class PipeAsTemporaryFile(SpooledTemporaryFile):
+ #   __PackageLength = 1024
+  #  __Lock = Lock()
+   # __Lock2 = Lock()
+    #__File = None
+    #__PackageCounter = 0
+
+    #def __init__(self, mode='w+b', packageLength=0, buffering=None, encoding=None, newline=None, suffix=None, prefix=None, dir=None):
+    #    if self.__PackageLength < packageLength:
+    #        self.__PackageLength = packageLength
+    #    super().__init__(mode=mode, buffering=buffering, encoding=encoding, newline=newline, suffix=suffix, prefix=prefix, dir=dir)
+    #def read(self):
+    #    Return = None
+        #self.__Lock.acquire()
+        #Return = super().read(*args)
+        #self.__Lock.release()
+        #return Return
+     #   self.__Lock2.acquire()
+      #  super().seek(0)
+       # Return = self.readPackage()
+        #super().turnicate()
+        #self.__PackageCounter = 0
+        #self.__Lock2.release()
+        #return Return
+
+    #def readline(self, *args):
+        #Return = None
+        #self.__Lock.acquire()
+        #Return = self._file.readline(*args)
+        #self.__Lock.release()
+        #return Return
+     #   self.__Lock2.acquire()
+
+      #  self.__Lock2.aquire()
+
+   # def readlines(self, *args):
+        #Return = None
+        #self.__Lock.acquire()
+        #Return = self._file.readlines(*args)
+        #self.__Lock.release()
+        #return Return
+    #    pass
+
+    #def write(self, String):
+     #   Return = None
+      #  self.__Lock.acquire()
+       # self.__Lock2.aquire()
+        #Return = super().write(String)
+        #self.__Lock2.release()
+        #self.__Lock.release()
+        #return Return
+
+    #def writelines(self, iterable):
+     #   Return = None
+      #  self.__Lock.acquire()
+       # self.__Lock2.acquire()
+        #Return = super().writelines(self, iterable)
+        #self.__Lock2.acquire()
+        #self.__Lock.release()
+        #return Return
+
+    #def writePackage(self, String):
+     #   Return = False
+      #  if not isinstance(Input, str):
+       #     Length = len(str(Input))
+        #    Input = str(Input)
+        #else:
+         #   Length = len(Input)
+        #if 0 == Length:
+         #   return Return
+        #else:
+         #   self.__Lock.acquire()
+          #  self.__Lock2.acquire()
+           # Return = super().write(PipeHelper.padding(len(String), self.__PackageLength) + String)
+            #++self.__PackageCounter
+            #self.__Lock2.release()
+            #self.__Lock.release()
+            #return Return
+
+    #def readPackage(self):
+     #   Output = ''
+      #  Package = None
+       # Length = 0
+        #Blocks
+        #self.__Lock.acquire()
+        #try:
+         #   Package = super().read(self.__PackageLength)
+        #except:
+         #   self.__Lock.release()
+          #  return None
+        #Package = Package.rstrip()
+        #if not Package:
+         #   self.__Lock.release()
+          #  return ''
+        #try:
+         #   Length = int(Package.decode(Encoding).rstrip())
+        #except:
+         #   print(Package)
+          #  print(super().read(10000))
+           # OS._exit(0)
+        #Output = super().read(Length)
+        #self.__Lock.release()
+        #return Output.rstrip()
+
+    #def seek(self):
+     #   pass
+
+    #def seekToStart(self):
+     #   super().seek(0)
+
+    #def seekToTheEnd(self):
+     #   pass

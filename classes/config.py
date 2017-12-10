@@ -3,6 +3,7 @@
 
 from xml.etree import ElementTree as DOM
 import os as OS
+import codecs as Codex
 
 class ConfigException(Exception):
     Reasons = ['The given Element was not found.']
@@ -114,8 +115,13 @@ class ConfigReader(object):
             Return['cmd']['name'] = Node.attrib['name'].strip()
             del Return['host']
 
-            if 'keepalive' in Node.attrib:
-                Return['cmd']['keepalive'] = True
+            if 'keepalive' in Node.attrib and Node.attrib['keepalive']:
+                Char = Codex.decode(Node.attrib['keepalive'], "hex").decode('utf-8')
+                if 1 == len(Char):
+                    Return['cmd']['keepalive'] = True
+                    Return['cmd']['delimiter'] = Char
+                else:
+                    Return['cmd']['keepalive'] = False
             else:
                 Return['cmd']['keepalive'] = False
 

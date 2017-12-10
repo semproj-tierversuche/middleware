@@ -2,14 +2,14 @@
 <config>
 	<services>
 		<textmining>
-			<cmd name="String" timeout="Integer"* readFromStdin="Any">
+			<cmd name="String" timeout="Integer"* readFromStdin="Any" keepAlive="Char">
 				<param  key="String">String</param>
 				<param  key="String">String</param>
 				<version  key="String">String</version>
 			</cmd>
 		</textmining>
 		<database>
-			<host useHttps="Any" port="Integer" outputseperator="String">String</host>
+			<host useHttps="Any" port="Integer">String</host>
 			<insert methode="string" path="String" username="String" password="String">
 				<param key="String">String</param>
 				<param key="String">String</param>
