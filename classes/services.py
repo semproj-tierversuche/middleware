@@ -103,7 +103,18 @@ class HostAsDatabase(Database):
     def __init__(self, Configuration, StartQuery=True, StartInsert=False, StartUpdate=False, StartDelete=False, GetVersion=False):
         self.__Configuration = Configuration
         if True == GetVersion:
-            self.getDBVersion()
+            Version = self.__prepareForHttpService('version')
+            self.__QueryLock.acquire()
+            try:
+                Response = self.__withOrWithoutBody(self.__Configuration['version']['method'], Input, Version, {})
+            except HttpServiceException as e:
+                self.__QueryLock.release()
+                Version.close()
+                raise e
+            else:
+                self.__Version = Response
+                self.__QueryLock.release()
+                Version.close()
         self.openDatabase(True,False)
 
     def openDatabase(self, Query=True, Insert=True, Update=False, Delete=False):
@@ -269,8 +280,115 @@ class HostAsDatabase(Database):
         self.closeUpdate()
 
 class HostAsTextmining(Textmining):
+
+    __Configuration = None
+    __Worker = None
+    __Lock = None
+    __Version = -1
+
     def __init__(self, Configuration):
-        pass
+        self.__Configuration = Configuration
+        self.__Lock = Lock()
+
+        Version = self.__prepareForHttpService('version')
+        self.__Lock.acquire()
+        try:
+            Response = self.__withOrWithoutBody(self.__Configuration['version']['method'], Input, Version, {})
+        except HttpServiceException as e:
+            self.__Lock.release()
+            Version.close()
+            raise e
+        else:
+            self.__Version = Response
+        Version.close()
+        self.__Lock.release()
+
+    def do(self, Input, AdditionalParameter=None, RetryOnFail=False):
+        Response = None
+        if not self.__Worker:
+            self.__Worker = self.__prepareForHttpService('textmining')
+        self.__Lock.acquire()
+        try:
+            Response = self.__withOrWithoutBody(self.__Configuration['textmining']['method'], Input, self.__Worker, AdditionalParameter)
+        except HttpServiceException as e:
+            self.__Lock.release()
+            raise e
+        self.__Lock.release()
+        return Response
+
+    def __prepareForHttpService(self, Type):
+        Return = None
+        if Type not in self.__Configuration:
+            return Return
+        if 'name' not in self.__Configuration['host']:
+            pass#raise Error
+        if 'port' in self.__Configuration['host']:
+            Return = self.__startTransaction(self.__Configuration[type], HttpService(self.__Configuration['host']['name'], self.__Configuration['host']['useHttps'], self.__Configuration['host']['port']))
+        else:
+            Return = self.__startTransaction(self.__Configuration[type], HttpService(self.__Configuration['host']['name'], self.__Configuration['host']['useHttps']))
+        return Return
+
+    def __startTransaction(self, Configuration, HttpObject):
+        if Configuration['auth']:
+            HttpObject.setUsernameAndPassword(Configuration['auth']['username'], Configuration['auth']['password'])
+        for Parameter in Configuration['parameter']:
+            HttpObject.addParameter(Parameter, Configuration['parameter'][Parameter])
+        for Cookie in Configuration['cookies']:
+            if True == bool(Cookie['type']):
+                HttpObject.addCookieString(Cookie['value'])
+            else:
+                HttpObject.addCookieFile(Cookie['value'])
+        for Header in Configuration['headers']:
+            HttpObject.addHeader(Header['key'], Header['value'])
+
+        HttpObject.startACall(Configuration['method'], Configuration['path'])
+        return HttpObject
+
+    def __bodyless(self, Input, HttpObject, AdditionalParameter):
+        if AdditionalParameter:
+           Input = Utils.mergeDictionaries(AdditionalParameter, Input)
+        for (Key, Value) in Input.items():
+            HttpObject.addParameter(Key, Value, False)
+        Response = HttpObject.call()
+        return Response
+
+    def __withBody(self, Input, HttpObject, AdditionalParameter):
+        #we have to do this cause: https://github.com/python/cpython/blob/master/Lib/http/client.py#151
+        Input = Input.encode('utf-8').decode('latin-1')
+        if AdditionalParameter:
+            for (Key, Value) in AdditionalParameter.items():
+                HttpObject.addParameter(Key, Value, False)
+        HttpObject.setInputData(Input)
+        return HttpObject.call()
+
+    def __withOrWithoutBody(self, Method, ToDo, HTTPObject, AdditionalParameter):
+        Method = Method.upper()
+        if AdditionalParameter and AdditionalParameter is isinstance(AdditionalParameter, dict):
+            for Key in AdditionalParameter:
+                if not isinstance(AdditionalParameter[Key], basestring):
+                    AdditionalParameter[Key] = str(AdditionalParameter[Key])
+        else:
+            pass#throw error
+
+        if 'POST' == Method:
+            HTTPObject.addHeader("Content-Type", "application/x-www-form-urlencoded; multipart/form-data; charset=utf-8")
+            HTTPObject.addHeader("Content-Length", str(len(ToDo)))
+            Response = self.__withBody(ToDo, HTTPObject, AdditionalParameter)
+        elif 'PUT' == Method:
+            HTTPObject.addHeader("Content-Type", "text/plain; application/json; charset=utf-8")
+            HTTPObject.addHeader("Content-Length", str(len(ToDo)))
+            Response = self.__withBody(ToDo, HTTPObject, AdditionalParameter)
+        else:
+            Response = self.__bodyless(ToDo, HTTPObject, AdditionalParameter)
+        return Response
+
+    def getVersion(self):
+        return self.__Version
+
+    def close(self):
+        if self.__Worker:
+            self.__Worker.close()
+            self.__Worker = None
 
 #TODO -> Fehlerbehandlung responsecodes
 class DatabaseService(object):
@@ -365,8 +483,7 @@ class TextminingService(object):
 
     def __init__(self, Configuration):
         if 'host' in Configuration._Textmining:
-            pass
-            #self.__Textmining = HostAsTextmining(Configuration._Textmining['host'])
+            self.__Textmining = HostAsTextmining(Configuration._Textmining)
         else:
             self.__Textmining = CmdAsTextmining(Configuration._Textmining['cmd'])
     def version(self):
