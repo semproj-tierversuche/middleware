@@ -9,9 +9,12 @@ import sys as System
 from threading import Lock
 import subprocess as SubProcess
 import pty as Pty
+import tempfile as TMP
 #import io as IO
 #from classes.std_capture import StdBuffering
 from collections import OrderedDict
+from classes.utils import PipeHelper
+
 class CmdServiceException(Exception):
         Reasons = ['The connection is not established', "Cannot spawn the childproc."]
         ReasonCodes = [0x0, 0x1]
@@ -26,18 +29,118 @@ class CmdServiceException(Exception):
             else:
                 return repr(self.Reasons[self.Reason])
 
-#def staticVariable(**KeyWithArguments):
-#        def decorate(func):
-#            for Key in KeyWithArguments:
-#                setattr(func, Key, KeyWithArguments[Key])
-#                return func
-#        return decorate
-def static_vars(**kwargs):
-    def decorate(func):
-        for k in kwargs:
-            setattr(func, k, kwargs[k])
-            return func
-    return decorate
+#class PipeAsTemporaryFile(SpooledTemporaryFile):
+ #   __PackageLength = 1024
+  #  __Lock = Lock()
+   # __Lock2 = Lock()
+    #__File = None
+    #__PackageCounter = 0
+
+    #def __init__(self, mode='w+b', packageLength=0, buffering=None, encoding=None, newline=None, suffix=None, prefix=None, dir=None):
+    #    if self.__PackageLength < packageLength:
+    #        self.__PackageLength = packageLength
+    #    super().__init__(mode=mode, buffering=buffering, encoding=encoding, newline=newline, suffix=suffix, prefix=prefix, dir=dir)
+    #def read(self):
+    #    Return = None
+        #self.__Lock.acquire()
+        #Return = super().read(*args)
+        #self.__Lock.release()
+        #return Return
+     #   self.__Lock2.acquire()
+      #  super().seek(0)
+       # Return = self.readPackage()
+        #super().turnicate()
+        #self.__PackageCounter = 0
+        #self.__Lock2.release()
+        #return Return
+
+    #def readline(self, *args):
+        #Return = None
+        #self.__Lock.acquire()
+        #Return = self._file.readline(*args)
+        #self.__Lock.release()
+        #return Return
+     #   self.__Lock2.acquire()
+
+      #  self.__Lock2.aquire()
+
+   # def readlines(self, *args):
+        #Return = None
+        #self.__Lock.acquire()
+        #Return = self._file.readlines(*args)
+        #self.__Lock.release()
+        #return Return
+    #    pass
+
+    #def write(self, String):
+     #   Return = None
+      #  self.__Lock.acquire()
+       # self.__Lock2.aquire()
+        #Return = super().write(String)
+        #self.__Lock2.release()
+        #self.__Lock.release()
+        #return Return
+
+    #def writelines(self, iterable):
+     #   Return = None
+      #  self.__Lock.acquire()
+       # self.__Lock2.acquire()
+        #Return = super().writelines(self, iterable)
+        #self.__Lock2.acquire()
+        #self.__Lock.release()
+        #return Return
+
+    #def writePackage(self, String):
+     #   Return = False
+      #  if not isinstance(Input, str):
+       #     Length = len(str(Input))
+        #    Input = str(Input)
+        #else:
+         #   Length = len(Input)
+        #if 0 == Length:
+         #   return Return
+        #else:
+         #   self.__Lock.acquire()
+          #  self.__Lock2.acquire()
+           # Return = super().write(PipeHelper.padding(len(String), self.__PackageLength) + String)
+            #++self.__PackageCounter
+            #self.__Lock2.release()
+            #self.__Lock.release()
+            #return Return
+
+    #def readPackage(self):
+     #   Output = ''
+      #  Package = None
+       # Length = 0
+        #Blocks
+        #self.__Lock.acquire()
+        #try:
+         #   Package = super().read(self.__PackageLength)
+        #except:
+         #   self.__Lock.release()
+          #  return None
+        #Package = Package.rstrip()
+        #if not Package:
+         #   self.__Lock.release()
+          #  return ''
+        #try:
+         #   Length = int(Package.decode(Encoding).rstrip())
+        #except:
+         #   print(Package)
+          #  print(super().read(10000))
+           # OS._exit(0)
+        #Output = super().read(Length)
+        #self.__Lock.release()
+        #return Output.rstrip()
+
+    #def seek(self):
+     #   pass
+
+    #def seekToStart(self):
+     #   super().seek(0)
+
+    #def seekToTheEnd(self):
+     #   pass
 
 class Mutable(object):
     __Value = None
@@ -49,7 +152,7 @@ class Mutable(object):
         self.__Value = Value
         return self
 
-    def Assign(self, Value):
+    def assign(self, Value):
         self.__Value = Value
         return self
 
@@ -58,10 +161,9 @@ class Mutable(object):
 
 class CmdService(object):
     #lock parameter list
-    __ParameterLock = False
     __Timeout = 0
-    __Parameter = OrderedDict()
-    __ParameterHasChanged = True
+    __PersistentParameter = OrderedDict()
+    __ParameterHadChanged = True
     __TRANSMISSION_LENGTH =  1024
     __TRANSMISSION_ENCODING = 'utf-8'
 
@@ -71,62 +173,42 @@ class CmdService(object):
     __PipenameCounter = 0
     __Lock = None
     __Lock2 = None
-    __Lock3 = None#at the current app not really neccessary
+    __Lock3 = None
     __Lock4 = None
+    __Lock5 = None
+    __Lock6 = None
+    __KeepAlive = False
+    #only for keepAlive subprocesses
+    __Process = None
+    __Stdin = None
+    __Stdout = None
+    __Stderr = None
+    __Delimiter = None
+    __Flow = -1
 
-    def __init__(self, Command, Timeout=None):
-        if Timeout:
-            self.__Timeout = int(Timeout)
+    def __init__(self, Command):
         self.__Lock = Lock()
         self.__Lock2 = Lock()
         self.__Lock3 = Lock()
         self.__Lock4 = Lock()
-        self.__Parameter['cmd'] = Command
-#        self.addParameter(Configuration['cmd']['name'], '')
+        self.__Lock5 = Lock()
+        self.__Lock6 = Lock()
+        self.__PersistentParameter['cmd'] = Command
 
     def addParameter(self, Key, Value):
         self.__Lock.acquire()
-#        if True ==  self.__ParameterLock:
-#             self.__Lock.release()
-#             return
-
         if Key.strip():
             if 'cmd' == Key:
                 Key = '\'' + Key
-            self.__Parameter[Key] = Value
-#            if Key.endswith('='):
-#                self.__Parameter.append(Key + Value)
-#            else:
-#                self.__Parameter.append((Key + " " + Value).strip())
-        self.__ParameterHasChanged = True
+            self.__PersistentParameter[Key] = Value
+        self.__ParameterHadChanged = True
         self.__Lock.release()
 
-
-    def __normalChildProcess(self, Parameter, Data, StdIn):
-        Process = None
-        Stdin = None
-        Stdout = None
-        Stderr = None
-
-        if Data and True==StdIn:
-            Process = SubProcess.Popen(Parameter, stdin=SubProcess.PIPE, stdout=SubProcess.PIPE,stderr=SubProcess.PIPE)
-            Stdout, Stderr = Process.communicate(Data.encode(self.__TRANSMISSION_ENCODING))
-        else:
-            Process = SubProcess.Popen(Parameter, stdout=SubProcess.PIPE,stderr=SubProcess.PIPE)
-            Stdout, Stderr = Process.communicate()
-
-        if 0<self.__Timeout:
-            Process.wait(self.__Timeout)
-        else:
-            Process.wait()
-
-        return (Stdout,Stderr)
-
-    def __prepareParameter(self, DataKey, Data, StdIn, EscapeShell=False, _ParameterCache=Mutable()):
+    def __prepareParameter(self, ParameterKey, Data, StdIn, _ParameterCache=Mutable()):
         Output = []
-        if False == self.__ParameterHasChanged:
+        if False == self.__ParameterHadChanged:
             return _ParameterCache.Value()
-        Parameter = self.__Parameter
+        Parameter = self.__PersistentParameter
         Output.append(Parameter['cmd'])
 
         for Key in Parameter:
@@ -135,129 +217,71 @@ class CmdService(object):
             if '\'cmd' == Key:
                 Key = Key[1:]
             if Key.endswith('='):
-               Output.append(Shell.quote( Key + Parameter[Key] + "'"))
-#                Output.append(Key + Parameter[Key] + "'")
+                Output.appe1nd(Shell.quote( Key + Parameter[Key]))
             else:
                 Output.append((Shell.quote(Key + " " + Parameter[Key]))) if Parameter[Key] else  Output.append((Shell.quote(Key)))
-#                Output.append((Key + " " + Parameter[Key])) if Parameter[Key] else  Output.append(Key)
 
-        if Data and False == StdIn:
-            if DataKey.endswith('='):
-                Output.append(Shell.quote(DataKey + Data))
-            else:
-                Output.append(Shell.quote((DataKey + " " + str(Data))))
-        elif not Data and False== StdIn:
-            pass
-        self.__ParameterHasChanged = False
         _ParameterCache.set(Output)
+        if Data and False == StdIn:
+            if ParameterKey.endswith('='):
+                Output.append(Shell.quote(ParameterKey + Data))
+            else:
+                Output.append(Shell.quote((ParameterKey + " " + str(Data))))
+        elif not Data and False== StdIn:
+            pass#throw error
+        elif ParameterKey and True == StdIn:
+            Output.append(Shell.quote(ParameterKey))
+
+        self.__ParameterHadChanged = False
         return Output
+
+    def __normalChildProcess(self, Parameter, Data, StdIn, CreationFlag=0):
+        Process = None
+        Stdin = None
+        Stdout = None
+        Stderr = None
+        if Data and True==StdIn:
+            Process = SubProcess.Popen(Parameter, stdin=SubProcess.PIPE, stdout=SubProcess.PIPE, stderr=SubProcess.PIPE, creationflags=CreationFlag)
+            if 0<self.__Timeout:
+                Stdout, Stderr = Process.communicate(Data.encode(self.__TRANSMISSION_ENCODING), timeout=self.__Timeout)
+            else:
+                Stdout, Stderr = Process.communicate(Data.encode(self.__TRANSMISSION_ENCODING))
+        else:
+            Process = SubProcess.Popen(Parameter, stdout=SubProcess.PIPE,stderr=SubProcess.PIPE)
+            if 0<self.__Timeout:
+                Stdout, Stderr = Process.communicate(timeout=self.__Timeout)
+            else:
+                Stdout, Stderr = Process.communicate(timeout=self.__Timeout)
+
+        return (Stdout,Stderr)
     #Note: nur für Testzwecke
     def __forkedChildProcess(self, Pipe, Key, Data, Stdin):
         Output = []
-
-        self.writeLineToPipe(Pipe, str(OS.getpid()), self.__Lock3)
+        PipeHelper.writeLineToPipe(Pipe=Pipe, InputString=str(OS.getpid()), Lock=self.__Lock3, Encoding=self.__TRANSMISSION_ENCODING, DefinedLength=self.__TRANSMISSION_LENGTH)
         Stdout, Stderr = self.__normalChildProcess(self.__prepareParameter(Key, Data, Stdin), Data, Stdin)
-        self.writeToPipe(Pipe, Stdout.decode(self.__TRANSMISSION_ENCODING), self.__Lock3)
-        self.writeToPipe(Pipe, Stderr.decode(self.__TRANSMISSION_ENCODING), self.__Lock3)
+ #       if not Stdout:#we cannot write nothing
+ #           PipeHelper.writeToPipe(Pipe=Pipe, InputString=' ', Lock=self.__Lock3, DefinedLength=self.__TRANSMISSION_LENGTH, Encoding=self.__TRANSMISSION_ENCODING)
+ #       else:
+        PipeHelper.writeToPipe(Pipe=Pipe, InputString=Stdout.decode(self.__TRANSMISSION_ENCODING), Lock=self.__Lock3, DefinedLength=self.__TRANSMISSION_LENGTH, Encoding=self.__TRANSMISSION_ENCODING, Packageing=PipeHelper.MULTIBLE_PACKAGES)
+ #       if not Stderr:
+ #           PipeHelper.writeToPipe(Pipe=Pipe, InputString=' ', Lock=self.__Lock3, DefinedLength=self.__TRANSMISSION_LENGTH, Encoding=self.__TRANSMISSION_ENCODING)
+ #       else:
+        PipeHelper.writeToPipe(Pipe=Pipe, InputString=Stderr.decode(self.__TRANSMISSION_ENCODING), Lock=self.__Lock3, DefinedLength=self.__TRANSMISSION_LENGTH, Encoding=self.__TRANSMISSION_ENCODING, Packageing=PipeHelper.MULTIBLE_PACKAGES)
         OS.close(Pipe)#we do not need this pipe anymore-> so close it
         OS._exit(0)
 
+    #AutorNote: In späteren Python versionen sollte das folgende obsolet sein -> das lässt ich über subprocess.CREATE_NEW_CONSOLE klären (siehe do Methode)
     def __ptyChildProcess(self, Key, Data, Stdin):
         Output = None
-
-        self.writeLineToPipe(System.stdout.fileno(), str(OS.getpid()), self.__Lock3)
-        #ab hier gibt es nur hässliche Lösungen...leider
-        #TODO: Denke drüber nache, wie das besser zu lösen ist OHNE Parsen des Outputs und ohne doppelten Fork
-        #AutorNote: die exec Familie ersetzt immer den aktuellen Programmrahmen, dass meint auch wenn vorher FD's umgebogen werden, diese wieder auf default zurückfallen...
+        PipeHelper.writeLineToPipe(Pipe=System.stdout.fileno(),InputString=str(OS.getpid()), Lock=self.__Lock3, Encoding=self.__TRANSMISSION_ENCODING, DefinedLength=self.__TRANSMISSION_LENGTH)
         Stdout, Stderr = self.__normalChildProcess(self.__prepareParameter(Key, Data, Stdin), Data, Stdin)
-        self.writeToPipe(System.stdout.fileno(), Stdout.decode(self.__TRANSMISSION_ENCODING), self.__Lock3)
-        self.writeToPipe(System.stdout.fileno(), Stderr.decode(self.__TRANSMISSION_ENCODING), self.__Lock3)
+ #       if not Stdout:
+ #           Stdout = ' '
+ #       if not Stderr:
+ #           Stderr = ' '
+        PipeHelper.writeToPipe(Pipe=System.stdout.fileno(), InputString=Stdout.decode(self.__TRANSMISSION_ENCODING), Lock=self.__Lock3, DefinedLength=self.__TRANSMISSION_LENGTH, Encoding=self.__TRANSMISSION_ENCODING, Packageing=PipeHelper.MULTIBLE_PACKAGES)
+        PipeHelper.writeToPipe(Pipe=System.stdout.fileno(), InputString=Stderr.decode(self.__TRANSMISSION_ENCODING), Lock=self.__Lock3, DefinedLength=self.__TRANSMISSION_LENGTH, Encoding=self.__TRANSMISSION_ENCODING, Packageing=PipeHelper.MULTIBLE_PACKAGES)
         OS._exit(0)
-
-    def padding(self, Input):
-        if not isinstance(Input, str):
-            Length = len(str(Input))
-            Input = str(Input)
-        else:
-            Length = len(Input)
-
-        if self.__TRANSMISSION_LENGTH == Length:
-            return Input
-        elif self.__TRANSMISSION_LENGTH < Length:
-            Length = int(Length/self.__TRANSMISSION_LENGTH)
-            Length = len(Input)-Length*self.__TRANSMISSION_LENGTH
-        for x in range(Length, self.__TRANSMISSION_LENGTH):
-            Input += ' '
-        return Input
-
-    def writeLineToPipe(self, Pipe, InputString, Lock):
-        Lock.acquire()
-        OS.write(Pipe, (InputString + "\n").encode(self.__TRANSMISSION_ENCODING))
-        Lock.release()
-
-
-    def writeToPipe(self, Pipe, InputString, Lock, SinglePackage=False):
-        Lock.acquire()
-        if True == SinglePackage:
-            OS.write(Pipe, self.padding(InputString).encode(self.__TRANSMISSION_ENCODING))
-        else:
-            OS.write(Pipe, (self.padding(len(InputString)) + InputString).encode(self.__TRANSMISSION_ENCODING))
-        Lock.release()
-
-    def readFromPipe(self, Pipe, Lock, SinglePackage=False):
-        Output = ''
-        Package = None
-        Length = 0
-        #Blocks
-        Lock.acquire()
-        if True == SinglePackage:
-            try:
-                Package = OS.read(Pipe,  self.__TRANSMISSION_LENGTH)
-            except:
-                Lock.release()
-                return None
-            Lock.release()
-            return Package.rstrip()
-        else:
-            try:
-                Package = OS.read(Pipe,  self.__TRANSMISSION_LENGTH)
-            except:
-                Lock.release()
-                return None
-            Package = Package.rstrip()
-            if not Package:
-                Lock.release()
-                return ''
-            Length = int(Package.decode(self.__TRANSMISSION_ENCODING).rstrip())
-# Das wird wohl wichtig, wenn wir nen großen Payload haben und dass sotte von
-# der aufrufenden Methode gemacht werden
-#            Blocks = round(Length/self.__TRANSMISSION_LENGTH+0.5)
-#            for X in range(0, Blocks):
-#                Package = OS.read(Pipe,  self.__TRANSMISSION_LENGTH)
-#                Output += Package.decode(self.__TRANSMISSION_ENCODING)
-            Output = OS.read(Pipe, Length).decode(self.__TRANSMISSION_ENCODING)
-            Lock.release()
-            return Output.rstrip()
-
-    def readFromPipeLine(self, Pipe, Lock):
-        Output = ''
-        Char = None
-
-        Lock.acquire()
-        Char = OS.read(Pipe, 1)
-        while Char:
-            Char = Char.decode(self.__TRANSMISSION_ENCODING)
-            if "\n" == Char:
-                Lock.release()
-                return Output
-            Output += Char
-            try:
-                Char = OS.read(Pipe, 1)
-            except:
-                break
-
-        Lock.release()
-        return Output
 
     def __doPTYFork(self, Key, Data, Stdin):
         FD = None
@@ -272,10 +296,10 @@ class CmdService(object):
             self.__ptyChildProcess(Key, Data, Stdin)
         else:#We are the parent
             #Time.sleep(0.01)
-            ChildId = self.readFromPipeLine(FD, self.__Lock2)
+            ChildId = PipeHelper.readFromPipeLine(Pipe=FD, Lock=self.__Lock2, Encoding=self.__TRANSMISSION_ENCODING)
             OS.waitpid(int(ChildId), 0)
-            Stdout = self.readFromPipe(FD, self.__Lock2)
-            Stderr = self.readFromPipe(FD, self.__Lock2)
+            Stdout = PipeHelper.readFromPipe(Pipe=FD, Lock=self.__Lock2, DefinedLength=self.__TRANSMISSION_LENGTH, Encoding=self.__TRANSMISSION_ENCODING, Packageing=PipeHelper.MULTIBLE_PACKAGES)
+            Stderr = PipeHelper.readFromPipe(Pipe=FD, Lock=self.__Lock2, DefinedLength=self.__TRANSMISSION_LENGTH, Encoding=self.__TRANSMISSION_ENCODING, Packageing=PipeHelper.MULTIBLE_PACKAGES)
             OS.close(FD)
             return (Stdout, Stderr)
 
@@ -298,38 +322,125 @@ class CmdService(object):
             OS.close(PipeOut)
             self.__forkedChildProcess(PipeIn, Key, Data, Stdin)
         else:#We are the parent
-            ChildId = self.readFromPipeLine(PipeOut, self.__Lock2)
+            ChildId = PipeHelper.readFromPipeLine(PipeOut, self.__Lock2, self.__TRANSMISSION_ENCODING)
             OS.waitpid(int(ChildId), 0)
-            Stdout = self.readFromPipe(PipeOut, self.__Lock2)
-            Stderr = self.readFromPipe(PipeOut, self.__Lock2)
+            Stdout = PipeHelper.readFromPipe(PipeOut, self.__Lock2, self.__TRANSMISSION_LENGTH, self.__TRANSMISSION_ENCODING, Packageing=PipeHelper.MULTIBLE_PACKAGES)
+            Stderr = PipeHelper.readFromPipe(Pipe=FD, Lock=self.__Lock2, DefinedLength=self.__TRANSMISSION_LENGTH, Encoding=self.__TRANSMISSION_ENCODING, Packageing=PipeHelper.MULTIBLE_PACKAGES)
             OS.close(PipeOut)
             return (Stdout, Stderr)
 
-    def do(self, ParameterKey, Data, Flag= 0x0, PasteToStdin=False):
-        if not self.__Parameter:
-            return None
+    def __startPtyProcess(self):
+        pass
 
-        if self.FORK_PTY_PROCESS == Flag:
-            return  self.__doPTYFork(ParameterKey, Data, PasteToStdin)
-       # elif self.FORK_NO_PROCESS == Flag:
+    def __startFrokProcess(self):
+        pass
+
+#    def __startSubPorcess(self, ParameterKey, Data, PasteToStdin):
+    def __startSubPorcess(self,PasteToStdin):
+        if True == self.__KeepAlive  or not self.__Delimiter:
+            return
+
+        print(self.__prepareParameter('', '', True) + "aaa")
+        OS._exit(0)
+        if True == PasteToStdin:
+#            self.__Process = SubProcess.Popen(self.__prepareParameter(ParameterKey, Data, True), stdin=SubProcess.PIPE, stdout=SubProcess.PIPE,stderr=SubProcess.PIPE)
+            self.__Process = SubProcess.Popen(self.__prepareParameter('', '', True), stdin=SubProcess.PIPE, stdout=SubProcess.PIPE,stderr=SubProcess.PIPE)
+            self.__Stdin = OS.dup(self.__Process.stdin.fileno())
         else:
-            Stdout, Stderr = self.__normalChildProcess(self.__prepareParameter(ParameterKey, Data, PasteToStdin), Data, PasteToStdin)
-            return (Stdout.decode(self.__TRANSMISSION_ENCODING), Stderr.decode(self.__TRANSMISSION_ENCODING))
+#            self.__Process = SubProcess.Popen(self.__prepareParameter(ParameterKey, Data, False), stdout=self.__Stdout,stderr=self.__Stderr)
+            self.__Process = SubProcess.Popen(self.__prepareParameter('', '', False), stdout=self.__Stdout,stderr=self.__Stderr)
+        self.__Stdout = OS.dup(self.__Process.stdout.fileno())
+        self.__Stderr = OS.dup(self.__Process.stderr.fileno())
 
-        #nur zu Testzwecken
-        #else:
- #       return self.__doNormalFork(ParameterKey, Data, PasteToStdin)
+    def __communicator(self, Data):
+        self.__Lock5.acquire()
+        if  self.__Stdin:
+            PipeHelper.writeToDelimter(self.__Stdin, Data, self.__Lock6, self.__Delimiter, self.__TRANSMISSION_LENTGTH, self.__TRANSMISSION_ENCODING)
+        Stdout = PipeHelper.readToDelimter(self.__Stdout, self.__Lock6, self.__Delimiter, self.__TRANSMISSION_ENCODING)
+        Stderr = PipeHelper.readToDelimter(self.__Stderr, self.__Lock6, self.__Delimiter, self.__TRANSMISSION_ENCODING)
+        self.__Lock5.release()
+        return (Stdout, Stderr)
 
+    def __close(self):
+        if False == self.__KeepAlive:
+            return
+        self.__Lock5.acquire()
+        if self.__Process:
+            self.__Process.terminate()
+        self.__Lock5.release()
+
+
+#    def startPermanentProcess(self, ParameterKey, Data, Flag=0x0, PasteToStdin=False):
+    def startPermanentProcess(self, Delimiter, Flag=0x0, PasteToStdin=False):
+        if True == self.__KeepAlive:
+            return False
+        if Delimiter and isinstance(Delimiter, string) and 1 == len(Delimiter):
+            self.__Delimiter = Delimiter
+#        if not isinstance(ParameterKey, str):
+#            ParameterKey = str(ParameterKey)
+#        if not isinstance(Data, str):
+#            Data = str(Data)
+        self.__Flow = Flag
+        if self.FORK_PTY_PROCESS == Flag:
+            pass
+        else:
+            self.__startSubPorcess(PasteToStdin)
+        #else
+        self.__KeepAlive = True
+        print('hier')
+
+    def do(self, ParameterKey, Data, Flag= 0x0, PasteToStdin=False, Timeout=None):
+        if not isinstance(ParameterKey, str):
+            ParameterKey = str(ParameterKey)
+        if not isinstance(Data, str):
+            Data = str(Data)
+        if Timeout:
+            self.__Timeout = int(Timeout)
+
+        print(self.__KeepAlive)
+        if False == self.__KeepAlive:
+            if self.FORK_PTY_PROCESS == Flag:
+                Stdout, Stderr =  self.__doPTYFork(ParameterKey, Data, PasteToStdin)
+# That should do it in newer Python versions
+#                Stdout, Stderr = self.__normalChildProcess(self.__prepareParameter(ParameterKey, Data, PasteToStdin), Data, PasteToStdin, SubProcess.CREATE_NEW_CONSOLE)
+#                return (Stdout.decode(self.__TRANSMISSION_ENCODING), Stderr.decode(self.__TRANSMISSION_ENCODING))
+           # elif self.FORK_NO_PROCESS == Flag:
+            else:
+                Stdout, Stderr = self.__normalChildProcess(self.__prepareParameter(ParameterKey, Data, PasteToStdin), Data, PasteToStdin)
+                Stdout = Stdout.decode(self.__TRANSMISSION_ENCODING)
+                Stderr = Stderr.decode(self.__TRANSMISSION_ENCODING)
+#            nur zu Testzwecken
+#            else:
+#                return self.__doNormalFork(ParameterKey, Data, PasteToStdin)
+        else:
+            if self.FORK_PTY_PROCESS == self.__Flow:
+                Stdout, Stderr = self.__communicator(Data)
+            #else:
+
+            #else:
+        self.__Timeout = None
+        return (Stdout, Stderr)
     def printParam(self):
-        for Key, Value in self.__Parameter.items():
+        for Key, Value in self.__PersistentParameter.items():
             print(Key + ": " + Value)
 
     def reset(self):
-        self.__Parameter = {}
-        self.__ParameterHasChanged = False
+        for Key in self.__PersistentParameter:
+            if 'cmd' == Key:
+                continue
+            del self.__PersistentParameter[Key]
+        self.__ParameterHadChanged = True
 
     def removeParameter(self, Key):
         self.__Lock.acquire()
-        if Key in self.__Parameter and 'cmd' != Key:
-            del self.__Parameter[Key]
+        if Key in self.__PersistentParameter and 'cmd' != Key:
+            del self.__PersistentParameter[Key]
         self.__Lock.release()
+
+    def close(self):
+        self.__close()
+        self.__KeepAlive =False
+
+    def __del__(self):
+        self.reset()
+        self.close()
