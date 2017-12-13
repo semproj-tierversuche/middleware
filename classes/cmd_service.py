@@ -5,11 +5,12 @@ import shlex as Shell
 import time as Time
 import os as OS
 import sys as System
-from threading import Lock
+import threading as Threads
 import subprocess as SubProcess
 import pty as Pty
 from collections import OrderedDict
 from classes.utils import PipeHelper
+import copy as Copy
 
 class CmdServiceException(Exception):
         Reasons = ['The connection is not established', "Cannot spawn the childproc."]
@@ -43,17 +44,15 @@ class Mutable(object):
         return self.__Value
 
 class CmdService(object):
-    #lock parameter list
-    __Timeout = 0
-    __PersistentParameter = OrderedDict()
-    __ParameterHadChanged = True
+    __Timeout = None
+    __PersistentParameter = None
+    __ParameterHadChanged = None
     __TRANSMISSION_LENGTH =  1024
-    __TRANSMISSION_ENCODING = 'utf-8'
+    __TRANSMISSION_ENCODING = None
 
 #    FORK_NO_PROCESS = 0x0#not completly the truth
     FORK_NORMAL_PROCESS = 0x1
     FORK_PTY_PROCESS = 0x2
-    __PipenameCounter = 0
     __Lock = None
     __Lock2 = None
     __Lock3 = None
@@ -61,15 +60,17 @@ class CmdService(object):
     __Lock5 = None
     __Lock6 = None
     __Lock7 = None
-    __KeepAlive = False
+    __KeepAlive = None
     #only for keepAlive subprocesses
+    _ReadFromStdin = None#we just need it one level above
+    _FlyingProcess = None
     __Process = None
     __ProcessStatus = None
     __Stdin = None
     __Stdout = None
     __Stderr = None
     __Delimiter = None
-    __Flow = -1
+    __Flow = None
     __ControllPipeIn = None
     __ControllPipeOut = None
     __OutputPipeIn = None
@@ -78,17 +79,26 @@ class CmdService(object):
     __KILL = 0x42
     __NOTHING = 0x0
     __GET_STATUS = 0x23
-    __OK = -23
+    _OK = -23
+    _TERMINATED = -42
 
-    def __init__(self, Command):
-        self.__Lock = Lock()
-        self.__Lock2 = Lock()
-        self.__Lock3 = Lock()
-        self.__Lock4 = Lock()
-        self.__Lock5 = Lock()
-        self.__Lock6 = Lock()
-        self.__Lock7 = Lock()
+    def __init__(self, Command, Timeout=0, Encoding='utf-8'):
+        self.__PersistentParameter = OrderedDict()
+        self.__Lock = Threads.RLock()
+        self.__Lock2 = Threads.RLock()
+        self.__Lock3 = Threads.RLock()
+        self.__Lock4 = Threads.RLock()
+        self.__Lock5 = Threads.RLock()
+        self.__Lock6 = Threads.RLock()
+        self.__Lock7 = Threads.RLock()
         self.__PersistentParameter['cmd'] = Command
+        self.__TRANSMISSION_ENCODING = Encoding
+        self.__ParameterHadChanged = True
+        self.ReadFromStdin = False#we just need it one level above
+        self._FlyingProcess = False
+        self.__Flow = -1
+        self.__KeepAlive = False
+        self.__Timeout = Timeout
 
     def addParameter(self, Key, Value):
         self.__Lock.acquire()
@@ -115,7 +125,6 @@ class CmdService(object):
                 Output.appe1nd(Shell.quote( Key + Parameter[Key]))
             else:
                 Output.append((Shell.quote(Key + " " + Parameter[Key]))) if Parameter[Key] else  Output.append((Shell.quote(Key)))
-
         _ParameterCache.set(Output)
         if Data and False == StdIn:
             if ParameterKey.endswith('='):
@@ -228,6 +237,7 @@ class CmdService(object):
             OS.close(self.__OutputPipeOut)
             #we have to do this to spawn the child
             PipeHelper.writeLineToPipe(Pipe=System.stdout.fileno(),InputString=str(OS.getpid()), Lock=self.__Lock3, Encoding=self.__TRANSMISSION_ENCODING, DefinedLength=self.__TRANSMISSION_LENGTH)
+            self.__ProcessStatus = self._OK
             self.__startSubPorcess(PasteToStdin)
             self.__controller()
         else:
@@ -261,13 +271,10 @@ class CmdService(object):
 
         if True == PasteToStdin:
             self.__Process = SubProcess.Popen(self.__prepareParameter('', '', True), stdin=SubProcess.PIPE, stdout=SubProcess.PIPE,stderr=SubProcess.PIPE)
-#            self.__Stdin = OS.dup(self.__Process.stdin.fileno())
             self.__Stdin = self.__Process.stdin
         else:
             self.__Process = SubProcess.Popen(self.__prepareParameter('', '', False), stdout=SubProcess.PIPE,stderr=SubProcess.PIPE)
-#        self.__Stdout = OS.dup(self.__Process.stdout.fileno())
         self.__Stdout = self.__Process.stdout
-#        self.__Stderr = OS.dup(self.__Process.stderr.fileno())
         self.__Stderr = self.__Process.stderr
 
     def __communicator(self, Data):
@@ -276,7 +283,6 @@ class CmdService(object):
             if not Data:
                 return (None, None)
             PipeHelper.writeLineToPipe(self.__Stdin.fileno(), Data + self.__Delimiter, self.__Lock6, self.__TRANSMISSION_LENGTH, self.__TRANSMISSION_ENCODING)
- #           self.__Stdin.flush()
         Stdout = PipeHelper.readUntilDelimiterFromPipe(self.__Stdout.fileno(), self.__Lock6, self.__Delimiter, self.__TRANSMISSION_ENCODING)
         Stderr = PipeHelper.readUntilDelimiterFromPipe(self.__Stderr.fileno(), self.__Lock6, self.__Delimiter, self.__TRANSMISSION_ENCODING)
         self.__Stdout.flush()
@@ -284,29 +290,33 @@ class CmdService(object):
         self.__Lock5.release()
         return (Stdout, Stderr)
 
+    def getProcessStatus(self):
+        if True == self.__KeepAlive:
+            return int(PipeHelper.readLineFromPipe(Pipe=self.__OutputPipeOut, Lock=self.__Lock6, Encoding=self.__TRANSMISSION_ENCODING))
+        else:
+            return self._OK
     def __getProcessStatus(self):
         if not self.__Process.returncode:
-            return self.__OK
+            return self._OK
         else:
             return self.__Process.returncode
+
     def __getRemoteProcessStatus(self):
         return self.__ProcessStatus
 
     def __remoteCommunicator(self, Data):
-        if True == self.__Stdin and not Data:
+        if True == self._ReadFromStdin and not Data:
             return (None, None)
         PipeHelper.writeLineToPipe(Pipe=self.__ControllPipeIn, InputString=self.__GET_STATUS, Lock=self.__Lock6, DefinedLength=self.__TRANSMISSION_LENGTH, Encoding=self.__TRANSMISSION_ENCODING)
         Status = int(PipeHelper.readLineFromPipe(Pipe=self.__OutputPipeOut, Lock=self.__Lock6, Encoding=self.__TRANSMISSION_ENCODING))
-        if self.__OK != Status:
+        if self._OK != Status:
             self.__ProcessStatus = Status
             return (None, None)
         PipeHelper.writeLineToPipe(Pipe=self.__ControllPipeIn, InputString=self.__NOTHING, Lock=self.__Lock6, DefinedLength=self.__TRANSMISSION_LENGTH, Encoding=self.__TRANSMISSION_ENCODING)
-        if True == self.__Stdin and Data:
+        if True == self._ReadFromStdin and Data:
             PipeHelper.writeToPipe(Pipe=self.__ControllPipeIn, InputString=Data, Lock=self.__Lock6, DefinedLength=self.__TRANSMISSION_LENGTH, Encoding=self.__TRANSMISSION_ENCODING, Packageing=PipeHelper.MULTIBLE_PACKAGES)
- #           ReturnCode = PipeHelper.readFromPipe(Pipe=self.__OutputPipeOut, Lock=self.__Lock6, DefinedLength=self.__TRANSMISSION_LENGTH, Encoding=self.__TRANSMISSION_ENCODING, Packageing=PipeHelper.SINGLE_PACKAGE)
         Stdout = PipeHelper.readFromPipe(Pipe=self.__OutputPipeOut, Lock=self.__Lock6, DefinedLength=self.__TRANSMISSION_LENGTH, Encoding=self.__TRANSMISSION_ENCODING, Packageing=PipeHelper.MULTIBLE_PACKAGES)
         Stderr = PipeHelper.readFromPipe(Pipe=self.__OutputPipeOut, Lock=self.__Lock6, DefinedLength=self.__TRANSMISSION_LENGTH, Encoding=self.__TRANSMISSION_ENCODING, Packageing=PipeHelper.MULTIBLE_PACKAGES)
- #           return (ReturnCode, Stdout, Stderr)
         return (Stdout, Stderr)
 
     def __controller(self):
@@ -317,6 +327,7 @@ class CmdService(object):
         Cmd = int(PipeHelper.readLineFromPipe(Pipe=self.__ControllPipeOut, Lock=self.__Lock7, Encoding=self.__TRANSMISSION_ENCODING))
         if self.__KILL == Cmd:
             self.__close()
+            self.__ProcessStatus = self._TERMINATED
             OS._exit(0)
         elif self.__GET_STATUS == Cmd:
             PipeHelper.writeLineToPipe(Pipe = self.__OutputPipeIn, InputString=self.__getProcessStatus(), Lock=self.__Lock7, DefinedLength=self.__TRANSMISSION_LENGTH, Encoding=self.__TRANSMISSION_ENCODING)
@@ -326,7 +337,6 @@ class CmdService(object):
                 Stdout, Stderr = self.__communicator(Data)
             else:
                 Stdout, Stderr = self.__communicator()
- #           PipeHelper.writeToPipe(Pipe=self.__OutputPipeIn, InputString=RetrunCode, Lock=self.__Lock7, DefinedLength=self.__TRANSMISSION_LENGTH, Encoding=self.__TRANSMISSION_ENCODING, Packageing=PipeHelper.SINGLE_PACKAGE)
             PipeHelper.writeToPipe(Pipe=self.__OutputPipeIn, InputString=Stdout, Lock=self.__Lock7, DefinedLength=self.__TRANSMISSION_LENGTH, Encoding=self.__TRANSMISSION_ENCODING, Packageing=PipeHelper.MULTIBLE_PACKAGES)
             PipeHelper.writeToPipe(Pipe=self.__OutputPipeIn, InputString=Stderr, Lock=self.__Lock7, DefinedLength=self.__TRANSMISSION_LENGTH, Encoding=self.__TRANSMISSION_ENCODING, Packageing=PipeHelper.MULTIBLE_PACKAGES)
         self.__controller()
@@ -336,7 +346,6 @@ class CmdService(object):
             return
         self.__Lock5.acquire()
         if self.__Process:
- #           self.__Process.terminate()
             self.__Process.kill()
             self.__Process = None
         self.__Lock5.release()
@@ -352,10 +361,12 @@ class CmdService(object):
         if Delimiter and isinstance(Delimiter, str) and 1 == len(Delimiter):
             self.__Delimiter = Delimiter
         self.__Flow = Flag
-        self.__ProcessStatus = self.__OK
+        self.__ProcessStatus = self._OK
         self.__KeepAlive = True
+        self._ReadFromStdin = PasteToStdin
+        self._FlyingProcess = True
         if self.FORK_PTY_PROCESS == Flag:
- #           self.__startFrokProcess(PasteToStdin)
+#            self.__startFrokProcess(PasteToStdin)
             self.__startPtyProcess(PasteToStdin)
         else:
             self.__startSubPorcess(PasteToStdin)
@@ -372,6 +383,7 @@ class CmdService(object):
 
         if False == self.__KeepAlive:
             if self.FORK_PTY_PROCESS == Flag:
+#                ReturnCode, Stdout, Stderr = self.__doNormalFork(ParameterKey, Data, PasteToStdin)
                 ReturnCode, Stdout, Stderr = self.__doPTYFork(ParameterKey, Data, PasteToStdin)
 # That should do it in newer Python versions
 #                Stdout, Stderr = self.__normalChildProcess(self.__prepareParameter(ParameterKey, Data, PasteToStdin), Data, PasteToStdin, SubProcess.CREATE_NEW_CONSOLE)
@@ -382,9 +394,11 @@ class CmdService(object):
 #                Stdout, Stderr = self.__normalChildProcess(self.__prepareParameter(ParameterKey, Data, PasteToStdin), Data, PasteToStdin)
 #                Stdout = Stdout.decode(self.__TRANSMISSION_ENCODING)
 #                Stderr = Stderr.decode(self.__TRANSMISSION_ENCODING)
-#            nur zu Testzwecken
             else:
-                ReturnCode, Stdout, Stderr = self.__doNormalFork(ParameterKey, Data, PasteToStdin)
+#                ReturnCode, Stdout, Stderr = self.__doNormalFork(ParameterKey, Data, PasteToStdin)
+                ReturnCode, Stdout, Stderr = self.__normalChildProcess(self.__prepareParameter(ParameterKey, Data, PasteToStdin), Data, PasteToStdin)
+                Stdout = Stdout.decode(self.__TRANSMISSION_ENCODING)
+                Stderr = Stderr.decode(self.__TRANSMISSION_ENCODING)
         else:
             if self.FORK_NORMAL_PROCESS == self.__Flow:
                 Stdout, Stderr = self.__communicator(Data)
@@ -395,21 +409,26 @@ class CmdService(object):
             #else:
         self.__Timeout = None
         return (ReturnCode, Stdout, Stderr)
-    def printParam(self):
+    def printParameter(self):
         for Key, Value in self.__PersistentParameter.items():
             print(Key + ": " + Value)
 
     def reset(self):
-        for Key in self.__PersistentParameter:
-            if 'cmd' == Key:
-                continue
-            del self.__PersistentParameter[Key]
+        self.__Lock.acquire()
+        if self.__PersistentParameter:
+            for Key in self.__PersistentParameter:
+                if 'cmd' == Key:
+                    continue
+                del self.__PersistentParameter[Key]
         self.__ParameterHadChanged = True
+        self.__Lock.release()
 
     def removeParameter(self, Key):
         self.__Lock.acquire()
-        if Key in self.__PersistentParameter and 'cmd' != Key:
-            del self.__PersistentParameter[Key]
+        if self.__PersistentParameter:
+            if Key in self.__PersistentParameter and 'cmd' != Key:
+                del self.__PersistentParameter[Key]
+                self.__ParameterHadChanged = True
         self.__Lock.release()
 
     def close(self):
@@ -420,6 +439,9 @@ class CmdService(object):
         else:
             self.__remoteClose()
         self.__KeepAlive =False
+        self.__ProcessStatus = self._OK
+        self._FlyingProcess = False
+        self._ReadFromStdin = False
 
     def __del__(self):
         self.reset()

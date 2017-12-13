@@ -106,7 +106,7 @@ class ConfigReader(object):
         Node = Root.find('cmd')
         #we going on to check if we need to use something else then commandline
         if None is not Node:
-            Return['cmd']['param'] = {}
+#            Return['cmd']['param'] = {}
             Return['cmd']['version'] = {}
             Order = {}
             if 'name' not in Node.attrib or not Node.attrib['name'].strip():

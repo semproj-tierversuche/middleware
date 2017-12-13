@@ -7,137 +7,61 @@ from classes.cmd_service import CmdService
 import classes.utils as Utils
 from classes.http_service import HttpServiceException
 
-#TODO: DB als cmd
-#TODO: Textmining as Host
+class ServiceAsCmd(object):
+    _Configuration = None
+    _Encoding = None
 
-class Textmining(object):
-    def do(self, Input, ParameterKey=None, ReadFromStdin=False):
-        pass
-    def getVersion():
-        pass
-    def close():
-        pass
-class Database(object):
-    def query(self, Query):
-        pass
+    def __init__(self, Configuration, Encoding='utf-8'):
+        self._Configuration = Configuration
+        self._Encoding = Encoding
 
-    def delete(self, Delete):
-        pass
-
-    def insert(self, Insert):
-        pass
-
-    def update(self, Update):
-        pass
-
-class CmdAsDatabase(Database):
-    def query(self, Query):
-        pass
-    def delete(self, Delete):
-        pass
-    def insert(self, Insert):
-        pass
-    def update(self, Update):
-        pass
-
-class CmdAsTextmining(Textmining):
-    __Worker = None
-    __Version = None
-#    __IsFlyingProcess = False
-#    __Delimiter = None
-
-    def __init__(self, Configuration):
-        Keys = []
-        if 'timeout' in Configuration:
-            self.__Worker = CmdService(Configuration['name'], Configuration['timeout'])
+    def _prepareForCmdService(self, Type, Execution=CmdService.FORK_PTY_PROCESS):
+        Cmd = None
+        if 'timeout' in self._Configuration:
+            Cmd  = CmdService(self._Configuration[Type]['name'], self._Configuration[Type]['timeout'])
         else:
-            self.__Worker = CmdService(Configuration['name'])
-        if 'stdin' in Configuration:
-            self.__UseStdin = Configuration['stdin']
+            Cmd  = CmdService(self._Configuration[Type]['name'])
         #fetch Version
-        for x in range(0,len(Configuration['version'])-1):
-            self.__Worker.addParameter(Configuration['version'][x]['key'], Configuration['version'][x]['value'])
-        Returncode, Stdout, Stderr = self.__Worker.do(Configuration['version'][len(Configuration['version'])-1]['key'], Configuration['version'][len(Configuration['version'])-1]['value'], CmdService.FORK_NORMAL_PROCESS, False)
-        if Stderr:
-            pass#Error und so
-        self.__Version = Stdout.strip()
-        for x in range(0, len(Configuration['version'])-1):
-            self.__Worker.removeParameter(Configuration['version'][x]['key'])
+#        if True == GetVersion and -1 == self._Version:
+#            for x in range(0,len(self._Configuration[Type]['version'])-1):
+#                Cmd.addParameter(self._Configuration[Type]['version'][x]['key'], self._Configuration[Type]['version'][x]['value'])
+#            Returncode, Stdout, Stderr = Cmd.do(self._Configuration[Type]['version'][len(self._Configuration[Type]['version'])-1]['key'], self._Configuration[Type]['version'][len(self._Configuration[Type]['version'])-1]['value'], CmdService.FORK_NORMAL_PROCESS, False)
+#            if Stderr:
+#                pass#Error und so
+#            self._Version = Stdout.strip()
+#            for x in range(0, len(self._Configuration[Type]['version'])-1):
+#                Cmd.removeParameter(self._Configuration[Type]['version'][x]['key'])
         #add all params we need for execution
-        for x in range(0, len(Configuration['parameter'])):
-            self.__Worker.addParameter(Configuration['parameter'][x]['key'], Configuration['parameter'][x]['value'])
-        if True == Configuration['keepalive'] and Configuration['delimiter']:
-            self.__IsFlyingProcess = True
-            self.__Delimiter = Configuration['delimiter']
-            if True == Configuration['stdin']:
-                self.__Worker.startPermanentProcess(Configuration['delimiter'], CmdService.FORK_PTY_PROCESS, True)
+        for x in range(0, len(self._Configuration[Type]['parameter'])):
+            if not self._Configuration[Type]['parameter'][x]['value']:
+                Cmd.addParameter(self._Configuration[Type]['parameter'][x]['key'], '')
             else:
-                self.__Worker.startPermanentProcess(Configuration['delimiter'], CmdService.FORK_PTY_PROCESS, False)
-
-    def getVersion(self):
-        if self.__Version:
-            return self.__Version
-
-    def do(self, Input, ParameterKey=None, ReadFromStdin=False):
-        #self.__Worker.printParam()
-        if not ParameterKey:
-            return self.__Worker.do('', Input, CmdService.FORK_PTY_PROCESS, ReadFromStdin)
-        else:
-            return self.__Worker.do(ParameterKey, Input, CmdService.FORK_PTY_PROCESS, ReadFromStdin)
-
-    def close(self):
-        self.__Worker.close()
-
-class HostAsDatabase(Database):
-    __Query = None
-    __QueryLock = Lock()
-    __Update = None
-    __UpdateLock = Lock()
-    __Delete = None
-    __DeleteLock = Lock()
-    __Insert = None
-    __InsertLock = Lock()
-    __Version = None
-    __Configuration = None
-
-    def __init__(self, Configuration, StartQuery=True, StartInsert=False, StartUpdate=False, StartDelete=False, GetVersion=False):
-        self.__Configuration = Configuration
-        if True == GetVersion:
-            Version = self.__prepareForHttpService('version')
-            self.__QueryLock.acquire()
-            try:
-                Response = self.__withOrWithoutBody(self.__Configuration['version']['method'], Input, Version, {})
-            except HttpServiceException as e:
-                self.__QueryLock.release()
-                Version.close()
-                raise e
+                Cmd.addParameter(self._Configuration[Type]['parameter'][x]['key'], self._Configuration[Type]['parameter'][x]['value'])
+        if True == self._Configuration[Type]['keepalive'] and self._Configuration[Type]['delimiter']:
+            if True == self._Configuration['stdin']:
+                Cmd.startPermanentProcess(self._Configuration[Type]['delimiter'], Execution, True)
             else:
-                self.__Version = Response
-                self.__QueryLock.release()
-                Version.close()
-        self.openDatabase(True,False)
+                Cmd.startPermanentProcess(self._Configuration[Type]['delimiter'], Execution, False)
+        return Cmd
 
-    def openDatabase(self, Query=True, Insert=True, Update=False, Delete=False):
-        if True == Query and not self.__Query:
-            self.__Query = self.__prepareForHttpService('query')
-        if True == Insert and not self.__Insert:
-            self.__Insert = self.__prepareForHttpService('insert')
-        if True == Update and not self.__Update and 'update' in self.__Configuration:
-             self.__Update = self.__prepareForHttpService('update')
-        if True == Delete and not self.__Delete and 'delete' in self.__Configuration:
-             self.__Delete = self.__prepareForHttpService('delete')
+class ServiceAsHttp(object):
+    _Configuration = None
+    _Encoding = 'utf-8'
 
-    #just for error handling...later
-    def __prepareForHttpService(self, Type):
+    def __init__(self, Configuration, Encoding='utf-8'):
+        self._Configuration = Configuration
+        self._Encoding = Encoding
+
+    def _prepareForHttpService(self, Type):
         Return = None
-        if Type not in self.__Configuration:
+        if Type not in  self._Configuration:
             return Return
-        if 'name' not in self.__Configuration['host']:
+        if 'name' not in self._Configuration['host']:
             pass#raise Error
-        if 'port' in self.__Configuration['host']:
-            Return = self.__startTransaction(self.__Configuration[Type], HttpService(self.__Configuration['host']['name'], self.__Configuration['host']['useHttps'], self.__Configuration['host']['port']))
+        if 'port' in self._Configuration['host']:
+            Return = self.__startTransaction(self._Configuration[Type], HttpService(self._Configuration['host']['name'], self._Configuration['host']['useHttps'], self._Configuration['host']['port']))
         else:
-            Return = self.__startTransaction(self.__Configuration[Type], HttpService(self.__Configuration['host']['name'], self.__Configuration['host']['useHttps']))
+            Return = self.__startTransaction(self._Configuration[Type], HttpService(self._Configuration['host']['name'], self._Configuration['host']['useHttps']))
         return Return
 
     def __startTransaction(self, Configuration, HttpObject):
@@ -166,14 +90,14 @@ class HostAsDatabase(Database):
 
     def __withBody(self, Input, HttpObject, AdditionalParameter):
         #we have to do this cause: https://github.com/python/cpython/blob/master/Lib/http/client.py#151
-        Input = Input.encode('utf-8').decode('latin-1')
+        Input = Input.encode(self._Encoding).decode('latin-1')
         if AdditionalParameter:
             for (Key, Value) in AdditionalParameter.items():
                 HttpObject.addParameter(Key, Value, False)
         HttpObject.setInputData(Input)
         return HttpObject.call()
 
-    def __withOrWithoutBody(self, Method, ToDo, HTTPObject, AdditionalParameter):
+    def _withOrWithoutBody(self, Method, ToDo, HTTPObject, AdditionalParameter):
         Method = Method.upper()
         if AdditionalParameter and AdditionalParameter is isinstance(AdditionalParameter, dict):
             for Key in AdditionalParameter:
@@ -183,75 +107,202 @@ class HostAsDatabase(Database):
             pass#throw error
 
         if 'POST' == Method:
-            HTTPObject.addHeader("Content-Type", "application/x-www-form-urlencoded; multipart/form-data; charset=utf-8")
+            HTTPObject.addHeader("Content-Type", "application/x-www-form-urlencoded; multipart/form-data; charset=" + self._Encoding)
             HTTPObject.addHeader("Content-Length", str(len(ToDo)))
             Response = self.__withBody(ToDo, HTTPObject, AdditionalParameter)
         elif 'PUT' == Method:
-            HTTPObject.addHeader("Content-Type", "text/plain; application/json; charset=utf-8")
+            HTTPObject.addHeader("Content-Type", "text/plain; application/json; charset=" + self._Encoding)
             HTTPObject.addHeader("Content-Length", str(len(ToDo)))
             Response = self.__withBody(ToDo, HTTPObject, AdditionalParameter)
         else:
             Response = self.__bodyless(ToDo, HTTPObject, AdditionalParameter)
         return Response
 
+    def _responseFormatter(self, Response):
+        Response.close()# Should not normally need to be called explicitly....
+        if 200 != Response.status_code:
+            return (Response.status_code, '', Response.content.decode(self._Encoding))
+        else:
+            return (Response.status_code, Response.content.decode(self._Encoding), '')
+
+class Textmining(object):
+    def do(self, Input, ParameterKey=None, AdditionalParameter=None):
+        pass
+    def getVersion():
+        pass
+    def reconnect():
+        pass
+    def close():
+        pass
+class Database(object):
+    def query(self, Query):
+        pass
+
+    def delete(self, Delete):
+        pass
+
+    def insert(self, Insert):
+        pass
+
+    def update(self, Update):
+        pass
+
+    def reconnect(What):
+        pass
+
+class CmdAsDatabase(Database):
+    def query(self, Query):
+        pass
+    def delete(self, Delete):
+        pass
+    def insert(self, Insert):
+        pass
+    def update(self, Update):
+        pass
+
+class CmdAsTextmining(ServiceAsCmd, Textmining):
+    __Worker = None
+    __Version = None
+
+    def __init__(self, Configuration):
+        ServiceAsCmd.__init__(self, Configuration)
+        self.__Worker = ServiceAsCmd._prepareForCmdService(self, 'cmd',CmdService.FORK_PTY_PROCESS)
+
+    def do(self, Input, ParameterKey=None, AdditionalParameter=None, ReadFromStdin=False):
+        Keys = []
+        if AdditionalParameter:
+            for Key in AdditionalParameter:
+                self.__Worker.addParameter(Key, AdditionalParameter[Key])
+        if not ParameterKey:
+            ReturnCode, Stdout, Stderr = self.__Worker.do('', Input, CmdService.FORK_PTY_PROCESS, ReadFromStdin)
+        else:
+            ReturnCode, Stdout, Stderr = self.__Worker.do(ParameterKey, Input, CmdService.FORK_PTY_PROCESS, ReadFromStdin)
+        if AdditionalParameter:
+            for Key in AdditionalParameter:
+                self.__Worker.removeParameter(Key)
+        return (ReturnCode, Stdout, Stderr)
+
+    def reconnect(self):
+        if True == self.__Worker._FlyingProcess:
+            self.__Worker.close()
+            self.__Worker = ServiceAsCmd.__prepareForCmdService(self, 'cmd',CmdService.FORK_PTY_PROCESS)
+
+    def getVersion(self):
+        if not self.__Version:
+            Version = ServiceAsCmd._prepareForCmdService(self, 'cmd', CmdService.FORK_NORMAL_PROCESS)
+            for x in range(0,len(self._Configuration['cmd']['version'])-1):
+                Version.addParameter(self._Configuration['cmd']['version'][x]['key'], self._Configuration['cmd']['version'][x]['value'])
+            Returncode, Stdout, Stderr = Version.do(self._Configuration['cmd']['version'][len(self._Configuration['cmd']['version'])-1]['key'], self._Configuration['cmd']['version'][len(self._Configuration['cmd']['version'])-1]['value'], CmdService.FORK_NORMAL_PROCESS)
+            if Stderr:
+                pass#Error und so
+            self.__Version = Stdout.strip()
+            Version.close()
+            return self.__Version
+        else:
+            return self.__Version
+
+    def close(self):
+        if self.__Worker:
+            self.__Worker.close()
+
+class HostAsDatabase(Database, ServiceAsHttp):
+    __Query = None
+    __QueryLock = Lock()
+    __Update = None
+    __UpdateLock = Lock()
+    __Delete = None
+    __DeleteLock = Lock()
+    __Insert = None
+    __InsertLock = Lock()
+    __Version = None
+
+    def __init__(self, Configuration, StartQuery=True, StartInsert=False, StartUpdate=False, StartDelete=False):
+        ServiceAsHttp.__init__(self,  Configuration)
+        self.openDatabase(StartQuery, StartInsert, StartUpdate, StartDelete)
+
+    def openDatabase(self, Query=True, Insert=True, Update=False, Delete=False):
+        if True == Query and not self.__Query:
+            self.__Query = ServiceAsHttp._prepareForHttpService(self, 'query')
+        if True == Insert and not self.__Insert:
+            self.__Insert = ServiceAsHttp._prepareForHttpService(self, 'insert')
+        if True == Update and not self.__Update and 'update' in self._Configuration:
+             self.__Update = ServiceAsHttp._prepareForHttpService(self, 'update')
+        if True == Delete and not self.__Delete and 'delete' in self._Configuration:
+             self.__Delete = ServiceAsHttp._prepareForHttpService(self, 'delete')
+
+    #just for error handling...later
     def query(self, Query, AdditionalParameter=None):
         Response = None
         if not self.__Query:
-            self.__Query = self.__prepareForHttpService('query')
+            self.__Query = ServiceAsHttp._prepareForHttpService(self, 'query')
         self.__QueryLock.acquire()
         try:
-            Response = self.__withOrWithoutBody(self.__Configuration['query']['method'],Query, self.__Query, AdditionalParameter)
+            Response = ServiceAsHttp._withOrWithoutBody(self, self._Configuration['query']['method'],Query, self.__Query, AdditionalParameter)
         except HttpServiceException as e:
-            self.__QueryLock.release()
             raise e
-        self.__QueryLock.release()
-        return Response
+        finally:
+            self.__QueryLock.release()
+        return ServiceAsHttp._responseFormatter(self, Response)
 
     def insert(self, Insert, AdditionalParameter=None):
         Response = None
         if not self.__Insert:
-            self.__Insert = self.__prepareForHttpService('insert')
+            self.__Insert = ServiceAsHttp._prepareForHttpService(self, 'insert')
         self.__InsertLock.acquire()
         try:
-            Response = self.__withOrWithoutBody(self.__Configuration['insert']['method'], Insert, self.__Insert, AdditionalParameter)
+            Response = ServiceAsHttp._withOrWithoutBody(self, self._Configuration['insert']['method'], Insert, self.__Insert, AdditionalParameter)
         except HttpServiceException as e:
-            self.__InsertLock.release()
             raise e
-        self.__InsertLock.release()
-        return Response
+        finally:
+            self.__InsertLock.release()
+        return ServiceAsHttp._responseFormatter(self, Response)
 
     def update(self, Update, AdditionalParameter=None):
         Response = None
         if not self.__Update:
-            self.__Update = self.__prepareForHttpService('update')
+            self.__Update = ServiceAsHttp._prepareForHttpService(self, 'update')
             if None == self.__Update:
                 return None#throw error
         self.__UpdateLock.acquire()
         try:
-            Response = self.__withOrWithoutBody(self.__Configuration['update']['method'],Query, self.__Update, AdditionalParameter)
+            Response = ServiceAsHttp._withOrWithoutBody(self, self._Configuration['update']['method'],Query, self.__Update, AdditionalParameter)
         except HttpServiceException as e:
-            self.__UpdateLock.release()
             raise e
-        self.__UpdateLock.release()
-        return Response
+        finally:
+            self.__UpdateLock.release()
+        return ServiceAsHttp._responseFormatter(self, esponse)
 
     def delete(self, Delete, AdditionalParameter=None):
        Response = None
        if not self.__Delete:
-           self.__Delete = self.__prepareForHttpService('delete')
+           self.__Delete = ServiceAsHttp._prepareForHttpService(self, 'delete')
            if None == self.__Delete:
                return None#throw error
        self.__DeleteLock.acquire()
        try:
-           Response = self.__withOrWithoutBody(self.__Configuration['delete']['method'],Query, self.__Delete, AdditionalParameter)
+           Response = ServiceAsHttp._withOrWithoutBody(self, self._Configuration['delete']['method'],Query, self.__Delete, AdditionalParameter)
        except HttpServiceException as e:
-           self.__DeleteLock.release()
            raise e
-       self.__DeleteLock.release()
-       return Response
+       finally:
+           self.__DeleteLock.release()
+       return ServiceAsHttp._responseFormatter(self, Response)
 
     def getVersion(self):
-        return self.__Version
+        if -1 == Version:
+            Version = ServiceAsHttp._prepareForHttpService(self, 'version')
+            self.__QueryLock.acquire()
+            try:
+                Response = self._withOrWithoutBody(self, self._Configuration['version']['method'], Input, Version, {})
+            except HttpServiceException as e:
+                self.__QueryLock.release()
+                Version.close()
+                raise e
+            else:
+                self.__Version = Response.content.decode(self._Encoding)
+            finally:
+                Version.close()
+                Response.close()
+                self.__QueryLock.release()
 
     def closeUpdate(self):
         if self.__Update:
@@ -279,111 +330,56 @@ class HostAsDatabase(Database):
         self.closeQuery()
         self.closeUpdate()
 
-class HostAsTextmining(Textmining):
-
-    __Configuration = None
+class HostAsTextmining(Textmining, ServiceAsHttp):
     __Worker = None
-    __Lock = None
-    __Version = -1
+    __Version = None
+    __Lock = Lock()
 
-    def __init__(self, Configuration):
-        self.__Configuration = Configuration
-        self.__Lock = Lock()
+    def __init__(self, Configuration, Encoding='utf-8'):
+        ServiceAsHttp.__init__(self, Configuration, Encoding)
+        self.__Worker = ServiceAsHttp._prepareForHttpService(self, 'cmd')
+#        Version = self._prepareForHttpService(self, 'version')
+#       try:
+#            Response = self._withOrWithoutBody(self, self._Configuration['version']['method'], '', Version, {})
+#        except HttpServiceException as e:
+#            raise e
+#        else:
+#            self.__Version = Response.content.decode(self._Encoding)
+#            Response.close()
+#        finally:
+#            Version.close()
 
-        Version = self.__prepareForHttpService('version')
-        self.__Lock.acquire()
-        try:
-            Response = self.__withOrWithoutBody(self.__Configuration['version']['method'], Input, Version, {})
-        except HttpServiceException as e:
-            self.__Lock.release()
-            Version.close()
-            raise e
-        else:
-            self.__Version = Response
-        Version.close()
-        self.__Lock.release()
-
-    def do(self, Input, AdditionalParameter=None, RetryOnFail=False):
+    def do(self, Input, ParameterKey=None, AddtionailParameter=None, ReadFromStdin=False):
         Response = None
-        if not self.__Worker:
-            self.__Worker = self.__prepareForHttpService('textmining')
         self.__Lock.acquire()
+#        if not self.__Worker:
+#            self.__Worker = ServiceAsHttp._prepareForHttpService(self, 'cmd')
         try:
-            Response = self.__withOrWithoutBody(self.__Configuration['textmining']['method'], Input, self.__Worker, AdditionalParameter)
+            Response = ServiceAsHttp._withOrWithoutBody(self, self._Configuration['cmd']['method'], Input, self.__Worker, AdditionalParameter)
         except HttpServiceException as e:
-            self.__Lock.release()
             raise e
-        self.__Lock.release()
-        return Response
+        finally:
+            self.__Lock.release()
+        return ServiceAsHttp._responseFormatter(self, Response)
 
-    def __prepareForHttpService(self, Type):
-        Return = None
-        if Type not in self.__Configuration:
-            return Return
-        if 'name' not in self.__Configuration['host']:
-            pass#raise Error
-        if 'port' in self.__Configuration['host']:
-            Return = self.__startTransaction(self.__Configuration[type], HttpService(self.__Configuration['host']['name'], self.__Configuration['host']['useHttps'], self.__Configuration['host']['port']))
-        else:
-            Return = self.__startTransaction(self.__Configuration[type], HttpService(self.__Configuration['host']['name'], self.__Configuration['host']['useHttps']))
-        return Return
-
-    def __startTransaction(self, Configuration, HttpObject):
-        if Configuration['auth']:
-            HttpObject.setUsernameAndPassword(Configuration['auth']['username'], Configuration['auth']['password'])
-        for Parameter in Configuration['parameter']:
-            HttpObject.addParameter(Parameter, Configuration['parameter'][Parameter])
-        for Cookie in Configuration['cookies']:
-            if True == bool(Cookie['type']):
-                HttpObject.addCookieString(Cookie['value'])
-            else:
-                HttpObject.addCookieFile(Cookie['value'])
-        for Header in Configuration['headers']:
-            HttpObject.addHeader(Header['key'], Header['value'])
-
-        HttpObject.startACall(Configuration['method'], Configuration['path'])
-        return HttpObject
-
-    def __bodyless(self, Input, HttpObject, AdditionalParameter):
-        if AdditionalParameter:
-           Input = Utils.mergeDictionaries(AdditionalParameter, Input)
-        for (Key, Value) in Input.items():
-            HttpObject.addParameter(Key, Value, False)
-        Response = HttpObject.call()
-        return Response
-
-    def __withBody(self, Input, HttpObject, AdditionalParameter):
-        #we have to do this cause: https://github.com/python/cpython/blob/master/Lib/http/client.py#151
-        Input = Input.encode('utf-8').decode('latin-1')
-        if AdditionalParameter:
-            for (Key, Value) in AdditionalParameter.items():
-                HttpObject.addParameter(Key, Value, False)
-        HttpObject.setInputData(Input)
-        return HttpObject.call()
-
-    def __withOrWithoutBody(self, Method, ToDo, HTTPObject, AdditionalParameter):
-        Method = Method.upper()
-        if AdditionalParameter and AdditionalParameter is isinstance(AdditionalParameter, dict):
-            for Key in AdditionalParameter:
-                if not isinstance(AdditionalParameter[Key], basestring):
-                    AdditionalParameter[Key] = str(AdditionalParameter[Key])
-        else:
-            pass#throw error
-
-        if 'POST' == Method:
-            HTTPObject.addHeader("Content-Type", "application/x-www-form-urlencoded; multipart/form-data; charset=utf-8")
-            HTTPObject.addHeader("Content-Length", str(len(ToDo)))
-            Response = self.__withBody(ToDo, HTTPObject, AdditionalParameter)
-        elif 'PUT' == Method:
-            HTTPObject.addHeader("Content-Type", "text/plain; application/json; charset=utf-8")
-            HTTPObject.addHeader("Content-Length", str(len(ToDo)))
-            Response = self.__withBody(ToDo, HTTPObject, AdditionalParameter)
-        else:
-            Response = self.__bodyless(ToDo, HTTPObject, AdditionalParameter)
-        return Response
 
     def getVersion(self):
+        if not self.__Version:
+            Version = self._prepareForHttpService(self, 'version')
+            try:
+                Response = self._withOrWithoutBody(self, self._Configuration['version']['method'], '', Version, {})
+            except HttpServiceException as e:
+                raise e
+            else:
+                self.__Version = Response.content.decode(self._Encoding)
+                Response.close()
+            finally:
+                Version.close()
         return self.__Version
+
+    def reconnect(self):
+        self.close()
+        self.__Worker = ServiceAsHttp._prepareForHttpService(self, 'cmd')
 
     def close(self):
         if self.__Worker:
@@ -409,49 +405,49 @@ class DatabaseService(object):
             pass
 #            self.__Database = CmdAsDataBase(Configuration._Database)
 
-    def queryDatabase(self, Dict, AdditionalParameter=None, ReconnectOnFail=False):
+    def queryDatabase(self, Dict, AdditionalParameter=None, RetryOnFail=False):
         try:
-            Response = self.__Database.query(Dict, AdditionalParameter)
+            Code, Out, Error = self.__Database.query(Dict, AdditionalParameter)
         except HttpServiceException as e:
-            if True == ReconnectOnFail:
+            if True == RetryOnFail:
                 self.reconnect(self.DATABASE_QUERY)
-                Response = self.queryDatabase(Dict, AdditionalParameter, False)
+                Code, Out, Error = self.queryDatabase(Dict, AdditionalParameter, False)
             else:
                 raise e
-        return Response.status_code, Response.content.decode('utf-8')
+        return (Code, Out, Error)
 
-    def insertIntoDatabase(self, JSON, AdditionalParameter=None, ReconnectOnFail=False):
+    def insertIntoDatabase(self, JSON, AdditionalParameter=None, RetryOnFail=False):
         try:
-            Response = self.__Database.insert(JSON, AdditionalParameter)
+            Code, Out, Error = self.__Database.insert(JSON, AdditionalParameter)
         except HttpServiceException as e:
-            if True == ReconnectOnFail:
+            if True == RetryOnFail:
                 self.reconnect(self.DATABASE_INSERT)
-                Response = self.insertIntoDatabase(JSON, AdditionalParameter, False)
+                Code, Out, Error = self.insertIntoDatabase(JSON, AdditionalParameter, False)
             else:
                 raise e
-        return Response.status_code, Response.content.decode('utf-8')
+        return (Code, Out, Error)
 
-    def updateInDatabase(self, JSON, AdditionalParameter=None, ReconnectOnFail=False):
+    def updateInDatabase(self, JSON, AdditionalParameter=None, RetryOnFail=False):
         try:
-            Response = self.__Database.update(JSON)
+            Code, Out, Error = self.__Database.update(JSON)
         except HttpServiceException as e:
-            if True == ReconnectOnFail:
+            if True == RetryOnFail:
                 self.reconnect(self.DATABASE_UPDATE)
-                Response = self.updateInDatabase(JSON, AdditionalParameter, False)
+                Code, Out, Error = self.updateInDatabase(JSON, AdditionalParameter, False)
             else:
                 raise e
-        return Response.status_code, Response.content.decode('utf-8')
+            return (Code, Out, Error)
 
-    def deleteInDatabase(self, Dict, AdditionalParameter=None, ReconnectOnFail=False):
+    def deleteInDatabase(self, Dict, AdditionalParameter=None, RetryOnFail=False):
         try:
-            Response = self.__Database.delete(Dict)
+            Code, Out, Error = self.__Database.delete(Dict)
         except HttpServiceException as e:
-            if True == ReconnectOnFail:
+            if True == RetryOnFail:
                 self.reconnect(self.DATABASE_DELETE)
-                Response = self.deleteInDatabase(Dict, AdditionalParameter, False)
+                Code, Out, Error = self.deleteInDatabase(Dict, AdditionalParameter, False)
             else:
                 raise e
-        return Response.status_code, Response.content.decode('utf-8')
+            return (Code, Out, Error)
 
     def reconnect(self, What):
         if self.DATABASE_QUERY == What or self.DATABASE_ALL == What:
@@ -467,7 +463,7 @@ class DatabaseService(object):
             self.__Database.closeDelete()
             self.__Database.openDatabase(Query=False, Delete=True)
 
-    def close(What):
+    def close(self, What=DATABASE_ALL):
        if self.DATABASE_QUERY == What  or self.DATABASE_ALL == What:
            self.__Database.closeQuery()
        if self.DATABASE_INSERT == What or self.DATABASE_ALL == What:
@@ -477,23 +473,39 @@ class DatabaseService(object):
        if self.DATABASE_DELETE == What or self.DATABASE_ALL == What:
            self.__Database.closeDelete()
 
+    def __del__(self):
+        if not self.__Database:
+            return
+        self.close()
+
 class TextminingService(object):
 
     __Textmining = None
+    __Lock = Lock()
 
     def __init__(self, Configuration):
         if 'host' in Configuration._Textmining:
             self.__Textmining = HostAsTextmining(Configuration._Textmining)
         else:
-            self.__Textmining = CmdAsTextmining(Configuration._Textmining['cmd'])
+            self.__Textmining = CmdAsTextmining(Configuration._Textmining)
     def version(self):
         return self.__Textmining.getVersion()
 
-    def do(self, Input, ParameterKey=None, ReadFromStdin=False):
-        ReturnCode, Stdout, Stderr = self.__Textmining.do(Input, ParameterKey, ReadFromStdin)
-        if Stderr:
-            pass#Error und so
-        return Stdout
+    def do(self, Input, ParameterKey=None, AdditionalParameter=None, ReadFromStdin=False, RetryOnFail=False):
+        self.__Lock.acquire()
+        if True == RetryOnFail:
+            try:
+                ReturnCode, Stdout, Stderr = self.__Textmining.do(Input, ParameterKey, AdditionalParameter, ReadFromStdin)
+            except HttpServiceException as e:
+                self.reconnect()
+                ReturnCode, Stdout, Stderr = self.__Textmining.do(Input, ParameterKey, AdditionalParameter, ReadFromStdin)
+
+            if ReturnCode != CmdService._OK and 0 > ReturnCode:
+                self.reconnect()
+                ReturnCode, Stdout, Stderr = self.__Textmining.do(Input, ParameterKey, AdditionalParameter, ReadFromStdin)
+        else:
+            ReturnCode, Stdout, Stderr = self.__Textmining.do(Input, ParameterKey, AdditionalParameter, ReadFromStdin)
+        return (ReturnCode, Stdout, Stderr)
 
     def close(self):
         if self.__Textmining:
