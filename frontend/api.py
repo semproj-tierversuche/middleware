@@ -1,14 +1,15 @@
+import datetime
 import json
 from pathlib import Path
 
 from elasticsearch5 import Elasticsearch
 
-from flask import Flask
-from flask_restplus import abort, Api, Resource
+from flask import Flask, request
+from flask_restplus import abort, fields, Api, Resource
 
 def document_for_pmid(pmid):
     query = {"query": {"match": {"PMID": pmid}}}
-    res = es.search(**es_options, body=query)
+    res = es.search(**es_options["document"], body=query)
     if res["hits"]["total"] == 0:
         return False
     return res["hits"]["hits"][0]["_source"]
@@ -34,11 +35,22 @@ def results_for_pmid(pmid):
     response["Results"] = results
     return response
 
+def store_feedback(body):
+    body["date"] = datetime.datetime.now()
+    es.index(**es_options["feedback"], body=body)
+
 # Elasticsearch setup
 es = Elasticsearch()
 es_options = {
+    "document": {
         "index": "article_test",
-        "doc_type": "article" }
+        "doc_type": "article"
+    },
+    "feedback": {
+        "index": "feedback_test",
+        "doc_type": "feedback"
+    }
+}
 
 # Flask and flask_restful setup
 
@@ -67,8 +79,25 @@ class DocumentAPI(Resource):
             abort(404, message="No such document.")
         return document
 
+feedback = api.model('Feedback', {
+    'Origin-PMID': fields.Integer(required=True),
+    'Result-PMID': fields.Integer(required=True),
+    'AnimalTest': fields.Boolean(required=True),
+    'Similar': fields.Boolean(required=True),
+    'Relevant': fields.Boolean(required=True),
+    'Text': fields.String()
+})
+
+class FeedbackAPI(Resource):
+    @api.expect(feedback)
+    @api.doc(responses={201: 'Created'})
+    def post(self):
+        store_feedback(request.json)
+        return None, 201
+
 api.add_resource(ResultsAPI, '/results/<int:id>')
 api.add_resource(DocumentAPI, '/document/<int:id>')
+api.add_resource(FeedbackAPI, '/feedback')
 
 # Run the flask app
 
