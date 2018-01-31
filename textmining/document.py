@@ -1,7 +1,5 @@
 import datetime
 import json
-# TODO remove
-from pprint import pprint
 import subprocess
 import xml.etree.ElementTree as ElementTree
 
@@ -13,12 +11,11 @@ XSL_FILE = "pubmed2bioc.xsl"
 XSLTPROC_BIN = "xsltproc"
 XSLTPROC_PATH = "pubmed-tools/bioc/"
 
-TEXTMINING_BIN = ["java", "-jar", "TextMiningPipeline.jar"]
+TEXTMINING_BIN = ["java", "-jar", "TextMiningPipelinev0.jar"]
 
 class Document:
     def __init__(self, xml):
         self.xml = xml
-        # TODO some attributes are missing, e.g. Keywords
         self.attributes = {
                 "Suggest": "",
                 "Annotations": [],
@@ -49,48 +46,68 @@ class Document:
         return proc.stdout
 
     def attributes_from_xml(self):
-        # get PMID from XML
         xml_root = ElementTree.fromstring(self.xml)
-        pmid = xml_root.find(".//PMID").text
-        with open(JSON_PATH + str(int(pmid)) + ".json") as f:
-            self.attributes = json.load(f)
+        xml_citation = xml_root.find("./PubmedArticle/MedlineCitation")
+        xml_article = xml_citation.find("Article")
 
-    def _attributes_from_xml(self):
-        # without PubmedArticleSet (root), because it is automatically
-        # selected by ElementTree
-        xml_prefix = "/PubmedArticle/MedlineCitation"
-        xml_root = ElementTree.fromstring(self.xml)
+        # double cast to ensure that the value is an integer
+        self.attributes["PMID"] = str(int(xml_citation.find("PMID").text))
+        self.attributes["Title"] = xml_article.find("ArticleTitle").text
 
-        # attributes to be parsed from the XML
-        map = {
-            "PMID": "/PMID",
-            "Title": "/Article/ArticleTitle",
-            "Date": "/Article//PubDate",
-            "PublicationType": "//PublicationType[1]"
-        }
-        map_list = {
-            "Journal": "/Article/Journal",
-            "AbstractText": "//AbstractText",
-            "MeshHeadings": "//MeshHeading"
-        }
-
-        for key, path in map.items():
-            self.attributes[key] = \
-                xml_root.find("." + xml_prefix + path).text
-        for key, path in map_list.items():
-            self.attributes[key] = \
-                [element.text for element in xml_root.findall("." +
-                    xml_prefix + path)]
-        elements = xml_root.findall("." + xml_prefix +
-            "/Article/AuthorList/Author")
         self.attributes["Authors"] = []
-        for element in elements:
-            self.attributes["Authors"].append("{}, {}".format(
-                element.find("LastName").text,
-                element.find("ForeName").text))
+        # I'd be glad to learn how to do this in a nice, readable list
+        # comprehension.
+        authors = xml_article.findall("AuthorList/Author")
+        for author in authors:
+            self.attributes["Authors"].append(
+                "{}, {}".format(author.find("LastName").text,
+                                author.find("ForeName").text
+                )
+            )
 
-        self.attributes["Link"] = "https://www.ncbi.nlm.nih.gov/pubmed/" + \
-            self.attributes["PMID"]
+        self.attributes["Journal"] = xml_article.find("Journal/Title").text
+        self.attributes["Link"] = \
+            "https://www.ncbi.nlm.nih.gov/pubmed/" + self.attributes["PMID"]
+        self.attributes["Keywords"] = [
+            elem.text for elem in xml_citation.findall("KeywordList/Keyword")
+        ]
+        self.attributes["PublicationType"] = xml_article.find(
+            "PublicationTypeList/PublicationType"
+        ).text
+
+        self.attributes["Abstract"] = ""
+        abstract_parts = xml_article.findall("Abstract/AbstractText")
+        for part in abstract_parts:
+            if "Label" in part.keys():
+                # this is a part of a structured abstract.
+                if not self.attributes["Abstract"] == "":
+                    # and this is not the first part, so we add a space
+                    self.attributes["Abstract"] += " "
+                self.attributes["Abstract"] += "{}: {}".format(
+                    part.attrib["Label"], part.text
+                )
+            else:
+                self.attributes["Abstract"] += part.text
+
+        substances = xml_citation.findall(
+            "ChemicalList/Chemical/NameOfSubstance"
+        )
+        self.attributes["Substances"] = [elem.text for elem in substances]
+
+        self.attributes["MeshHeadings"] = []
+        mesh_headings = xml_citation.findall("MeshHeadingList/MeshHeading")
+        for mesh_heading in mesh_headings:
+            descriptor = mesh_heading.find("DescriptorName").text
+            qualifiers = [ elem.text for elem in
+                           mesh_heading.findall("QualifierName") ]
+            if qualifiers:
+                # format: " (qual1, qual2, qual3)"
+                qualifiers = " (" + ", ".join(qualifiers) + ")"
+            else:
+                qualifiers = ""
+            self.attributes["MeshHeadings"].append(
+                descriptor + qualifiers
+            )
 
     def run_textmining(self):
         kwargs = {
@@ -110,7 +127,7 @@ class Document:
         # 2. open textmining binary, pipe bioc in stdin
         return self.run_textmining()
 
-class DocumentModel:
+class DocumentStore:
     es_options = {
         "index": "article_test",
         "doc_type": "article" }
