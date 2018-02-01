@@ -109,6 +109,28 @@ class Document:
                 descriptor + qualifiers
             )
 
+    def _annotations_from_bioc(self, bioc):
+        xml_root = ElementTree.fromstring(bioc)
+        passages = xml_root.findall("document/passage")
+        for passage in passages:
+            type_infon = passage.find("infon[@key='type']")
+            if not type_infon.text == "abstract":
+                continue
+            annotations = passage.findall("annotation")
+            break
+        else:
+            raise(Exception("passage 'abstract' not found in bioc"))
+
+        # only keep the first 20 annotations
+        annotations = annotations[0:20]
+
+        for annotation in annotations:
+            self.attributes["Annotations"].extend([
+                annotation.find("infon[@key='preferred_name']").text,
+                annotation.find("infon[@key='concept_id']").text
+            ])
+
+
     def run_textmining(self):
         kwargs = {
             "encoding": "utf-8",
@@ -125,7 +147,9 @@ class Document:
         # 1. process xml to bioc
         self.bioc = self.convert_to_bioc()
         # 2. open textmining binary, pipe bioc in stdin
-        return self.run_textmining()
+        self.textmining_result =  self.run_textmining()
+        # 3. parse annotations from TM result
+        self._annotations_from_bioc(self.textmining_result)
 
 class DocumentStore:
     es_options = {
