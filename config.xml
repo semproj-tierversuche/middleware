@@ -10,7 +10,7 @@
 		</textmining>
 		<database>
 			<host useHttps="Any" port="Integer">String</host>
-			<insert methode="string" path="String" username="String" password="String">
+			<insert methode="string" path="String" username="String" password="String" host="Any"* port="Integer"* >
 				<param key="String">String</param>
 				<param key="String">String</param>
 				<cookie type="stroage">String</cookie>
@@ -52,18 +52,20 @@
 		<resource domain="String" plugin="String" xlst="String" md5Check="md5Check">
 			<subFolder onInitializion="onInitializion">String</subFolder>
 			<subFolder>String</subFolder>
-				<includeFiles flag="endswith">String</includeFiles>
-				<includeFiles flag="contains">String</includeFiles>
-				<includeFiles flag="pattern">String</includeFiles>
-				<includeFiles flag="start_date">String</includeFiles>
-				<includeFiles flag="end_date">String</includeFiles>
-				<includeFiles flag="date">String</includeFiles>
-				<excludeFiles flag="endswith">String</excludeFiles>
-				<excludeFiles flag="contains">String</excludeFiles>
-				<excludeFiles flag="pattern">String</excludeFiles>
-				<excludeFiles flag="start_date">String</excludeFiles>
-				<excludeFiles flag="end_date">String</excludeFiles>
-				<excludeFiles flag="date">String</excludeFiles>
+			<includeFiles flag="startswith">String</includeFiles>
+			<includeFiles flag="endswith">String</includeFiles>
+			<includeFiles flag="contains">String</includeFiles>
+			<includeFiles flag="pattern">String</includeFiles>
+			<includeFiles flag="start_date">String</includeFiles>
+			<includeFiles flag="end_date">String</includeFiles>
+			<includeFiles flag="date">String</includeFiles>
+			<excludeFiles flag="startswith">String</excludeFiles>
+			<excludeFiles flag="endswith">String</excludeFiles>
+			<excludeFiles flag="contains">String</excludeFiles>
+			<excludeFiles flag="pattern">String</excludeFiles>
+			<excludeFiles flag="start_date">String</excludeFiles>
+			<excludeFiles flag="end_date">String</excludeFiles>
+			<excludeFiles flag="date">String</excludeFiles>
 		</resource>
 	</resourceCollection>
 </config>

@@ -11,7 +11,7 @@ import sys as Sys
 import traceback as Trace
 import imp as Plugins
 import threading as Threads
-import lxml.etree as DOM
+from lxml import etree as DOM
 
 class Textmining(object):
 
@@ -25,15 +25,15 @@ class Textmining(object):
     __Plugins = None
     __ToDel = None
     __Lock = None
-    __ArticlesOfArticles = None
+    __NonBioCInformation = None
+
 
     #step 1 -> reading config and start everything
     def __init__(self, ConfigurationFile):
         self.__Lock = Threads.Lock()
         self.__BioC = []
         self.__Plugins = []
-        self.__ToDel = []
-        self.__ArticlesOfArticles =[]
+        self.__NonBioCInformation =[]
         self.__Configuration = ConfigReader()
         self.__Configuration.parseConfigFile(ConfigurationFile)
         #1.a -> start Logger
@@ -104,9 +104,9 @@ class Textmining(object):
                 for File in self.__Downloader._DownloadedFiles:
                     Files.append(Subdir + "/" + File.Name)
                 #TODO Thread this
-                self.__getBioC(Domain['plugin'], Files, Domain['xlst'])
+                self.__getBioC(Domain['plugin'], Files, Domain['domain'] + "/" + Resource['name'].lstrip(".").lstrip("/"))
                 self.__Downloader.reset()
-                self.__Log.info("Downloaded " + Resource['name'])
+                self.__Log.info("Downloaded " + Resource['name'].lstrip(".").lstrip("/"))
                 i = i+1
 
     def __setFilter(self, Values, Flag):
@@ -147,7 +147,7 @@ class Textmining(object):
         if Inclusions['pattern']:
             self.__setFilter(Inclusions['pattern'], self.__Downloader.FILTER_FILE_INCLUDE_PATTERN)
 
-    def __getBioC(self, Plug, Files, XFile):
+    def __getBioC(self, Plug, Files, OriginalPath):
         Collection = []
         SearchPath, File = OS.path.split(Plug)
         if not SearchPath in Sys.path:
@@ -155,17 +155,15 @@ class Textmining(object):
             Sys.path.append(OS.path.normpath(SearchPath+"/../"))
         FP, PathName, Description = Plugins.find_module("plugin", [SearchPath,])
         Module = Plugins.load_module("plugin", FP, PathName, Description)
-        XSLT = DOM.parse(XFile)
-        Transformer = DOM.XSLT(XSLT)
         for File in Files:
-            Articles = Module.Plugin.preTextminingHook(File)
+            Articles, NonBioCInformations = Module.Plugin.preTextminingHook(File, OriginalPath)
             self.__Lock.acquire()
             for Article in Articles:
-                print(Article)
-                XML = DOM.fromstring("<PubmedArticleSet><PubmedArticle>" + DOM.tostring(Article).decode('utf-8') + "</PubmedArticle></PubmedArticleSet>")
-                self.__BioC.append(Transformer(XML))
-                print(DOM.tostring(self.__BioC[len(self.__BioC)-1]))
+                self.__BioC.append(Article)
+                print(DOM.tostring(self.__BioC[len(self.__BioC)-1], pretty_print=True).decode('utf-8'))
                 self.__Plugins.append(Module)
+            self.__NonBioCInformation += NonBioCInformations
+            OS._exit(0)
             self.__Lock.release()
 
     def throwAgainstTextMining(self):
@@ -193,7 +191,7 @@ class Textmining(object):
             ToDelete = self.__ToDel.pop()
             BioC = Mudule.Plugin.preDatabaseHook(BioC)
             JSON = self.__toJSON(BioC)
-            (ReturnCode, Stdout, Stderr) = self.__Database.insertIntoDatabase(JSON, {'type':'document'})
+            (ReturnCode, Stdout, Stderr) = self.__Database.insertIntoDatabase(JSON)
             if 200 == ReturnCode:
                 OS.remove(ToDelete)
             else:
