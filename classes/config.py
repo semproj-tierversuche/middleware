@@ -4,6 +4,9 @@
 from xml.etree import ElementTree as DOM
 import os as OS
 import codecs as Codex
+import json as JSON
+from pathlib import Path
+import time as Time
 
 class ConfigException(Exception):
     Reasons = ['The given Element was not found.']
@@ -27,23 +30,41 @@ class ConfigReader(object):
     _Textmining = {}
     _Database = {}
     _Resources = []
-    _Threads = 1
+    _General = {}
 
     def parseConfigFile(self, ConfigFile):
+        Go = False
+        CacheFile = OS.path.dirname(OS.path.abspath(ConfigFile)) + '/.configCache'
+        if OS.path.isfile(CacheFile) and OS.stat(ConfigFile).st_mtime < OS.stat(CacheFile).st_mtime:
+            Cache = JSON.load(open(CacheFile))
+            if str(Cache['check']) != str(int(OS.stat(CacheFile).st_mtime)):
+                Go = False
+            else:
+                self._Textmining = Cache['textmining']
+                self._Database = Cache['database']
+                self._Resources = Cache['resources']
+                self._General = Cache['general']
+                return
 
-        Document = DOM.parse(ConfigFile)
-        self.__Root = Document.getroot()
-        self.readTextmining()
-        self.readDatabase()
-        self.readResources()
-        self.readMaxThreads()
+        if False == Go:
+            Document = DOM.parse(ConfigFile)
+            self.__Root = Document.getroot()
+            self.readTextmining()
+            self.readDatabase()
+            self.readResources()
+            self.readGeneral()
+            if True == OS.access(OS.path.dirname(OS.path.abspath(ConfigFile)), OS.W_OK):
+                ToCache = {}
+                ToCache['textmining'] = self._Textmining
+                ToCache['database'] = self._Database
+                ToCache['resources'] = self._Resources
+                ToCache['general'] = self._General
+                ToCache['check'] = int(Time.time())
+                with open(CacheFile, 'w') as OutFile:
+                    JSON.dump(ToCache, OutFile)
 
     #just a workaround,cause Elementree does NOT follow the order of the Elements in the given XML
     def readCmdAttributes(self, Nodes):
-#        Order = []
-#        Appendix = []
-#        ElementPosition = 0
-#        x = 0
         Return = []
         for Node in Nodes:
             if 'key' in Node.attrib and Node.attrib['key'].strip():
@@ -52,45 +73,50 @@ class ConfigReader(object):
                 else:
                     Return.append({'key' : Node.attrib['key'].strip(), 'value':''})
         return Return
- # After updating ET -> it works as it supposed to...wow
- #       HasChanged = False
- #       for Node in Nodes:
- #           print(Node.attrib['key'])
- #           if ('order' in Node.attrib and Node.attrib['order'].strip()) and ('key' in Node.attrib and Node.attrib['key'].strip()):
- #               ElementPosition = int(Node.attrib['order'].strip())
- #               if not Order:
- #                   if Node.text and Node.text.strip():
- #                       Order.append({'order': ElementPosition, 'key' : Node.attrib['key'].strip(), 'value': Node.text.strip()})
- #                   else:
- #                       Order.append({'order': ElementPosition, 'key' : Node.attrib['key'].strip(), 'value': ''})
- #               else:
- #                   HasChanged = False
- #                   for x in range(0, len(Order)):
- #                       if ElementPosition < Order[x]['order']:
- #                           if Node.text and Node.text.strip():
- #                               Order.insert(x,{'order': ElementPosition, 'key' : Node.attrib['key'].strip(), 'value': Node.text.strip()})
- #                           else:
- #                               Order.insert(x,{'order': ElementPosition, 'key' : Node.attrib['key'].strip(), 'value': ''})
- #                           HasChanged = True
- #                   if False == HasChanged:
- #                       if Node.text and Node.text.strip():
- #                           Order.append({'order': ElementPosition, 'key' : Node.attrib['key'].strip(), 'value': Node.text.strip()})
- #                       else:
- #                           Order.append({'order': ElementPosition, 'key' : Node.attrib['key'].strip(), 'value': ''})
- #           else:
- #               if 'key' in Node.attrib and Node.attrib['key'].strip():
- #                   if Node.text and  Node.text.strip():
- #                       Appendix.append({'key' : Node.attrib['key'].strip(), 'value': Node.text.strip()})
- #                   else:
- #                       Appendix.append({'key' : Node.attrib['key'].strip(), 'value': ''})
-        #for x in range(0, len(Order)):
-        #    Return[Order[x]['key']] = Order[x]['value']
-        #for x in range(0, len(Appendix)):
-        #    Return[Appendix[x]['key']] = Appendix[x]['value']
-  #      Order += Appendix
-  #      print(Order)
-  #      return Order
 
+    def readHostConfiguration(self, Node, Return):
+        if 'useHttps' in Node.attrib:
+            Return['host']['useHttps'] = True
+        else:
+            Return['host']['useHttps'] = False
+        if 'port' in Node.attrib:
+            Return['host']['port'] = str(int(Node.attrib['port'].strip()))
+            #if 'protokoll' not in Node.attrib:
+                #raise a exception
+            #elif 'port' not in Node.attrib:
+            #   #raise a exception
+            #else:
+
+    def readCmdConfiguration(self, Node, Return):
+        if 'keepalive' in Node.attrib and Node.attrib['keepalive']:
+            Char = Codex.decode(Node.attrib['keepalive'], "hex").decode('utf-8')
+            if 1 == len(Char):
+                Return['cmd']['keepalive'] = True
+                Return['cmd']['delimiter'] = Char
+            else:
+                Return['cmd']['keepalive'] = False
+        else:
+            Return['cmd']['keepalive'] = False
+        if 'endOfStream' in Node.attrib and Node.attrib['endOfStream']:
+            Char = Codex.decode(Node.attrib['endOfStream'], "hex").decode('utf-8')
+            if 1 == len(Char):
+                Return['cmd']['readOnlyEnd'] = True
+                Return['cmd']['endDelimiter'] = Char
+            else:
+                Return['cmd']['readOnlyEnd'] = False
+        else:
+            Return['cmd']['readOnlyEnd'] = False
+
+
+        if 'timeout' in Node.attrib and Node.attrib['timeout'].strip():
+            Timeout = int(Node.attrib['timeout'].strip())
+            if 0<Timeout:
+                Return['cmd']['timeout'] = Timeout
+
+        if 'readFromStdin' in Node.attrib:
+            Return['cmd']['stdin'] = True
+        else:
+            Return['cmd']['stdin'] = False
 
     def readService(self, Root):
         Node =None
@@ -106,7 +132,6 @@ class ConfigReader(object):
         Node = Root.find('cmd')
         #we going on to check if we need to use something else then commandline
         if None is not Node:
-#            Return['cmd']['param'] = {}
             Return['cmd']['version'] = {}
             Order = {}
             if 'name' not in Node.attrib or not Node.attrib['name'].strip():
@@ -115,25 +140,7 @@ class ConfigReader(object):
             Return['cmd']['name'] = Node.attrib['name'].strip()
             del Return['host']
 
-            if 'keepalive' in Node.attrib and Node.attrib['keepalive']:
-                Char = Codex.decode(Node.attrib['keepalive'], "hex").decode('utf-8')
-                if 1 == len(Char):
-                    Return['cmd']['keepalive'] = True
-                    Return['cmd']['delimiter'] = Char
-                else:
-                    Return['cmd']['keepalive'] = False
-            else:
-                Return['cmd']['keepalive'] = False
-
-            if 'timeout' in Node.attrib and Node.attrib['timeout'].strip():
-                Timeout = int(Node.attrib['timeout'].strip())
-                if 0<Timeout:
-                    Return['cmd']['timeout'] = Timeout
-
-            if 'readFromStdin' in Node.attrib:
-                Return['cmd']['stdin'] = True
-            else:
-                Return['cmd']['stdin'] = False
+            self.readCmdConfiguration(Node, Return)
 
             Nodes = Node.findall('param')
             if Nodes:
@@ -152,13 +159,13 @@ class ConfigReader(object):
                 pass
             else:
                 del Return['cmd']
-                if 'useHttps' in Node.attrib:
-                    Return['host']['useHttps'] = True
-                else:
-                    Return['host']['useHttps'] = False
-
-                if 'port' in Node.attrib:
-                    Return['host']['port'] = str(int(Node.attrib['port'].strip()))
+ #               if 'useHttps' in Node.attrib:
+ #                   Return['host']['useHttps'] = True
+ #               else:
+ #                   Return['host']['useHttps'] = False
+ #
+ #               if 'port' in Node.attrib:
+ #                   Return['host']['port'] = str(int(Node.attrib['port'].strip()))
  #               if 'protokoll' not in Node.attrib:
  #                   #raise a exception
  #                   pass
@@ -166,9 +173,8 @@ class ConfigReader(object):
  #                   #raise a exception
  #                   pass
   #              else:
-                    Return['host']['name'] = Node.text.strip()
-  #                  Return['host']['protokoll'] = Node.attrib['protokoll'].strip().lower()
-  #                  Return['host']['port'] = Node.attrib['port'].strip()
+                self.readHostConfiguration(Node, Return)
+                Return['host']['name'] = Node.text.strip()
 
         return Return
     def readSubNode(self, Configuration, Node, TagName):
@@ -179,6 +185,11 @@ class ConfigReader(object):
 
     def readSubNodeCmd(self, Node, TagName):
         Return = {}
+        if 'cmd' in Node.attrib and Node.attrib['cmd']:
+            Return['cmd'] = {}
+            Return['cmd']['name'] = Node.attrib['cmd']
+            self.readCmdConfiguration(Node, Return)
+
         Return['parameter'] = {}
         Nodes = Node.findall('param')
         if Nodes:
@@ -207,6 +218,11 @@ class ConfigReader(object):
             #throw exception
             pass
         else:
+            if 'host' in Node.attrib and Node.attrib['host']:
+                Return['host'] = {}
+                self.readHostConfiguration(Node, Return)
+                Return['host']['name'] = Node.attrib['host'].strip()
+
             if 'username' in Node.attrib and 'password' in Node.attrib and Node.attrib['username'].strip():
                 Return['auth']['username'] = Node.attrib['username'].strip()
                 Return['auth']['password'] = Node.attrib['password']
@@ -261,27 +277,76 @@ class ConfigReader(object):
             pass
         else:
             self._Database = self.readService(Node)
-            #self._Database['query'] = self.readSubNode(Node, 'query')
             self._Database['version'] = self.readSubNode(self._Database, Node, 'version')
             self._Database['query'] = self.readSubNode(self._Database, Node, 'query')
             self._Database['insert'] = self.readSubNode(self._Database, Node, 'insert')
             self._Database['update'] = self.readSubNode(self._Database, Node, 'update')
             self._Database['delete'] = self.readSubNode(self._Database, Node, 'delete')
 
-    def readMaxThreads(self):
+    def readGeneral(self):
         Node = None
+        Subnode = None
         Threads = 0
 
-        Node = self.__Root.find('./limitations/threads')
+        Node = self.__Root.find('./general')
         if None is Node:
-            #throw exception if not in tagsoup -> warning
-                pass
+            pass
+
+        Subnode = self.__Root.find('./general/threads')
+        if None is Subnode:
+            pass
         else:
-            Threads = Node.text.strip()
+            Threads = Subnode.text.strip()
             if True is not isinstance(Threads, int) and 0>= int(Threads):
                 #throw exception if it is not a integer
                 pass
-            self._Threads = int(Threads)
+            self._General['threads'] = int(Threads)
+
+        Subnode = self.__Root.find('./general/logfile')
+        if None is Subnode:
+            pass
+        else:
+            Logfile = Subnode.text.strip()
+            Logfile = Logfile.rstrip("/")
+            if not Logfile:
+                pass
+            elif not OS.path.isdir(Logfile) or True == OS.path.islink(Logfile):
+                pass
+            Head, Tail = OS.path.split(Logfile)
+            Logfile = OS.path.dirname(OS.path.abspath(Logfile))
+            if not("/" == Logfile[-1:]):
+                Logfile += "/"
+            Logfile += Tail
+            if not OS.access(Logfile, OS.W_OK):
+                pass
+            else:
+                if not("/" == Logfile[-1:]):
+                    self._General['logfile'] = Logfile + "/"
+                else:
+                    self._General['logfile'] = Logfile
+                self._General['logfile'] += "tierv.log"
+        Subnode = self.__Root.find('./general/tmp')
+        if None is Subnode:
+            pass
+        else:
+            Tmpdir = Subnode.text.strip()
+            Tmpdir = Tmpdir.rstrip("/")
+            if not Tmpdir:
+                pass
+            elif not OS.path.isdir(Tmpdir) or True == OS.path.islink(Tmpdir):
+                pass
+            Head, Tail = OS.path.split(Tmpdir)
+            Tmpdir = OS.path.dirname(OS.path.abspath(Tmpdir))
+            if not("/" == Tmpdir[-1:]):
+                Tmpdir += "/"
+            Tmpdir += Tail
+            if not OS.access(Tmpdir, OS.W_OK) or not OS.access(Tmpdir, OS.R_OK):
+                pass
+            else:
+                if not("/" == Tmpdir[-1:]):
+                    self._General['tmpdir'] = Tmpdir + "/"
+                else:
+                    self._General['tmpdir'] = Tmpdir
 
     def readRules(self, Nodes):
         Node = None
@@ -289,10 +354,11 @@ class ConfigReader(object):
         Return = {}
         Return['contains'] = []
         Return['date'] = []
-        Return['ending'] = []
-        Return['end_date'] = []
+        Return['starts'] = []
+        Return['ends'] = []
+        Return['end_date'] = ''
         Return['pattern'] = []
-        Return['start_date'] = []
+        Return['start_date'] = ''
         for Node in Nodes:
             if 'flag' not in Node.attrib:
                 continue
@@ -300,12 +366,14 @@ class ConfigReader(object):
             #Why the hack has python no switch and case...narf
             if 'contains' == Flag:
                 Return['contains'].append(Node.text.strip())
-            elif 'start_date' == Flag:
-                Return['start_date'].append(Node.text.strip())
+            elif 'startdate' == Flag:
+                Return['start_date'] = Node.text.strip()
             elif 'end_date' == Flag:
-                Return['end_date'].append(Node.text.strip())
+                Return['enddate'] = Node.text.strip()
             elif 'endswith' == Flag:
-                Return['ending'].append(Node.text.strip())
+                Return['ends'].append(Node.text.strip())
+            elif 'startwith' == Flag:
+                Return['starts'].append(Node.text.strip())
             elif 'pattern' == Flag:
                 Return['pattern'].append(Node.text.strip())
             elif 'date' == Flag:
@@ -315,22 +383,24 @@ class ConfigReader(object):
                 pass
         return Return
 
-    def readExcludeRules(self, Node):
+    #def readExcludeRules(self, Node):
+    #    Nodes = []
+    #    Nodes = Node.findall('./excludeFiles')
+    #    return self.readRules(Nodes)
+
+    #def readIncludeRules(self, Node):
+    #    Nodes = []
+    #    Nodes = Node.findall('./includeFiles')
+    #    return self.readRules(Nodes)
+    def readRuleSet(self, Node, Which):
         Nodes = []
-
-        Nodes = Node.findall('excludeFiles')
-        return self.readRules(Nodes)
-
-    def readIncludeRules(self, Node):
-        Nodes = []
-
-        Nodes = Node.findall('includeFiles')
+        Nodes = Node.findall(Which)
         return self.readRules(Nodes)
 
     def readResourceRules(self, Node):
         Return = {}
-        Return['exclusions'] = self.readExcludeRules(Node)
-        Return['inclusions'] = self.readIncludeRules(Node)
+        Return['exclusions'] = self.readRuleSet(Node, "./excludeFiles")#self.readExcludeRules(Node)
+        Return['inclusions'] = self.readRuleSet(Node, "./includeFiles")#self.readIncludeRules(Node)
         return Return
 
     def readSubFolder(self, Node):
@@ -342,28 +412,35 @@ class ConfigReader(object):
         else:
             Return['name'] = allzweckWegwerfVariable
             if 'onInitializion' in Node.attrib:
-                Return['onInitializion'] = 1
+                Return['onInitializion'] = True
             else:
-                Return['onInitializion'] = 0
+                Return['onInitializion'] = False
+            Return['ruleset'] = self.readResourceRules(Node)
 
         return Return
 
     def readSubFolders(self, Node):
         Return = []
         Nodes = []
+        Element = None
         Nodes = Node.findall('./subFolder')
         if not Node:
             #Exception
             pass
         else:
             for Node in Nodes:
-                Return.append(self.readSubFolder(Node))
+                Element = self.readSubFolder(Node)
+                if True == Element['onInitializion']:
+                    Return.insert(0, Element)
+                else:
+                    Return.append(Element)
+
         return Return
 
     def readResource(self, Node):
         Return = {}
         Return['folders'] = []
-        Return['rules'] = {}
+#        Return['rules'] = {}
         Nodes = None
         allzweckWegwerfVariable = None
 
@@ -378,46 +455,47 @@ class ConfigReader(object):
             else:
                 Return['domain'] = allzweckWegwerfVariable
 
-
-        if 'plugin' in Node.attrib:
-            if OS.path.isfile('./plugin/' + Return['domain'] + '/plugin.py'):
-                if 'pulk' == Node.attrib['plugin'].strip():
-                    Return['plugin'] = {'type' : PLUGIN_PULK, 'name' : Return['domain']}
-                else:
-                    Return['plugin'] = {'type' : PLUGIN_STREAM, 'name' : Return['domain']}
-            else:
-                if 'pluginAlias' in Node.attrib and Node.attrib['pluginAlias'].strip():
-                    if OS.path.isfile('./plugin/' + Node.attrib['pluginAlias'].strip() + '/plugin.py'):
-                        Return['plugin'] = {'type' : PLUGIN_PULK, 'name' : Node.attrib['pluginAlias'].strip()}
-                    else:
-                        Return['plugin'] = {'type' : PLUGIN_STREAM, 'name' : Node.attrib['pluginAlias'].strip()}
-                else:
+#        if 'plugin' in Node.attrib:
+        if OS.path.isfile('./plugin/' + Return['domain'] + '/plugin.py'):
+                #if 'pulk' == Node.attrib['plugin'].strip():
+                #    Return['plugin'] = {'type' : PLUGIN_PULK, 'name' : Return['domain']}
+                #else:
+            Return['plugin'] = './plugin/' + Return['domain'] + '/plugin.py'
+        elif 'plugin' in Node.attrib:
+                #if 'pluginAlias' in Node.attrib and Node.attrib['pluginAlias'].strip():
+            if OS.path.isfile('./plugin/' + Node.attrib['plugin'].strip() + '/plugin.py'):
+                #        Return['plugin'] = {'type' : PLUGIN_PULK, 'name' : Node.attrib['pluginAlias'].strip()}
+                #    else:
+              Return['plugin'] = './plugin/' + Node.attrib['plugin'].strip() + '/plugin.py'
+                #else:
             #raise a excption as warning
-                    pass
         else:
-            Return['plugin'] = 0
+            Return['plugin'] = None
+            #error
 
-        if 'xlstTransformation' in Node.attrib:
-            allzweckWegwerfVariable = Node.attrib['xlstTransformation'].strip()
+        if 'xlst' in Node.attrib:
+            allzweckWegwerfVariable = Node.attrib['xlst'].strip()
             if OS.path.isfile(allzweckWegwerfVariable):
-                Return['xslt'] = allzweckWegwerfVariable
+                Return['xlst'] = allzweckWegwerfVariable
             else:
             #raise a exception
                 pass
+                Return['xlst'] = None
+        else:
+            Return['xlst'] = None
 
         if 'md5Check' in Node.attrib:
-            Return['md5'] = 1
+            Return['md5'] = True
         else:
-            Return['md5'] = 0
+            Return['md5'] = False
 
 
         Return['folders'] = self.readSubFolders(Node)
         if not Return['folders']:
             #Exceptio
             pass
-        Return['rules'] = self.readResourceRules(Node)
+        Return['ruleset'] = self.readResourceRules(Node)
         return Return
-
 
     def readResources(self):
         Nodes = None
