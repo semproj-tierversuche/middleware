@@ -15,6 +15,8 @@ class AbstractResourceDownloader(object):
     FILTER_FILE_INCLUDE_END_DATE = 0x9
     FILTER_FILE_INCLUDE_START_DATE = 0xa
     FILTER_FILE_INCLUDE_DATE = 0xb
+    FILTER_FILE_EXCLUDE_STARTS_WITH = 0xc
+    FILTER_FILE_INCLUDE_STARTS_WITH = 0xd
 
     def setCredentials(self, Username, Password):
         raise Exception("NotImplementedException")
@@ -26,7 +28,7 @@ class AbstractResourceDownloader(object):
         raise Exception("NotImplementedException")
 
     #reset all
-    def reset(self, Folder):
+    def reset(self):
         raise Exception("NotImplementedException")
 
     def filterFiles(self, FilterCondition, Flag):

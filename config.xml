@@ -2,7 +2,7 @@
 <config>
 	<services>
 		<textmining>
-			<cmd name="String" timeout="Integer"* readFromStdin="Any" keepAlive="Char">
+			<cmd name="String" timeout="Integer"* readFromStdin="Any" keepAlive="int" endOfStream="int">
 				<param  key="String">String</param>
 				<param  key="String">String</param>
 				<version  key="String">String</version>
@@ -43,12 +43,13 @@
 			</delete>
 		</database>
 	</services>
-	<limitations>
+	<general>
+		<logfile>./</logfile>
+		<tmp>./tmp</tmp>
 		<threads>Interger</threads>
-		<cache>Integer</cache>
-	</limitations>
+	</general>
 	<resourceCollection>
-		<resource domain="String" plugin="String" pluginAlias="String" xlstTransformation="String" md5Check="md5Check">
+		<resource domain="String" plugin="String" xlst="String" md5Check="md5Check">
 			<subFolder onInitializion="onInitializion">String</subFolder>
 			<subFolder>String</subFolder>
 				<includeFiles flag="endswith">String</includeFiles>

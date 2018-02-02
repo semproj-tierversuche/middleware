@@ -2,10 +2,13 @@
 # requires at least python 3.4
 
 class PlugInInterface(object):
-    def __init__(self):
-        pass
 
-    def hookForSingleFile(self, FileName):
+    @staticmethod
+    #must return a Elementree.DOM object
+    def preTextminingHook(File):
         raise Exception("NotImplementedException")
-    def hookForMultipleFiles(self, PathToFolder):
+
+    @staticmethod
+    #must return a Elementree.Dom object in BioC
+    def preDatabaseHook(BioC):
         raise Exception("NotImplementedException")
