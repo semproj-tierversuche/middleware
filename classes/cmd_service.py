@@ -78,6 +78,11 @@ class CmdService(object):
     _OK = -23
     _TERMINATED = -42
     _TIMEOUT = -666
+    _ReadAtLeast = None
+    __EndOfStream = None
+    __ReadStderrAnyCase = None
+    ReadStdoutAfterKill = None
+    ReadStderrAfterKill = None
 
     def __init__(self, Command, Enviroment=None, Timeout=0, Encoding='utf-8'):
         self.__Parameter = OrderedDict()
@@ -101,11 +106,11 @@ class CmdService(object):
             self.__Enviroment = {}
             self.__EnviromentHasChanged = False
         self.__EnviromentContext = []
+        self.__ReadAtLeast= False
 
     def __startThreads(self, Delimiter=None, PermanentProcess=False):
         if True == PermanentProcess:
             self.__StdinThread = WriterDaemonizedThread(Pipe=self.__Stdin, Length=self.__TRANSMISSION_LENGTH, Encoding=self.__TRANSMISSION_ENCODING)
- #           self.__StdoutThread = ReaderDaemonizedThread(Pipe=self.__Stdout, Length=self.__TRANSMISSION_LENGTH, Encoding=self.__TRANSMISSION_ENCODING,Delimiter=Delimiter)
             self.__StdoutThread = None
             self.__StderrThread = ReaderDaemonizedThread(Pipe=self.__Stderr, Length=self.__TRANSMISSION_LENGTH, Encoding=self.__TRANSMISSION_ENCODING, Delimiter=Delimiter)
         else:
@@ -194,6 +199,10 @@ class CmdService(object):
                     del self.__EnviromentContext[i]
             self.__Enviroment = self.__EnviromentContext[0].copy()
         self.__EnviromentHasChanged = True
+
+    def context(self, Flag):
+        self.enviromentContext(Flag)
+        self.parameterContext(Flag)
 
     def restoreFirstContext(self):
         self.enviromentContext(self.CLEAR)
@@ -445,15 +454,23 @@ class CmdService(object):
         else:
             return (Parameter, AdditionalParameter, self.__getEnviromentCache(), None)
 
-    def startPermanentProcess(self, Delimiter, Flag=0x0, AdditionalParameter=None, AdditionalEnviroment=None, RestoreSignals=False, Stdin=False):
+    def startPermanentProcess(self, Delimiter, Flag=0x0, AdditionalParameter=None, AdditionalEnviroment=None, RestoreSignals=False, Stdin=False, StreamEnd=None, ReadStderrAnyCase=False):
         if True == self.__KeepAlive:#we skip if a process is allready running
             return False
         if not Delimiter:#if we have no delimiter, we skip
             return False
-        if Delimiter and isinstance(Delimiter, str) and 1 == len(Delimiter):#if we have no valid delimiter -> throw a error
+        if isinstance(Delimiter, str) and 1 == len(Delimiter):#if we have no valid delimiter -> throw a error
             self.__Delimiter = Delimiter
         else:
             raise ValueError("The given delimiter was invalid.")
+        if StreamEnd:
+            if isinstance(StreamEnd, str) and 1 == len(StreamEnd):
+                self.__EndOfStream = StreamEnd
+                self.__ReadAtLeast = True
+                self.__ReadStderrAnyCase = ReadStderrAnyCase
+            else:
+                raise ValueError("The given streamdelimiter was invalid.")
+
         self.__KeepAlive = True
         self._ReadFromStdin = Stdin
         self._FlyingProcess = True
@@ -553,7 +570,7 @@ class CmdService(object):
 
     def __communicator(self, Data):
         Stdout = []
-        Stderr = []
+        Stderr = ['']
 
         if not Data and True == self._ReadFromStdin:
             raise CmdServiceException(CmdServiceException.NO_DATA, type(Data))
@@ -565,25 +582,42 @@ class CmdService(object):
                 return (Status, None, None)
         if not self.__Stdout:
             return (self._TERMINATED, None, None)
-        self.__Lock.acquire()
-        self.__StderrThread.do(Stderr)
+        if not self.__ReadAtLeast or self.__ReadStderrAnyCase:
+            self.__Lock.acquire()
+            self.__StderrThread.do(Stderr)
         if True == self._ReadFromStdin:
             self.__StdinThread.do(StringIO(Data+self.__Delimiter))
 
+        if self.__ReadAtLeast:
+            if self.__ReadStderrAnyCase:
+                self.__StderrThread.waitUntilDone(Stderr)
+                self.__Lock.release()
+
+            return (Status, '', Stderr[0])
         Stdout = PipeHelper.readUntilDelimiterFromPipe(Pipe=self.__Stdout, Delimiter=self.__Delimiter, Encoding=self.__TRANSMISSION_ENCODING, Length=self.__TRANSMISSION_LENGTH)
-#        self.__StdoutThread.do(Stdout)
         self.__StderrThread.waitUntilDone(Stderr)
-#        self.__StdoutThread.waitUntilDone(Stdout)
         self.__Lock.release()
-#        return (Status, Stdout[0], Stderr[0])
         return (Status, Stdout, Stderr[0])
+
+    def interruptStream(self):
+        if self.__ReadAtLeast:
+            Stderr = []
+            if True == self._ReadFromStdin:
+                self.__StdinThread.do(StringIO(self.__EndOfStream))
+            self.__StderrThread.do(Stderr)
+            Stdout = PipeHelper.readUntilDelimiterFromPipe(Pipe=self.__Stdout, Delimiter=self.__EndOfStream, Encoding=self.__TRANSMISSION_ENCODING, Length=self.__TRANSMISSION_LENGTH)
+            self.__StderrThread.waitUntilDone(Stderr)
+            return (Stdout, Stderr[0])
 
     def __kill(self):
         if False == self.__KeepAlive:
             return
         else:
             if self._OK == self.getStatus():
-                OS.kill(self.__Process, Signal.SIGKILL)
+                if not self.__ReadAtLeast:
+                    OS.kill(self.__Process, Signal.SIGKILL)
+                else:
+                    self.ReadStdoutAfterKill, self.ReadStderrAfterKill = self.interruptStream()
 
     def do(self, ParameterKey, Data=None, Flag= 0x0, WriteToStdin=False, Timeout=None, AdditionalParameter=None, AdditionalEnviroment=None, RestoreSignals=False):
         if not self.__StderrThread:
