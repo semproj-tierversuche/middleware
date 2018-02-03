@@ -49,7 +49,7 @@
 		<threads>Interger</threads>
 	</general>
 	<resourceCollection>
-		<resource domain="String" plugin="String" xlst="String" md5Check="md5Check">
+		<resource domain="String" plugin="String" md5Check="md5Check" prefix="Any">
 			<subFolder onInitializion="onInitializion">String</subFolder>
 			<subFolder>String</subFolder>
 			<includeFiles flag="startswith">String</includeFiles>

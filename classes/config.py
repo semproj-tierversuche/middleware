@@ -437,6 +437,10 @@ class ConfigReader(object):
         else:
             Return['md5'] = False
 
+        if 'prefix' in Node.attrib and Node.attrib['prefix']:
+            Return['prefix'] = Node.attrib['prefix']
+        else:
+            Return['prefix'] = ''
 
         Return['folders'] = self.readSubFolders(Node)
         if not Return['folders']:
