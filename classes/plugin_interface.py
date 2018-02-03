@@ -11,7 +11,7 @@ class PlugInInterface(object):
         raise Exception("NotImplementedException")
 
     @staticmethod
-    #must return a list of DOM (in BioC) of the corresponding file and
+    #must return a list of DOM (in BioC) of the corresponding file
     def toBioC(WhatEver, OrginalPath):
         raise Exception("NotImplementedException")
 

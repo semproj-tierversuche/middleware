@@ -70,7 +70,7 @@ class Plugin(PlugInInterface):
             XSLT = DOM.parse("./plugin/ftp.ncbi.nlm.nih.gov/transform.xlst")
             Plugin.Transformer = DOM.XSLT(Plugin.XSLT)
 
-        return Transformer(WhatEver)
+        return Plugin.Transformer(WhatEver)
 
     @staticmethod
     def preDatabaseHook(BioC, Filename, OriginalPath):
