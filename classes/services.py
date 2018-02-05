@@ -31,11 +31,13 @@ class ServiceAsCmd(object):
         if True == self._Configuration[Type]['keepalive'] and self._Configuration[Type]['delimiter'] and False == IgnoreFly:
             if True == self._Configuration[Type]['readOnlyEnd']:
                 if True == self._Configuration[Type]['stdin']:
-                    Cmd.startPermanentProcess(self._Configuration[Type]['delimiter'], Flag=Execution, Stdin=True, StreamEnd=self._Configuration[Type]['endDelimiter'])
+                    Cmd.startPermanentProcess(self._Configuration[Type]['delimiter'],\
+                        Flag=Execution, Stdin=True, StreamEnd=self._Configuration[Type]['endDelimiter'])
                 else:
-                    Cmd.startPermanentProcess(self._Configuration[Type]['delimiter'], Flag=Execution, Stdin=False, StreamEnd=self.__Configuration[Type]['endDelimiter'])
+                    Cmd.startPermanentProcess(self._Configuration[Type]['delimiter'],\
+                        Flag=Execution, Stdin=False, StreamEnd=self.__Configuration[Type]['endDelimiter'])
             else:
-                if True == self.__Configuration[Type]['stdin']:
+                if True == self._Configuration[Type]['stdin']:
                     Cmd.startPermanentProcess(self._Configuration[Type]['delimiter'], Flag=Execution, Stdin=True)
                 else:
                     Cmd.startPermanentProcess(self._Configuration[Type]['delimiter'], Flag=Execution, Stdin=False)
@@ -83,45 +85,57 @@ class ServiceAsHttp(object):
         HttpObject.startACall(Configuration['method'], Configuration['path'])
         return HttpObject
 
-    def __bodyless(self, Input, HttpObject, AdditionalParameter):
-        if AdditionalParameter:
-           Input = Utils.mergeDictionaries(AdditionalParameter, Input)
-#        for (Key, Value) in Input.items():
-#            HttpObject.addParameter(Key, Value, False)
-        Response = HttpObject.call(AdditionalParameter=Input)
-        return Response
+    def __bodyless(self, Input, HttpObject, AdditionalParameter, ParameterAsPath):
+        if not isinstance(Input, dict):
+            return None
+        if not Input:
+            Input = {}
 
-    def __withBody(self, Input, HttpObject, AdditionalParameter, AdditionalHeaders=None):
+        if AdditionalParameter:
+            if isinstance(AdditionalParameter, dict):
+                Input = Utils.mergeDictionaries(AdditionalParameter, Input)
+            else:
+                return None
+
+        if not Input:
+            return HttpObject.call()
+
+        if ParameterAsPath:
+            Input = Input.values()
+            return HttpObject.call(AdditionalPath=Input)
+        else:
+            return HttpObject.call(AdditionalParameter=Input)
+
+    def __withBody(self, Input, HttpObject, AdditionalParameter, ParameterAsPath, AdditionalHeaders=None):
         #we have to do this cause: https://github.com/python/cpython/blob/master/Lib/http/client.py#151
         Input = Input.encode(self._Encoding).decode('latin-1')
-#        if AdditionalParameter:
-#            for (Key, Value) in AdditionalParameter.items():
-#                HttpObject.addParameter(Key, Value, False)
         HttpObject.setInputData(Input)
-        return HttpObject.call(AdditionalParameter=AdditionalParameter, AdditionalHeaders=AdditionalHeaders)
+        if AdditionalParameter:
+            if isinstance(AdditionalParameter, dict):
+                if ParameterAsPath:
+                    AdditionalParameter = AdditionalParameter.values()
+                    return HttpObject.call(AdditionalPath=AdditionalParameter, AdditionalHeaders=AdditionalHeaders)
+                else:
+                    HttpObject.call(AdditionalParameter=AdditionalParameter, AdditionalHeaders=AdditionalHeaders)
+            else:
+                return None
+        else:
+            return HttpObject.call(AdditionalHeaders=AdditionalHeaders)
 
-    def _withOrWithoutBody(self, Method, ToDo, HTTPObject, AdditionalParameter, AdditionalHeaders=None):
+    def _withOrWithoutBody(self, Method, ToDo, HTTPObject, AdditionalParameter, ParameterAsPath):
         Method = Method.upper()
-  #      if AdditionalParameter and AdditionalParameter is isinstance(AdditionalParameter, dict):
-  #          for Key in AdditionalParameter:
-  #              if not isinstance(AdditionalParameter[Key], basestring):
-  #                  AdditionalParameter[Key] = str(AdditionalParameter[Key])
-  #      else:
-  #          pass#throw error
 
         if 'POST' == Method:
-#            HTTPObject.addHeader("Content-Type", "application/x-www-form-urlencoded; multipart/form-data; charset=" + self._Encoding)
-#            HTTPObject.addHeader("Content-Length", str(len(ToDo)))
-            Response = self.__withBody(ToDo, HTTPObject, AdditionalParameter, {'Content-Type':'application/x-www-form-urlencoded; multipart/form-data; charset=' + self._Encoding, 'Content-Length': str(len(ToDo))})
+            Response = self.__withBody(ToDo, HTTPObject, AdditionalParameter, ParameterAsPath, {'Content-Type':'application/x-www-form-urlencoded; multipart/form-data; charset=' + self._Encoding, 'Content-Length': str(len(ToDo))})
         elif 'PUT' == Method:
-#           HTTPObject.addHeader("Content-Type", "text/plain; application/json; charset=" + self._Encoding)
-#            HTTPObject.addHeader("Content-Length", str(len(ToDo)))
-            Response = self.__withBody(ToDo, HTTPObject, AdditionalParameter, {'Content-Type':'text/plain; application/json; charset=' + self._Encoding, 'Content-Length':str(len(ToDo))})
+            Response = self.__withBody(ToDo, HTTPObject, AdditionalParameter, ParameterAsPath, {'Content-Type':'text/plain; application/json; charset=' + self._Encoding, 'Content-Length':str(len(ToDo))})
         else:
-            Response = self.__bodyless(ToDo, HTTPObject, AdditionalParameter)
+            Response = self.__bodyless(ToDo, HTTPObject, AdditionalParameter, ParameterAsPath)
         return Response
 
     def _responseFormatter(self, Response):
+        if not Response:
+            raise TypeError("Invalid value given to http service.")
         Response.close()# Should not normally need to be called explicitly....
         if 200 != Response.status_code:
             return (Response.status_code, '', Response.content.decode(self._Encoding))
@@ -207,7 +221,10 @@ class CmdAsTextmining(ServiceAsCmd, Textmining):
             Version = ServiceAsCmd._prepareForCmdService(self, 'cmd', CmdService.FORK_NORMAL_PROCESS, True)
             for x in range(0,len(self._Configuration['cmd']['version'])-1):
                 Version.addParameter(self._Configuration['cmd']['version'][x]['key'], self._Configuration['cmd']['version'][x]['value'])
-            Returncode, Stdout, Stderr = Version.do(self._Configuration['cmd']['version'][len(self._Configuration['cmd']['version'])-1]['key'], self._Configuration['cmd']['version'][len(self._Configuration['cmd']['version'])-1]['value'], CmdService.FORK_NORMAL_PROCESS, False)
+            Returncode, Stdout, Stderr = \
+                Version.do(self._Configuration['cmd']['version'][len(self._Configuration['cmd']['version'])-1]['key'],\
+                           self._Configuration['cmd']['version'][len(self._Configuration['cmd']['version'])-1]['value'],\
+                           CmdService.FORK_NORMAL_PROCESS, False)
             if Stderr:
                 pass#Error und so
             self.__Version = Stdout.strip()
@@ -217,6 +234,10 @@ class CmdAsTextmining(ServiceAsCmd, Textmining):
     def close(self):
         if self.__Worker:
             self.__Worker.close()
+            Stdout = self.__Worker.ReadStdoutAfterKill
+            Stderr = self.__Worker.ReadStdoutAfterKill
+            self.__Worker = None
+            return (Stdout, Stderr)
 
     def __del__(self):
         self.close()
@@ -247,33 +268,33 @@ class HostAsDatabase(Database, ServiceAsHttp):
              self.__Delete = ServiceAsHttp._prepareForHttpService(self, 'delete')
 
     #just for error handling...later
-    def query(self, Query, AdditionalParameter=None):
+    def query(self, Query, AdditionalParameter=None, ParameterAsPath=False):
         Response = None
         if not self.__Query:
             self.__Query = ServiceAsHttp._prepareForHttpService(self, 'query')
         self.__QueryLock.acquire()
         try:
-            Response = ServiceAsHttp._withOrWithoutBody(self, self._Configuration['query']['method'],Query, self.__Query, AdditionalParameter)
+            Response = ServiceAsHttp._withOrWithoutBody(self, self._Configuration['query']['method'],Query, self.__Query, AdditionalParameter, ParameterAsPath)
         except HttpServiceException as e:
             raise e
         finally:
             self.__QueryLock.release()
         return ServiceAsHttp._responseFormatter(self, Response)
 
-    def insert(self, Insert, AdditionalParameter=None):
+    def insert(self, Insert, AdditionalParameter=None, ParameterAsPath=False):
         Response = None
         if not self.__Insert:
             self.__Insert = ServiceAsHttp._prepareForHttpService(self, 'insert')
         self.__InsertLock.acquire()
         try:
-            Response = ServiceAsHttp._withOrWithoutBody(self, self._Configuration['insert']['method'], Insert, self.__Insert, AdditionalParameter)
+            Response = ServiceAsHttp._withOrWithoutBody(self, self._Configuration['insert']['method'], Insert, self.__Insert, AdditionalParameter, ParameterAsPath)
         except HttpServiceException as e:
             raise e
         finally:
             self.__InsertLock.release()
         return ServiceAsHttp._responseFormatter(self, Response)
 
-    def update(self, Update, AdditionalParameter=None):
+    def update(self, Update, AdditionalParameter=None, ParameterAsPath=False):
         Response = None
         if not self.__Update:
             self.__Update = ServiceAsHttp._prepareForHttpService(self, 'update')
@@ -281,14 +302,14 @@ class HostAsDatabase(Database, ServiceAsHttp):
                 return None#throw error
         self.__UpdateLock.acquire()
         try:
-            Response = ServiceAsHttp._withOrWithoutBody(self, self._Configuration['update']['method'],Query, self.__Update, AdditionalParameter)
+            Response = ServiceAsHttp._withOrWithoutBody(self, self._Configuration['update']['method'],Query, self.__Update, AdditionalParameter, ParameterAsPath)
         except HttpServiceException as e:
             raise e
         finally:
             self.__UpdateLock.release()
         return ServiceAsHttp._responseFormatter(self, esponse)
 
-    def delete(self, Delete, AdditionalParameter=None):
+    def delete(self, Delete, AdditionalParameter=None, ParameterAsPath=False):
        Response = None
        if not self.__Delete:
            self.__Delete = ServiceAsHttp._prepareForHttpService(self, 'delete')
@@ -296,7 +317,7 @@ class HostAsDatabase(Database, ServiceAsHttp):
                return None#throw error
        self.__DeleteLock.acquire()
        try:
-           Response = ServiceAsHttp._withOrWithoutBody(self, self._Configuration['delete']['method'],Query, self.__Delete, AdditionalParameter)
+           Response = ServiceAsHttp._withOrWithoutBody(self, self._Configuration['delete']['method'],Query, self.__Delete, AdditionalParameter, ParameterAsPath)
        except HttpServiceException as e:
            raise e
        finally:
@@ -391,6 +412,7 @@ class HostAsTextmining(Textmining, ServiceAsHttp):
         if self.__Worker:
             self.__Worker.close()
             self.__Worker = None
+            return ('', '')
 
     def __del__(self):
         self.close()
@@ -411,22 +433,21 @@ class DatabaseService(object):
             self.__Database = HostAsDatabase(Configuration._Database)
         else:
             pass
-#            self.__Database = CmdAsDataBase(Configuration._Database)
 
-    def queryDatabase(self, Dict, AdditionalParameter=None, RetryOnFail=False):
+    def queryDatabase(self, Dict, AdditionalParameter=None, ParameterAsPath=False,RetryOnFail=False):
         try:
-            Code, Out, Error = self.__Database.query(Dict, AdditionalParameter)
+            Code, Out, Error = self.__Database.query(Dict, AdditionalParameter, ParameterAsPath)
         except HttpServiceException as e:
             if True == RetryOnFail:
                 self.reconnect(self.DATABASE_QUERY)
-                Code, Out, Error = self.queryDatabase(Dict, AdditionalParameter, False)
+                Code, Out, Error = self.queryDatabase(Dict, AdditionalParameter, ParameterAsPath, False)
             else:
                 raise e
         return (Code, Out, Error)
 
-    def insertIntoDatabase(self, JSON, AdditionalParameter=None, RetryOnFail=False):
+    def insertIntoDatabase(self, JSON, AdditionalParameter=None, ParameterAsPath=False, RetryOnFail=False):
         try:
-            Code, Out, Error = self.__Database.insert(JSON, AdditionalParameter)
+            Code, Out, Error = self.__Database.insert(JSON, AdditionalParameter,  ParameterAsPath, RetryOnFail)
         except HttpServiceException as e:
             if True == RetryOnFail:
                 self.reconnect(self.DATABASE_INSERT)
@@ -435,24 +456,24 @@ class DatabaseService(object):
                 raise e
         return (Code, Out, Error)
 
-    def updateInDatabase(self, JSON, AdditionalParameter=None, RetryOnFail=False):
+    def updateInDatabase(self, JSON, AdditionalParameter=None, ParameterAsPath=False, RetryOnFail=False):
         try:
-            Code, Out, Error = self.__Database.update(JSON)
+            Code, Out, Error = self.__Database.update(JSON, AdditionalParameter, ParameterAsPath, RetryOnFail)
         except HttpServiceException as e:
             if True == RetryOnFail:
                 self.reconnect(self.DATABASE_UPDATE)
-                Code, Out, Error = self.updateInDatabase(JSON, AdditionalParameter, False)
+                Code, Out, Error = self.updateInDatabase(JSON, AdditionalParameter, ParameterAsPath, False)
             else:
                 raise e
             return (Code, Out, Error)
 
-    def deleteInDatabase(self, Dict, AdditionalParameter=None, RetryOnFail=False):
+    def deleteInDatabase(self, Dict, AdditionalParameter=None, ParameterAsPath=False, RetryOnFail=False):
         try:
-            Code, Out, Error = self.__Database.delete(Dict)
+            Code, Out, Error = self.__Database.delete(Dict, AdditionalParameter,  ParameterAsPath, RetryOnFail)
         except HttpServiceException as e:
             if True == RetryOnFail:
                 self.reconnect(self.DATABASE_DELETE)
-                Code, Out, Error = self.deleteInDatabase(Dict, AdditionalParameter, False)
+                Code, Out, Error = self.deleteInDatabase(Dict, AdditionalParameter, ParameterAsPath, False)
             else:
                 raise e
             return (Code, Out, Error)
@@ -520,7 +541,7 @@ class TextminingService(object):
 
     def close(self):
         if self.__Textmining:
-            self.__Textmining.close()
+            return self.__Textmining.close()
 
     def __del__(self):
         self.close()
