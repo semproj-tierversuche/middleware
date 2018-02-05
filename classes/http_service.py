@@ -266,11 +266,20 @@ class HttpService(object):
 
             if True == self.__UpdatePersistentRequest:
                 if self.__VolatileURLParameter:
-                    self.__PersistentURLParameters = URLParameter
+                    if not URLParameter:
+                        self.__PersistentURLParameters = {}
+                    else:
+                        self.__PersistentURLParameters = URLParameter
                 if self.__VolatileHeaders:
-                    self.__PersistentHeaders = RequestHeaders
+                    if not RequestHeaders:
+                        self.__PersistentHeaders = {}
+                    else:
+                        self.__PersistentHeaders = RequestHeaders
                 if self.__VolatileCookies:
-                    self.__PersistentCookies = Cookies
+                    if not Cookies:
+                        self.__PersistentCookies = []
+                    else:
+                        self.__PersistentCookies = Cookies
                 if AdditionalPath and isinstance(AddtionalPath, list):
                     self.__Request.url = OrginalUrl
 

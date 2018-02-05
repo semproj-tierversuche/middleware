@@ -447,7 +447,7 @@ class DatabaseService(object):
 
     def insertIntoDatabase(self, JSON, AdditionalParameter=None, ParameterAsPath=False, RetryOnFail=False):
         try:
-            Code, Out, Error = self.__Database.insert(JSON, AdditionalParameter,  ParameterAsPath, RetryOnFail)
+            Code, Out, Error = self.__Database.insert(JSON, AdditionalParameter,  ParameterAsPath)
         except HttpServiceException as e:
             if True == RetryOnFail:
                 self.reconnect(self.DATABASE_INSERT)
@@ -458,7 +458,7 @@ class DatabaseService(object):
 
     def updateInDatabase(self, JSON, AdditionalParameter=None, ParameterAsPath=False, RetryOnFail=False):
         try:
-            Code, Out, Error = self.__Database.update(JSON, AdditionalParameter, ParameterAsPath, RetryOnFail)
+            Code, Out, Error = self.__Database.update(JSON, AdditionalParameter, ParameterAsPath)
         except HttpServiceException as e:
             if True == RetryOnFail:
                 self.reconnect(self.DATABASE_UPDATE)
@@ -469,7 +469,7 @@ class DatabaseService(object):
 
     def deleteInDatabase(self, Dict, AdditionalParameter=None, ParameterAsPath=False, RetryOnFail=False):
         try:
-            Code, Out, Error = self.__Database.delete(Dict, AdditionalParameter,  ParameterAsPath, RetryOnFail)
+            Code, Out, Error = self.__Database.delete(Dict, AdditionalParameter,  ParameterAsPath)
         except HttpServiceException as e:
             if True == RetryOnFail:
                 self.reconnect(self.DATABASE_DELETE)
