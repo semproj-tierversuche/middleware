@@ -280,6 +280,7 @@ class HttpService(object):
                         self.__PersistentCookies = []
                     else:
                         self.__PersistentCookies = Cookies
+
                 if AdditionalPath and isinstance(AddtionalPath, list):
                     self.__Request.url = OrginalUrl
 
@@ -289,7 +290,8 @@ class HttpService(object):
 
             if (len(self.__PersistentURLParameters) != len(self.__Request.params))\
                 or (len(self.__PersistentHeaders) != len(self.__Request.headers))\
-                or ((0 != len(self.__PersistentCookies) and not self.__Request.cookies) or (len(self.__PersistentCookies) != len(self.__Request.cookies))):
+                or ((self.__PersistentCookies and 0 != len(self.__PersistentCookies) and not self.__Request.cookies)\
+                    or (len(self.__PersistentCookies) != len(self.__Request.cookies))):
                 self.__UpdatePersistentRequest = True
             else:
                 self.__UpdatePersistentRequest = False
