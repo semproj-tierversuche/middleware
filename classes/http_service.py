@@ -60,7 +60,6 @@ class HttpService(object):
     __PreparationIsActive = None
     __UpdatePersistentRequest = None
     __Path = None
-    __Lock = None
 
     def __init__(self, Host, UseHttps=False, PortNumber=None):
         self.__PersistentHeaders = {}
@@ -210,13 +209,13 @@ class HttpService(object):
             self.__VolatileHeaders[Name] = Value
             self.__Request.headers[Name] = Value
 
-    def call(self, AdditionalParameter=None, AdditionalHeaders=None):
+    def call(self, AdditionalParameter=None, AdditionalHeaders=None, AdditionalPath = None):
         Response = None
         ToSend = None
         SwapBody = None
         URLParameter = {}
 
-        if (AdditionalParameter and isinstance(AdditionalParameter, dict)) or (AdditionalHeaders and isinstance(AdditionalHeaders, dict)):
+        if (AdditionalParameter and isinstance(AdditionalParameter, dict)) or (AdditionalHeaders and isinstance(AdditionalHeaders, dict)) or (AdditionalPath and isinstance(AdditionalPath, list)):
             self.__UpdatePersistentRequest = True
 
         if False == self.__PreparationIsActive:
@@ -252,6 +251,10 @@ class HttpService(object):
                         if not isinstance(Value, str):
                             Value = str(Value)
                         self.__Request.headers[Key.strip()] = Value.strip()
+
+                if AdditionalPath and isinstance(AddtionalPath, list):
+                    OrginalUrl = self.__Request.url
+                    self.__Request.url += "/".join(AddtionalPath)
             try:
                 ToSend = self.__Request.prepare()
                 if self.__InputData:
@@ -268,12 +271,16 @@ class HttpService(object):
                     self.__PersistentHeaders = RequestHeaders
                 if self.__VolatileCookies:
                     self.__PersistentCookies = Cookies
+                if AdditionalPath and isinstance(AddtionalPath, list):
+                    self.__Request.url = OrginalUrl
 
                 self.__VolatileURLParameter.clear()
                 self.__VolatileHeaders.clear()
                 self.__VolatileCookies.clear()
 
-            if (len(self.__PersistentURLParameters) != len(self.__Request.params)) or (len(self.__PersistentHeaders) != len(self.__Request.headers) or len(self.__PersistentCookies) != len(self.__Request.cookies)):
+            if (len(self.__PersistentURLParameters) != len(self.__Request.params))\
+                or (len(self.__PersistentHeaders) != len(self.__Request.headers))\
+                or ((0 != len(self.__PersistentCookies) and not self.__Request.cookies) or (len(self.__PersistentCookies) != len(self.__Request.cookies))):
                 self.__UpdatePersistentRequest = True
             else:
                 self.__UpdatePersistentRequest = False

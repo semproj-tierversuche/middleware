@@ -8,20 +8,27 @@ import sys as System
 import threading as Threads
 import time as Time
 from collections import OrderedDict
-from classes.utils import PipeHelper, mergeDictionaries as merge, Mutable, StringIOEx as StringIO, LinePipeWriterThread as WriterThread, EoFPipeReaderThread as ReaderThread, DelimiterPermanentPipeReaderThread as ReaderDaemonizedThread, LinePermanentPipeWriterThread as WriterDaemonizedThread
+from classes.utils import PipeHelper, mergeDictionaries as merge, Mutable, StringIOEx as StringIO,\
+    LinePipeWriterThread as WriterThread, EoFPipeReaderThread as ReaderThread, DelimiterPermanentPipeReaderThread as ReaderDaemonizedThread,\
+    LinePermanentPipeWriterThread as WriterDaemonizedThread
 import signal as Signal
 #TODO:
 #   -> Doku schreiben
 class CmdServiceException(Exception):
         __AdditionalInformation = None
-        Reasons = ['The connection is not established', "Cannot spawn the childproc.", "The programm is supposed to get data via stdin, but no data was given." "The given data contains illegal value - got ", "A fatal error occures during the fork."]
-        ReasonCodes = [0x0, 0x1, 0x2, 0x3, 0x4]
+        Reasons = ['The connection is not established', "Cannot spawn the childproc.",\
+                   "The programm is supposed to get data via stdin, but no data was given."\
+                   "The given data contains illegal value - got ",\
+                   "A fatal error occures during the fork.", "There was no command given."]
+        ReasonCodes = [0x0, 0x1, 0x2, 0x3, 0x4, 0x6]
         Reason = 0x0
         NO_CONECTION = 0x0
         NO_CHILD = 0x1
         NO_DATA = 0x2
         ILLEGAL_CONTENT = 0x3
         FATAL_FORK = 0x4
+        NO_COMMAND = 0x5
+        __AdditionalInformation = None
 
         def __init__(self, ErrorCode, AdditionalStuff=None):
             self.Reason = ErrorCode
@@ -31,10 +38,10 @@ class CmdServiceException(Exception):
             if self.Reason not in self.ReasonCodes:
                 return repr('Unkown error.')
             else:
-             #   if self.__AdditionalInformation:
-             #       return repr(self.Reasons[self.Reason] + self.__AdditionalInformation)
-             #   else:
-                return repr(self.Reasons[self.Reason])
+                if self.__AdditionalInformation:
+                    return repr(self.Reasons[self.Reason] + self.__AdditionalInformation)
+                else:
+                   return repr(self.Reasons[self.Reason])
 
 class CmdService(object):
     __Timeout = None
@@ -47,7 +54,7 @@ class CmdService(object):
     __ParameterContext = None
     __ParameterHasChanged = None
     __TRANSMISSION_LENGTH =  50000#4096
-    __TRANSMISSION_ENCODING = None
+    __TransmissionEncoding = None
     __SLEEP_RATE = 0.005
     __SLEEP_EXACT = True
     __RestoreSignals = [1, 2, 3, 4, 5, 6, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 17, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 29, 30, 31, 34, 64]
@@ -88,17 +95,15 @@ class CmdService(object):
         self.__Parameter = OrderedDict()
         self.__ParameterContext = []
         self.__Lock = Threads.Lock()
-        self.__Parameter['cmd'] = Command
-        self.__TRANSMISSION_ENCODING = Encoding
+        if not Command:
+            raise CmdServiceException(CmdServiceException.NO_COMMAND)
+        else:
+            self.setCommand(Command, Timeout, Encoding)
         self.__ParameterHasChanged = True
         self._ReadFromStdin = False#we just need it one level above
         self._FlyingProcess = False
         self.__KeepAlive = False
         self.__startThreads()
-        if not isinstance(Timeout, int) or 0 >= Timeout:
-            self.__Timeout = 0
-        else:
-            self.__Timeout = self.__prepareTimeout(Timeout)
         if Enviroment and isinstance(Enviroment, dict):
             self.__Enviroment = Enviroment
             self.__EnviromentHasChanged = True
@@ -110,17 +115,36 @@ class CmdService(object):
 
     def __startThreads(self, Delimiter=None, PermanentProcess=False):
         if True == PermanentProcess:
-            self.__StdinThread = WriterDaemonizedThread(Pipe=self.__Stdin, Length=self.__TRANSMISSION_LENGTH, Encoding=self.__TRANSMISSION_ENCODING)
+            self.__StdinThread = WriterDaemonizedThread(Pipe=self.__Stdin,\
+                                                        Length=self.__TRANSMISSION_LENGTH,\
+                                                        Encoding=self.__TransmissionEncoding)
             self.__StdoutThread = None
-            self.__StderrThread = ReaderDaemonizedThread(Pipe=self.__Stderr, Length=self.__TRANSMISSION_LENGTH, Encoding=self.__TRANSMISSION_ENCODING, Delimiter=Delimiter)
+            self.__StderrThread = ReaderDaemonizedThread(Pipe=self.__Stderr,\
+                                                         Length=self.__TRANSMISSION_LENGTH,\
+                                                         Encoding=self.__TransmissionEncoding, Delimiter=Delimiter)
         else:
-            self.__StdinThread = WriterThread(Encoding=self.__TRANSMISSION_ENCODING, Length=self.__TRANSMISSION_LENGTH)
-            self.__StdoutThread = ReaderThread(Encoding=self.__TRANSMISSION_ENCODING, Length=self.__TRANSMISSION_LENGTH)
-            self.__StderrThread = ReaderThread(Encoding=self.__TRANSMISSION_ENCODING, Length=self.__TRANSMISSION_LENGTH)
+            self.__StdinThread = WriterThread(Encoding=self.__TransmissionEncoding, Length=self.__TRANSMISSION_LENGTH)
+            self.__StdoutThread = ReaderThread(Encoding=self.__TransmissionEncoding, Length=self.__TRANSMISSION_LENGTH)
+            self.__StderrThread = ReaderThread(Encoding=self.__TransmissionEncoding, Length=self.__TRANSMISSION_LENGTH)
         self.__StdinThread.start()
         if self.__StdoutThread:
             self.__StdoutThread.start()
         self.__StderrThread.start()
+
+    def setCommand(self, Command, Timeout=0, Encoding='utf-8'):
+        if not Command:
+            return
+
+        self.__Parameter['cmd'] = Command
+        if not isinstance(Timeout, int) or 0 >= Timeout:
+            self.__Timeout = 0
+        else:
+            self.__Timeout = self.__prepareTimeout(Timeout)
+
+        if Encoding and 'utf-8' != Encoding:
+            self.__TransmissionEncoding = Encoding
+        else:
+              self.__TransmissionEncoding = 'utf-8'
 
     def addParameter(self, Key, Value):
         if Key.strip():
@@ -266,9 +290,10 @@ class CmdService(object):
             return self.__EnviromentCache.copy()
 
     def __doChild(self, Data, Timeout, StdinPipe, StdoutPipe, StderrPipe, Stdout, Stderr, Stdin):
-        ChildId = int(PipeHelper.readLineFromPipe(StdoutPipe, Encoding=self.__TRANSMISSION_ENCODING, Length=self.__TRANSMISSION_LENGTH))
+        ChildId = int(PipeHelper.readLineFromPipe(StdoutPipe, Encoding=self.__TransmissionEncoding))
         self.__StderrThread.do(StderrPipe, Stderr)
         self.__StdoutThread.do(StdoutPipe, Stdout)
+        Time.sleep(1)
         if True == Stdin and Data:
             self.__StdinThread.do(StdinPipe, Data)
         try:
@@ -292,7 +317,7 @@ class CmdService(object):
             OS.dup2(Stdin, System.stdin.fileno())
         OS.dup2(Stdout, System.stdout.fileno())
         OS.dup2(Stderr, System.stderr.fileno())
-        PipeHelper.writeLineToPipe(Stdout, str(OS.getpid()), Encoding=self.__TRANSMISSION_ENCODING, Length=self.__TRANSMISSION_LENGTH)
+        PipeHelper.writeLineToPipe(Stdout, str(OS.getpid()), Encoding=self.__TransmissionEncoding, Length=self.__TRANSMISSION_LENGTH)
         System.stdout.flush()
         if not Enviroment:
             OS.execvp(Parameter[0], Parameter)
@@ -454,7 +479,9 @@ class CmdService(object):
         else:
             return (Parameter, AdditionalParameter, self.__getEnviromentCache(), None)
 
-    def startPermanentProcess(self, Delimiter, Flag=0x0, AdditionalParameter=None, AdditionalEnviroment=None, RestoreSignals=False, Stdin=False, StreamEnd=None, ReadStderrAnyCase=False):
+    def startPermanentProcess(self, Delimiter, Flag=0x0, AdditionalParameter=None,\
+                              AdditionalEnviroment=None, RestoreSignals=False,\
+                              Stdin=False, StreamEnd=None, ReadStderrAnyCase=False):
         if True == self.__KeepAlive:#we skip if a process is allready running
             return False
         if not Delimiter:#if we have no delimiter, we skip
@@ -518,7 +545,8 @@ class CmdService(object):
             self.__Stdout = StdoutOut
             self.__Stderr = StderrOut
 
-            self.__Process = int(PipeHelper.readLineFromPipe(Pipe=self.__Stdout, Encoding=self.__TRANSMISSION_ENCODING, Length=self.__TRANSMISSION_LENGTH))
+            self.__Process = int(PipeHelper.readLineFromPipe(Pipe=self.__Stdout,\
+                                                             Encoding=self.__TransmissionEncoding))
 
     def __startPTYProcess(self, Parameter, AdditionalParameter, Enviroment, AdditionalEnviroment, RestoreSignals, Stdin):
         PId = None
@@ -551,7 +579,8 @@ class CmdService(object):
 
             self.__Stdout = StdoutOut
             self.__Stderr = StderrOut
-            self.__Process = int(PipeHelper.readLineFromPipe(Pipe=self.__Stdout, Encoding=self.__TRANSMISSION_ENCODING, Length=self.__TRANSMISSION_LENGTH))
+            self.__Process = int(PipeHelper.readLineFromPipe(Pipe=self.__Stdout,\
+                                                             Encoding=self.__TransmissionEncoding))
 
     def getStatus(self):
         if False == self.__KeepAlive or not self.__Process:
@@ -594,7 +623,10 @@ class CmdService(object):
                 self.__Lock.release()
 
             return (Status, '', Stderr[0])
-        Stdout = PipeHelper.readUntilDelimiterFromPipe(Pipe=self.__Stdout, Delimiter=self.__Delimiter, Encoding=self.__TRANSMISSION_ENCODING, Length=self.__TRANSMISSION_LENGTH)
+        Stdout = PipeHelper.readUntilDelimiterFromPipe(Pipe=self.__Stdout,\
+                                                       Delimiter=self.__Delimiter,\
+                                                       Encoding=self.__TransmissionEncoding,\
+                                                       Length=self.__TRANSMISSION_LENGTH)
         self.__StderrThread.waitUntilDone(Stderr)
         self.__Lock.release()
         return (Status, Stdout, Stderr[0])
@@ -605,7 +637,10 @@ class CmdService(object):
             if True == self._ReadFromStdin:
                 self.__StdinThread.do(StringIO(self.__EndOfStream))
             self.__StderrThread.do(Stderr)
-            Stdout = PipeHelper.readUntilDelimiterFromPipe(Pipe=self.__Stdout, Delimiter=self.__EndOfStream, Encoding=self.__TRANSMISSION_ENCODING, Length=self.__TRANSMISSION_LENGTH)
+            Stdout = PipeHelper.readUntilDelimiterFromPipe(Pipe=self.__Stdout,\
+                                                           Delimiter=self.__EndOfStream,\
+                                                           Encoding=self.__TransmissionEncoding,\
+                                                           Length=self.__TRANSMISSION_LENGTH)
             self.__StderrThread.waitUntilDone(Stderr)
             return (Stdout, Stderr[0])
 
@@ -618,8 +653,13 @@ class CmdService(object):
                     OS.kill(self.__Process, Signal.SIGKILL)
                 else:
                     self.ReadStdoutAfterKill, self.ReadStderrAfterKill = self.interruptStream()
+                    Time.sleep(1)
+                    if self._OK == self.getStatus():
+                        OS.kill(self.__Process, Signal.SIGKILL)
 
-    def do(self, ParameterKey, Data=None, Flag= 0x0, WriteToStdin=False, Timeout=None, AdditionalParameter=None, AdditionalEnviroment=None, RestoreSignals=False):
+    def do(self, ParameterKey, Data=None, Flag= 0x0, WriteToStdin=False,\
+           Timeout=None, AdditionalParameter=None, AdditionalEnviroment=None,\
+           RestoreSignals=False):
         if not self.__StderrThread:
             self.__startThreads()
 
@@ -639,9 +679,21 @@ class CmdService(object):
             Parameter, AdditionalParameter, Enviroment, AdditionalEnviroment = self.__prepareAddtionals(AdditionalParameter, AdditionalEnviroment)
 
             if self.FORK_PTY_PROCESS == Flag:
-                ReturnCode, Stdout, Stderr = self.__doPTYForkAndExec(ParameterKey, Data, Parameter, Timeout, AdditionalParameter, Enviroment, AdditionalEnviroment, RestoreSignals, WriteToStdin)
+                ReturnCode, Stdout, Stderr = self.__doPTYForkAndExec(ParameterKey,\
+                                                                     Data, Parameter,\
+                                                                     Timeout,\
+                                                                     AdditionalParameter,\
+                                                                     Enviroment,\
+                                                                     AdditionalEnviroment,\
+                                                                     RestoreSignals, WriteToStdin)
             else:
-                ReturnCode, Stdout, Stderr = self.__doForkAndExec(ParameterKey, Data, Parameter, Timeout, AdditionalParameter, Enviroment, AdditionalEnviroment, RestoreSignals, WriteToStdin)
+                ReturnCode, Stdout, Stderr = self.__doForkAndExec(ParameterKey, Data,\
+                                                                  Parameter, Timeout,\
+                                                                  AdditionalParameter,\
+                                                                  Enviroment,\
+                                                                  AdditionalEnviroment,\
+                                                                  RestoreSignals,\
+                                                                  WriteToStdin)
         else:
             ReturnCode, Stdout, Stderr = self.__communicator(Data)
             if self.__OSErrorMessage:
@@ -681,7 +733,7 @@ class CmdService(object):
                 self.__EnviromentHasChanged = True
 
     def stop(self):
-        if False == self.__KeepAlive:
+        if False == self.__KeepAlive or self._TERMINATED == self.getStatus():
             return
         self.__kill()
         if self.__StdoutThread:
@@ -700,6 +752,8 @@ class CmdService(object):
         self.__KeepAlive = False
 
     def close(self):
+        if self._TERMINATED == self.getStatus():
+            return
         if self.__StdoutThread:
             self.__StdoutThread.die()
         self.__StderrThread.die()

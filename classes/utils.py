@@ -14,9 +14,9 @@ def staticVariable(**KeyWithArguments):
         return decorate
 
 def mergeDictionaries(D1, D2):
-        Merge = D1.copy()
-        Merge.update(D2)
-        return Merge
+    Merge = D1.copy()
+    Merge.update(D2)
+    return Merge
 
 class Mutable(object):
     __Value = None
@@ -328,15 +328,16 @@ class PermanentPipeWriterThread(Threads.Thread):
         self.die()
 
 class PipeException(Exception):
-    __Reasons = ['Unexspected result, while reading pipe. Got: %s']
-    __ReasonCodes = [0x0]
+    __Reasons = ['Unexspected result, while reading pipe. Got: {}', 'The given length must at least as long as the delimiter.']
+    __ReasonCodes = [0x0, 0x1]
     __Reason = None
     __Additional = None
     _UNEXSPECTED_RESULT = 0x0
+    _INVALID_LENGTH = 0x1
 
     def __int__(self, Reason, Additional=None):
         self.__Reason = Reason
-        self.__Additional = Additionla
+        self.__Additional = Additional
 
     def __str__(self):
         if self.__Reason not in self.__ReasonCodes:
@@ -423,8 +424,10 @@ class PipeHelper(object):
         return Written
 
     @staticmethod
-    def writeLineToPipe(Pipe, InputString,Length=1024, Encoding='utf-8'):
-        return PipeHelper.writeWithDelimterToPipe(Pipe, InputString, "\n", Length, Encoding, PipeHelper.MULTIBLE_PACKAGES)
+    def writeLineToPipe(Pipe, InputString, Length=1024, Encoding='utf-8'):
+        return PipeHelper.writeWithDelimterToPipe(Pipe, InputString, "\n",\
+                                                  Length, Encoding,\
+                                                  PipeHelper.MULTIBLE_PACKAGES)
 
     @staticmethod
     def writeUntilEOFFromPipe(Pipe, InputString, Length=1024, Encoding='utf-8', Packageing=CONTINUOUS_PACKAGE):
@@ -456,29 +459,68 @@ class PipeHelper(object):
         return OS.read(Pipe, Length).decode(Encoding)
 
     @staticmethod
-    def readUntilDelimiterFromPipe(Pipe, Delimiter, Length=1024, Encoding='utf-8'):
-        Output = b''
-        Chars = OS.read(Pipe, Length)
+    def readUntilDelimiterFromPipe(Pipe, Delimiter, Length=1024, Encoding='utf-8', __DirtyHack=Mutable()):
         EncodedDelimiter = Delimiter.encode(Encoding)
         DelimiterLength = len(EncodedDelimiter)
-        while True:
-            if EncodedDelimiter == Chars[-DelimiterLength:] or b'' == Chars[-1:]:#the 2nd one is to kepp us save, if the process died
-                Output += Chars[0:-DelimiterLength]
-                break
-            elif EncodedDelimiter == Chars[-1-DelimiterLength:-1]:#we have to do this to avoid a newline stuck by println, everything after it will dumped
-                Output += Chars[0:-1-DelimiterLength]
-                break
-            else:
-                Output += Chars
-            try:
+        if DelimiterLength > Length:
+            raise PipeException(PipeException._INVALID_LENGTH)
+        if DelimiterLength == Length:
+            Output = b''
+            Chars = OS.read(Pipe, Length)
+            EncodedDelimiter = Delimiter.encode(Encoding)
+            DelimiterLength = len(EncodedDelimiter)
+            while True:
+#                if EncodedDelimiter == Chars[-DelimiterLength:] or b'' == Chars[-1:]:#the 2nd one is to kepp us save, if the process died
+                if  EncodedDelimiter == Chars or b'' == Chars:
+#                    Output += Chars[0:-DelimiterLength]
+                    break
+#                elif EncodedDelimiter == Chars[-1-DelimiterLength:-1]:#we have to do this to avoid a newline stuck by println, everything after it will dumped
+#                    Output += Chars[0:-1-DelimiterLength]
+#                    break
+                else:
+                    Output += Chars
+                try:
+                    Chars = OS.read(Pipe, Length)
+                except:
+                    break
+            return Output.decode(Encoding)
+        else:#this is just a dirty hack, but needed, coz there is no other way to be sure, this method works correctly
+            Output = ''
+
+            if not __DirtyHack.value():
+                __DirtyHack.set({})
                 Chars = OS.read(Pipe, Length)
-            except:
-                break
-        return Output.decode(Encoding)
+                Chars = Chars.decode(Encoding)
+            else:
+                if Pipe in __DirtyHack.value() and __DirtyHack.value()[Pipe]:
+                    Chars = __DirtyHack.value()[Pipe]
+                    del __DirtyHack.value()[Pipe]
+                else:
+                    Chars = OS.read(Pipe, Length)
+                    Chars = Chars.decode(Encoding)
+
+            while True:
+                Output += Chars
+                if Delimiter in Output:
+                    break
+                try:
+                    Chars = OS.read(Pipe, Length)
+                except:
+                    break
+                if b'' == Chars:
+                    break
+                Chars = Chars.decode(Encoding)
+            Output = Output.split(Delimiter, 1)
+            O2 = Output[1].strip()
+            if O2:
+                __DirtyHack.value()[Pipe] = O2
+            return Output[0]
 
     @staticmethod
-    def readLineFromPipe(Pipe, Length=1024, Encoding='utf-8'):
-        return PipeHelper.readUntilDelimiterFromPipe(Pipe, "\n", Length, Encoding)
+    def readLineFromPipe(Pipe, Encoding='utf-8'):
+        return PipeHelper.readUntilDelimiterFromPipe(Pipe, "\n",\
+                                                    len("\n".encode(Encoding)),\
+                                                    Encoding)
 
     @staticmethod
     def readPackagesFromPipe(Pipe, Length=1024, Encoding='utf-8', Packageing=CONTINUOUS_PACKAGE):
@@ -643,11 +685,11 @@ class DelimiterPermanentPipeReaderThread(PermanentPipeReaderThread):
 
 #-------------
 class LinePipeReaderThread(PipeReaderThread):
-    def __init__(self, Length, Encoding):
-        PipeReaderThread.__init__(self, Length, Encoding)
+    def __init__(self, Encoding):
+        PipeReaderThread.__init__(self, Encoding)
 
     def _read(self, Pipe, Output):
-        Output.append(PipeHelper.readLineFromPipe(Pipe, self._Length, self._Encoding))
+        Output.append(PipeHelper.readLineFromPipe(Pipe, self._Encoding))
 #-------------
 class EoFPipeReaderThread(PipeReaderThread):
     def __init__(self, Length, Encoding):
