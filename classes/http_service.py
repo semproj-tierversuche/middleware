@@ -252,9 +252,13 @@ class HttpService(object):
                             Value = str(Value)
                         self.__Request.headers[Key.strip()] = Value.strip()
 
-                if AdditionalPath and isinstance(AddtionalPath, list):
+                if AdditionalPath and isinstance(AdditionalPath, list):
                     OrginalUrl = self.__Request.url
-                    self.__Request.url += "/".join(AddtionalPath)
+                    if self.__Request.url.endswith("/"):
+                        self.__Request.url += "/".join(AdditionalPath)
+                    else:
+                        self.__Request.url += "/" + "/".join(AdditionalPath)
+                    print(self.__Request.url)
             try:
                 ToSend = self.__Request.prepare()
                 if self.__InputData:
@@ -281,7 +285,7 @@ class HttpService(object):
                     else:
                         self.__PersistentCookies = Cookies
 
-                if AdditionalPath and isinstance(AddtionalPath, list):
+                if AdditionalPath and isinstance(AdditionalPath, list):
                     self.__Request.url = OrginalUrl
 
                 self.__VolatileURLParameter.clear()
@@ -291,7 +295,7 @@ class HttpService(object):
             if (len(self.__PersistentURLParameters) != len(self.__Request.params))\
                 or (len(self.__PersistentHeaders) != len(self.__Request.headers))\
                 or ((self.__PersistentCookies and 0 != len(self.__PersistentCookies) and not self.__Request.cookies)\
-                    or (len(self.__PersistentCookies) != len(self.__Request.cookies))):
+                    or (self.__Request.cookies and len(self.__PersistentCookies) != len(self.__Request.cookies))):
                 self.__UpdatePersistentRequest = True
             else:
                 self.__UpdatePersistentRequest = False

@@ -30,17 +30,12 @@ class ServiceAsCmd(object):
                 Cmd.addParameter(self._Configuration[Type]['parameter'][x]['key'], self._Configuration[Type]['parameter'][x]['value'])
         if True == self._Configuration[Type]['keepalive'] and self._Configuration[Type]['delimiter'] and False == IgnoreFly:
             if True == self._Configuration[Type]['readOnlyEnd']:
-                if True == self._Configuration[Type]['stdin']:
-                    Cmd.startPermanentProcess(self._Configuration[Type]['delimiter'],\
-                        Flag=Execution, Stdin=True, StreamEnd=self._Configuration[Type]['endDelimiter'])
-                else:
-                    Cmd.startPermanentProcess(self._Configuration[Type]['delimiter'],\
-                        Flag=Execution, Stdin=False, StreamEnd=self.__Configuration[Type]['endDelimiter'])
+                Cmd.startPermanentProcess(self._Configuration[Type]['delimiter'],\
+                        Flag=Execution, Stdin=self._Configuration[Type]['stdin'],\
+                        StreamEnd=self._Configuration[Type]['endDelimiter'])
             else:
-                if True == self._Configuration[Type]['stdin']:
-                    Cmd.startPermanentProcess(self._Configuration[Type]['delimiter'], Flag=Execution, Stdin=True)
-                else:
-                    Cmd.startPermanentProcess(self._Configuration[Type]['delimiter'], Flag=Execution, Stdin=False)
+                Cmd.startPermanentProcess(self._Configuration[Type]['delimiter'],\
+                                          Flag=Execution, Stdin=self._Configuration[Type]['stdin'])
         return Cmd
 
 class ServiceAsHttp(object):
@@ -86,10 +81,13 @@ class ServiceAsHttp(object):
         return HttpObject
 
     def __bodyless(self, Input, HttpObject, AdditionalParameter, ParameterAsPath):
+        print('o')
         if not isinstance(Input, dict):
             return None
         if not Input:
             Input = {}
+
+        print(Input)
 
         if AdditionalParameter:
             if isinstance(AdditionalParameter, dict):
@@ -101,8 +99,10 @@ class ServiceAsHttp(object):
             return HttpObject.call()
 
         if ParameterAsPath:
-            Input = Input.values()
-            return HttpObject.call(AdditionalPath=Input)
+            ToSet = []
+            for (Key, Value) in Input.items():
+                ToSet.append(str(Value))
+            return HttpObject.call(AdditionalPath=ToSet)
         else:
             return HttpObject.call(AdditionalParameter=Input)
 
@@ -126,9 +126,15 @@ class ServiceAsHttp(object):
         Method = Method.upper()
 
         if 'POST' == Method:
-            Response = self.__withBody(ToDo, HTTPObject, AdditionalParameter, ParameterAsPath, {'Content-Type':'application/x-www-form-urlencoded; multipart/form-data; charset=' + self._Encoding, 'Content-Length': str(len(ToDo))})
+            Response = self.__withBody(ToDo, HTTPObject, AdditionalParameter, ParameterAsPath,\
+                                       {'Content-Type':'application/x-www-form-urlencoded;\
+                                        multipart/form-data; charset=' + self._Encoding,\
+                                        'Content-Length': str(len(ToDo))})
         elif 'PUT' == Method:
-            Response = self.__withBody(ToDo, HTTPObject, AdditionalParameter, ParameterAsPath, {'Content-Type':'text/plain; application/json; charset=' + self._Encoding, 'Content-Length':str(len(ToDo))})
+            Response = self.__withBody(ToDo, HTTPObject, AdditionalParameter, ParameterAsPath,\
+                                       {'Content-Type':'text/plain; application/json;\
+                                        charset=' + self._Encoding,\
+                                        'Content-Length':str(len(ToDo))})
         else:
             Response = self.__bodyless(ToDo, HTTPObject, AdditionalParameter, ParameterAsPath)
         return Response
@@ -194,7 +200,7 @@ class CmdAsDatabase(Database):
     def __del__(self):
         self.close()
 class CmdAsTextmining(ServiceAsCmd, Textmining):
-    __Worker = None
+    _Worker = None
     __Version = None
     __Lock = None
 
@@ -203,12 +209,22 @@ class CmdAsTextmining(ServiceAsCmd, Textmining):
         self.__Worker = ServiceAsCmd._prepareForCmdService(self, 'cmd',CmdService.FORK_PTY_PROCESS)
         self.__Lock = Lock()
 
-    def do(self, Input, ParameterKey=None, AdditionalParameter=None, ReadFromStdin=False):
+    def do(self, Input, ParameterKey=None, AdditionalParameter=None):
         Keys = []
+        if AdditionalParameter and 2 == len(AdditionalParameter)\
+            and 'param' in AdditionalParameter\
+            and 'order' in AdditionalParameter:
+            AdditionalParameter = AdditionalParameter['param']
         if not ParameterKey:
-            ReturnCode, Stdout, Stderr = self.__Worker.do('', Data=Input, Flag=CmdService.FORK_PTY_PROCESS, WriteToStdin=ReadFromStdin, AdditionalParameter=AdditionalParameter)
+            ReturnCode, Stdout, Stderr = self.__Worker.do('', Data=Input,\
+                                                          Flag=CmdService.FORK_PTY_PROCESS,\
+                                                          WriteToStdin=self._Configuration['cmd']['stdin'],\
+                                                          AdditionalParameter=AdditionalParameter)
         else:
-            ReturnCode, Stdout, Stderr = self.__Worker.do(ParameterKey, Data=Input, Flag=CmdService.FORK_PTY_PROCESS, WriteToStdin=ReadFromStdin, AdditionalParameter=AdditionalParameter)
+            ReturnCode, Stdout, Stderr = self.__Worker.do(ParameterKey, Data=Input,\
+                                                          Flag=CmdService.FORK_PTY_PROCESS,\
+                                                          WriteToStdin=self._Configuration['cmd']['stdin'],\
+                                                          AdditionalParameter=AdditionalParameter)
         return (ReturnCode, Stdout, Stderr)
 
     def reconnect(self):
@@ -243,13 +259,13 @@ class CmdAsTextmining(ServiceAsCmd, Textmining):
         self.close()
 
 class HostAsDatabase(Database, ServiceAsHttp):
-    __Query = None
+    _Query = None
     __QueryLock = Lock()
-    __Update = None
+    _Update = None
     __UpdateLock = Lock()
-    __Delete = None
+    _Delete = None
     __DeleteLock = Lock()
-    __Insert = None
+    _Insert = None
     __InsertLock = Lock()
     __Version = None
 
@@ -258,23 +274,25 @@ class HostAsDatabase(Database, ServiceAsHttp):
         self.openDatabase(StartQuery, StartInsert, StartUpdate, StartDelete)
 
     def openDatabase(self, Query=True, Insert=True, Update=False, Delete=False):
-        if True == Query and not self.__Query:
-            self.__Query = ServiceAsHttp._prepareForHttpService(self, 'query')
-        if True == Insert and not self.__Insert:
-            self.__Insert = ServiceAsHttp._prepareForHttpService(self, 'insert')
-        if True == Update and not self.__Update and 'update' in self._Configuration:
-             self.__Update = ServiceAsHttp._prepareForHttpService(self, 'update')
-        if True == Delete and not self.__Delete and 'delete' in self._Configuration:
-             self.__Delete = ServiceAsHttp._prepareForHttpService(self, 'delete')
+        if True == Query and not self._Query:
+            self._Query = ServiceAsHttp._prepareForHttpService(self, 'query')
+        if True == Insert and not self._Insert:
+            self._Insert = ServiceAsHttp._prepareForHttpService(self, 'insert')
+        if True == Update and not self._Update and 'update' in self._Configuration:
+             self._Update = ServiceAsHttp._prepareForHttpService(self, 'update')
+        if True == Delete and not self._Delete and 'delete' in self._Configuration:
+             self._Delete = ServiceAsHttp._prepareForHttpService(self, 'delete')
 
     #just for error handling...later
     def query(self, Query, AdditionalParameter=None, ParameterAsPath=False):
         Response = None
-        if not self.__Query:
-            self.__Query = ServiceAsHttp._prepareForHttpService(self, 'query')
+        if not self._Query:
+            self._Query = ServiceAsHttp._prepareForHttpService(self, 'query')
         self.__QueryLock.acquire()
         try:
-            Response = ServiceAsHttp._withOrWithoutBody(self, self._Configuration['query']['method'],Query, self.__Query, AdditionalParameter, ParameterAsPath)
+            Response = ServiceAsHttp._withOrWithoutBody(self, self._Configuration['query']['method'],\
+                                                        Query, self._Query,\
+                                                        AdditionalParameter, ParameterAsPath)
         except HttpServiceException as e:
             raise e
         finally:
@@ -283,11 +301,13 @@ class HostAsDatabase(Database, ServiceAsHttp):
 
     def insert(self, Insert, AdditionalParameter=None, ParameterAsPath=False):
         Response = None
-        if not self.__Insert:
-            self.__Insert = ServiceAsHttp._prepareForHttpService(self, 'insert')
+        if not self._Insert:
+            self._Insert = ServiceAsHttp._prepareForHttpService(self, 'insert')
         self.__InsertLock.acquire()
         try:
-            Response = ServiceAsHttp._withOrWithoutBody(self, self._Configuration['insert']['method'], Insert, self.__Insert, AdditionalParameter, ParameterAsPath)
+            Response = ServiceAsHttp._withOrWithoutBody(self, self._Configuration['insert']['method'],\
+                                                        Insert, self._Insert,\
+                                                        AdditionalParameter, ParameterAsPath)
         except HttpServiceException as e:
             raise e
         finally:
@@ -296,13 +316,15 @@ class HostAsDatabase(Database, ServiceAsHttp):
 
     def update(self, Update, AdditionalParameter=None, ParameterAsPath=False):
         Response = None
-        if not self.__Update:
-            self.__Update = ServiceAsHttp._prepareForHttpService(self, 'update')
-            if None == self.__Update:
+        if not self._Update:
+            self._Update = ServiceAsHttp._prepareForHttpService(self, 'update')
+            if None == self._Update:
                 return None#throw error
         self.__UpdateLock.acquire()
         try:
-            Response = ServiceAsHttp._withOrWithoutBody(self, self._Configuration['update']['method'],Query, self.__Update, AdditionalParameter, ParameterAsPath)
+            Response = ServiceAsHttp._withOrWithoutBody(self, self._Configuration['update']['method'],\
+                                                        Update, self._Update,\
+                                                        AdditionalParameter, ParameterAsPath)
         except HttpServiceException as e:
             raise e
         finally:
@@ -311,13 +333,15 @@ class HostAsDatabase(Database, ServiceAsHttp):
 
     def delete(self, Delete, AdditionalParameter=None, ParameterAsPath=False):
        Response = None
-       if not self.__Delete:
-           self.__Delete = ServiceAsHttp._prepareForHttpService(self, 'delete')
-           if None == self.__Delete:
+       if not self._Delete:
+           self._Delete = ServiceAsHttp._prepareForHttpService(self, 'delete')
+           if None == self._Delete:
                return None#throw error
        self.__DeleteLock.acquire()
        try:
-           Response = ServiceAsHttp._withOrWithoutBody(self, self._Configuration['delete']['method'],Query, self.__Delete, AdditionalParameter, ParameterAsPath)
+           Response = ServiceAsHttp._withOrWithoutBody(self, self._Configuration['delete']['method'],\
+                                                       Delete, self._Delete,\
+                                                       AdditionalParameter, ParameterAsPath)
        except HttpServiceException as e:
            raise e
        finally:
@@ -342,24 +366,24 @@ class HostAsDatabase(Database, ServiceAsHttp):
                 self.__QueryLock.release()
 
     def closeUpdate(self):
-        if self.__Update:
-           self.__Update.close()
-           self.__Update = None
+        if self._Update:
+           self._Update.close()
+           self._Update = None
 
     def closeDelete(self):
-        if self.__Delete:
-            self.__Delete.close()
-            self.__Delete = None
+        if self._Delete:
+            self._Delete.close()
+            self._Delete = None
 
     def closeInsert(self):
-        if self.__Insert:
-            self.__Insert.close()
-            self.__Insert = None
+        if self._Insert:
+            self._Insert.close()
+            self._Insert = None
 
     def closeQuery(self):
-        if self.__Query:
-            self.__Query.close()
-            self.__Query = None
+        if self._Query:
+            self._Query.close()
+            self._Query = None
 
     def close(self):
         self.closeDelete()
@@ -370,19 +394,30 @@ class HostAsDatabase(Database, ServiceAsHttp):
     def __del__(self):
         self.close()
 class HostAsTextmining(Textmining, ServiceAsHttp):
-    __Worker = None
+    _Worker = None
     __Version = None
     __Lock = Lock()
 
     def __init__(self, Configuration, Encoding='utf-8'):
         ServiceAsHttp.__init__(self, Configuration, Encoding)
-        self.__Worker = ServiceAsHttp._prepareForHttpService(self, 'cmd')
+        self._Worker = ServiceAsHttp._prepareForHttpService(self, 'cmd')
 
-    def do(self, Input, ParameterKey=None, AddtionailParameter=None, ReadFromStdin=False):
+    def do(self, Input, ParameterKey=None, AdditionalParameter=None):
         Response = None
+        if AdditionalParameter and 2 == len(AdditionalParameter)\
+                and 'param' in AdditionalParameter\
+                and 'order' in AdditionalParameter:
+            Parameter = AdditionalParameter['param']
+            How = AdditionalParameter['Order']
+        else:
+            Parameter = AdditionalParameter
+            How = False
         self.__Lock.acquire()
         try:
-            Response = ServiceAsHttp._withOrWithoutBody(self, self._Configuration['cmd']['method'], Input, self.__Worker, AdditionalParameter)
+            Response = ServiceAsHttp._withOrWithoutBody(self, self._Configuration['cmd']['method'],\
+                                                        Input, self.__Worker,\
+                                                        AdditionalParameter=Parameter,\
+                                                        ParameterAsPath=How)
         except HttpServiceException as e:
             raise e
         finally:
@@ -509,39 +544,40 @@ class DatabaseService(object):
 
 class TextminingService(object):
 
-    __Textmining = None
+    _Textmining = None
     __Lock = Lock()
 
     def __init__(self, Configuration):
         if 'host' in Configuration._Textmining:
-            self.__Textmining = HostAsTextmining(Configuration._Textmining)
+            self._Textmining = HostAsTextmining(Configuration._Textmining)
         else:
-            self.__Textmining = CmdAsTextmining(Configuration._Textmining)
+            self._Textmining = CmdAsTextmining(Configuration._Textmining)
     def version(self):
-        return self.__Textmining.getVersion()
+        return self._Textmining.getVersion()
 
-    def do(self, Input, ParameterKey=None, AdditionalParameter=None, ReadFromStdin=False, RetryOnFail=False):
+    def do(self, Input, ParameterKey=None, AdditionalParameter=None, RetryOnFail=False):
         self.__Lock.acquire()
         if True == RetryOnFail:
             try:
-                ReturnCode, Stdout, Stderr = self.__Textmining.do(Input, ParameterKey, AdditionalParameter, ReadFromStdin)
+                ReturnCode, Stdout, Stderr = self._Textmining.do(Input, ParameterKey, AdditionalParameter)
             except HttpServiceException as e:
                 self.__Textmining.reconnect()
-                ReturnCode, Stdout, Stderr = self.__Textmining.do(Input, ParameterKey, AdditionalParameter, ReadFromStdin)
+                ReturnCode, Stdout, Stderr = self._Textmining.do(Input, ParameterKey, AdditionalParameter)
             finally:
                 self.__Lock.release()
 
             if (ReturnCode != CmdService._OK and 0 > ReturnCode) or 1 == ReturnCode:
                 self.__Textmining.reconnect()
-                ReturnCode, Stdout, Stderr = self.__Textmining.do(Input, ParameterKey, AdditionalParameter, ReadFromStdin)
+                ReturnCode, Stdout, Stderr = self._Textmining.do(Input, ParameterKey, AdditionalParameter)
         else:
-            ReturnCode, Stdout, Stderr = self.__Textmining.do(Input, ParameterKey, AdditionalParameter, ReadFromStdin)
+            ReturnCode, Stdout, Stderr = self._Textmining.do(Input, ParameterKey,\
+                                                              AdditionalParameter)
             self.__Lock.release()
         return (ReturnCode, Stdout, Stderr)
 
     def close(self):
-        if self.__Textmining:
-            return self.__Textmining.close()
+        if self._Textmining:
+            return self._Textmining.close()
 
     def __del__(self):
         self.close()
