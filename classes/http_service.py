@@ -215,7 +215,9 @@ class HttpService(object):
         SwapBody = None
         URLParameter = {}
 
-        if (AdditionalParameter and isinstance(AdditionalParameter, dict)) or (AdditionalHeaders and isinstance(AdditionalHeaders, dict)) or (AdditionalPath and isinstance(AdditionalPath, list)):
+        if (AdditionalParameter and isinstance(AdditionalParameter, dict))\
+                or (AdditionalHeaders and isinstance(AdditionalHeaders, dict))\
+                or (AdditionalPath and isinstance(AdditionalPath, list)):
             self.__UpdatePersistentRequest = True
 
         if False == self.__PreparationIsActive:
@@ -258,7 +260,6 @@ class HttpService(object):
                         self.__Request.url += "/".join(AdditionalPath)
                     else:
                         self.__Request.url += "/" + "/".join(AdditionalPath)
-                    print(self.__Request.url)
             try:
                 ToSend = self.__Request.prepare()
                 if self.__InputData:

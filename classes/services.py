@@ -147,7 +147,7 @@ class ServiceAsHttp(object):
         return Response
 
     def _responseFormatter(self, Response):
-        if not Response:
+        if Response is None:#do not change this into not Response...python will allway consider a response object as negated
             raise TypeError("Invalid value given to http service.")
         Response.close()# Should not normally need to be called explicitly....
         if 200 != Response.status_code:
