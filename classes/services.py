@@ -53,14 +53,24 @@ class ServiceAsHttp(object):
             pass#raise Error
         if 'host' not in self._Configuration[Type]:
             if 'port' in self._Configuration['host']:
-                Return = self.__startTransaction(self._Configuration[Type], HttpService(self._Configuration['host']['name'], self._Configuration['host']['useHttps'], self._Configuration['host']['port']))
+                Return = self.__startTransaction(self._Configuration[Type],\
+                                                 HttpService(self._Configuration['host']['name'],\
+                                                             self._Configuration['host']['useHttps'],\
+                                                             self._Configuration['host']['port']))
             else:
-                Return = self.__startTransaction(self._Configuration[Type], HttpService(self._Configuration['host']['name'], self._Configuration['host']['useHttps']))
+                Return = self.__startTransaction(self._Configuration[Type],\
+                                                 HttpService(self._Configuration['host']['name'],\
+                                                             self._Configuration['host']['useHttps']))
         else:
             if 'port' in self._Configuration[Type]['host']:
-                Return = self.__startTransaction(self._Configuration[Type], HttpService(self._Configuration[Type]['host']['name'], self._Configuration[Type]['host']['useHttps'], self._Configuration[Type]['host']['port']))
+                Return = self.__startTransaction(self._Configuration[Type],\
+                                                 HttpService(self._Configuration[Type]['host']['name'],\
+                                                             self._Configuration[Type]['host']['useHttps'],\
+                                                             self._Configuration[Type]['host']['port']))
             else:
-                Return = self.__startTransaction(self._Configuration[Type], HttpService(self._Configuration[Type]['host']['name'], self._Configuration[Type]['host']['useHttps']))
+                Return = self.__startTransaction(self._Configuration[Type],\
+                                                 HttpService(self._Configuration[Type]['host']['name'],\
+                                                             self._Configuration[Type]['host']['useHttps']))
 
         return Return
 
@@ -81,13 +91,10 @@ class ServiceAsHttp(object):
         return HttpObject
 
     def __bodyless(self, Input, HttpObject, AdditionalParameter, ParameterAsPath):
-        print('o')
         if not isinstance(Input, dict):
             return None
         if not Input:
             Input = {}
-
-        print(Input)
 
         if AdditionalParameter:
             if isinstance(AdditionalParameter, dict):
