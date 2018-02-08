@@ -119,7 +119,7 @@ class PatricaTrieNode(object):
                         if False == NewNode._importChildes(self._Childes):
                             return False
                         if False == self.__IsEnding:
-                            NewChild.unsetEnd()
+                            NewNode.unsetEnd()
                         self.__Value = Common
                         self.__IsEnding = False
                         self._Childes = []
@@ -208,11 +208,15 @@ class PatricaTrieNode(object):
             else:
                 return None
 
-    def contains(self, String):
-        if not self.find(String):
+    def contains(self, String, Exact=False):
+        Node = self.find(String)
+        if not Node:
             return False
         else:
-            return True
+            if True == Exact:
+                return Node.isAEnd.()
+            else:
+                return True
 
     def _serialize(self):
         Output = '[{}:{}'.format(len(self.__Value), self.__Value)
