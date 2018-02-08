@@ -81,12 +81,6 @@ class PatricaTrieNode(object):
             else:
                 LengthInsert = len(String)
                 LengthValue = len(self.__Value)
-                if LengthInsert >= LengthValue:
-                    Shortest = self.__Value
-                    Longest = String
-                else:
-                    Shortest = String
-                    Longest = self.__Value
 
                 Index = self.__findLongesPrefix(String,\
                                                 LengthInsert,\
@@ -168,7 +162,6 @@ class PatricaTrieNode(object):
          del self.__Value
          self.__Parent._clean(FormerValue)
 
-
     def _clean(self, FormerValue):
         Index = self.__Contains(FormerValue)
         if -1 == Index:
@@ -190,7 +183,6 @@ class PatricaTrieNode(object):
             self._Childes.pop()
             self.__FistLetters.pop()
             self.__IsEnding = True
-
 
     def find(self, String):
         String = str(String)
