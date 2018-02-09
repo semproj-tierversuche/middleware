@@ -214,7 +214,7 @@ class PatricaTrieNode(object):
             return False
         else:
             if True == Exact:
-                return Node.isAEnd.()
+                return Node.isAEnd()
             else:
                 return True
 
@@ -245,6 +245,17 @@ class PatricaTrieNode(object):
 class PatricaTrie(PatricaTrieNode):
     def __init__(self):
         PatricaTrieNode.__init__(self, None)
+
+    def symetricDifferenz(self, Trie):
+        if not isinstance(Trie, PatricaTrie):
+            return None
+
+        MyValue = set(self.getValues())
+        OthersValue = (self.getValues())
+
+        Difference = list(MyValue.symmetric_difference(OthersValue))
+        Difference.sort()
+        return Difference
 
     def serialize(self):
         Output = '[root'
