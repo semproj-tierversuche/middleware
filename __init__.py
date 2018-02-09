@@ -1,6 +1,5 @@
 from classes.textmining import Textmining
 
 
-Mining = Textmining("../config.xml")
-Mining.downloadFiles()
-Mining.throwAgainsTextMining()
+Mining = Textmining("../config2.xml")
+Mining.execute()
