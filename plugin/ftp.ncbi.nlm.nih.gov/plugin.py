@@ -89,6 +89,7 @@ class Plugin(PlugInInterface):
 
         return Plugin.Transformer(WhatEver)
 
+    @staticmethod
     def mergeArticles(ArticleOld, ArticleNew):
         return ArticleNew
 
