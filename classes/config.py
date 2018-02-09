@@ -7,7 +7,8 @@ import codecs as Codex
 import json as JSON
 from pathlib import Path
 import time as Time
-
+import urllib.parse as URL
+#TODO: urlencode bei den Strings
 class ConfigException(Exception):
     Reasons = ['The given Element was not found.']
     ReasonCodes = [0x0]
@@ -27,23 +28,33 @@ PLUGIN_PULK = 0x1
 
 class ConfigReader(object):
     __Root = None
-    _Textmining = {}
-    _Database = {}
-    _Resources = []
-    _General = {}
+    _Textmining = None
+    _Database = None
+    _Resources = None
+    _General = None
+    _Frontend = None
+
+    def __init__(self):
+        self._Textmining = {}
+        self._Database = {}
+        self._Resources = []
+        self._General = {}
+        self._Frontend = []
 
     def parseConfigFile(self, ConfigFile):
         Go = False
         CacheFile = OS.path.dirname(OS.path.abspath(ConfigFile)) + '/.configCache'
         if OS.path.isfile(CacheFile) and OS.stat(ConfigFile).st_mtime < OS.stat(CacheFile).st_mtime:
             Cache = JSON.load(open(CacheFile))
-            if str(Cache['check']) != str(int(OS.stat(CacheFile).st_mtime)):
+            if str(Cache['check']) != str(int(OS.stat(CacheFile).st_mtime)) or\
+                    Cache['name'] != ConfigFile:
                 Go = False
             else:
                 self._Textmining = Cache['textmining']
                 self._Database = Cache['database']
                 self._Resources = Cache['resources']
                 self._General = Cache['general']
+                self._Frontend = Cache['frontend']
                 return
 
         if False == Go:
@@ -53,12 +64,15 @@ class ConfigReader(object):
             self.readDatabase()
             self.readResources()
             self.readGeneral()
+            self.readFrontend()
             if True == OS.access(OS.path.dirname(OS.path.abspath(ConfigFile)), OS.W_OK):
                 ToCache = {}
+                ToCache['name'] = ConfigFile
                 ToCache['textmining'] = self._Textmining
                 ToCache['database'] = self._Database
                 ToCache['resources'] = self._Resources
                 ToCache['general'] = self._General
+                ToCache['frontend'] = self._Frontend
                 ToCache['check'] = int(Time.time())
                 with open(CacheFile, 'w') as OutFile:
                     JSON.dump(ToCache, OutFile)
@@ -242,7 +256,19 @@ class ConfigReader(object):
             #throw exception if not in tagsoup
             pass
         else:
+            #this is just a hack
+            if "terminator" in Node.attrib and Node.attrib["terminator"]:
+                Terminator  = URL.unquote(Node.attrib["terminator"].strip())
+            else:
+                Terminator = None
+
+            if "verbose" in Node.attrib:
+                Verbose = True
+            else:
+                Verbose = False
             self._Textmining = self.readService(Node)
+            self._Textmining['terminator'] = Terminator
+            self._Textmining['verbose'] = Verbose
 
     def readDatabase(self):
         Node = None
@@ -370,6 +396,20 @@ class ConfigReader(object):
         Return['inclusions'] = self.readRuleSet(Node, "./includeFiles")
         return Return
 
+
+    def readPlugin(self, Node, Return):
+         if 'plugin' in Node.attrib:
+             if OS.path.isfile('./plugin/' + Node.attrib['plugin'].strip() + '/plugin.py'):
+                 Return['plugin'] = './plugin/' + Node.attrib['plugin'].strip() + '/plugin.py'
+                 #raise a excption as warning
+         else:
+             if OS.path.isfile('./plugin/' + Return['domain'] + '/plugin.py'):
+                 Return['plugin'] = './plugin/' + Return['domain'] + '/plugin.py'
+             else:
+                 #raise a exception
+                 Return['plugin'] = None
+
+
     def readSubFolder(self, Node):
         Return = {}
         allzweckWegwerfVariable = Node.text.strip()
@@ -382,6 +422,10 @@ class ConfigReader(object):
                 Return['onInitializion'] = True
             else:
                 Return['onInitializion'] = False
+            if 'plugin' in Node.attrib and Node.attrib['plugin']:
+                self.readPlugin(Node, Return)
+            else:
+                Return['plugin'] = None
             Return['ruleset'] = self.readResourceRules(Node)
 
         return Return
@@ -421,16 +465,7 @@ class ConfigReader(object):
             else:
                 Return['domain'] = allzweckWegwerfVariable
 
-        if 'plugin' in Node.attrib:
-            if OS.path.isfile('./plugin/' + Node.attrib['plugin'].strip() + '/plugin.py'):
-              Return['plugin'] = './plugin/' + Node.attrib['plugin'].strip() + '/plugin.py'
-            #raise a excption as warning
-        else:
-            if OS.path.isfile('./plugin/' + Return['domain'] + '/plugin.py'):
-                Return['plugin'] = './plugin/' + Return['domain'] + '/plugin.py'
-            else:
-                Return['plugin'] = None
-                #error
+        self.readPlugin(Node, Return)
 
         if 'md5Check' in Node.attrib:
             Return['md5'] = True
@@ -459,3 +494,12 @@ class ConfigReader(object):
         else:
             for Node in Nodes:
                 self._Resources.append(self.readResource(Node))
+
+    def readFrontend(self):
+        Node = self.__Root.find('./frontend')
+        if None is Node:
+            return
+        Nodes = self.__Root.findAll('./frontend/exclude')
+        for Node in Node:
+            if Node.text.strip():
+                self._Frontend.append(Node.text.strip())

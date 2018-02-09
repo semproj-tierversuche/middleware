@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <config>
 	<services>
-		<textmining>
+		<frontend>
+			<exclude>String</exclude>
+		</frontend>
+		<textmining verbose="verbose" terminator="any">
 			<cmd name="String" timeout="Integer"* readFromStdin="Any" keepAlive="int" endOfStream="int">
 				<param  key="String">String</param>
 				<param  key="String">String</param>
@@ -44,8 +47,8 @@
 		</database>
 	</services>
 	<general>
-		<logfile>./</logfile>
-		<tmp>./tmp</tmp>
+		<logfile>String</logfile>
+		<tmp>String</tmp>
 		<threads>Interger</threads>
 	</general>
 	<resourceCollection>
