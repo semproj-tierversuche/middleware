@@ -91,7 +91,6 @@ class ResourceDownloader(AbstractResourceDownloader):
             self._Downloader.checkConnection()
         except FTPBasicDownloaderException:
             self._Downloader.reconnect()
-#        print('retrieving file list of ' + Folder)
         FileList = self._Downloader.getFileList(Folder)
         for FileAttributes in FileList:
             File = self._buildFileObject(Folder, FileAttributes)
@@ -100,9 +99,6 @@ class ResourceDownloader(AbstractResourceDownloader):
             if self._filterFile(File):
                 self._DownloadableFiles.insert(0, File)
         # print file list
-#        print('filtered filelist:')
-#        for File in self._DownloadableFiles:
-#            print(File.Name)
 
     # reset löscht keine files!
     def reset(self):
@@ -131,25 +127,19 @@ class ResourceDownloader(AbstractResourceDownloader):
             self._Downloader.checkConnection()
         except FTPBasicDownloaderException:
             self._Downloader.reconnect()
-#        self._goBackToBaseDir()
         # add trailing slash and remove leadingFile.localPath
         if not(PathInTmp[-1:] == '/'):
             PathInTmp += '/'
         PathInTmp.lstrip('/')
         PathInTmp = self._PathToTmp + PathInTmp
-        File = self._DownloadableFiles.pop()
+        File = self._DownloadableFiles.pop(0)
         self._UnfilteredFiles.remove(File)
         if self._CurrentDir != File.Folder:
             self._CurrentDir = File.Folder
             self._Downloader.goBackToBaseDir()
             self._Downloader.changeDir(File.Folder)
         # dir exists?
-#changed bitPogo 15.01.2018
-#        if not os.path.exists('tmp/' + PathInTmp):
-#            os.makedirs('tmp/' + PathInTmp)
-#        File.localPath = 'tmp/' + PathInTmp + File.Name
         File.localPath = PathInTmp + File.Name
-#        print('downloading ' + File.Name)
         if not os.path.isfile(File.localPath):
             self._downloadFile(File.Name, File.localPath)
             self._DownloadedFiles.append(File)
@@ -174,10 +164,8 @@ class ResourceDownloader(AbstractResourceDownloader):
                 os.remove(File.localPath)
                 self._downloadFile(File.Name, File.localPath)
                 self._DownloadedFiles.append(File)
-#            raise ResourceDownloaderException(ResourceDownloaderException.FILE_EXISTS, File.localPath)
 
         if File.CheckMD5:
-#            print('checking md5 of ' + File.Name)
             self._checkMD5(File)
 
     def downloadAll(self, PathInTmp):
@@ -289,20 +277,12 @@ class ResourceDownloader(AbstractResourceDownloader):
             self._Downloader.downloadFile(Filename, Destination)
         except FTPBasicDownloaderException:
             # if statuscode 42x retry with reconnect
-#            if FTPBasicDownloaderException.NO_CONNECTION == e.Reason:
-#                print('connection lost. reconnecting..')
              self._Downloader.reconnect()
              self._Downloader.downloadFile(Filename, Destination)
-#            else:
-#                raise e
 
     def _goBackToBaseDir(self):
         try:
             self._Downloader.goBackToBaseDir()
         except FTPBasicDownloaderException:
- #           if FTPBasicDownloaderException.NO_CONNECTION == e.Reason:
- #               print('connection lost. reconnecting..')
              self._Downloader.reconnect()
              self._Downloader.goBackToBaseDir()
-#            else:
-#                raise e

@@ -121,7 +121,6 @@ class FTPBasicDownloader(object):
         else:
             try:
                 self.__Connection.voidcmd("NOOP")
-#            except ftplib.all_errors as e:
             except FTPErrors as e:
                 StatusCode = int(e.args[0][:3])
                 if 10 > StatusCode % 420 and 1 == StatusCode/420:
