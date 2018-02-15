@@ -89,8 +89,7 @@ class CmdService(object):
     __KeepAlive = None
     #only for keepAlive subprocesses
     _ReadFromStdin = None#we just need it one level above
-    _FlyingProcess = None
-    _FullDeamon = None
+    __Debug = None
     __Process = None
     __Stdin = None
     __Stdout = None
@@ -120,9 +119,7 @@ class CmdService(object):
         else:
             self.setCommand(Command, Timeout)
         self._ReadFromStdin = False#we just need it one level above
-        self._FlyingProcess = False
         self.__KeepAlive = False
-        self._FullDeamon = False
         self.__startThreads()
 
         self.__Enviroment = OrderedDict()
@@ -142,7 +139,8 @@ class CmdService(object):
             self.__StdoutThread = None
             self.__StderrThread = ReaderDaemonizedThread(Pipe=self.__Stderr,\
                                                          Length=self.__TRANSMISSION_LENGTH,\
-                                                         Delimiter=Delimiter)
+                                                         Delimiter=Delimiter,\
+                                                         Exact=self.__Debug)
         else:
             self.__StdinThread = WriterThread(Length=self.__TRANSMISSION_LENGTH)
             self.__StdoutThread = ReaderThread(Length=self.__TRANSMISSION_LENGTH)
@@ -193,12 +191,9 @@ class CmdService(object):
 
         Parameter = Shell.split(Parameter)
         for Param in Parameter:
-#            if Param not in self.__Parameter:
              self.__Parameter[Param] = ''
              self.__ParameterNewKeys.append(Param)
              return True
-#            else:
-#                return False
 
     def addParameters(self, Parameter):
         if not Parameter or not isinstance(Parameter, list):
@@ -411,13 +406,13 @@ class CmdService(object):
         ChildId = int(PipeHelper.read(Controller, 1024).decode('utf-8'))
         OS.close(Controller)
 
-        if -1 != StderrPipe:
-            self.__StderrThread.do(StderrPipe, Stderr)
+#        if -1 != StderrPipe:
+        self.__StderrThread.do(StderrPipe, Stderr)
 
-        if -1 != StdoutPipe:
-            self.__StdoutThread.do(StdoutPipe, Stdout)
+#        if -1 != StdoutPipe:
+        self.__StdoutThread.do(StdoutPipe, Stdout)
 
-        if -1 != StdinPipe:
+        if not StdinPipe is None:
             self.__StdinThread.do(StdinPipe, Data)
 
         try:
@@ -444,12 +439,12 @@ class CmdService(object):
                                    Length=self.__TRANSMISSION_LENGTH)
         System.stdout.flush()
         OS.close(Controller)
-        if -1 != Stdin:
+        if not Stdin is None:
             OS.dup2(Stdin, System.stdin.fileno())
-        if -1 != Stdout:
-            OS.dup2(Stdout, System.stdout.fileno())
-        if -1 != Stderr:
-            OS.dup2(Stderr, System.stderr.fileno())
+#        if -1 != Stdout:
+        OS.dup2(Stdout, System.stdout.fileno())
+#        if -1 != Stderr:
+        OS.dup2(Stderr, System.stderr.fileno())
 
         if not Enviroment:
             OS.execvp(Parameter[0], Parameter)
@@ -487,16 +482,23 @@ class CmdService(object):
 
     def __doExecPreparation(self, AdditionalParameter, AdditionalEnviroment):
         Parameter = self.__getParameterCache()
-#        if AdditionalParameter:
-#            for Param in AdditionalParameter:
-#                Parameter.append(Shell.quote(Param))
-        if AdditionalParameter:
-            Parameter.extend(AdditionalParameter)
+        AdditionalEnviromentOut = OrderedDict()
+        if AdditionalParameter and isinstance(AdditionalParameter, list):
+            for Param in AdditionalParameter:
+                Parameter.append(Shell.quote(Param))
 
         Enviroment = self.__getEnviromentCache()
-        if AdditionalEnviroment:
-            for Key, Value in AdditionalEnviroment:
-                Enviroment.append(Key + b'=' + Value)
+        if AdditionalEnviroment and isinstance(AddionalEnviroment, dict):
+            for Key, Value in AdditionalEnviroment.items():
+                Key2 = OS.fsencode(Key)
+                Value = OS.fsencode(Value)
+                if b'=' == Key2[-1]:
+                    raise ValueError("Got = as last char of enviroment key " + Key)
+                elif b'=' == Value[0]:
+                    raise ValueError("Got = as first char of as value at enviroment key " + Key)
+                else:
+                    if Key2 not in self.__Enviroment and Key2 not in AdditionalEnviromentOut:
+                        Enviroment.append(Key2 + b'=' + Value)
 
         return (Parameter, Enviroment)
 
@@ -571,28 +573,14 @@ class CmdService(object):
                 StdoutIn, StdoutOut,\
                 StderrIn, StderrOut)
 
-    def __doPTYForkAndExec(self, Data, Timeout, AdditionalParameter,\
-                           AdditionalEnviroment, RestoreSignals, Stdin):
+    def __doPTYForkAndExec(self, ControllIn, ControllOut, StdinIn, StdinOut,\
+                           StdoutIn, StdoutOut, StderrIn, StderrOut,\
+                           Data, Timeout, Parameter, Enviroment, RestoreSignals):
         FD = None
         PId = None
         ReturnCode = None
         Stderr = []
         Stdout = []
-        StdinOut = None
-        StdinIn = None
-
-        if True == Stdin:
-            Sin = self.PIPE_PIPE
-        else:
-            Sin = self.NO_PIPE
-
-        ControllIn, ControllOut,\
-        StdinIn, StdinOut,\
-        StdoutIn, StdoutOut,\
-        StderrIn, StderrOut =self.__makePipes(Sin, self.PIPE_PIPE, self.PIPE_PIPE)
-
-        Parameter, Enviroment = self.__doExecPreparation(AdditionalParameter,\
-                                                             AdditionalEnviroment)
 
         (PId, FD) = PTY.fork()
         if -1 == PId:
@@ -632,34 +620,20 @@ class CmdService(object):
 
             return (ReturnCode, Stdout[0], Stderr[0])
 
-    def __doForkAndExec(self, Data, Timeout, AdditionalParameter,\
-                        AdditionalEnviroment, RestoreSignals, Stdin):
+    def __doForkAndExec(self, ControllIn, ControllOut, StdinIn, StdinOut,\
+                        StdoutIn, StdoutOut, StderrIn, StderrOut,\
+                        Data, Timeout, Parameter, Enviroment, RestoreSignals):
         PId = None
         ReturnCode = None
         Stderr = []
         Stdout = []
-        StdinOut = None
-        StdinIn = None
-
-        if True == Stdin:
-            Sin = self.PIPE_PIPE
-        else:
-            Sin = self.NO_PIPE
-
-        ControllIn, ControllOut,\
-        StdinIn, StdinOut,\
-        StdoutIn, StdoutOut,\
-        StderrIn, StderrOut = self.__makePipes(Sin, self.PIPE_PIPE, self.PIPE_PIPE)
-
-        Parameter, Enviroment = self.__doExecPreparation(AdditionalParameter,\
-                                                             AdditionalEnviroment)
 
         PId = OS.fork()
         if -1 == PId:
             raise CmdServiceException(CmdServiceException.FATAL_FORK)
         elif 0 == PId:#we are the child
             OS.close(ControllOut)
-            if -1 != StdinIn:
+            if not StdinIn is None:
                 OS.close(StdinIn)
 #            if -1 != StdoutOut:
             OS.close(StdoutOut)
@@ -690,35 +664,9 @@ class CmdService(object):
                 OS.close(StdinIn)
             return (ReturnCode, Stdout[0], Stderr[0])
 
-    def __prepareAddtionals(self, AdditionalParameter, AdditionalEnviroment):
-        AdditionalParameterOut = []
-        AdditionalEnviromentOut = OrderedDict()
-        if AdditionalParameter and isinstance(AdditionalParameter, list):
-            for Parameter in AdditionalParameter:
-#                Parameter = Shell.split(AdditionalParameter)
-#                for Param in Parameter:
-#               if Parameter in AdditionalParameterOut or Parameter in self.__Parameter:
-#                   continue
-#               else:
-                AdditionalParameterOut.append(Shell.quote(Parameter))
-
-        if AdditionalEnviroment and isinstance(AddionalEnviroment, dict):
-            for Key, Value in AdditionalEnviroment.items():
-                Key2 = OS.fsencode(Key)
-                Value = OS.fsencode(Value)
-                if b'=' in Key2:
-                    raise ValueError("Got = as last char of enviroment key " + Key)
-                elif b'=' == Value[0:1]:
-                    raise ValueError("Got = as first char of as value at enviroment key " + Key)
-                else:
-                    if Key2 not in self.__Enviroment and Key2 not in AdditionalEnviromentOut:
-                        AdditionalEnviromentOut[Key2] = Value
-                        del AdditionalEnviroment[Key]
-        return (AdditionalParameterOut, AdditionalEnviromentOut)
-
     def startPermanentProcess(self, Delimiter=None, AdditionalParameter=None,\
                               AdditionalEnviroment=None, RestoreSignals=False,\
-                              Mode=0x0, Standalone=False):
+                              Mode=0x0, Debug=False):
         if True == self.__KeepAlive:#we skip if a process is allready running
             return False
 
@@ -727,10 +675,14 @@ class CmdService(object):
             Mode ^= self.FORK_PTY_PROCESS
         else:
             UsePTY = False
+            Mode ^= self.FORK_NORMAL_PROCESS
+
 
         if self.PERMANENT_PROCESS == Mode or self.HYBRID_PROCESS == Mode:
             if not Delimiter or not isinstance(Delimiter, bytes):
                  raise ValueError("The given delimiter was invalid.")
+            else:
+                self.__Delimiter = Delimiter
 
         self.__KeepAlive = True
 
@@ -740,43 +692,38 @@ class CmdService(object):
 
         if self.PERMANENT_PROCESS == Mode:
             self._ReadFromStdin = True
-            self.__startThreads(Delimiter=Delimiter, PermanentProcess=True)
+            Sin = self.PIPE_PIPE
         elif self.HYBRID_PROCESS:
             self._ReadFromStdin = False
-            self.__startThreads(Delimiter=Delimiter, PermanentProcess=True)
+            Sin = self.NO_PIPE
         else:#full deamon
-            pass
-
-        self._FlyingProcess = True
-
-        AdditionalParameter, AdditionalEnviroment = self.__prepareAddtionals(AdditionalParameter, AdditionalEnviroment)
-        Parameter, Enviroment = self.__doExecPreparation()
-
-        if False == UsePTY:
-            self.__startForkProcess(AdditionalParameter, AdditionalEnviroment,\
-                                    RestoreSignals, Mode)
-        else:
-            self.__startPTYProcess(Parameter, AdditionalParameter, Enviroment,\
-                                   AdditionalEnviroment, RestoreSignals, Mode)
-
-        self.__startThreads(Delimiter=Delimiter, PermanentProcess=True)
-        return True
-
-    def __startForkProcess(self, AdditionalParameter, Enviroment, AdditionalEnviroment, RestoreSignals, Stdin):
-        PId = None
-        StdinIn = None
-        StdinOut = None
-
-        if True == Stdin:
-            Sin = self.PIPE_PIPE
-        else:
+            self._ReadFromStdin = True
             Sin = self.NO_PIPE
 
-        ControllIn, ControllOut,\
-        StdinIn, StdinOut,\
-        StdoutIn, StdoutOut,\
+        self.__Debug = Debug
+
+        Parameter, Enviroment = self.__doExecPreparation(AdditionalParameter, AdditionalEnviroment)
+        ControllerIn, ControllerOut, StdinIn, StdinOut, StdoutIn, StdoutOut,\
         StderrIn, StderrOut = self.__makePipes(Sin, self.PIPE_PIPE, self.PIPE_PIPE)
 
+        if False == UsePTY:
+            self.__startForkProcess(ControllerIn, ControllerOut, StdinIn, StdinOut,\
+                                    StdoutIn, StdoutOut, StderrIn, StderrOut,\
+                                    Parameter, Enviroment, RestoreSignals)
+        else:
+            self.__startPTYProcess(ControllerIn, ControllerOut, StdinIn, StdinOut,\
+                                   StdoutIn, StdoutOut, StderrIn, StderrOut,\
+                                   Parameter, Enviroment, RestoreSignals)
+
+        if self.PERMANENT_PROCESS == Mode or self.HYBRID_PROCESS == Mode:
+            self.__startThreads(Delimiter=Delimiter, Mode=True)
+
+        return True
+
+    def __startForkProcess(self, ControllIn, ControllOut, StdinIn, StdinOut,\
+                           StdoutIn, StdoutOut, StderrIn, StderrOut,\
+                           Parameter, Enviroment, RestoreSignals):
+        PId = None
 
         PId = OS.fork()
         if -1 == PId:
@@ -784,7 +731,7 @@ class CmdService(object):
         elif 0 == PId:#we are the child
             OS.close(ControllOut)
 
-            if -1 != Stdin:
+            if -1 != StdinIn:
                 OS.close(StdinIn)
             OS.close(StdoutOut)
             OS.close(StderrOut)
@@ -792,10 +739,10 @@ class CmdService(object):
             if True == RestoreSignals:
                 self.__restoreSignals()
 
-            self.__execCMD(StdinOut, StdoutIn, StderrIn, Parameter, Enviroment, Stdin)
+            self.__execCMD(ControllIn, StdinOut, StdoutIn, StderrIn, Parameter, Enviroment)
         else:
-            OS.close(ControlIn)
-            if -1 != Stdin:
+            OS.close(ControllIn)
+            if -1 != StdinOut:
                 OS.close(StdinOut)
                 self.__Stdin = StdinIn
             OS.close(StdoutIn)
@@ -806,27 +753,17 @@ class CmdService(object):
             self.__Process = int(PipeHelper.read(ControllOut, 1024).decode('utf-8'))
             OS.close(ControllOut)
 
-    def __startPTYProcess(self, AdditionalParameter, AdditionalEnviroment, RestoreSignals, Stdin):
+    def __startPTYProcess(self, ControllIn, ControllOut, StdinIn, StdinOut,\
+                          StdoutIn, StdoutOut, StderrIn, StderrOut,\
+                          Parameter, Enviroment, RestoreSignals):
         PId = None
-        StdinOut = None
-        StdinIn = None
-
-        if True == Stdin:
-            Sin = self.PIPE_PIPE
-        else:
-            Sin = self.NO_PIPE
-
-        ControllIn, ControllOut,\
-        StdinIn, StdinOut,\
-        StdoutIn, StdoutOut,\
-        StderrIn, StderrOut = self.__makePipes(Sin, self.PIPE_PIPE, self.PIPE_PIPE)
 
         (PId, self.__PtyFD) = OS.forkpty()
         if -1 == PId:
             raise CmdServiceException(CmdServiceException.FATAL_FORK)
         elif 0 == PId:#we are the child
             OS.close(ControllOut)
-            if -1 != Stdin:
+            if -1 != StdinIn:
                 OS.close(StdinIn)
             OS.close(StdoutOut)
             OS.close(StderrOut)
@@ -834,10 +771,10 @@ class CmdService(object):
             if True == RestoreSignals:
                 self.__restoreSignals()
 
-            self.__execCMD(StdinOut, StdoutIn, StderrIn, Parameter, Enviroment, Stdin)
+            self.__execCMD(ControllIn, StdinOut, StdoutIn, StderrIn, Parameter, Enviroment)
         else:
             OS.close(ControllIn)
-            if -1 != Stdin:
+            if -1 != StdinOut:
                 OS.close(StdinOut)
                 self.__Stdin = StdinIn
             OS.close(StdoutIn)
@@ -877,13 +814,18 @@ class CmdService(object):
                 return (Status, None, None)
         if not self.__Stdout:
             return (self._TERMINATED, None, None)
+
         self.__Lock.acquire()
         self.__StderrThread.do(Stderr)
+
         if True == self._ReadFromStdin:
-            self.__StdinThread.do(StringIO(Data+self.__Delimiter))
+            Data.write(self.__Delimiter)
+            self.__StdinThread.do(Data)
+
         Stdout = PipeHelper.readUntilDelimiterFromPipe(Pipe=self.__Stdout,\
                                                        Delimiter=self.__Delimiter,\
-                                                       Length=self.__TRANSMISSION_LENGTH)
+                                                       Length=self.__TRANSMISSION_LENGTH,\
+                                                       Exact=self.__Debug)
         self.__StderrThread.waitUntilDone(Stderr)
         self.__Lock.release()
         return (Status, Stdout, Stderr[0])
@@ -901,30 +843,41 @@ class CmdService(object):
         if True == self.__Closed:
             return None
 
-        if StdinData and False == self.__KeepAlive:
+        if StdinData or b'0' == StdinData:
             Data = BytesIO(StdinData)
-            WriteToStdin = True
+            Sin = self.PIPE_PIPE
         else:
             Data = None
-            WriteToStdin = False
-
-        Timeout = self.__prepareTimeout(Timeout)
+            Sin = self.NO_PIPE
 
         if False == self.__KeepAlive:
             Timeout = self.__prepareTimeout(Timeout)
 
-            AdditionalParameter, AdditionalEnviroment = self.__prepareAddtionals(AdditionalParameter, AdditionalEnviroment)
+            Parameter, Enviroment = self.__doExecPreparation(AdditionalParameter, AdditionalEnviroment)
+
+            ControllerIn, ControllerOut, StdinIn, StdinOut, StdoutIn, StdoutOut,\
+            StderrIn, StderrOut = self.__makePipes(Sin, self.PIPE_PIPE, self.PIPE_PIPE)
 
             if self.FORK_PTY_PROCESS == Mode:
-                ReturnCode, Stdout, Stderr = self.__doPTYForkAndExec(Data, Timeout,\
-                                                                     AdditionalParameter,\
-                                                                     AdditionalEnviroment,\
-                                                                     RestoreSignals, WriteToStdin)
+                ReturnCode, Stdout, Stderr = self.__doPTYForkAndExec(ControllerIn, ControllerOut,\
+                                                                     StdinIn, StdinOut,\
+                                                                     StdoutIn, StdoutOut,\
+                                                                     StderrIn, StderrOut,\
+                                                                     Data,\
+                                                                     Timeout,\
+                                                                     Parameter,\
+                                                                     Enviroment,\
+                                                                     RestoreSignals)
             else:
-                ReturnCode, Stdout, Stderr = self.__doForkAndExec(Data, Timeout,\
-                                                                 AdditionalParameter,\
-                                                                 AdditionalEnviroment,\
-                                                                 RestoreSignals, WriteToStdin)
+                ReturnCode, Stdout, Stderr = self.__doForkAndExec(ControllerIn, ControllerOut,\
+                                                                  StdinIn, StdinOut,\
+                                                                  StdoutIn, StdoutOut,\
+                                                                  StderrIn, StderrOut,\
+                                                                  Data,\
+                                                                  Timeout,\
+                                                                  Parameter,\
+                                                                  Enviroment,\
+                                                                  RestoreSignals)
         else:
             ReturnCode, Stdout, Stderr = self.__communicator(Data)
             if self.__OSErrorMessage:
@@ -958,7 +911,6 @@ class CmdService(object):
             OS.close(self.__PtyFD)
             self.__PtyFD = None
         self.__KeepAlive = False
-        self._FlyingProcess = False
         self._ReadFromStdin = False
         self.__OSErrorMessage = None
         self.__Process = None
