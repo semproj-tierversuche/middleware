@@ -20,7 +20,7 @@ class HttpHelper(object):
         return Output[:-1]
 
 class HttpServiceException(Exception):
-    Reasons = ['The connection is not established', 'The given cookiefile was not found', 'Wrong type given. The given type was %s, a string was exspected.', 'The given cookie must have %s field.']
+    Reasons = ['The connection is not established', 'The given cookiefile was not found', 'Wrong type given. The given type was {}, a string was exspected.', 'The given cookie must have {} field.']
     ReasonCodes = [0x0, 0x1, 0x2, 0x3]
     Reason = 0x0
 
@@ -115,17 +115,6 @@ class HttpService(object):
         return Cookie
 
     def addCookie(self, CookieString, Persistent=False):
-        #MustHave = ['domain', 'path', 'expire']
-        #Cookie = Cookies.SimpleCookie()
-        #if not isinstance(CookieString, str):
-        #    raise HttpServiceException(HttpServiceException.WRONG_COOKIE_TYPE, type(CookieString))
-        #Cookie.load(CookieString)
-        #if 'domain' not in Cookie:
-        #    raise HttpServiceException(HttpServiceException.MISSING_COOKIE_FIELD, 'domain')
-        #if 'path' not in Cookie:
-        #    raise HttpServiceException(HttpServiceException.MISSING_COOKIE_FIELD, 'path')
-        #if 'expire' not in Cookie:
-        #    raise HttpServiceException(HttpServiceException.MISSING_COOKIE_FIELD, 'expire')
         Cookie = self.__checkCookie(CookieString)
         if True == self.__PreparationIsActive:
             if True == Persistent:
@@ -332,6 +321,7 @@ class HttpService(object):
             del self.__PersistentHeaders[Key]
         if True == self.__PreparationIsActive:
             self.__UpdatePersistentRequest = True
+
     def removeCookie(self, Key):
         if Key in self.__PersistentCookies:
             del self.__PersistentCookies[Key]
