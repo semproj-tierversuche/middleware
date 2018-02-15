@@ -2,7 +2,7 @@ import os as OS
 
 class PatricaTrieNode(object):
     __Value = None
-    _Childes = None
+    _Children = None
     __Parent = None
     __IsEnding = None
 
@@ -15,8 +15,7 @@ class PatricaTrieNode(object):
         else:
             self.__IsEnding = False
 
-        self._Childes = []
-        self.__FirstLetters = []
+        self._Children = []
 
     @staticmethod
     def sortChildes(Child):
@@ -26,7 +25,7 @@ class PatricaTrieNode(object):
         return self.__Value
 
     def hasChildes(self):
-        if self._Childes:
+        if self._Children:
             return True
         else:
             return False
@@ -48,36 +47,36 @@ class PatricaTrieNode(object):
 
     def __contains(self, String):
         Letter = String[0]
-        if not self.__FirstLetters:
+        if not self._Children and String != self.__Value:
             return -1
         else:
             Start = 0
-            End = len(self.__FirstLetters)-1
+            End = len(self._Children)-1
             while Start <= End:
                 Mid = (Start+End)>>1
-                if Letter == self.__FirstLetters[Mid]:
+                if Letter == self._Children[Mid].getValue()[0]:
                     return Mid
                 else:
-                    if self.__FirstLetters[Mid] > Letter:
+                    if self._Children[Mid].getValue()[0] > Letter:
                         End = Mid-1
                     else:
-                        Start = Start+1
+                        Start += 1
             return -1
 
     def __insertSearch(self, Element):
-        if not self.__FirstLetters:
+        if not self._Children:
             return -1
         Element = Element[0]
         Start = 0
-        End = len(self.__FirstLetters)-1
+        End = len(self._Children)-1
         while (Start <= End):
             Mid = ((Start+End) >> 1)
-            if (Element > self.__FirstLetters[Mid]):
+            if (Element > self._Children[Mid].getValue()[0]):
                 Start = Mid + 1
-            elif (Element < self.__FirstLetters[Mid]):
+            elif (Element < self._Children[Mid].getValue()[0]):
                 End = Mid - 1
             else:
-                return Mid;
+                return Mid
 
         return -(Start + 1)
 
@@ -86,11 +85,10 @@ class PatricaTrieNode(object):
         if not self.__Value:
             Index = self.__insertSearch(String)
             if -1 < Index:
-                return self._Childes[Index].insert(String)
+                return self._Children[Index].insert(String)
 
             NewChild = PatricaTrieNode(String, self)
-            self._Childes.insert(-(Index+1), NewChild)
-            self.__FirstLetters.insert(-(Index+1), String[0])
+            self._Children.insert(-(Index+1), NewChild)
             return True
         else:
             if self.__Value[0] != String[0]:
@@ -112,26 +110,24 @@ class PatricaTrieNode(object):
                         String = String[Index:]
                         Index2 = self.__insertSearch(String)
                         if -1 < Index2:
-                            return self._Childes[Index2].insert(String)
+                            return self._Children[Index2].insert(String)
                         NewChild = PatricaTrieNode(String, self)
-                        self._Childes.insert(-(Index+1), NewChild)
-                        self.__FirstLetters.insert(-(Index+1), String[0])
+                        self._Children.insert(-(Index+1), NewChild)
                         return True
                     elif Index == LengthInsert:
                         NewChild = PatricaTrieNode(self.__Value[Index:], self)
                         self.__Value = String
-                        if False == NewChild._importChildes(self._Childes):
+                        if False == NewChild._importChildes(self._Children):
                             return False
                         if False == self.__IsEnding:
                             self.__IsEnding = True
                             NewChild.unsetEnd()
-                        self._Childes = [NewChild]
-                        self.__FirstLetters = [NewChild.getValue()[0]]
+                        self._Children = [NewChild]
                         return True
                     else:
                         Common = self.__Value[0:Index]
                         NewNode = PatricaTrieNode(self.__Value[Index:], self)
-                        if False == NewNode._importChildes(self._Childes):
+                        if False == NewNode._importChildes(self._Children):
                             return False
                         if False == self.__IsEnding:
                             NewNode.unsetEnd()
@@ -139,11 +135,9 @@ class PatricaTrieNode(object):
                         self.__IsEnding = False
                         NewNode2 = PatricaTrieNode(String[Index:], self)
                         if NewNode.getValue()[0] < NewNode2.getValue()[0]:
-                            self._Childes = [NewNode, NewNode2]
-                            self.__FirstLetters = [NewNode.getValue()[0], NewNode2.getValue()[0]]
+                            self._Children = [NewNode, NewNode2]
                         else:
-                            self._Childes = [NewNode2, NewNode]
-                            self.__FirstLetters = [NewNode2.getValue()[0], NewNode.getValue()[0]]
+                            self._Children = [NewNode2, NewNode]
 
                         return True
 
@@ -151,11 +145,8 @@ class PatricaTrieNode(object):
         if not isinstance(Childes, list):
             return False
         else:
-            for Child in Childes:
-                self.__FirstLetters.append(Child.getValue()[0])
-            self._Childes.extend(Childes)
-            self._Childes.sort(key = PatricaTrieNode.sortChildes)
-            self.__FirstLetters.sort()
+            self._Children.extend(Childes)
+            self._Children.sort(key = PatricaTrieNode.sortChildes)
             return True
 
     def delete(self, String):
@@ -171,29 +162,27 @@ class PatricaTrieNode(object):
 
     def _removeFromTrie(self):
          FormerValue = self.__Value[0]
-         del self.__Value
          self.__Parent._clean(FormerValue)
+         del self.__Value
 
     def _clean(self, FormerValue):
         Index = self.__contains(FormerValue)
         if -1 == Index:
             return
 
-        self._Childes.pop(Index)
-        self.__FirstLetters.pop(Index)
+        self._Children.pop(Index)
 
         if not self.__Value:
             return
 
-        if not self._Childes and False == self.__IsEnding:
+        if not self._Children and False == self.__IsEnding:
             FromerValue = self.__Value[0]
             del self.__Value
             self.__Parent._clean(FormerValue)
-        elif 1 == len(self._Childes)\
-            and False == self._Childes[0].hasChildes():
-            self.__Value += self._Childes[0].getValue()
-            self._Childes.pop()
-            self.__FirstLetters.pop()
+        elif 1 == len(self._Children)\
+            and False == self._Children[0].hasChildes():
+            self.__Value += self._Children[0].getValue()
+            self._Children.pop()
             self.__IsEnding = True
 
     def find(self, String):
@@ -202,11 +191,11 @@ class PatricaTrieNode(object):
             if self.__Value.startswith(String):
                 return self
             elif String.startswith(self.__Value):
-                if self._Childes:
+                if self._Children:
                     String = String[len(self.__Value):]
                     Index = self.__contains(String)
                     if -1 != Index:
-                        return self._Childes[Index].find(String)
+                        return self._Children[Index].find(String)
                     else:
                         return None
                 else:
@@ -216,7 +205,7 @@ class PatricaTrieNode(object):
         else:
             Index = self.__contains(String)
             if -1 != Index:
-                return self._Childes[Index].find(String)
+                return self._Children[Index].find(String)
             else:
                 return None
 
@@ -236,14 +225,14 @@ class PatricaTrieNode(object):
             Output += ':1'
         else:
             Output += ':0'
-        for Child in self._Childes:
+        for Child in self._Children:
             Output += Child._serialize()
         return Output + ']'
 
     def getValues(self):
         Output = []
-        if self._Childes:
-            for Child in self._Childes:
+        if self._Children:
+            for Child in self._Children:
                 Output += Child.getValues()
         if Output:
             if self.__Value:
@@ -271,7 +260,7 @@ class PatricaTrie(PatricaTrieNode):
 
     def serialize(self):
         Output = '[root'
-        for Child in self._Childes:
+        for Child in self._Children:
             Output += Child._serialize()
         return Output + ']'
 
@@ -291,7 +280,6 @@ class PatricaTrie(PatricaTrieNode):
             def _parseNodeValue(String, I):
                 Collector = ''
                 for J in range(I, Length):
-                    #print(String[J])
                     if ':' == String[J]:
                         break
                     Collector += String[J]#I know its slow
@@ -305,13 +293,6 @@ class PatricaTrie(PatricaTrieNode):
                         if L2+J+1+Collector>=Length:
                             raise ValueError("The given string cannot be valid.")
                         else:
-                     #       print('-----'
-                      #            + str(I) + '||' + str(J) + "||" + str(Collector)\
-                       #           + "\n" + '--> ' + \
-                        #          String[J+L2+1:J+1+L2+Collector] + '######\n' +\
-                         #         String[J:]
-                          #        + "\n" + '----')
-
                             return (String[J+L2+1:J+1+L2+Collector], L2+1+Collector)
 
             GoForEnd = False
@@ -319,7 +300,6 @@ class PatricaTrie(PatricaTrieNode):
             Childes = []
             I = Index
             while I < Length:
-                #print(String[I])
                 if '[' == String[I]:
                     if not Node:
                         raise ValueError(NotValid.format('node definition', '[', I))
@@ -336,26 +316,24 @@ class PatricaTrie(PatricaTrieNode):
                             del Node
                             raise ValueError(NotValid.format('endingflag', ']', I))
                         else:
-                            #print(Childes)
                             if Childes:
                                 Node._importChildes(Childes)
-                        I = I+1
+                        I += 1
                         return Node, I
 
-                        #return (Node, I+1)
                 elif True == GoForEnd:
                     if ':' == String[I]:
                         if I+2 >= Length:
                             raise ValueError("The given string cannot be valid.")
                         if '0' ==  String[I+1]:
                             Node.unsetEnd()
-                        I = I+2
+                        I += 2
                         GoForEnd = False
                 else:
                     (Value, Add) = _parseNodeValue(String, I)
                     GoForEnd = True
                     Node = PatricaTrieNode(Value, Parent)
-                    I = I+Add
+                    I += Add
 
 
         Index = 5
@@ -368,8 +346,7 @@ class PatricaTrie(PatricaTrieNode):
                     Childes.append(Child)
                 continue
             elif ']' == String[Index]:
-                self._Childes = []
-                self.__FirstLetters = []
+                self._Children = []
                 self._importChildes(Childes)
                 return
             else:
