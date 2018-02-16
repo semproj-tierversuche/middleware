@@ -796,7 +796,6 @@ class PipeHelper(object):
                     return Return
                 else:
                     LastLength = len(Output)
-                    Output += Chars
                     try:
                         Chars = OS.read(Pipe, Length)
                     except:
@@ -807,10 +806,12 @@ class PipeHelper(object):
             while True:
                 Output += Chars
                 #EOF -> otherwise we stuck
-                if b'' == Chars[-1:]\
-                or Chars[-DelimiterLength:] == Delimiter\
-                or Chars[-1-DelimiterLength:-1] == Delimiter:#we must do that to avoid println
+                if b'' == Chars[-1:]:
                     return Output
+                elif Chars[-DelimiterLength:] == Delimiter:
+                    return Output[0:-DelimiterLength]
+                elif Chars[-1-DelimiterLength:-1] == Delimiter:#we must do that to avoid println
+                    return Output[0:-1-DelimiterLength:]
                 else:
                     try:
                         Chars = OS.read(Pipe, Length)
