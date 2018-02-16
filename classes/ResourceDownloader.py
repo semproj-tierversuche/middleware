@@ -10,7 +10,10 @@ from classes.ftp_downloader import FTPBasicDownloader, FTPBasicDownloaderExcepti
 from classes.resource_downloader_base import AbstractResourceDownloader
 
 class ResourceDownloaderException(Exception):
-    Reasons = ['There is no coressponding md5 File for {}.', 'The given File {} is invalid to the corresponding md5-hash.', 'The given file {} allready exists in the downloadfolder.', 'Lost connection with {} - try to reconnect.']
+    Reasons = ['There is no coressponding md5 File for {}.',\
+               'The given File {} is invalid to the corresponding md5-hash.',\
+               'The given file {} allready exists in the downloadfolder.',\
+               'Lost connection with {} - try to reconnect.']
     ReasonCodes = [0x0, 0x1, 0x2, 0x3]
     Reason = 0x0
     NO_MD5 = 0x0
@@ -59,6 +62,7 @@ class ResourceDownloader(AbstractResourceDownloader):
     _Filters = None
     _CurrentDir = None
     _PathToTmp = None
+    _InUse = None
 
     def __init__(self, PathToTmp):
          self._UnfilteredFiles = []
@@ -66,6 +70,7 @@ class ResourceDownloader(AbstractResourceDownloader):
          self._DownloadedFiles = []
          self._UseTLS = False
          self._Filters = []
+         self._InUse = False
          if not(PathToTmp[-1:] == '/'):
              self._PathToTmp = PathToTmp + '/'
          else:
@@ -91,6 +96,13 @@ class ResourceDownloader(AbstractResourceDownloader):
             self._Downloader.checkConnection()
         except FTPBasicDownloaderException:
             self._Downloader.reconnect()
+
+        self._InUse = True
+
+        Folder = Folder.lstrip('/')
+        if False == Folder.startswith('./'):
+            Folder = './' + Folder
+
         FileList = self._Downloader.getFileList(Folder)
         for FileAttributes in FileList:
             File = self._buildFileObject(Folder, FileAttributes)
@@ -105,6 +117,7 @@ class ResourceDownloader(AbstractResourceDownloader):
         self.clearDownloadedFiles()
         self.resetFilter()
         self.resetDownloadQueue()
+        self._InUse = False
 
     def filterFiles(self, FilterCondition, Flag):
         FileFilter_ = FileFilter()

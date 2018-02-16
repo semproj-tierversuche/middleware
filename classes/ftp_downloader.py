@@ -51,6 +51,7 @@ class FTPBasicDownloader(object):
         else:
             self.__Connection.login(self.Username, self.Password)
         LastDir = '/'
+#        self.__Connection.set_debuglevel(2)
 
     #fuer einen Reconnect reicht das erneute Login, die Sockets sind ja noch gebunden
     def reconnect(self):
