@@ -7,20 +7,11 @@ import os as OS
 import classes.utils as Utils
 import urllib.parse as UrlHelper
 
-class HttpHelper(object):
-
-    @staticmethod
-    def DicionaryToPostRequestString(Dic):
-        Output = ''
-        if not isinstance(Dic, dict):
-            return None
-        else:
-            for Key, Value in Dic:
-                Output += UrlHelper.quote(Key) + '=' + Helper.quote(Value) + "&"
-        return Output[:-1]
-
 class HttpServiceException(Exception):
-    Reasons = ['The connection is not established', 'The given cookiefile was not found', 'Wrong type given. The given type was {}, a string was exspected.', 'The given cookie must have {} field.']
+    Reasons = ['The connection is not established',\
+               'The given cookiefile was not found',\
+               'Wrong type given. The given type was {}, a string was exspected.',\
+               'The given cookie must have {} field.']
     ReasonCodes = [0x0, 0x1, 0x2, 0x3]
     Reason = 0x0
 
@@ -136,20 +127,53 @@ class HttpService(object):
 
     def startACall(self, Method, Path):
         self.__Path = Path
-        if self.__PersistentCookies and self.__PersistentURLParameters and self.__PersistentHeaders:
-            self.__Request = Requests.Request(method=Method, url=self.__URLBase + Path, params=self.__PersistentURLParameters.copy(), cookies=self.__PersistentCookies.copy(), headers=self.__PersistentHeaders.copy())
-        elif self.__PersistentCookies and self.__PersistentURLParameters and not self.__PersistentHeaders:
-            self.__Request = Requests.Request(method=Method, url=self.__URLBase + Path, params=self.__PersistentURLParameters.copy(), cookies=self.__PersistentCookies.copy())
-        elif not self.__PersistentCookies and self.__PersistentURLParameters and self.__PersistentHeaders:
-             self.__Request = Requests.Request(method=Method, url=self.__URLBase + Path, params=self.__PersistentURLParameters.copy(), headers=self.__PersistentHeaders.copy())
-        elif not self.__PersistentCookies and self.__PersistentURLParameters and not self.__PersistentHeaders:
-            self.__Request = Requests.Request(method=Method, url=self.__URLBase + Path, params=self.__PersistentURLParameters.copy())
-        elif self.__PersistentCookies and not self.__PersistentURLParameters and self.__PersistentHeaders:
-            self.__Request = Requests.Request(method=Method, url=self.__URLBase + Path, cookies=self.__PersistentCookies.copy(), headers=self.__PersistentHeaders.copy())
-        elif self.__PersistentCookies and not self.__PersistentURLParameters and not self.__PersistentHeaders:
-            self.__Request = Requests.Request(method=Method, url=self.__URLBase + Path, cookies=self.__PersistentCookies.copy())
-        elif not self.__PersistentCookies and not self.__PersistentURLParameters and self.__PersistentHeaders:
-            self.__Request = Requests.Request(method=Method, url=self.__URLBase + Path, headers=self.__PersistentHeaders.copy())
+        if self.__PersistentCookies\
+           and self.__PersistentURLParameters\
+           and self.__PersistentHeaders:
+            self.__Request = Requests.Request(method=Method,\
+                                              url=self.__URLBase + Path,\
+                                              params=self.__PersistentURLParameters.copy(),\
+                                              cookies=self.__PersistentCookies.copy(),\
+                                              headers=self.__PersistentHeaders.copy())
+        elif self.__PersistentCookies\
+           and self.__PersistentURLParameters\
+           and not self.__PersistentHeaders:
+            self.__Request = Requests.Request(method=Method,\
+                                              url=self.__URLBase + Path,\
+                                              params=self.__PersistentURLParameters.copy(),\
+                                              cookies=self.__PersistentCookies.copy())
+        elif not self.__PersistentCookies\
+           and self.__PersistentURLParameters\
+           and self.__PersistentHeaders:
+             self.__Request = Requests.Request(method=Method,\
+                                               url=self.__URLBase + Path,\
+                                               params=self.__PersistentURLParameters.copy(),\
+                                               headers=self.__PersistentHeaders.copy())
+        elif not self.__PersistentCookies\
+           and self.__PersistentURLParameters\
+           and not self.__PersistentHeaders:
+            self.__Request = Requests.Request(method=Method,\
+                                              url=self.__URLBase + Path,\
+                                              params=self.__PersistentURLParameters.copy())
+        elif self.__PersistentCookies\
+           and not self.__PersistentURLParameters\
+           and self.__PersistentHeaders:
+            self.__Request = Requests.Request(method=Method,\
+                                              url=self.__URLBase + Path,\
+                                              cookies=self.__PersistentCookies.copy(),\
+                                              headers=self.__PersistentHeaders.copy())
+        elif self.__PersistentCookies\
+           and not self.__PersistentURLParameters\
+           and not self.__PersistentHeaders:
+            self.__Request = Requests.Request(method=Method,\
+                                              url=self.__URLBase + Path,\
+                                              cookies=self.__PersistentCookies.copy())
+        elif not self.__PersistentCookies\
+           and not self.__PersistentURLParameters\
+           and self.__PersistentHeaders:
+            self.__Request = Requests.Request(method=Method,\
+                                              url=self.__URLBase + Path,\
+                                              headers=self.__PersistentHeaders.copy())
         else:
             self.__Request = Requests.Request(method=Method, url=self.__URLBase + Path)
         self.__PreparationIsActive = True

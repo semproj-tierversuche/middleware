@@ -191,9 +191,9 @@ class CmdService(object):
 
         Parameter = Shell.split(Parameter)
         for Param in Parameter:
-             self.__Parameter[Param] = ''
-             self.__ParameterNewKeys.append(Param)
-             return True
+            self.__Parameter[Param] = ''
+            self.__ParameterNewKeys.append(Param)
+        return True
 
     def addParameters(self, Parameter):
         if not Parameter or not isinstance(Parameter, list):
@@ -412,7 +412,7 @@ class CmdService(object):
 #        if -1 != StdoutPipe:
         self.__StdoutThread.do(StdoutPipe, Stdout)
 
-        if not StdinPipe is None:
+        if -1 != StdinPipe:
             self.__StdinThread.do(StdinPipe, Data)
 
         try:
@@ -439,7 +439,7 @@ class CmdService(object):
                                    Length=self.__TRANSMISSION_LENGTH)
         System.stdout.flush()
         OS.close(Controller)
-        if not Stdin is None:
+        if -1 != Stdin:
             OS.dup2(Stdin, System.stdin.fileno())
 #        if -1 != Stdout:
         OS.dup2(Stdout, System.stdout.fileno())
@@ -633,7 +633,7 @@ class CmdService(object):
             raise CmdServiceException(CmdServiceException.FATAL_FORK)
         elif 0 == PId:#we are the child
             OS.close(ControllOut)
-            if not StdinIn is None:
+            if -1 != StdinIn:
                 OS.close(StdinIn)
 #            if -1 != StdoutOut:
             OS.close(StdoutOut)
