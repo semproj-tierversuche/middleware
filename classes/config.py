@@ -8,8 +8,9 @@ import json as JSON
 from pathlib import Path
 import time as Time
 import urllib.parse as URL
-#TODO: urlencode bei den Strings
-class ConfigException(Exception):
+#TODO:
+#   -> DelimiterSwitch
+class ConfigReaderException(Exception):
     Reasons = ['The given Element was not found.']
     ReasonCodes = [0x0]
     Reason = 0x0
@@ -21,10 +22,6 @@ class ConfigException(Exception):
                 return repr('Unkown error.')
             else:
                 return repr(self.Reasons[self.Reason])
-
-#Konstanten
-PLUGIN_STREAM = 0x0
-PLUGIN_PULK = 0x1
 
 class ConfigReader(object):
     __Root = None
@@ -60,11 +57,11 @@ class ConfigReader(object):
         if False == Go:
             Document = DOM.parse(ConfigFile)
             self.__Root = Document.getroot()
-            self.readTextmining()
-            self.readDatabase()
-            self.readResources()
-            self.readGeneral()
-            self.readFrontend()
+            self.__readTextmining()
+            self.__readDatabase()
+            self.__readResources()
+            self.__readGeneral()
+            self.__readFrontend()
             if True == OS.access(OS.path.dirname(OS.path.abspath(ConfigFile)), OS.W_OK):
                 ToCache = {}
                 ToCache['name'] = ConfigFile
@@ -77,17 +74,14 @@ class ConfigReader(object):
                 with open(CacheFile, 'w') as OutFile:
                     JSON.dump(ToCache, OutFile)
 
-    def readCmdAttributes(self, Nodes):
+    def __readCmdAttributes(self, Nodes):
         Return = []
         for Node in Nodes:
-            if 'key' in Node.attrib and Node.attrib['key'].strip():
-                if Node.text and Node.text.strip():
-                    Return.append({'key' : Node.attrib['key'].strip(), 'value': Node.text.strip()})
-                else:
-                    Return.append({'key' : Node.attrib['key'].strip(), 'value':''})
+            if Node.text and Node.text.strip():
+                Return.append(Node.text.strip())
         return Return
 
-    def readHostConfiguration(self, Node, Return):
+    def __readHostConfiguration(self, Node, Return):
         if 'useHttps' in Node.attrib:
             Return['host']['useHttps'] = True
         else:
@@ -95,7 +89,7 @@ class ConfigReader(object):
         if 'port' in Node.attrib:
             Return['host']['port'] = str(int(Node.attrib['port'].strip()))
 
-    def readCmdConfiguration(self, Node, Return):
+    def __readCmdConfiguration(self, Node, Return):
         if 'keepalive' in Node.attrib and Node.attrib['keepalive']:
             Char = Codex.decode(Node.attrib['keepalive'], "hex").decode('utf-8')
             if 1 == len(Char):
@@ -105,28 +99,23 @@ class ConfigReader(object):
                 Return['cmd']['keepalive'] = False
         else:
             Return['cmd']['keepalive'] = False
-        if 'endOfStream' in Node.attrib and Node.attrib['endOfStream']:
-            Char = Codex.decode(Node.attrib['endOfStream'], "hex").decode('utf-8')
-            if 1 == len(Char):
-                Return['cmd']['readOnlyEnd'] = True
-                Return['cmd']['endDelimiter'] = Char
-            else:
-                Return['cmd']['readOnlyEnd'] = False
-        else:
-            Return['cmd']['readOnlyEnd'] = False
-
 
         if 'timeout' in Node.attrib and Node.attrib['timeout'].strip():
             Timeout = int(Node.attrib['timeout'].strip())
             if 0<Timeout:
                 Return['cmd']['timeout'] = Timeout
 
+        if "debug" in Node.attrib:
+            Return['cmd']['debug'] = True
+        else:
+            Return['cmd']['debug'] = False
+
         if 'readFromStdin' in Node.attrib:
             Return['cmd']['stdin'] = True
         else:
             Return['cmd']['stdin'] = False
 
-    def readService(self, Root):
+    def __readService(self, Root):
         Node =None
         Nodes = []
         Timeout = 0
@@ -148,17 +137,17 @@ class ConfigReader(object):
             Return['cmd']['name'] = Node.attrib['name'].strip()
             del Return['host']
 
-            self.readCmdConfiguration(Node, Return)
+            self.__readCmdConfiguration(Node, Return)
 
             Nodes = Node.findall('param')
             if Nodes:
-                Return['cmd']['parameter'] = self.readCmdAttributes(Nodes)
+                Return['cmd']['parameter'] = self.__readCmdAttributes(Nodes)
 
             Nodes = Node.findall('version')
             if not Nodes:
                 pass#error
             else:
-                Return['cmd']['version'] = self.readCmdAttributes(Nodes)
+                Return['cmd']['version'] = self.__readCmdAttributes(Nodes)
         else:
             Node = Root.find('host')
             if None is Node:
@@ -166,22 +155,22 @@ class ConfigReader(object):
                 pass
             else:
                 del Return['cmd']
-                self.readHostConfiguration(Node, Return)
+                self.__readHostConfiguration(Node, Return)
                 Return['host']['name'] = Node.text.strip()
 
         return Return
-    def readSubNode(self, Configuration, Node, TagName):
+    def __readSubNode(self, Configuration, Node, TagName):
         if 'host' in Configuration:
-            return self.readSubNodeHttp(Node, TagName)
+            return self.__readSubNodeHttp(Node, TagName)
         else:
-            return self.readSubNodeCmd(Node, TagName)
+            return self.__readSubNodeCmd(Node, TagName)
 
-    def readSubNodeCmd(self, Node, TagName):
+    def __readSubNodeCmd(self, Node, TagName):
         Return = {}
         if 'cmd' in Node.attrib and Node.attrib['cmd']:
             Return['cmd'] = {}
             Return['cmd']['name'] = Node.attrib['cmd']
-            self.readCmdConfiguration(Node, Return)
+            self.__readCmdConfiguration(Node, Return)
 
         Return['parameter'] = {}
         Nodes = Node.findall('param')
@@ -192,10 +181,11 @@ class ConfigReader(object):
 
         return Return
 
-    def readSubNodeHttp(self, Node, TagName):
+    def __readSubNodeHttp(self, Node, TagName):
         NodeStrich = None
         Nodes = []
         Return = {}
+        Return['subpath'] = []
         Return['parameter'] = {}
         Return['cookies'] = []
         Return['headers'] = []
@@ -213,7 +203,7 @@ class ConfigReader(object):
         else:
             if 'host' in Node.attrib and Node.attrib['host']:
                 Return['host'] = {}
-                self.readHostConfiguration(Node, Return)
+                self.__readHostConfiguration(Node, Return)
                 Return['host']['name'] = Node.attrib['host'].strip()
 
             if 'username' in Node.attrib and 'password' in Node.attrib and Node.attrib['username'].strip():
@@ -226,6 +216,7 @@ class ConfigReader(object):
                 pass
             else:
                 Return['path'] = Node.attrib['path'].strip()
+
                 Nodes = NodeStrich.findall('param')
                 if Nodes:
                     for Node in Nodes:
@@ -246,9 +237,13 @@ class ConfigReader(object):
                     for Node in Nodes:
                         if 'name' in Node.attrib and Node.attrib['name']:
                             Return['headers'].append({'name': Node.attrib['name'].strip(), 'value':Node.text.strip()})
+
+                Node = NodeStrich.find('subpath')
+                if Node and Node.text.strip():
+                    Return['subpath'] = Node.text.strip().split("/")
         return Return
 
-    def readTextmining(self):
+    def __readTextmining(self):
         Node = None
 
         Node = self.__Root.find('./services/textmining')
@@ -266,11 +261,12 @@ class ConfigReader(object):
                 Verbose = True
             else:
                 Verbose = False
-            self._Textmining = self.readService(Node)
+
+            self._Textmining = self.__readService(Node)
             self._Textmining['terminator'] = Terminator
             self._Textmining['verbose'] = Verbose
 
-    def readDatabase(self):
+    def __readDatabase(self):
         Node = None
 
         Node = self.__Root.find('./services/database')
@@ -278,14 +274,14 @@ class ConfigReader(object):
             #throw exception if not in tagsoup
             pass
         else:
-            self._Database = self.readService(Node)
-            self._Database['version'] = self.readSubNode(self._Database, Node, 'version')
-            self._Database['query'] = self.readSubNode(self._Database, Node, 'query')
-            self._Database['insert'] = self.readSubNode(self._Database, Node, 'insert')
-            self._Database['update'] = self.readSubNode(self._Database, Node, 'update')
-            self._Database['delete'] = self.readSubNode(self._Database, Node, 'delete')
+            self._Database = self.__readService(Node)
+            self._Database['version'] = self.__readSubNode(self._Database, Node, 'version')
+            self._Database['query'] = self.__readSubNode(self._Database, Node, 'query')
+            self._Database['insert'] = self.__readSubNode(self._Database, Node, 'insert')
+            self._Database['update'] = self.__readSubNode(self._Database, Node, 'update')
+            self._Database['delete'] = self.__readSubNode(self._Database, Node, 'delete')
 
-    def readGeneral(self):
+    def __readGeneral(self):
         Node = None
         Subnode = None
         Threads = 0
@@ -334,9 +330,9 @@ class ConfigReader(object):
             Tmpdir = Subnode.text.strip()
             Tmpdir = Tmpdir.rstrip("/")
             if not Tmpdir:
-                pass
+                raise Exception('stop1')
             elif not OS.path.isdir(Tmpdir) or True == OS.path.islink(Tmpdir):
-                pass
+                raise Exception('stop2')
             Head, Tail = OS.path.split(Tmpdir)
             Tmpdir = OS.path.dirname(OS.path.abspath(Tmpdir))
             if not("/" == Tmpdir[-1:]):
@@ -350,7 +346,7 @@ class ConfigReader(object):
                 else:
                     self._General['tmpdir'] = Tmpdir
 
-    def readRules(self, Nodes):
+    def __readRules(self, Nodes):
         Node = None
 
         Return = {}
@@ -385,19 +381,19 @@ class ConfigReader(object):
                 pass
         return Return
 
-    def readRuleSet(self, Node, Which):
+    def __readRuleSet(self, Node, Which):
         Nodes = []
         Nodes = Node.findall(Which)
-        return self.readRules(Nodes)
+        return self.__readRules(Nodes)
 
-    def readResourceRules(self, Node):
+    def __readResourceRules(self, Node):
         Return = {}
-        Return['exclusions'] = self.readRuleSet(Node, "./excludeFiles")
-        Return['inclusions'] = self.readRuleSet(Node, "./includeFiles")
+        Return['exclusions'] = self.__readRuleSet(Node, "./excludeFiles")
+        Return['inclusions'] = self.__readRuleSet(Node, "./includeFiles")
         return Return
 
 
-    def readPlugin(self, Node, Return):
+    def __readPlugin(self, Node, Return):
          if 'plugin' in Node.attrib:
              if OS.path.isfile('./plugin/' + Node.attrib['plugin'].strip() + '/plugin.py'):
                  Return['plugin'] = './plugin/' + Node.attrib['plugin'].strip() + '/plugin.py'
@@ -410,7 +406,7 @@ class ConfigReader(object):
                  Return['plugin'] = None
 
 
-    def readSubFolder(self, Node):
+    def __readSubFolder(self, Node):
         Return = {}
         allzweckWegwerfVariable = Node.text.strip()
         if not allzweckWegwerfVariable:
@@ -423,14 +419,14 @@ class ConfigReader(object):
             else:
                 Return['onInitializion'] = False
             if 'plugin' in Node.attrib and Node.attrib['plugin']:
-                self.readPlugin(Node, Return)
+                self.__readPlugin(Node, Return)
             else:
                 Return['plugin'] = None
-            Return['ruleset'] = self.readResourceRules(Node)
+            Return['ruleset'] = self.__readResourceRules(Node)
 
         return Return
 
-    def readSubFolders(self, Node):
+    def __readSubFolders(self, Node):
         Return = []
         Nodes = []
         Element = None
@@ -440,7 +436,7 @@ class ConfigReader(object):
             pass
         else:
             for Node in Nodes:
-                Element = self.readSubFolder(Node)
+                Element = self.__readSubFolder(Node)
                 if True == Element['onInitializion']:
                     Return.insert(0, Element)
                 else:
@@ -448,7 +444,7 @@ class ConfigReader(object):
 
         return Return
 
-    def readResource(self, Node):
+    def __readResource(self, Node):
         Return = {}
         Return['folders'] = []
         Nodes = None
@@ -465,7 +461,7 @@ class ConfigReader(object):
             else:
                 Return['domain'] = allzweckWegwerfVariable
 
-        self.readPlugin(Node, Return)
+        self.__readPlugin(Node, Return)
 
         if 'md5Check' in Node.attrib:
             Return['md5'] = True
@@ -477,14 +473,19 @@ class ConfigReader(object):
         else:
             Return['prefix'] = ''
 
-        Return['folders'] = self.readSubFolders(Node)
+        if 'merge' in Node.attrib:
+            Retrun['merge'] = True
+        else:
+            Return['merge'] = False
+
+        Return['folders'] = self.__readSubFolders(Node)
         if not Return['folders']:
             #Exceptio
             pass
-        Return['ruleset'] = self.readResourceRules(Node)
+        Return['ruleset'] = self.__readResourceRules(Node)
         return Return
 
-    def readResources(self):
+    def __readResources(self):
         Nodes = None
 
         Nodes = self.__Root.findall('./resourceCollection/resource')
@@ -493,9 +494,9 @@ class ConfigReader(object):
             pass
         else:
             for Node in Nodes:
-                self._Resources.append(self.readResource(Node))
+                self._Resources.append(self.__readResource(Node))
 
-    def readFrontend(self):
+    def __readFrontend(self):
         Node = self.__Root.find('./frontend')
         if None is Node:
             return

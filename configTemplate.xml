@@ -5,10 +5,10 @@
 			<exclude>String</exclude>
 		</frontend>
 		<textmining verbose="verbose" terminator="any">
-			<cmd name="String" timeout="Integer"* readFromStdin="Any" keepAlive="int" endOfStream="int">
-				<param  key="String">String</param>
-				<param  key="String">String</param>
-				<version  key="String">String</version>
+			<cmd name="String" timeout="Integer"* readFromStdin="Any" keepAlive="\xHex|String">
+				<param>String</param>
+				<param>String</param>
+				<version>String</version>
 			</cmd>
 		</textmining>
 		<database>
@@ -16,6 +16,7 @@
 			<insert methode="string" path="String" username="String" password="String" host="Any"* port="Integer"* >
 				<param key="String">String</param>
 				<param key="String">String</param>
+				<subpath>String</subpath>
 				<cookie type="stroage">String</cookie>
 				<cookie type="string">String</cookie>
 				<header name="String">String</header>
